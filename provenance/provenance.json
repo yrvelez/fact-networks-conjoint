@@ -1,0 +1,128 @@
+{
+ "mode": "fully_agentic",
+ "human_steps": [],
+ "reviewer_pass": true,
+ "models": {
+  "strong": "anthropic/claude-sonnet-5.5",
+  "fast": "qwen/qwen3.8-27b"
+ },
+ "provider": "openrouter",
+ "zero_retention_requested": true,
+ "cost_usd": 0.237586,
+ "tokens": {
+  "in": 122895,
+  "out": 28737
+ },
+ "tool_version": "0.1.0",
+ "created": "2026-10-02T19:58:15Z",
+ "pap_source": "papreader agent",
+ "pii": {
+  "dropped": [],
+  "kept_with_override": [],
+  "allow_pii": false,
+  "flagged": {},
+  "scan": "header + first data row only, local regex"
+ },
+ "degraded": [],
+ "inputs": {
+  "raw_csv_sha256": "384ce59f5f7c72d2c2a3ef29142b2a5c39ed067a951ca155839a65c75dbb56e0",
+  "pap_sha256": "4e713d289a1b4618cdd71b22b2af0bab7342ed9ae584b6b856501a06ceea9ad7",
+  "qsf_sha256": "1488d5cc44c0ecc2185c0b9640c72ae8b5473244f52f36115182c4e9ea93c8be"
+ },
+ "review_mode": "light",
+ "usage_by_agent": {
+  "papreader": {
+   "calls": 1,
+   "in": 6002,
+   "out": 2030,
+   "cost": 0.03198096,
+   "models": [
+    "anthropic/claude-sonnet-5.5"
+   ]
+  },
+  "exploratory": {
+   "calls": 7,
+   "in": 85707,
+   "out": 20120,
+   "cost": 0.088470056664,
+   "models": [
+    "qwen/qwen3.8-27b"
+   ]
+  },
+  "litreview": {
+   "calls": 2,
+   "in": 1427,
+   "out": 997,
+   "cost": 0.00287129898,
+   "models": [
+    "qwen/qwen3.8-27b"
+   ]
+  },
+  "writer": {
+   "calls": 1,
+   "in": 5540,
+   "out": 1658,
+   "cost": 0.0273834,
+   "models": [
+    "anthropic/claude-sonnet-5.5"
+   ]
+  },
+  "reviewer": {
+   "calls": 1,
+   "in": 11336,
+   "out": 1483,
+   "cost": 0.03712698,
+   "models": [
+    "anthropic/claude-sonnet-5.5"
+   ]
+  },
+  "review_orchestrator": {
+   "calls": 1,
+   "in": 12883,
+   "out": 2449,
+   "cost": 0.04975344,
+   "models": [
+    "anthropic/claude-sonnet-5.5"
+   ]
+  }
+ },
+ "stage_seconds": {
+  "ingest": 0.0,
+  "pii": 0.1,
+  "tidy": 0.09,
+  "pap": 11.64,
+  "clean": 0.4,
+  "registered": 1.52,
+  "tag": 0.0,
+  "exploratory": 720.38,
+  "litreview": 10.98,
+  "write": 12.87,
+  "review": 29.63,
+  "package": 0.0
+ },
+ "total_seconds": 787.6,
+ "log": [
+  "2026-10-02T19:58:15Z stage ingest",
+  "2026-10-02T19:58:15Z stage pii",
+  "2026-10-02T19:58:15Z PII scan: no identifier or free-text columns flagged.",
+  "2026-10-02T19:58:15Z stage tidy",
+  "2026-10-02T19:58:15Z stage pap",
+  "2026-10-02T19:58:27Z cleared 8 file(s) from the previous run",
+  "2026-10-02T19:58:27Z stage clean",
+  "2026-10-02T19:58:27Z wrote data/clean.csv: 12000 rows, 25 columns",
+  "2026-10-02T19:58:27Z stage registered",
+  "2026-10-02T19:58:29Z H1: dropped 118 of 12000 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-02T19:58:29Z H1: share ~ C(arm_code, Treatment(reference='True/neutral')) + C(close_tie) + C(sharer_native_us) + sharer_trust + sharer_knowledge + C(sharer_ideology) + sharer_disputed | 2 arms vs True/neutral (placebo), N=11882, cluster SEs; 2 arm(s) supported",
+  "2026-10-02T19:58:29Z H2: dropped 116 of 12000 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-02T19:58:29Z H2: plausibility ~ C(arm_code, Treatment(reference='True/neutral')) + C(close_tie) + C(sharer_native_us) + sharer_trust + sharer_knowledge + C(sharer_ideology) + sharer_disputed | 2 arms vs True/neutral (placebo), N=11884, cluster SEs; 2 arm(s) supported",
+  "2026-10-02T19:58:29Z wrote results/registered_summary.csv (4 rows)",
+  "2026-10-02T19:58:29Z stage tag",
+  "2026-10-02T19:58:29Z stage exploratory",
+  "2026-10-02T20:10:29Z tags: H1=deviation, H2=deviation, E1=exploratory, E2=exploratory, E3=exploratory",
+  "2026-10-02T20:10:29Z stage litreview",
+  "2026-10-02T20:10:40Z stage write",
+  "2026-10-02T20:10:53Z stage review",
+  "2026-10-02T20:11:22Z review (light): 14 issue(s)",
+  "2026-10-02T20:11:22Z stage package"
+ ]
+}

@@ -1,0 +1,290 @@
+{
+  "title": "Who Shares What From Whom: An Ego-Network Conjoint of Misinformation Sharing",
+  "constructs": [
+    "misinformation",
+    "fact_checking",
+    "conjoint_preferences",
+    "social_norms",
+    "media_trust"
+  ],
+  "keywords": [
+    "misinformation",
+    "sharing",
+    "conjoint",
+    "social network",
+    "fact-check",
+    "Latino"
+  ],
+  "registration": {
+    "status": "registered",
+    "url": "https://aspredicted.org/8njc-mpqw.pdf",
+    "note": "AsPredicted #132508"
+  },
+  "design": {
+    "type": "conjoint",
+    "arms": {
+      "column": "infotype",
+      "treatment": [
+        "Misinformation",
+        "Fact-check"
+      ],
+      "control": "True/neutral",
+      "labels": {
+        "Misinformation": "Misinformation",
+        "Fact-check": "Fact-check",
+        "True/neutral": "True/neutral (placebo)"
+      }
+    },
+    "population": {
+      "country": "US",
+      "sample": "yougov"
+    },
+    "outcome_type": "binary forced choice"
+  },
+  "registered": {
+    "outcomes": [
+      {
+        "name": "share",
+        "label": "Chosen to share",
+        "kind": "single_item",
+        "columns": [
+          "chosen_share"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "chosen_share"
+      },
+      {
+        "name": "plausibility",
+        "label": "Chosen as more plausible",
+        "kind": "single_item",
+        "columns": [
+          "chosen_belief"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "chosen_belief"
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "H1",
+        "text": "Information type affects sharing.",
+        "outcome": "share",
+        "treatment": {
+          "column": "infotype",
+          "arms": [
+            "Misinformation",
+            "Fact-check"
+          ],
+          "control": "True/neutral"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC2",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "close_tie",
+            "sharer_native_us",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_ideology",
+            "sharer_disputed"
+          ]
+        },
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": []
+      },
+      {
+        "id": "H2",
+        "text": "Information type affects plausibility choice.",
+        "outcome": "plausibility",
+        "treatment": {
+          "column": "infotype",
+          "arms": [
+            "Misinformation",
+            "Fact-check"
+          ],
+          "control": "True/neutral"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC2",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "close_tie",
+            "sharer_native_us",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_ideology",
+            "sharer_disputed"
+          ]
+        },
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": []
+      }
+    ],
+    "subgroups": [],
+    "sample_exclusions": [],
+    "multiple_testing": "none",
+    "alpha": 0.05
+  },
+  "implemented": {
+    "outcomes": [
+      {
+        "name": "share",
+        "label": "Chosen to share",
+        "kind": "single_item",
+        "columns": [
+          "chosen_share"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "chosen_share"
+      },
+      {
+        "name": "plausibility",
+        "label": "Chosen as more plausible",
+        "kind": "single_item",
+        "columns": [
+          "chosen_belief"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "chosen_belief"
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "H1",
+        "text": "Information type affects sharing.",
+        "outcome": "share",
+        "treatment": {
+          "column": "infotype",
+          "arms": [
+            "Misinformation",
+            "Fact-check"
+          ],
+          "control": "True/neutral"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC2",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "close_tie",
+            "sharer_native_us",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_ideology",
+            "sharer_disputed"
+          ],
+          "continuous": [
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_disputed"
+          ]
+        },
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": []
+      },
+      {
+        "id": "H2",
+        "text": "Information type affects plausibility choice.",
+        "outcome": "plausibility",
+        "treatment": {
+          "column": "infotype",
+          "arms": [
+            "Misinformation",
+            "Fact-check"
+          ],
+          "control": "True/neutral"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC2",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "close_tie",
+            "sharer_native_us",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_ideology",
+            "sharer_disputed"
+          ],
+          "continuous": [
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_disputed"
+          ]
+        },
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": []
+      }
+    ],
+    "subgroups": [],
+    "sample_exclusions": [],
+    "multiple_testing": "none",
+    "alpha": 0.05
+  },
+  "ambiguities": [
+    {
+      "hypothesis": "H1",
+      "field": "estimator.covariates",
+      "kind": "interpretation",
+      "pap_text": "Regress DV on information type ... closeness of tie, national origin/nativity, perceived trust...",
+      "interpretation": "Additive OLS with all conjoint features as covariates (AMCE), clustered by respondent; trust/knowledge/disputed entered linearly",
+      "alternatives": [
+        "trust and knowledge as dummies"
+      ],
+      "reason": "PAP silent on coding"
+    },
+    {
+      "hypothesis": "H1",
+      "field": "estimator.weights",
+      "kind": "interpretation",
+      "pap_text": "re-weighting the AMCE to account for different assignment probabilities",
+      "interpretation": "No weights; survey weight not mentioned and reweighting was only a possible analysis",
+      "alternatives": [
+        "weight column"
+      ],
+      "reason": "Not registered firmly"
+    },
+    {
+      "hypothesis": "H1",
+      "field": "subgroups",
+      "kind": "interpretation",
+      "pap_text": "Possible analyses: (1) conducting subset analyses using age, ideology...",
+      "interpretation": "Subgroup analyses not included as they are optional and tertile splits are unspecified",
+      "alternatives": [
+        "tertile subgroups"
+      ],
+      "reason": "Described as possible only"
+    }
+  ],
+  "source": "pap.md"
+}

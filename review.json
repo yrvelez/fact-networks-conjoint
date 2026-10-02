@@ -1,0 +1,300 @@
+{
+ "mode": "light",
+ "modes": [
+  "light"
+ ],
+ "models": {
+  "light": "anthropic/claude-sonnet-5.5",
+  "orchestrator": "anthropic/claude-sonnet-5.5"
+ },
+ "model": "anthropic/claude-sonnet-5.5",
+ "overall": "The registered contrasts are internally consistent with the tables: Misinformation and Fact-check headlines were chosen less often than True/neutral for both sharing and plausibility, with tight intervals. The text understates two things, though. The comparison is against True/neutral content rather than a no-treatment baseline. The estimates also come from a covariate-adjusted model that deviates from the plan, and the deviation is undocumented. The most important caveat is that the unit of analysis and the coding of the paired forced choice are unclear, so the percentage-point magnitudes are hard to interpret. The exploratory trial and theme analyses use different estimators from the registered models and are over-interpreted in places.",
+ "issues": [
+  {
+   "severity": "high",
+   "location": "H1/H2 deviation",
+   "issue": "Both hypotheses are tagged as deviations (sharer_trust, sharer_knowledge, sharer_disputed added as covariates; registered covariate set is null) with no justification, and the report says the effect is 'unknown' without checking it.",
+   "fix": "Report the registered specification (arm only, or the registered covariates) alongside the deviating model, and state why covariates were added.",
+   "kind": "analytical",
+   "change": {
+    "target": "H1",
+    "type": "covariates"
+   },
+   "id": "R1",
+   "source": "light",
+   "disposition": "address",
+   "disposition_reason": "Re-fitting the registered covariate specification (arm only) alongside the adjusted model is a robustness re-fit on the same data."
+  },
+  {
+   "severity": "medium",
+   "location": "Design and data / Results",
+   "issue": "The 12,000 'responses' are described as respondents but the conjoint has four trials per respondent (E2 n≈2,972 per trial). Arm n's (3,822 + 3,915 + 4,145) are rows. The unit and the number of respondents are unclear. Binary forced choice between headlines also means shares are not independent across the pair. Control and arm shares of about 60%, 42% and 47% are not clearly interpretable.",
+   "fix": "State the number of respondents, rows per respondent, and how the choice outcome is coded for paired headlines. Check that clustering handles within-pair dependence.",
+   "kind": "analytical",
+   "change": {
+    "target": "H1",
+    "type": "cluster"
+   },
+   "id": "R2",
+   "source": "light",
+   "disposition": "editorial",
+   "disposition_reason": "The report needs to state respondent counts, rows per respondent, and how the choice outcome is coded; the models are already clustered on resp_id."
+  },
+  {
+   "severity": "medium",
+   "location": "Design and data",
+   "issue": "The design says 'two treatment arms and a control', but the covariates are about a 'sharer' in an ego network (title: 'Who shares what from whom'). The ego-network and source dimension is never described or analysed, and the covariates are not explained.",
+   "fix": "Describe the conjoint attributes and the sharer variables, and explain why only the information-type effect is reported.",
+   "kind": "presentational",
+   "change": null,
+   "id": "R3",
+   "source": "light",
+   "disposition": "editorial",
+   "disposition_reason": "The conjoint attributes and sharer variables need to be described, and the report should explain why only the information-type effect is reported."
+  },
+  {
+   "severity": "medium",
+   "location": "E1",
+   "issue": "E1 uses IPW with HC2, not the cluster-robust SEs of the registered models, so the repeated trials per respondent are ignored. The sample is reduced to n=9,910. The prose says 'significantly weaker' without any multiplicity caveat. The 'is_conservative' coding is undefined. The table's term labels are truncated and do not distinguish main effects from interactions.",
+   "fix": "Re-fit with respondent clustering, define the conservative coding, label the interaction terms, and describe the result as suggestive.",
+   "kind": "analytical",
+   "change": {
+    "target": "E1",
+    "type": "cluster"
+   },
+   "id": "R4",
+   "source": "light",
+   "disposition": "address",
+   "disposition_reason": "E1 can be re-fit with respondent clustering, and the conservative coding and term labels can be defined."
+  },
+  {
+   "severity": "medium",
+   "location": "E2",
+   "issue": "The E2 finding claims 'ruling out order effects or fatigue' and also says a 'mild fatigue/order effect' exists. This is contradictory. No formal test of trial×arm interaction is given. The weights and SE types differ from the registered models.",
+   "fix": "Fit a trial×arm interaction with clustering and reword the claim.",
+   "kind": "analytical",
+   "change": {
+    "target": "E2",
+    "type": "robustness"
+   },
+   "id": "R5",
+   "source": "light",
+   "disposition": "address",
+   "disposition_reason": "A clustered trial×arm interaction can be fit on the existing data, and the claim can be reworded."
+  },
+  {
+   "severity": "medium",
+   "location": "E3",
+   "issue": "E3 runs 30 theme-by-arm estimates without multiplicity correction. The prose says the overall result is 'driven by a subset of themes' and that the range includes +0.152, but that positive value (Debt, p=0.026) is likely noise. Most of the table is truncated ('18 more rows').",
+   "fix": "Show the full table, apply a correction or a heterogeneity test, and soften the 'driven by a subset' claim.",
+   "kind": "presentational",
+   "change": null,
+   "id": "R6",
+   "source": "light",
+   "disposition": "declined",
+   "disposition_reason": "The plan specifies no multiple-testing correction, so a correction is not applied; E3 is exploratory, and the full table and a heterogeneity test can still be shown with softer wording."
+  },
+  {
+   "severity": "low",
+   "location": "H2 / Abstract",
+   "issue": "The report says Misinformation's drop is larger than Fact-check's on plausibility, but gives no direct test of the difference. The abstract's 'all four tests p<0.001' is fine, but the 'Fact-check lowered sharing' result may reflect the placebo's own content differences.",
+   "fix": "Add a Wald test of Misinformation vs Fact-check, and note that the control is 'True/neutral' content, not a no-treatment baseline.",
+   "kind": "analytical",
+   "change": {
+    "target": "H1",
+    "type": "robustness"
+   },
+   "id": "R7",
+   "source": "light",
+   "disposition": "address",
+   "disposition_reason": "A Wald test of Misinformation vs Fact-check is an additional estimate on the same model; the control caveat is a wording fix."
+  },
+  {
+   "severity": "low",
+   "location": "Related work",
+   "issue": "The retrieved literature is mostly irrelevant, and the section adds little.",
+   "fix": "Trim it or replace it with relevant misinformation-sharing literature.",
+   "kind": "presentational",
+   "change": null,
+   "id": "R8",
+   "source": "light",
+   "disposition": "editorial",
+   "disposition_reason": "The related-work section should be trimmed or replaced with relevant literature."
+  },
+  {
+   "id": "K1",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "H2",
+   "issue": "Overstated claim: \"Misinformation's drop is larger than Fact-check's, though the intervals are close\". H2_arms.csv: -0.186 vs -0.124. The CIs overlap only slightly, but no direct test of the difference is reported.",
+   "fix": "Add a Wald test of Misinformation vs Fact-check, or say the difference was not formally tested.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K2",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "H1",
+   "issue": "Overstated claim: \"Both treatment arms lowered the chance that a headline was chosen for sharing\". The reference is True/neutral content, not a no-treatment baseline. The estimates are differences between headline types in forced choices, and the model is covariate-adjusted, which departs from the plan.",
+   "fix": "Say that Misinformation and Fact-check headlines were chosen less often than True/neutral headlines.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K3",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "Key findings",
+   "issue": "Overstated claim: \"Fact-check headlines lowered the sharing choice, so both information types lowered it\". H1_arms.csv shows -0.133 for Fact-check. This is a contrast with the True/neutral placebo headlines and may reflect content differences between headline types.",
+   "fix": "Describe it as a difference relative to True/neutral headlines, not a causal lowering by information type.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K4",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "E1 / Key findings",
+   "issue": "Overstated claim: \"The sharing effects vary by respondent ideology: weaker among conservatives\". E1 interactions: +0.104 [0.041,0.166], +0.112 [0.050,0.173]. The model is IPW with HC2 errors rather than clustered errors, on a reduced n=9,910 sample, so the intervals are likely too narrow.",
+   "fix": "Re-fit with respondent clustering and call the result suggestive.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K5",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "E2",
+   "issue": "Overstated claim: \"Misinformation effect declines modestly from −0.200 in trial 1 to −0.140 in trial 4, ruling out order effects or fatigue\". E2 table: -0.200 to -0.140. The paper itself calls this a mild fatigue/order effect, which contradicts 'ruling out', and no trial×arm interaction test is given.",
+   "fix": "Drop 'ruling out'. Report the decline and add an interaction test.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K6",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "E3",
+   "issue": "Overstated claim: \"Overall negative result is driven by a subset of themes; range −0.325 to +0.152\". E3 table: range is correct, but Debt's +0.152 has p=0.026 with 30 uncorrected estimates, and most of the table is truncated. 'Driven by a subset' is not tested.",
+   "fix": "Show the full table, test heterogeneity formally, and describe the variation as exploratory.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  }
+ ],
+ "pending": [],
+ "synthesis": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "assessment": "The registered contrasts are internally consistent with the tables: Misinformation and Fact-check headlines were chosen less often than True/neutral for both sharing and plausibility, with tight intervals. The text understates two things, though. The comparison is against True/neutral content rather than a no-treatment baseline. The estimates also come from a covariate-adjusted model that deviates from the plan, and the deviation is undocumented. The most important caveat is that the unit of analysis and the coding of the paired forced choice are unclear, so the percentage-point magnitudes are hard to interpret. The exploratory trial and theme analyses use different estimators from the registered models and are over-interpreted in places.",
+  "claims": [
+   {
+    "claim": "Misinformation was chosen for sharing 18.2 percentage points less often (95% CI [−20.4, −16.0])",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H1_arms.csv Misinformation: -0.182, CI [-0.204,-0.160]; control 0.603 vs 0.421.",
+    "fix": ""
+   },
+   {
+    "claim": "Fact-check 13.3 points less often (95% CI [−15.6, −11.1])",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H1_arms.csv Fact-check: -0.133, CI [-0.156,-0.111]; 0.603 vs 0.470.",
+    "fix": ""
+   },
+   {
+    "claim": "Misinformation was 18.6 points lower and Fact-check 12.4 points lower on plausibility",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H2_arms.csv: -0.186 [-0.208,-0.164]; -0.124 [-0.147,-0.102].",
+    "fix": ""
+   },
+   {
+    "claim": "All four tests were two-sided with p<0.001",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "registered_summary.csv p-values range from 8.61e-59 to 1.7e-27, all two-sided.",
+    "fix": ""
+   },
+   {
+    "claim": "Misinformation's drop is larger than Fact-check's, though the intervals are close",
+    "location": "H2",
+    "verdict": "overstated",
+    "evidence": "H2_arms.csv: -0.186 vs -0.124. The CIs overlap only slightly, but no direct test of the difference is reported.",
+    "fix": "Add a Wald test of Misinformation vs Fact-check, or say the difference was not formally tested."
+   },
+   {
+    "claim": "Both treatment arms lowered the chance that a headline was chosen for sharing",
+    "location": "H1",
+    "verdict": "overstated",
+    "evidence": "The reference is True/neutral content, not a no-treatment baseline. The estimates are differences between headline types in forced choices, and the model is covariate-adjusted, which departs from the plan.",
+    "fix": "Say that Misinformation and Fact-check headlines were chosen less often than True/neutral headlines."
+   },
+   {
+    "claim": "Fact-check headlines lowered the sharing choice, so both information types lowered it",
+    "location": "Key findings",
+    "verdict": "overstated",
+    "evidence": "H1_arms.csv shows -0.133 for Fact-check. This is a contrast with the True/neutral placebo headlines and may reflect content differences between headline types.",
+    "fix": "Describe it as a difference relative to True/neutral headlines, not a causal lowering by information type."
+   },
+   {
+    "claim": "The sharing effects vary by respondent ideology: weaker among conservatives",
+    "location": "E1 / Key findings",
+    "verdict": "overstated",
+    "evidence": "E1 interactions: +0.104 [0.041,0.166], +0.112 [0.050,0.173]. The model is IPW with HC2 errors rather than clustered errors, on a reduced n=9,910 sample, so the intervals are likely too narrow.",
+    "fix": "Re-fit with respondent clustering and call the result suggestive."
+   },
+   {
+    "claim": "Misinformation effect declines modestly from −0.200 in trial 1 to −0.140 in trial 4, ruling out order effects or fatigue",
+    "location": "E2",
+    "verdict": "overstated",
+    "evidence": "E2 table: -0.200 to -0.140. The paper itself calls this a mild fatigue/order effect, which contradicts 'ruling out', and no trial×arm interaction test is given.",
+    "fix": "Drop 'ruling out'. Report the decline and add an interaction test."
+   },
+   {
+    "claim": "Overall negative result is driven by a subset of themes; range −0.325 to +0.152",
+    "location": "E3",
+    "verdict": "overstated",
+    "evidence": "E3 table: range is correct, but Debt's +0.152 has p=0.026 with 30 uncorrected estimates, and most of the table is truncated. 'Driven by a subset' is not tested.",
+    "fix": "Show the full table, test heterogeneity formally, and describe the variation as exploratory."
+   }
+  ],
+  "editorial": [
+   "Document the undocumented deviation: state that trust, knowledge and disputed covariates were added, why, and report the registered specification next to it.",
+   "State the number of respondents, rows per respondent, and how the paired forced-choice outcome is coded.",
+   "Describe all arms as contrasts with True/neutral content, not as effects of 'lowering' sharing relative to no information.",
+   "Fix E2 wording that both rules out and finds a fatigue effect, and soften the E3 'driven by a subset' claim.",
+   "Define is_conservative, label E1 interaction terms, and print the full E3 table.",
+   "Trim the irrelevant related-work list."
+  ],
+  "unresolved": [
+   {
+    "question": "Does real-world sharing of misinformation and fact-checks on social platforms differ from forced-choice headline selection, and by how much?",
+    "why": "The study measures only binary forced choices between headlines, not actual sharing behavior.",
+    "from": [
+     "R2"
+    ],
+    "id": "U1"
+   },
+   {
+    "question": "Is the Fact-check vs True/neutral difference due to information type or to differences in the content of the placebo headlines?",
+    "why": "The design has no no-information baseline and headline content is not randomized independently of type.",
+    "from": [
+     "R7"
+    ],
+    "id": "U2"
+   }
+  ]
+ }
+}

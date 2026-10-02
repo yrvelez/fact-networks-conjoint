@@ -1,0 +1,6 @@
+analysis_id,kind,tag,n_differences,differences,justification
+H1,hypothesis,deviation,1,"[{""field"": ""estimator.continuous"", ""registered"": null, ""implemented"": [""sharer_trust"", ""sharer_knowledge"", ""sharer_disputed""]}]",undocumented deviation
+H2,hypothesis,deviation,1,"[{""field"": ""estimator.continuous"", ""registered"": null, ""implemented"": [""sharer_trust"", ""sharer_knowledge"", ""sharer_disputed""]}]",undocumented deviation
+E1,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
+E2,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
+E3,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered

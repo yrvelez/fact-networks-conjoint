@@ -1,0 +1,149 @@
+{
+ "text": "The retrieved literature offers only limited direct coverage of the study's hypotheses. Lazer et al. (2018) frame fake news as a multidisciplinary problem, noting that the type and source of information shape how audiences evaluate its credibility, which is broadly consistent with H1 and H2. Gigerenzer and Gaissmaier (2010) describe heuristics as efficient processes that ignore part of the available information, providing a mechanism by which information type could influence plausibility judgments (H2). Beyond these, the remaining works address topics (tourism climate, energy acceptance, immigration prejudice, brand psychology, etc.) that do not speak directly to information-type effects on sharing or plausibility.",
+ "works": [
+  {
+   "id": "https://openalex.org/W1993022101",
+   "title": "Weather and Climate Information for Tourism",
+   "authors": [
+    "Daniel J. Scott",
+    "Christopher James Lemieux"
+   ],
+   "year": 2010,
+   "doi": "10.1016/j.proenv.2010.09.011",
+   "venue": "Procedia Environmental Sciences",
+   "cited_by": 376,
+   "abstract": "The tourism sector is one of the largest and fastest growing global industries and is a significant contributor to national and local economies around the world. The interface between climate and tourism is multifaceted and complex, as climate represents both a vital resource to be exploited and an important limiting factor that poses risks to be managed by the tourism industry and tourists alike."
+  },
+  {
+   "id": "https://openalex.org/W2885257680",
+   "title": "Social acceptance revisited: gaps, questionable trends, and an auspicious perspective",
+   "authors": [
+    "Maarten Wolsink"
+   ],
+   "year": 2018,
+   "doi": "10.1016/j.erss.2018.07.034",
+   "venue": "Energy Research & Social Science",
+   "cited_by": 304,
+   "abstract": "Recently the field of social acceptance research on energy was mapped by Gaede and Rowlands [1]. Some of their observations are worrying and need reflection. Two essential pivot points have not been recognized, and observed trends in current research practice that must be assessed as highly undesirable are associated with these unnoticed issues. Missing in the analysis is the start of social accep"
+  },
+  {
+   "id": "https://openalex.org/W3085542870",
+   "title": "Prejudice and Discrimination Toward Immigrants",
+   "authors": [
+    "Victoria M. Esses"
+   ],
+   "year": 2020,
+   "doi": "10.1146/annurev-psych-080520-102803",
+   "venue": "Annual Review of Psychology",
+   "cited_by": 273,
+   "abstract": "Prejudice and discrimination toward immigrants, and the consequences of these negative attitudes and behavior, are key determinants of the economic, sociocultural, and civic-political future of receiving societies and of the individuals who seek to make these societies their new home. In this article I review and organize the existing literature on the determinants and nature of prejudice and disc"
+  },
+  {
+   "id": "https://openalex.org/W3016902371",
+   "title": "Using social and behavioural science to support COVID-19 pandemic response",
+   "authors": [
+    "Jay Joseph Van Bavel",
+    "Katherine Baicker",
+    "Paulo S. Boggio",
+    "Valerio Capraro"
+   ],
+   "year": 2020,
+   "doi": "10.1038/s41562-020-0884-z",
+   "venue": "Nature Human Behaviour",
+   "cited_by": 5218,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W2791544114",
+   "title": "The science of fake news",
+   "authors": [
+    "David M. J. Lazer",
+    "Matthew Baum",
+    "Yochai Roberts Benkler",
+    "Adam J. Berinsky"
+   ],
+   "year": 2018,
+   "doi": "10.1126/science.aao2998",
+   "venue": "Science",
+   "cited_by": 3998,
+   "abstract": "Addressing fake news requires a multidisciplinary effort"
+  },
+  {
+   "id": "https://openalex.org/W2112957339",
+   "title": "Confronting the Challenges of Participatory Culture: Media Education for the 21st Century",
+   "authors": [
+    "Henry Jenkins",
+    "Ravi Purushotma"
+   ],
+   "year": 2006,
+   "doi": "",
+   "venue": "BiblioBoard Library Catalog (Open Research Library)",
+   "cited_by": 3184,
+   "abstract": "Henry Jenkins, Director of the Comparative Media Studies Program at the Massachusetts Institute of Technology authored this white paper, exploring new frameworks and models for media literacy."
+  },
+  {
+   "id": "https://openalex.org/W3092131469",
+   "title": "Psychology as a Historical Science",
+   "authors": [
+    "Michael Muthukrishna",
+    "Joseph Henrich",
+    "Edward Slingerland"
+   ],
+   "year": 2020,
+   "doi": "10.1146/annurev-psych-082820-111436",
+   "venue": "Annual Review of Psychology",
+   "cited_by": 219,
+   "abstract": "Psychology has traditionally seen itself as the science of universal human cognition, but it has only recently begun seriously grappling with cross-cultural variation. Here we argue that the roots of cross-cultural variation often lie in the past. Therefore, to understand not only how but also why psychology varies, we need to grapple with cross-temporal variation. The traces of past human cogniti"
+  },
+  {
+   "id": "https://openalex.org/W3140719370",
+   "title": "Race, Rhetoric, and Research Methods",
+   "authors": [
+    "Alexandria L. Lockett",
+    "Iris D. Ruiz",
+    "James Chase Sanchez",
+    "Christopher Carter"
+   ],
+   "year": 2021,
+   "doi": "10.37514/per-b.2021.1206",
+   "venue": "The WAC Clearinghouse; University Press of Colorado eBooks",
+   "cited_by": 78,
+   "abstract": "McLeod, and Jonathan Hunt-as well as Mike Palmquist, who coordinates the"
+  },
+  {
+   "id": "https://openalex.org/W3083864815",
+   "title": "Psychological Underpinnings of Brands",
+   "authors": [
+    "Richard P. Bagozzi",
+    "Simona Romani",
+    "Silvia Grappi",
+    "Lia Zarantonello"
+   ],
+   "year": 2020,
+   "doi": "10.1146/annurev-psych-010419-051008",
+   "venue": "Annual Review of Psychology",
+   "cited_by": 56,
+   "abstract": "Research in psychology has shown that even routinely experienced everyday objects such as brands can trigger cognitively engaging, emotional, and socially meaningful experiences. In this article, we review three key areas where current advances reside: brands as passive objects with utilitarian and symbolic meanings, brands as relationship partners and regulators of personal relationships, and bra"
+  },
+  {
+   "id": "https://openalex.org/W2096016260",
+   "title": "Heuristic Decision Making",
+   "authors": [
+    "Gerd Gigerenzer",
+    "Wolfgang Gaissmaier"
+   ],
+   "year": 2010,
+   "doi": "10.1146/annurev-psych-120709-145346",
+   "venue": "Annual Review of Psychology",
+   "cited_by": 4057,
+   "abstract": "As reflected in the amount of controversy, few areas in psychology have undergone such dramatic conceptual changes in the past decade as the emerging science of heuristics. Heuristics are efficient cognitive processes, conscious or unconscious, that ignore part of the information. Because using heuristics saves effort, the classical view has been that heuristic decisions imply greater errors than "
+  }
+ ],
+ "queries": [
+  "misinformation sharing conjoint preferences social network",
+  "fact-checking social norms misinformation sharing behavior",
+  "media trust misinformation sharing ego-network Latino",
+  "conjoint experiment information sharing plausibility social influence"
+ ],
+ "degraded": null
+}

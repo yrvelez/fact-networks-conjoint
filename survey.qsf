@@ -1,0 +1,757 @@
+{
+ "SurveyEntry": {
+  "SurveyID": "SV_reconstructed",
+  "SurveyName": "Social Network Conjoint (May 2023), YouGov - reconstructed schema",
+  "SurveyDescription": "Reconstructed from the YouGov .sav variable and value labels. Not a Qualtrics export; no responses."
+ },
+ "SurveyElements": [
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "BL",
+   "PrimaryAttribute": "Survey Blocks",
+   "Payload": {
+    "BL_main": {
+     "Type": "Standard",
+     "Description": "Measures (reconstructed)",
+     "ID": "BL_main",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID1"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID2"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID3"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID4"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID5"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID6"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID7"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID8"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID9"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID10"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID11"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID12"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID13"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID14"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID15"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID16"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID17"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID18"
+      }
+     ]
+    },
+    "BL_arm1": {
+     "Type": "Standard",
+     "Description": "Headline: True/neutral",
+     "ID": "BL_arm1",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID19"
+      }
+     ]
+    },
+    "BL_arm2": {
+     "Type": "Standard",
+     "Description": "Headline: Misinformation",
+     "ID": "BL_arm2",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID20"
+      }
+     ]
+    },
+    "BL_arm3": {
+     "Type": "Standard",
+     "Description": "Headline: Fact-check",
+     "ID": "BL_arm3",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID21"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "FL",
+   "PrimaryAttribute": "Survey Flow",
+   "Payload": {
+    "Type": "Root",
+    "FlowID": "FL_1",
+    "Flow": [
+     {
+      "Type": "BlockRandomizer",
+      "FlowID": "FL_rand",
+      "SubSet": 1,
+      "EvenPresentation": false,
+      "Flow": [
+       {
+        "Type": "Group",
+        "FlowID": "FL_g1",
+        "Description": "True/neutral",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_e1",
+          "EmbeddedData": [
+           {
+            "Description": "infotype",
+            "Type": "Custom",
+            "Field": "infotype",
+            "VariableType": "String",
+            "Value": "True/neutral"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_arm1",
+          "FlowID": "FL_b1"
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_g2",
+        "Description": "Misinformation",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_e2",
+          "EmbeddedData": [
+           {
+            "Description": "infotype",
+            "Type": "Custom",
+            "Field": "infotype",
+            "VariableType": "String",
+            "Value": "Misinformation"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_arm2",
+          "FlowID": "FL_b2"
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_g3",
+        "Description": "Fact-check",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_e3",
+          "EmbeddedData": [
+           {
+            "Description": "infotype",
+            "Type": "Custom",
+            "Field": "infotype",
+            "VariableType": "String",
+            "Value": "Fact-check"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_arm3",
+          "FlowID": "FL_b3"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "Type": "Standard",
+      "ID": "BL_main",
+      "FlowID": "FL_main"
+     }
+    ]
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID1",
+   "SecondaryAttribute": "resp_id",
+   "Payload": {
+    "QuestionID": "QID1",
+    "DataExportTag": "resp_id",
+    "QuestionType": "Slider",
+    "Selector": "HSLIDER",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Respondent number (1-1,500). Replaces the YouGov case id; used to cluster standard errors.",
+    "QuestionDescription": "resp_id"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID2",
+   "SecondaryAttribute": "trial",
+   "Payload": {
+    "QuestionID": "QID2",
+    "DataExportTag": "trial",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Conjoint trial (4 per respondent).",
+    "QuestionDescription": "trial",
+    "Choices": {
+     "1": {
+      "Display": "Trial 1"
+     },
+     "2": {
+      "Display": "Trial 2"
+     },
+     "3": {
+      "Display": "Trial 3"
+     },
+     "4": {
+      "Display": "Trial 4"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "RecodeValues": {
+     "1": "1",
+     "2": "2",
+     "3": "3",
+     "4": "4"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID3",
+   "SecondaryAttribute": "profile",
+   "Payload": {
+    "QuestionID": "QID3",
+    "DataExportTag": "profile",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Position of the headline within the pair: \"Message 1\" or \"Message 2\".",
+    "QuestionDescription": "profile",
+    "Choices": {
+     "1": {
+      "Display": "Message 1"
+     },
+     "2": {
+      "Display": "Message 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "RecodeValues": {
+     "1": "A",
+     "2": "B"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID4",
+   "SecondaryAttribute": "headline_theme",
+   "Payload": {
+    "QuestionID": "QID4",
+    "DataExportTag": "headline_theme",
+    "QuestionType": "Slider",
+    "Selector": "HSLIDER",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Topic of the headline shown (e.g. Tucker Carlson, Biden Budget, Guanabana).",
+    "QuestionDescription": "headline_theme"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID5",
+   "SecondaryAttribute": "close_tie",
+   "Payload": {
+    "QuestionID": "QID5",
+    "DataExportTag": "close_tie",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Whether the contact was named as a close contact or a distant contact.",
+    "QuestionDescription": "close_tie",
+    "Choices": {
+     "1": {
+      "Display": "Close contact"
+     },
+     "2": {
+      "Display": "Distant contact"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID6",
+   "SecondaryAttribute": "sharer_native_us",
+   "Payload": {
+    "QuestionID": "QID6",
+    "DataExportTag": "sharer_native_us",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Where do personal contacts live?\" Recoded: Continental US vs. any other answer (Puerto Rico, Latin America, Other region, Don't know).",
+    "QuestionDescription": "sharer_native_us",
+    "Choices": {
+     "1": {
+      "Display": "Continental US"
+     },
+     "2": {
+      "Display": "Elsewhere or don't know"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID7",
+   "SecondaryAttribute": "sharer_trust",
+   "Payload": {
+    "QuestionID": "QID7",
+    "DataExportTag": "sharer_trust",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Trust personal contacts provide accurate information.\" Reversed so 5 = Trust.",
+    "QuestionDescription": "sharer_trust",
+    "Choices": {
+     "1": {
+      "Display": "Trust"
+     },
+     "2": {
+      "Display": "Trust somewhat"
+     },
+     "3": {
+      "Display": "Neither trust nor distrust"
+     },
+     "4": {
+      "Display": "Distrust somewhat"
+     },
+     "5": {
+      "Display": "Distrust"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "RecodeValues": {
+     "1": "5",
+     "2": "4",
+     "3": "3",
+     "4": "2",
+     "5": "1"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID8",
+   "SecondaryAttribute": "sharer_knowledge",
+   "Payload": {
+    "QuestionID": "QID8",
+    "DataExportTag": "sharer_knowledge",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Personal contacts knowledgeable about politics\" (agreement).",
+    "QuestionDescription": "sharer_knowledge",
+    "Choices": {
+     "1": {
+      "Display": "Strongly disagree"
+     },
+     "2": {
+      "Display": "Disagree"
+     },
+     "3": {
+      "Display": "Neither agree nor disagree"
+     },
+     "4": {
+      "Display": "Agree"
+     },
+     "5": {
+      "Display": "Strongly agree"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "RecodeValues": {
+     "1": "1",
+     "2": "2",
+     "3": "3",
+     "4": "4",
+     "5": "5"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID9",
+   "SecondaryAttribute": "sharer_ideology",
+   "Payload": {
+    "QuestionID": "QID9",
+    "DataExportTag": "sharer_ideology",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Political orientation of personal contacts.\" \"Don't know\" coded Moderate.",
+    "QuestionDescription": "sharer_ideology",
+    "Choices": {
+     "1": {
+      "Display": "Liberal"
+     },
+     "2": {
+      "Display": "Moderate (incl. Don't know)"
+     },
+     "3": {
+      "Display": "Conservative"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3"
+    ],
+    "RecodeValues": {
+     "1": "Liberal",
+     "2": "Moderate",
+     "3": "Conservative"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID10",
+   "SecondaryAttribute": "sharer_disputed",
+   "Payload": {
+    "QuestionID": "QID10",
+    "DataExportTag": "sharer_disputed",
+    "QuestionType": "Slider",
+    "Selector": "HSLIDER",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Close/distant contacts believe claims\" (check all contacts who believe each claim). Share of the six claims the respondent marked the contact as believing, 0-1. Claims: Joe Biden is a socialist; The 2020 election was stolen by the Democrats; Covid-19 vaccines modify your DNA; A new world order - elites who control the media, industry, and government - were implicated in most wars over the last 200 years; Trump is still president of the United States; Republicans want to end Social Security and Medicare",
+    "QuestionDescription": "sharer_disputed"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID11",
+   "SecondaryAttribute": "chosen_share",
+   "Payload": {
+    "QuestionID": "QID11",
+    "DataExportTag": "chosen_share",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Which post would you be more likely to share?\" (Message 1 / Message 2). 1 if this headline was chosen.",
+    "QuestionDescription": "chosen_share",
+    "Choices": {
+     "1": {
+      "Display": "Chosen"
+     },
+     "2": {
+      "Display": "Not chosen"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID12",
+   "SecondaryAttribute": "chosen_belief",
+   "Payload": {
+    "QuestionID": "QID12",
+    "DataExportTag": "chosen_belief",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Based on the available information, which post do you think is more likely to be accurate?\" (Message 1 / Message 2). 1 if this headline was chosen.",
+    "QuestionDescription": "chosen_belief",
+    "Choices": {
+     "1": {
+      "Display": "Chosen"
+     },
+     "2": {
+      "Display": "Not chosen"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID13",
+   "SecondaryAttribute": "weight",
+   "Payload": {
+    "QuestionID": "QID13",
+    "DataExportTag": "weight",
+    "QuestionType": "Slider",
+    "Selector": "HSLIDER",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] YouGov survey weight. Not mentioned in the pre-registration.",
+    "QuestionDescription": "weight"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID14",
+   "SecondaryAttribute": "survey_language",
+   "Payload": {
+    "QuestionID": "QID14",
+    "DataExportTag": "survey_language",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Do you prefer to take the survey in English or Spanish?\"",
+    "QuestionDescription": "survey_language",
+    "Choices": {
+     "1": {
+      "Display": "English"
+     },
+     "2": {
+      "Display": "Spanish"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "RecodeValues": {
+     "1": "English",
+     "2": "Spanish"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID15",
+   "SecondaryAttribute": "age",
+   "Payload": {
+    "QuestionID": "QID15",
+    "DataExportTag": "age",
+    "QuestionType": "Slider",
+    "Selector": "HSLIDER",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Age in years, computed as 2023 minus \"In what year were you born?\"",
+    "QuestionDescription": "age"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID16",
+   "SecondaryAttribute": "ideo5_self",
+   "Payload": {
+    "QuestionID": "QID16",
+    "DataExportTag": "ideo5_self",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"In general, how would you describe your own political viewpoint?\" \"Not sure\" is missing.",
+    "QuestionDescription": "ideo5_self",
+    "Choices": {
+     "1": {
+      "Display": "Very liberal"
+     },
+     "2": {
+      "Display": "Liberal"
+     },
+     "3": {
+      "Display": "Moderate"
+     },
+     "4": {
+      "Display": "Conservative"
+     },
+     "5": {
+      "Display": "Very conservative"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "RecodeValues": {
+     "1": "1",
+     "2": "2",
+     "3": "3",
+     "4": "4",
+     "5": "5"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID17",
+   "SecondaryAttribute": "disputed_self",
+   "Payload": {
+    "QuestionID": "QID17",
+    "DataExportTag": "disputed_self",
+    "QuestionType": "Slider",
+    "Selector": "HSLIDER",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Claims about American politics\" (True / Not True). Share of the six claims the respondent rated True, 0-1. Claims: Joe Biden is a socialist; The 2020 election was stolen by the Democrats; Covid-19 vaccines modify your DNA; A new world order - elites who control the media, industry, and government - were implicated in most wars over the last 200 years; Trump is still president of the United States; Republicans want to end Social Security and Medicare",
+    "QuestionDescription": "disputed_self"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID18",
+   "SecondaryAttribute": "media_trust",
+   "Payload": {
+    "QuestionID": "QID18",
+    "DataExportTag": "media_trust",
+    "QuestionType": "Slider",
+    "Selector": "HSLIDER",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Trusted political news sources\": mean of six items (Family and friends; WhatsApp groups; Social media; Conservative media; Liberal media; Spanish-language media), 1 = Distrust ... 5 = Trust.",
+    "QuestionDescription": "media_trust"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID19",
+   "SecondaryAttribute": "stim_1",
+   "Payload": {
+    "QuestionID": "QID19",
+    "DataExportTag": "stim_1",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Information type: True/neutral. Each conjoint profile shows one headline, attributed to one of the respondent's six named contacts; the headline (and so its information type) is randomly drawn from 80 headlines (21 of this type), in English or Spanish. Example headlines: How to improve your sleep quality | Exercise reduces cortisol levels | The benefits of meditation and mindfulness",
+    "QuestionDescription": "stim_1"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID20",
+   "SecondaryAttribute": "stim_2",
+   "Payload": {
+    "QuestionID": "QID20",
+    "DataExportTag": "stim_2",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Information type: Misinformation. Each conjoint profile shows one headline, attributed to one of the respondent's six named contacts; the headline (and so its information type) is randomly drawn from 80 headlines (29 of this type), in English or Spanish. Example headlines: George Soros has endorsed (Ron) DeSantis for 2024. | Biden proposes record budget of 6.8 trillion dollars to win against Russia",
+    "QuestionDescription": "stim_2"
+   }
+  },
+  {
+   "SurveyID": "SV_reconstructed",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID21",
+   "SecondaryAttribute": "stim_3",
+   "Payload": {
+    "QuestionID": "QID21",
+    "DataExportTag": "stim_3",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "QuestionText": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Information type: Fact-check. Each conjoint profile shows one headline, attributed to one of the respondent's six named contacts; the headline (and so its information type) is randomly drawn from 80 headlines (30 of this type), in English or Spanish. Example headlines: No, Tucker Carlson didn't say Ukraine is staging dead bodies | GOP wants a '30% tax on everything'? That ignores taxes that would end, bill's limited chances",
+    "QuestionDescription": "stim_3"
+   }
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+# raw exports carry identifiers and free text: never commit them
+inputs/*.csv
+inputs/*.sav
+inputs/*.dta
+inputs/*.xlsx
+raw_export.csv
+.mplconfig/
+__pycache__/
+# respondent-level data stays local (filing policy: report, code and results only)
+data/*.csv
+run.log
