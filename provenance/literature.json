@@ -1,151 +1,186 @@
 {
- "text": "The retrieved list is thin and mostly off-topic for these hypotheses. It contains no experimental or survey findings on how information type, tie strength, sharer trust, ideology, knowledge or conspiracy belief affect sharing or perceived plausibility of misinformation, so it cannot support or contextualize H1-H14, the reweighted robustness checks R1-R12, or the exploratory analyses X1-X13. The only directly relevant item is a general review of fake news, disinformation and misinformation on social media [citation removed: not in retrieved set], whose snippet gives no specific findings. A review of prejudice toward immigrants (Esses, 2020) is only loosely related to the sharer-origin hypotheses (H3, H10, X13). Its snippet reports no findings on how sharer origin affects information sharing or credibility, so I draw no conclusions from it.",
+ "text": "The retrieved list is thin and largely off-topic: none of the ten works reports findings on how information type, tie strength, sharer origin, ideology, trust, political knowledge, or conspiracy belief affect sharing or plausibility judgments of misinformation. The 'supporting' items are broad overviews (Van Bavel et al., 2020; Dwivedi et al., 2019; Jenkins & Purushotma, 2006) with no abstract text bearing on the hypotheses, so they cannot be read as evidence for any of H1-H14. The closest topical neighbors are the conjoint study of deceitful political behavior and political trust [citation removed: not in retrieved set] and the work on political lies and election-loss acceptance (Arceneaux & Truex, 2022). Both concern political deception and trust rather than sharing decisions, so they are context at most. The conjoint design of Christensen et al. (2025) is the only item that resembles the study's method.\n\nThe works do not disagree with each other or with the study's expectations on any substantive question about sharing or plausibility. The 'contesting' items (Chater & Loewenstein, 2022, in two versions; Sutton et al., 2010) address individual-level framing of behavioral policy and distributed memory, and they do not test the hypothesized effects. Because no retrieved work reports findings on these questions, the study's design cannot be said to adjudicate between any of them. The abstract for Nativist disidentification (López Ortega & Turnbull-Dugarte, 2025) mentions out-group signals, which is only loosely related to the origin hypotheses (H3, H10), and the snippet is too brief to support a comparison.",
  "works": [
   {
-   "id": "https://openalex.org/W3085542870",
-   "title": "Prejudice and Discrimination Toward Immigrants",
+   "id": "https://openalex.org/W3016902371",
+   "title": "Using social and behavioural science to support COVID-19 pandemic response",
    "authors": [
-    "Victoria M. Esses"
+    "Jay Joseph Van Bavel",
+    "Katherine Baicker",
+    "Paulo S. Boggio",
+    "Valerio Capraro"
    ],
    "year": 2020,
-   "doi": "10.1146/annurev-psych-080520-102803",
-   "venue": "Annual Review of Psychology",
-   "cited_by": 273,
-   "abstract": "Prejudice and discrimination toward immigrants, and the consequences of these negative attitudes and behavior, are key determinants of the economic, sociocultural, and civic-political future of receiving societies and of the individuals who seek to make these societies their new home. In this article I review and organize the existing literature on the determinants and nature of prejudice and disc"
+   "doi": "10.1038/s41562-020-0884-z",
+   "venue": "Nature Human Behaviour",
+   "cited_by": 5218,
+   "abstract": "",
+   "stance": "supporting",
+   "query": "source trust and tie strength increase misinformation sharing social media"
   },
   {
-   "id": "https://openalex.org/W2894294331",
-   "title": "A Task-Based Taxonomy of Cognitive Biases for Information Visualization",
-   "authors": [
-    "Evanthia Dimara",
-    "Steven Franconeri",
-    "Catherine Plaisant",
-    "Anastasia Bezerianos"
-   ],
-   "year": 2018,
-   "doi": "10.1109/tvcg.2018.2872577",
-   "venue": "IEEE Transactions on Visualization and Computer Graphics",
-   "cited_by": 161,
-   "abstract": "Information visualization designers strive to design data displays that allow for efficient exploration, analysis, and communication of patterns in data, leading to informed decisions. Unfortunately, human judgment and decision making are imperfect and often plagued by cognitive biases. There is limited empirical research documenting how these biases affect visual data analysis activities. Existin"
-  },
-  {
-   "id": "https://openalex.org/W3123615408",
-   "title": "Designing Information Provision Experiments",
-   "authors": [
-    "Ingar Haaland",
-    "Christopher Roth",
-    "Johannes Wohlfart"
-   ],
-   "year": 2020,
-   "doi": "10.2139/ssrn.3638879",
-   "venue": "SSRN Electronic Journal",
-   "cited_by": 74,
-   "abstract": ""
-  },
-  {
-   "id": "https://openalex.org/W3092131469",
-   "title": "Psychology as a Historical Science",
-   "authors": [
-    "Michael Muthukrishna",
-    "Joseph Henrich",
-    "Edward Slingerland"
-   ],
-   "year": 2020,
-   "doi": "10.1146/annurev-psych-082820-111436",
-   "venue": "Annual Review of Psychology",
-   "cited_by": 219,
-   "abstract": "Psychology has traditionally seen itself as the science of universal human cognition, but it has only recently begun seriously grappling with cross-cultural variation. Here we argue that the roots of cross-cultural variation often lie in the past. Therefore, to understand not only how but also why psychology varies, we need to grapple with cross-temporal variation. The traces of past human cogniti"
-  },
-  {
-   "id": "https://openalex.org/W3186826748",
-   "title": "Social Motivation at Work: The Organizational Psychology of Effort for, Against, and with Others",
-   "authors": [
-    "Adam M. Grant",
-    "Marissa S. Shandell"
-   ],
-   "year": 2021,
-   "doi": "10.1146/annurev-psych-060321-033406",
-   "venue": "Annual Review of Psychology",
-   "cited_by": 101,
-   "abstract": "Although a great deal of effort in tasks, projects, and jobs is fueled by our interactions and relationships, psychologists have often overlooked the social forces that shape work motivation. In this review, we examine new developments in research on the interpersonal dynamics that enable and constrain proactivity, persistence, performance, and productivity. The first section examines the impact o"
-  },
-  {
-   "id": "https://openalex.org/W3140719370",
-   "title": "Race, Rhetoric, and Research Methods",
-   "authors": [
-    "Alexandria L. Lockett",
-    "Iris D. Ruiz",
-    "James Chase Sanchez",
-    "Christopher Carter"
-   ],
-   "year": 2021,
-   "doi": "10.37514/per-b.2021.1206",
-   "venue": "The WAC Clearinghouse; University Press of Colorado eBooks",
-   "cited_by": 78,
-   "abstract": "McLeod, and Jonathan Hunt-as well as Mike Palmquist, who coordinates the"
-  },
-  {
-   "id": "https://openalex.org/W2153791616",
-   "title": "Whatever next? Predictive brains, situated agents, and the future of cognitive science",
-   "authors": [
-    "Andy Clark"
-   ],
-   "year": 2013,
-   "doi": "10.1017/s0140525x12000477",
-   "venue": "Behavioral and Brain Sciences",
-   "cited_by": 6157,
-   "abstract": "Brains, it has recently been argued, are essentially prediction machines. They are bundles of cells that support perception and action by constantly attempting to match incoming sensory inputs with top-down expectations or predictions. This is achieved using a hierarchical generative model that aims to minimize prediction error within a bidirectional cascade of cortical processing. Such accounts o"
-  },
-  {
-   "id": "https://openalex.org/W4360620450",
-   "title": "Opinion Paper: “So what if ChatGPT wrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy",
+   "id": "https://openalex.org/W2969625533",
+   "title": "Artificial Intelligence (AI): Multidisciplinary perspectives on emerging challenges, opportunities, and agenda for research, practice and policy",
    "authors": [
     "Yogesh Kumar Dwivedi",
-    "Nir Kshetri",
     "Laurie Hughes",
-    "Emma Louise Slade"
+    "Elvira Ismagilova",
+    "Gert Aarts"
    ],
-   "year": 2023,
-   "doi": "10.1016/j.ijinfomgt.2023.102642",
+   "year": 2019,
+   "doi": "10.1016/j.ijinfomgt.2019.08.002",
    "venue": "International Journal of Information Management",
-   "cited_by": 4426,
-   "abstract": "Transformative artificially intelligent tools, such as ChatGPT, designed to generate sophisticated text indistinguishable from that produced by a human, are applicable across a wide range of contexts. The technology presents opportunities as well as, often ethical and legal, challenges, and has the potential for both positive and negative impacts for organisations, society, and individuals. Offeri"
+   "cited_by": 4526,
+   "abstract": "As far back as the industrial revolution, significant development in technical innovation has succeeded in transforming numerous manual tasks and processes that had been in existence for decades where humans had reached the limits of physical capacity. Artificial Intelligence (AI) offers this same transformative potential for the augmentation and potential replacement of human tasks and activities",
+   "stance": "supporting",
+   "query": "source trust and tie strength increase misinformation sharing social media"
   },
   {
-   "id": "https://openalex.org/W4226278401",
-   "title": "Discernment and Social Learning as a Companion Training Layer",
+   "id": "https://openalex.org/W2112957339",
+   "title": "Confronting the Challenges of Participatory Culture: Media Education for the 21st Century",
    "authors": [
-    "Long Ouyang",
-    "Jeff Wu",
-    "Xu Jiang",
-    "Diogo Almeida"
+    "Henry Jenkins",
+    "Ravi Purushotma"
+   ],
+   "year": 2006,
+   "doi": "",
+   "venue": "BiblioBoard Library Catalog (Open Research Library)",
+   "cited_by": 3184,
+   "abstract": "Henry Jenkins, Director of the Comparative Media Studies Program at the Massachusetts Institute of Technology authored this white paper, exploring new frameworks and models for media literacy.",
+   "stance": "supporting",
+   "query": "source trust and tie strength increase misinformation sharing social media"
+  },
+  {
+   "id": "https://openalex.org/W4294628862",
+   "title": "The i-frame and the s-frame: How focusing on individual-level solutions has led behavioral public policy astray",
+   "authors": [
+    "Nick Chater",
+    "George F. Loewenstein"
    ],
    "year": 2022,
-   "doi": "10.48550/arxiv.2203.02155",
-   "venue": "arXiv (Cornell University)",
-   "cited_by": 4292,
-   "abstract": "I propose a companion curriculum for language model training that explicitly practices how a model responds to error. A failed attempt pauses advancement in the affected skill, followed by observation of verified peer successes, judgments committed before outcome disclosure, diagnosis, and a fresh-task retry. Task performance and discernment remain separately assessed, with bounded interaction thr"
+   "doi": "10.1017/s0140525x22002023",
+   "venue": "Behavioral and Brain Sciences",
+   "cited_by": 584,
+   "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun",
+   "stance": "contesting",
+   "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
   },
   {
-   "id": "https://openalex.org/W4319983294",
-   "title": "Fake news, disinformation and misinformation in social media: a review",
+   "id": "https://openalex.org/W1994178598",
+   "title": "The psychology of memory, extended cognition, and socially distributed remembering",
    "authors": [
-    "Esma Aı̈meur",
-    "Sabrine Amri",
-    "Gilles Brassard"
+    "John David Sutton",
+    "Celia B. Harris",
+    "Paul G. Keil",
+    "Amanda J. Barnier"
    ],
-   "year": 2023,
-   "doi": "10.1007/s13278-023-01028-5",
-   "venue": "Social Network Analysis and Mining",
-   "cited_by": 773,
-   "abstract": ""
+   "year": 2010,
+   "doi": "10.1007/s11097-010-9182-y",
+   "venue": "Phenomenology and the Cognitive Sciences",
+   "cited_by": 383,
+   "abstract": "",
+   "stance": "contesting",
+   "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
+  },
+  {
+   "id": "https://openalex.org/W4226385226",
+   "title": "The i-Frame and the s-Frame: How Focusing on Individual-Level Solutions Has Led Behavioral Public Policy Astray",
+   "authors": [
+    "Nick Chater",
+    "George F. Loewenstein"
+   ],
+   "year": 2022,
+   "doi": "10.2139/ssrn.4046264",
+   "venue": "SSRN Electronic Journal",
+   "cited_by": 189,
+   "abstract": "",
+   "stance": "contesting",
+   "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
+  },
+  {
+   "id": "https://openalex.org/W4220943511",
+   "title": "Donald Trump and the Lie",
+   "authors": [
+    "Kevin Arceneaux",
+    "Rory Truex"
+   ],
+   "year": 2022,
+   "doi": "10.1017/s1537592722000901",
+   "venue": "Perspectives on Politics",
+   "cited_by": 82,
+   "abstract": "The legitimacy of democratically elected governments rests in part on widespread acceptance of the outcome of elections, especially among those who lost. This “losers’ consent” allows the winners to govern, and when the incumbent is the losing party, it allows for a peaceful transition of power. What happens in a democratic system when one side not only refuses to concede but also actively perpetu",
+   "stance": "method",
+   "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+  },
+  {
+   "id": "https://openalex.org/W4417485389",
+   "title": "Selectively (il)liberal: theory and evidence on nativist disidentification",
+   "authors": [
+    "Alberto López Ortega",
+    "Stuart James Turnbull-Dugarte"
+   ],
+   "year": 2025,
+   "doi": "10.1017/psrm.2025.10066",
+   "venue": "Political Science Research and Methods",
+   "cited_by": 2,
+   "abstract": "Abstract Does group-based tribal thinking against ethnic out-groups condition support for both liberal and illiberal policies? Our thesis is that, irrespective of the direction of the policy (progressive or conservative), nativists express selective support for policies based on different signals of group-identity: descriptive markers, group-based substantive representation, in- and out-group norm",
+   "stance": "method",
+   "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+  },
+  {
+   "id": "https://openalex.org/W7115889761",
+   "title": "Report (including policy recommendations) on the consequences of deceitful behaviour for political trust",
+   "authors": [
+    "Christensen, Henrik Serup",
+    "Huttunen, Janette",
+    "Morales, Laura"
+   ],
+   "year": 2025,
+   "doi": "10.5281/zenodo.17647646",
+   "venue": "DIGITAL.CSIC (Spanish National Research Council (CSIC))",
+   "cited_by": 0,
+   "abstract": "In this report, we examine how deceitful behaviours affect evaluations of political leaders. We do so with a conjoint experiment embedded in the ActEU survey. We are therefore able to report causal evidence from 10 European democracies on how politicians’ deceitful behaviours affect how citizens evaluate them.",
+   "stance": "method",
+   "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+  },
+  {
+   "id": "https://openalex.org/W3035680161",
+   "title": "COVID-19 and the workplace: Implications, issues, and insights for future research and action.",
+   "authors": [
+    "Kevin M. Kniffin",
+    "Jayanth Narayanan",
+    "Frederik Anseel",
+    "John Antonakis"
+   ],
+   "year": 2020,
+   "doi": "10.1037/amp0000716",
+   "venue": "American Psychologist",
+   "cited_by": 1647,
+   "abstract": "The impacts of COVID-19 on workers and workplaces across the globe have been dramatic. This broad review of prior research rooted in work and organizational psychology, and related fields, is intended to make sense of the implications for employees, teams, and work organizations. This review and preview of relevant literatures focuses on (a) emergent changes in work practices (e.g., working from h",
+   "stance": "citing",
+   "query": "cites:W3016902371"
   }
  ],
  "queries": [
-  "conjoint experiment misinformation sharing source characteristics tie strength trust",
-  "ego network social ties misinformation sharing Latino",
-  "sharing without believing misinformation plausibility social media",
-  "partisan congruence source ideology news sharing fact-checking"
+  "source trust and tie strength increase misinformation sharing social media",
+  "sharer political knowledge and ideological congruence predict belief and sharing of false news",
+  "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing",
+  "source cues have little effect on news credibility and sharing, null effects of source in misinformation",
+  "conjoint experiment AMCE misinformation sharing personal network survey Latino"
  ],
+ "query_sets": {
+  "supporting": [
+   "source trust and tie strength increase misinformation sharing social media",
+   "sharer political knowledge and ideological congruence predict belief and sharing of false news"
+  ],
+  "contesting": [
+   "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing",
+   "source cues have little effect on news credibility and sharing, null effects of source in misinformation"
+  ],
+  "method": [
+   "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+  ]
+ },
+ "debate_hint": "",
  "degraded": null
 }

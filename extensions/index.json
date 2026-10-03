@@ -1,0 +1,149 @@
+[
+ {
+  "qsf": "extensions/advance_design.qsf",
+  "qsf_errors": [],
+  "media": [
+   "post_ch: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
+   "post_cl: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
+   "post_dh: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
+   "post_dl: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)"
+  ],
+  "id": "advance_design",
+  "kind": "mechanism",
+  "title": "Randomized sharer profiles for trust and closeness",
+  "brief_id": "advance_design",
+  "mode": "survey_experiment",
+  "debate": null,
+  "why": "Fixes the design cause: randomizing trust and tie removes confounding with real contact traits, and an opt-out answers U1.",
+  "power_target": {
+   "n_per_arm": 1500,
+   "mde": 0.03,
+   "basis": "Observed close-tie 0.030 and trust-high 0.057; H2 MDE 0.0258 at n 6709/5256, so about 1,500 per cell clustered detects 0.03."
+  },
+  "rationale": "In the source study, close ties (+3.0 points) and high trust (+5.7 points; low-trust cell n=817) were measured on real contacts and bundle correlated traits. Randomly assigning vignette sharers' closeness and trustworthiness tests whether these associations survive randomization. A 'would not share' option removes the forced-choice link.",
+  "contribution": "Provides randomized estimates of sharer closeness and trustworthiness effects on sharing across true, false and fact-check content.",
+  "addresses": [
+   "U1"
+  ],
+  "validated_by": "autoexperiment",
+  "status": "proposed",
+  "built_at": null,
+  "survey_id": null,
+  "survey_url": null,
+  "hypothesis": "Randomly assigned close and high-trust sharers raise sharing likelihood relative to distant and low-trust sharers (about 3 points), with effects possibly differing by information type.",
+  "primary_outcome": "Sharing likelihood (0-100), with 'would not share' analysed separately as a binary outcome.",
+  "comparison": "Close vs distant; high vs low trust; main effects pooled over information type, with exploratory interactions with information type.",
+  "conditions": [
+   "Close, high trust",
+   "Close, low trust",
+   "Distant, high trust",
+   "Distant, low trust"
+  ],
+  "unresolved": [
+   "Actual post images and the headline pool must be supplied by the research team.",
+   "Compensation, IRB number and panel vendor are to be set by the research team."
+  ],
+  "label": "Design advance",
+  "text": "extensions/advance_design.txt",
+  "svg": "extensions/advance_design.svg"
+ },
+ {
+  "qsf": "extensions/generalizability_conditional.qsf",
+  "qsf_errors": [],
+  "media": [
+   "hpost1: image stimulus to supply (a social media post about a health claim, randomly drawn from the health item ba)",
+   "hpost2: image stimulus to supply (a social media post about a different health claim, randomly drawn from the bank)",
+   "hpost3: image stimulus to supply (a social media post about a third health claim, randomly drawn from the bank in )",
+   "ppost1: image stimulus to supply (a social media post about a political claim, randomly drawn from the political i)",
+   "ppost2: image stimulus to supply (a social media post about a different political claim, randomly drawn from the b)",
+   "ppost3: image stimulus to supply (a social media post about a third political claim, randomly drawn from the bank )"
+  ],
+  "id": "generalizability_conditional",
+  "kind": "boundary",
+  "title": "Fact-check effect by topic",
+  "brief_id": "generalizability_conditional",
+  "mode": "survey_experiment",
+  "debate": null,
+  "why": "Fixes the sample cause: randomizing topic with adequate health items answers U3.",
+  "power_target": {
+   "n_per_arm": 1200,
+   "mde": 0.04,
+   "basis": "E2 health fact-check -0.028 (SE 0.028) versus political -0.151; difference of about 0.12 is detectable, but 0.04 targets a smaller health effect; MDE 0.031 at n~4,000 per arm."
+  },
+  "rationale": "In the source study fact-checks were shared 13.3 points less overall, but E2 shows the health estimate near zero (-0.028, SE 0.028) against about -0.15 for political items, with only about 1,100 health profiles and topic not randomized. Randomizing topic with a balanced item bank tests whether the penalty really differs by topic, and survey language is added because of language differences.",
+  "contribution": "Provides a randomized, adequately powered test of whether the fact-check sharing penalty holds for health as for political claims, in English and Spanish.",
+  "addresses": [
+   "U3"
+  ],
+  "validated_by": "autoexperiment",
+  "status": "proposed",
+  "built_at": null,
+  "survey_id": null,
+  "survey_url": null,
+  "hypothesis": "The fact-check sharing penalty relative to true/neutral posts is smaller for health than for political items. Misinformation is shared less than true content in both topics. Exploratory: the topic difference varies by survey language.",
+  "primary_outcome": "Share choice for each post (share vs. do not share), with an opt-out.",
+  "comparison": "Fact-check versus true/neutral sharing, compared between health and political topic arms; information type varies within respondent.",
+  "conditions": [
+   "Health topic",
+   "Political topic"
+  ],
+  "unresolved": [
+   "The item bank (at least 20 health and 20 political items in true, false and fact-check versions) and Spanish translations must be supplied by the research team.",
+   "Per-post randomization of information type is implemented in the survey platform; the embedded stimulus slots show one draw.",
+   "Panel vendor, compensation and IRB approval number need to be supplied."
+  ],
+  "label": "Generalizability",
+  "text": "extensions/generalizability_conditional.txt",
+  "svg": "extensions/generalizability_conditional.svg"
+ },
+ {
+  "qsf": "extensions/theoretical_debate.qsf",
+  "qsf_errors": [],
+  "media": [
+   "fpost1a: image stimulus to supply (Social post with a true or neutral news headline, pair 1)",
+   "fpost1b: image stimulus to supply (Social post with a false news headline, pair 1)",
+   "fpost2a: image stimulus to supply (Social post with a false news headline, pair 2)",
+   "fpost2b: image stimulus to supply (Social post with a true or neutral news headline, pair 2)",
+   "spost1: image stimulus to supply (Social post with a true or neutral news headline, item 1)",
+   "spost2: image stimulus to supply (Social post with a false news headline, item 2)",
+   "spost3: image stimulus to supply (Social post with a false news headline, item 3)",
+   "spost4: image stimulus to supply (Social post with a true or neutral news headline, item 4)"
+  ],
+  "id": "theoretical_debate",
+  "kind": "alternative",
+  "title": "Absolute versus relative misinformation sharing by belief",
+  "brief_id": "theoretical_debate",
+  "mode": "survey_experiment",
+  "debate": null,
+  "why": "Fixes the measurement cause: single-item rating with an opt-out breaks the forced-choice link and answers U2.",
+  "power_target": {
+   "n_per_arm": 1800,
+   "mde": 0.04,
+   "basis": "S3 differences of 0.055 to 0.056 with SE 0.017; the interaction across formats needs about double the cell size."
+  },
+  "rationale": "In the source study, respondents who believe more disputed claims shifted toward misinformation (+5.6 points) and away from true items (-5.5 points), a mirrored pattern that forced choice makes mechanically linked. Belief in disputed claims had no distinguishable overall effect on sharing (intervals about ±1.7 to 2.2 points). Independent single-headline sharing with a 'share nothing' option tests whether the belief slope for misinformation is absolute.",
+  "contribution": "Separates absolute from relative belief-related misinformation sharing by breaking the forced-choice link between misinformation and true items.",
+  "addresses": [
+   "U2"
+  ],
+  "validated_by": "autoexperiment",
+  "status": "proposed",
+  "built_at": null,
+  "survey_id": null,
+  "survey_url": null,
+  "hypothesis": "In forced choice, belief in disputed claims predicts more misinformation and less true-content choice (mirrored). In single-item format, if the belief slope for misinformation sharing remains positive, the effect is absolute; if it is near zero while the true-content slope is negative or null, it is purely relative.",
+  "primary_outcome": "Share of misinformation headlines shared (single format) or chosen (forced choice), by belief index.",
+  "comparison": "Belief by information-type slope compared across formats (three-way interaction: format x belief x information type).",
+  "conditions": [
+   "Paired forced choice",
+   "Single headline with opt-out"
+  ],
+  "unresolved": [
+   "Actual headline images and the final disputed-claim items must be supplied by the research team.",
+   "IRB approval number and compensation must be supplied by the research team."
+  ],
+  "label": "Theoretical debate",
+  "text": "extensions/theoretical_debate.txt",
+  "svg": "extensions/theoretical_debate.svg"
+ }
+]

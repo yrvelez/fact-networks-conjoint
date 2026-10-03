@@ -5,8 +5,8 @@
  "authors": [
   "Yamil R. Velez"
  ],
- "summary": "This study asks how the type of information and the characteristics of the person sharing it shape whether people say they would share a post and how plausible they find it. In a registered conjoint experiment on a YouGov sample of US respondents (12,000 profiles, all analysed), each headline was randomly true or neutral, false, or a fact-check, and was attributed to one of the respondent's real contacts. Relative to true or neutral headlines, misinformation was 18.2 points less likely to be chosen for sharing (95% CI [−20.4, −16.0]) and fact-checks 13.3 points less (95% CI [−15.6, −11.1]); plausibility showed a similar pattern. Close ties (+3.0 points) and highly trusted sharers (+5.7 points) raised sharing. Sharer origin, knowledge and belief in disputed claims were not distinguishable f",
- "created": "2026-10-02",
+ "summary": "We ask how the type of information and the characteristics of the person who shares it relate to whether people choose to share a post and whether they judge it plausible. In a registered conjoint experiment with 12,000 YouGov profile ratings in the US, headlines (true or neutral, false, or a fact-check) were randomly attributed to real contacts named by respondents, whose traits were measured. Misinformation was chosen for sharing 18.2 points less often than true or neutral content (95% CI [−20.4, −16.0]); fact-checks were shared 13.3 points less overall, driven by political items. Close ties (+3.0 points) and highly trusted sharers (+5.7 points) were associated with higher sharing. The information-type pattern replicated for plausibility, but trust did not. Sharer traits are measured, so",
+ "created": "2026-10-03",
  "synthetic": false,
  "design": {
   "type": "conjoint",
@@ -19,6 +19,80 @@
   "n_raw": 12000,
   "n_analysis": 12000,
   "outcome_type": "",
+  "causal": true,
+  "sample_kind": "human",
+  "synthetic": null,
+  "features": [
+   {
+    "column": "infotype",
+    "label": "Information type",
+    "levels": [
+     "True/neutral",
+     "Misinformation",
+     "Fact-check"
+    ],
+    "randomized": true
+   },
+   {
+    "column": "tie",
+    "label": "Tie strength",
+    "levels": [
+     "Distant tie",
+     "Close tie"
+    ],
+    "randomized": false
+   },
+   {
+    "column": "sharer_origin",
+    "label": "Sharer origin",
+    "levels": [
+     "Foreign origin",
+     "Continental US"
+    ],
+    "randomized": false
+   },
+   {
+    "column": "sharer_ideology",
+    "label": "Sharer ideology",
+    "levels": [
+     "Liberal sharer",
+     "Moderate sharer",
+     "Conservative sharer"
+    ],
+    "randomized": false
+   },
+   {
+    "column": "sharer_trust",
+    "label": "Trust in sharer",
+    "levels": [
+     "Trust: low",
+     "Trust: mid",
+     "Trust: high"
+    ],
+    "randomized": false
+   },
+   {
+    "column": "sharer_knowledge",
+    "label": "Sharer political knowledge",
+    "levels": [
+     "Knowledge: low",
+     "Knowledge: mid",
+     "Knowledge: high"
+    ],
+    "randomized": false
+   },
+   {
+    "column": "sharer_conspiracy",
+    "label": "Sharer belief in disputed claims",
+    "levels": [
+     "Conspiracy belief: low",
+     "Conspiracy belief: high"
+    ],
+    "randomized": false
+   }
+  ],
+  "diagram": "figures/design.svg",
+  "diagram_text": "figures/design.txt",
   "cluster": [
    "resp_id"
   ],
@@ -799,7 +873,7 @@
   },
   {
    "id": "E1",
-   "text": "H1 without trial 1",
+   "text": "Robustness: drop trial 1",
    "tag": "exploratory",
    "estimate": null,
    "se": null,
@@ -809,7 +883,7 @@
   },
   {
    "id": "E2",
-   "text": "Misinformation effect by age tertile",
+   "text": "Information-type effect by health vs political topic",
    "tag": "exploratory",
    "estimate": null,
    "se": null,
@@ -833,13 +907,13 @@
   },
   "provider": "openrouter",
   "zero_retention_requested": true,
-  "cost_usd": 1.326339,
+  "cost_usd": 2.287047,
   "tokens": {
-   "in": 560993,
-   "out": 21775
+   "in": 884814,
+   "out": 54052
   },
   "tool_version": "0.1.0",
-  "created": "2026-10-02T21:18:38Z",
+  "created": "2026-10-03T11:17:53Z",
   "pap_source": "author-supplied pap.json",
   "pii": {
    "dropped": [],
@@ -856,138 +930,193 @@
    "pap_json_sha256": "9c2cade04591cc9e25023a5bc4176fdd64bb4f3a235d8e3a9abaa5e057765591"
   },
   "review_mode": "light,advanced",
+  "review_rounds": [
+   {
+    "round": 1,
+    "decision": "major_revision",
+    "k_issues": 9,
+    "revised": true
+   }
+  ],
   "usage_by_agent": {
    "exploratory": {
-    "calls": 5,
-    "in": 346524,
-    "out": 5886,
-    "cost": 0.74438892,
+    "calls": 7,
+    "in": 493155,
+    "out": 6823,
+    "cost": 1.0439946,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "litreview": {
     "calls": 2,
-    "in": 7628,
-    "out": 423,
-    "cost": 0.01929114,
+    "in": 7842,
+    "out": 861,
+    "cost": 0.02405106,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "writer": {
     "calls": 1,
-    "in": 45755,
-    "out": 5831,
-    "cost": 0.1483218,
+    "in": 46147,
+    "out": 5122,
+    "cost": 0.14207886,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "reviewer": {
     "calls": 1,
-    "in": 40519,
-    "out": 1653,
-    "cost": 0.09659232,
+    "in": 40491,
+    "out": 1680,
+    "cost": 0.09680418,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "advanced_methodology": {
     "calls": 1,
-    "in": 40322,
-    "out": 2054,
-    "cost": 0.10017216,
+    "in": 40408,
+    "out": 2307,
+    "cost": 0.10284714,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "advanced_statistics": {
     "calls": 1,
-    "in": 40515,
-    "out": 2590,
-    "cost": 0.1058607,
+    "in": 40601,
+    "out": 1708,
+    "cost": 0.09729918,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "review_orchestrator": {
     "calls": 1,
-    "in": 39730,
-    "out": 3338,
-    "cost": 0.1117116,
+    "in": 39689,
+    "out": 3429,
+    "cost": 0.11253132,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "writer_revise": {
+    "calls": 1,
+    "in": 54401,
+    "out": 7309,
+    "cost": 0.18007308,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "review_signoff": {
+    "calls": 1,
+    "in": 35798,
+    "out": 1569,
+    "cost": 0.08641314,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "potential": {
+    "calls": 1,
+    "in": 34011,
+    "out": 2387,
+    "cost": 0.09097308,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "extensions": {
+    "calls": 4,
+    "in": 52271,
+    "out": 20857,
+    "cost": 0.30998088,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    }
   },
   "stage_seconds": {
-   "ingest": 0.0,
-   "pii": 0.23,
+   "ingest": 0.01,
+   "pii": 0.24,
    "tidy": 0.24,
-   "pap": 0.02,
-   "clean": 0.56,
-   "registered": 20.03,
+   "pap": 0.01,
+   "clean": 0.55,
+   "registered": 21.11,
    "tag": 0.0,
-   "exploratory": 49.89,
-   "litreview": 6.48,
-   "write": 39.75,
-   "review": 79.99,
+   "exploratory": 70.65,
+   "litreview": 10.94,
+   "write": 36.58,
+   "review": 77.36,
+   "revise": 44.48,
+   "signoff": 11.04,
+   "extensions": 141.54,
    "package": 0.0
   },
-  "total_seconds": 197.2,
+  "total_seconds": 414.7,
   "log": [
-   "2026-10-02T21:18:38Z stage ingest",
-   "2026-10-02T21:18:38Z stage pii",
-   "2026-10-02T21:18:39Z PII scan: no identifier or free-text columns flagged.",
-   "2026-10-02T21:18:39Z stage tidy",
-   "2026-10-02T21:18:39Z stage pap",
-   "2026-10-02T21:18:39Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
-   "2026-10-02T21:18:39Z cleared 131 file(s) from the previous run",
-   "2026-10-02T21:18:39Z stage clean",
-   "2026-10-02T21:18:39Z wrote data/clean.csv: 12000 rows, 51 columns",
-   "2026-10-02T21:18:39Z stage registered",
-   "2026-10-02T21:18:59Z H1: dropped 118 of 12000 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-02T21:18:59Z H1: share ~ C(arm_code, Treatment(reference='True/neutral')) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy) | 2 arms vs True/neutral, N=11882, cluster SEs; 2 arm(s) supported",
-   "2026-10-02T21:18:59Z H2: dropped 115 of 11997 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-02T21:18:59Z H2: share ~ C(arm_code, Treatment(reference='Distant tie')) + C(infotype) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy) | 1 arms vs Distant tie, N=11882, cluster SEs; 1 arm(s) supported",
-   "2026-10-02T21:18:59Z H3: dropped 68 of 11950 eligible rows with a missing outcome, covariate",
-   "2026-10-02T21:18:59Z ... [25640 chars omitted] ...",
-   "2026-10-02T21:18:59Z SE 0.034, p=0.0075)",
-   "2026-10-02T21:18:59Z S10: sharer_trust=Trust: mid MM Spanish - English = -0.006 (SE 0.014, p=0.6844)",
-   "2026-10-02T21:18:59Z S10: sharer_knowledge=Knowledge: high MM Spanish - English = -0.008 (SE 0.010, p=0.4290)",
-   "2026-10-02T21:18:59Z S10: sharer_knowledge=Knowledge: low MM Spanish - English = +0.036 (SE 0.015, p=0.0161)",
-   "2026-10-02T21:18:59Z S10: sharer_knowledge=Knowledge: mid MM Spanish - English = +0.001 (SE 0.008, p=0.9425)",
-   "2026-10-02T21:18:59Z S10: sharer_conspiracy=Conspiracy belief: high MM Spanish - English = -0.007 (SE 0.005, p=0.1309)",
-   "2026-10-02T21:18:59Z S10: sharer_conspiracy=Conspiracy belief: low MM Spanish - English = +0.021 (SE 0.015, p=0.1453)",
-   "2026-10-02T21:18:59Z XS1: interaction trust_raw x Misinformation (vs Fact-check) = 0.003 (SE 0.011, p=0.7611)",
-   "2026-10-02T21:18:59Z XS1: interaction trust_raw x True/neutral (vs Fact-check) = -0.015 (SE 0.011, p=0.1793)",
-   "2026-10-02T21:18:59Z XS2: interaction trust_raw x Misinformation (vs Fact-check) = 0.008 (SE 0.011, p=0.4689)",
-   "2026-10-02T21:18:59Z XS2: interaction trust_raw x True/neutral (vs Fact-check) = -0.021 (SE 0.011, p=0.0646)",
-   "2026-10-02T21:18:59Z XS3: interaction close_num x Misinformation (vs Fact-check) = -0.007 (SE 0.023, p=0.7548)",
-   "2026-10-02T21:18:59Z XS3: interaction close_num x True/neutral (vs Fact-check) = -0.044 (SE 0.023, p=0.0503)",
-   "2026-10-02T21:18:59Z XS5: interaction Congruent x Misinformation = 0.001 (SE 0.051, p=0.9804)",
-   "2026-10-02T21:18:59Z XS5: interaction Neutral (a moderate) x Misinformation = -0.004 (SE 0.049, p=0.9325)",
-   "2026-10-02T21:18:59Z XS5: interaction Congruent x True/neutral = 0.018 (SE 0.052, p=0.7352)",
-   "2026-10-02T21:18:59Z XS5: interaction Neutral (a moderate) x True/neutral = 0.050 (SE 0.049, p=0.3065)",
-   "2026-10-02T21:18:59Z XS7: interaction msg_congenial x Misinformation (vs Fact-check) = 0.056 (SE 0.021, p=0.0074)",
-   "2026-10-02T21:18:59Z XS8: interaction conspiracy_raw x Misinformation (vs Fact-check) = 0.131 (SE 0.041, p=0.0013)",
-   "2026-10-02T21:18:59Z XS8: interaction conspiracy_raw x True/neutral (vs Fact-check) = 0.020 (SE 0.041, p=0.6274)",
-   "2026-10-02T21:18:59Z XS9: interaction conspiracy_raw x Misinformation (vs Fact-check) = 0.146 (SE 0.042, p=0.0004)",
-   "2026-10-02T21:18:59Z XS9: interaction conspiracy_raw x True/neutral (vs Fact-check) = -0.003 (SE 0.043, p=0.9417)",
-   "2026-10-02T21:18:59Z XS11: interaction trust_raw x Political (vs Health) = 0.007 (SE 0.019, p=0.7167)",
-   "2026-10-02T21:18:59Z XS12: interaction close_num x Political (vs Health) = 0.035 (SE 0.046, p=0.4392)",
-   "2026-10-02T21:18:59Z XS13a: interaction origin_num x Spanish (vs English) = -0.005 (SE 0.017, p=0.7515)",
-   "2026-10-02T21:18:59Z XS13b: interaction origin_num x US-born (vs Foreign-born) = -0.018 (SE 0.016, p=0.2659)",
-   "2026-10-02T21:18:59Z wrote results/registered_summary.csv (254 rows)",
-   "2026-10-02T21:18:59Z stage tag",
-   "2026-10-02T21:18:59Z stage exploratory",
-   "2026-10-02T21:19:49Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=registered, H6=registered, H7=registered, H8=registered, H9=registered, H10=registered, H11=registered, H12=registered, H13=registered, H14=registered, R1=registered, R2=registered, R3=registered, R4=registered, R5=registered, R6=registered, R7=registered, R8=registered, R9=registered, R10=registered, R11=registered, R12=registered, X1=exploratory, X2=exploratory, X3=exploratory, X4=exploratory, X5=exploratory, X6=exploratory, X7=exploratory, X8=exploratory, X9=exploratory, X10=exploratory, X11=exploratory, X12=exploratory, X13=exploratory, S1=registered, S2=registered, S3=registered, S4=registered, S5=registered, S6=registered, S7=registered, S8=registered, S9=registered, S10=registered, XS1=exploratory, XS2=exploratory, XS3=exploratory, XS5=exploratory, XS7=exploratory, XS8=exploratory, XS9=exploratory, XS11=exploratory, XS12=exploratory, XS13a=exploratory, XS13b=exploratory, E1=exploratory, E2=exploratory",
-   "2026-10-02T21:19:49Z stage litreview",
-   "2026-10-02T21:19:56Z stage write",
-   "2026-10-02T21:20:36Z stage review",
-   "2026-10-02T21:21:55Z review (light,advanced): 27 issue(s)",
-   "2026-10-02T21:21:55Z stage package"
+   "2026-10-03T11:17:53Z stage ingest",
+   "2026-10-03T11:17:53Z stage pii",
+   "2026-10-03T11:17:53Z PII scan: no identifier or free-text columns flagged.",
+   "2026-10-03T11:17:53Z stage tidy",
+   "2026-10-03T11:17:53Z stage pap",
+   "2026-10-03T11:17:53Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
+   "2026-10-03T11:17:53Z cleared 15 file(s) from the previous run",
+   "2026-10-03T11:17:53Z stage clean",
+   "2026-10-03T11:17:54Z wrote data/clean.csv: 12000 rows, 51 columns",
+   "2026-10-03T11:17:54Z stage registered",
+   "2026-10-03T11:18:15Z H1: dropped 118 of 12000 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-03T11:18:15Z H1: share ~ C(arm_code, Treatment(reference='True/neutral')) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy) | 2 arms vs True/neutral, N=11882, cluster SEs; 2 arm(s) supported",
+   "2026-10-03T11:18:15Z H2: dropped 115 of 11997 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-03T11:18:15Z H2: share ~ C(arm_code, Treatment(reference='Distant tie')) + C(infotype) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy) | 1 arms vs Distant tie, N=11882, cluster SEs; 1 arm(s) supported",
+   "2026-10-03T11:18:15Z H3: dropped 68 of 11950 eligible rows with a missing outcome, covariate",
+   "2026-10-03T11:18:15Z ... [25640 chars omitted] ...",
+   "2026-10-03T11:18:15Z SE 0.034, p=0.0075)",
+   "2026-10-03T11:18:15Z S10: sharer_trust=Trust: mid MM Spanish - English = -0.006 (SE 0.014, p=0.6844)",
+   "2026-10-03T11:18:15Z S10: sharer_knowledge=Knowledge: high MM Spanish - English = -0.008 (SE 0.010, p=0.4290)",
+   "2026-10-03T11:18:15Z S10: sharer_knowledge=Knowledge: low MM Spanish - English = +0.036 (SE 0.015, p=0.0161)",
+   "2026-10-03T11:18:15Z S10: sharer_knowledge=Knowledge: mid MM Spanish - English = +0.001 (SE 0.008, p=0.9425)",
+   "2026-10-03T11:18:15Z S10: sharer_conspiracy=Conspiracy belief: high MM Spanish - English = -0.007 (SE 0.005, p=0.1309)",
+   "2026-10-03T11:18:15Z S10: sharer_conspiracy=Conspiracy belief: low MM Spanish - English = +0.021 (SE 0.015, p=0.1453)",
+   "2026-10-03T11:18:15Z XS1: interaction trust_raw x Misinformation (vs Fact-check) = 0.003 (SE 0.011, p=0.7611)",
+   "2026-10-03T11:18:15Z XS1: interaction trust_raw x True/neutral (vs Fact-check) = -0.015 (SE 0.011, p=0.1793)",
+   "2026-10-03T11:18:15Z XS2: interaction trust_raw x Misinformation (vs Fact-check) = 0.008 (SE 0.011, p=0.4689)",
+   "2026-10-03T11:18:15Z XS2: interaction trust_raw x True/neutral (vs Fact-check) = -0.021 (SE 0.011, p=0.0646)",
+   "2026-10-03T11:18:15Z XS3: interaction close_num x Misinformation (vs Fact-check) = -0.007 (SE 0.023, p=0.7548)",
+   "2026-10-03T11:18:15Z XS3: interaction close_num x True/neutral (vs Fact-check) = -0.044 (SE 0.023, p=0.0503)",
+   "2026-10-03T11:18:15Z XS5: interaction Congruent x Misinformation = 0.001 (SE 0.051, p=0.9804)",
+   "2026-10-03T11:18:15Z XS5: interaction Neutral (a moderate) x Misinformation = -0.004 (SE 0.049, p=0.9325)",
+   "2026-10-03T11:18:15Z XS5: interaction Congruent x True/neutral = 0.018 (SE 0.052, p=0.7352)",
+   "2026-10-03T11:18:15Z XS5: interaction Neutral (a moderate) x True/neutral = 0.050 (SE 0.049, p=0.3065)",
+   "2026-10-03T11:18:15Z XS7: interaction msg_congenial x Misinformation (vs Fact-check) = 0.056 (SE 0.021, p=0.0074)",
+   "2026-10-03T11:18:15Z XS8: interaction conspiracy_raw x Misinformation (vs Fact-check) = 0.131 (SE 0.041, p=0.0013)",
+   "2026-10-03T11:18:15Z XS8: interaction conspiracy_raw x True/neutral (vs Fact-check) = 0.020 (SE 0.041, p=0.6274)",
+   "2026-10-03T11:18:15Z XS9: interaction conspiracy_raw x Misinformation (vs Fact-check) = 0.146 (SE 0.042, p=0.0004)",
+   "2026-10-03T11:18:15Z XS9: interaction conspiracy_raw x True/neutral (vs Fact-check) = -0.003 (SE 0.043, p=0.9417)",
+   "2026-10-03T11:18:15Z XS11: interaction trust_raw x Political (vs Health) = 0.007 (SE 0.019, p=0.7167)",
+   "2026-10-03T11:18:15Z XS12: interaction close_num x Political (vs Health) = 0.035 (SE 0.046, p=0.4392)",
+   "2026-10-03T11:18:15Z XS13a: interaction origin_num x Spanish (vs English) = -0.005 (SE 0.017, p=0.7515)",
+   "2026-10-03T11:18:15Z XS13b: interaction origin_num x US-born (vs Foreign-born) = -0.018 (SE 0.016, p=0.2659)",
+   "2026-10-03T11:18:15Z wrote results/registered_summary.csv (254 rows)",
+   "2026-10-03T11:18:15Z stage tag",
+   "2026-10-03T11:18:15Z stage exploratory",
+   "2026-10-03T11:19:26Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=registered, H6=registered, H7=registered, H8=registered, H9=registered, H10=registered, H11=registered, H12=registered, H13=registered, H14=registered, R1=registered, R2=registered, R3=registered, R4=registered, R5=registered, R6=registered, R7=registered, R8=registered, R9=registered, R10=registered, R11=registered, R12=registered, X1=exploratory, X2=exploratory, X3=exploratory, X4=exploratory, X5=exploratory, X6=exploratory, X7=exploratory, X8=exploratory, X9=exploratory, X10=exploratory, X11=exploratory, X12=exploratory, X13=exploratory, S1=registered, S2=registered, S3=registered, S4=registered, S5=registered, S6=registered, S7=registered, S8=registered, S9=registered, S10=registered, XS1=exploratory, XS2=exploratory, XS3=exploratory, XS5=exploratory, XS7=exploratory, XS8=exploratory, XS9=exploratory, XS11=exploratory, XS12=exploratory, XS13a=exploratory, XS13b=exploratory, E1=exploratory, E2=exploratory",
+   "2026-10-03T11:19:26Z stage litreview",
+   "2026-10-03T11:19:37Z stage write",
+   "2026-10-03T11:19:37Z diagram: template (figures/design.svg)",
+   "2026-10-03T11:20:13Z stage review",
+   "2026-10-03T11:21:31Z review (light,advanced): 29 issue(s); provisional decision: major_revision",
+   "2026-10-03T11:21:31Z stage revise",
+   "2026-10-03T11:22:15Z revise: 23 change note(s) from the decision letter",
+   "2026-10-03T11:22:15Z stage signoff",
+   "2026-10-03T11:22:26Z sign-off: major_revision (11/12 claims supported on the revised text)",
+   "2026-10-03T11:22:26Z stage extensions",
+   "2026-10-03T11:22:47Z research potential: 5 cause(s), 0 debate(s), 3 brief(s)",
+   "2026-10-03T11:24:48Z extensions: 3 proposal(s) validated by autoexperiment",
+   "2026-10-03T11:24:48Z stage package"
   ]
  },
  "links": {
@@ -998,6 +1127,171 @@
  "related": [],
  "addenda": [],
  "responses": null,
- "extensions": [],
- "review": "review.json"
+ "extensions": [
+  {
+   "id": "advance_design",
+   "kind": "mechanism",
+   "label": "Design advance",
+   "brief_id": "advance_design",
+   "mode": "survey_experiment",
+   "debate": null,
+   "why": "Fixes the design cause: randomizing trust and tie removes confounding with real contact traits, and an opt-out answers U1.",
+   "title": "Randomized sharer profiles for trust and closeness",
+   "hypothesis": "Randomly assigned close and high-trust sharers raise sharing likelihood relative to distant and low-trust sharers (about 3 points), with effects possibly differing by information type.",
+   "primary_outcome": "Sharing likelihood (0-100), with 'would not share' analysed separately as a binary outcome.",
+   "conditions": [
+    "Close, high trust",
+    "Close, low trust",
+    "Distant, high trust",
+    "Distant, low trust"
+   ],
+   "status": "proposed",
+   "built_at": null,
+   "qsf": "extensions/advance_design.qsf",
+   "svg": "extensions/advance_design.svg",
+   "text": "extensions/advance_design.txt",
+   "addresses": [
+    "U1"
+   ]
+  },
+  {
+   "id": "generalizability_conditional",
+   "kind": "boundary",
+   "label": "Generalizability",
+   "brief_id": "generalizability_conditional",
+   "mode": "survey_experiment",
+   "debate": null,
+   "why": "Fixes the sample cause: randomizing topic with adequate health items answers U3.",
+   "title": "Fact-check effect by topic",
+   "hypothesis": "The fact-check sharing penalty relative to true/neutral posts is smaller for health than for political items. Misinformation is shared less than true content in both topics. Exploratory: the topic difference varies by survey language.",
+   "primary_outcome": "Share choice for each post (share vs. do not share), with an opt-out.",
+   "conditions": [
+    "Health topic",
+    "Political topic"
+   ],
+   "status": "proposed",
+   "built_at": null,
+   "qsf": "extensions/generalizability_conditional.qsf",
+   "svg": "extensions/generalizability_conditional.svg",
+   "text": "extensions/generalizability_conditional.txt",
+   "addresses": [
+    "U3"
+   ]
+  },
+  {
+   "id": "theoretical_debate",
+   "kind": "alternative",
+   "label": "Theoretical debate",
+   "brief_id": "theoretical_debate",
+   "mode": "survey_experiment",
+   "debate": null,
+   "why": "Fixes the measurement cause: single-item rating with an opt-out breaks the forced-choice link and answers U2.",
+   "title": "Absolute versus relative misinformation sharing by belief",
+   "hypothesis": "In forced choice, belief in disputed claims predicts more misinformation and less true-content choice (mirrored). In single-item format, if the belief slope for misinformation sharing remains positive, the effect is absolute; if it is near zero while the true-content slope is negative or null, it is purely relative.",
+   "primary_outcome": "Share of misinformation headlines shared (single format) or chosen (forced choice), by belief index.",
+   "conditions": [
+    "Paired forced choice",
+    "Single headline with opt-out"
+   ],
+   "status": "proposed",
+   "built_at": null,
+   "qsf": "extensions/theoretical_debate.qsf",
+   "svg": "extensions/theoretical_debate.svg",
+   "text": "extensions/theoretical_debate.txt",
+   "addresses": [
+    "U2"
+   ]
+  }
+ ],
+ "potential": {
+  "verdict": "No genuine debate is visible in the retrieved works, which are off-topic (COVID, AI, behavioural policy), so the debates list is empty and the theoretical-debate brief is built on the editor's open question U2 rather than the literature. A follow-up is worth running because the one robust result, the information-type penalty, is already settled, while the interesting claims about trust, closeness and belief-driven sharing rest on measured traits or a forced-choice artefact. Run the randomized-sharer brief first: it resolves U1, the largest threat to the study's contribution, and it is cheap to field within a single wave. The format and topic experiments can follow..",
+  "causes": [
+   "design",
+   "power",
+   "measurement",
+   "sample",
+   "analysis"
+  ],
+  "debates": [],
+  "briefs": [
+   {
+    "id": "advance_design",
+    "mode": "survey_experiment",
+    "title": "Randomized sharer profiles for trust and closeness",
+    "needs_qsf": true
+   },
+   {
+    "id": "theoretical_debate",
+    "mode": "survey_experiment",
+    "title": "Absolute versus relative misinformation sharing by belief",
+    "needs_qsf": true
+   },
+   {
+    "id": "generalizability_conditional",
+    "mode": "survey_experiment",
+    "title": "Fact-check effect by topic",
+    "needs_qsf": true
+   }
+  ]
+ },
+ "review": "review.json",
+ "review_claims": {
+  "supported": 11,
+  "total": 12,
+  "open_analytical": 11,
+  "on_revised_text": true
+ },
+ "review_round": 1,
+ "review_rounds": 1,
+ "badges": [
+  {
+   "name": "provenance",
+   "label": "provenance",
+   "value": "fully agentic",
+   "color": "indigo",
+   "href": null
+  },
+  {
+   "name": "review",
+   "label": "review",
+   "value": "11/12 claims supported",
+   "color": "amber",
+   "href": null
+  },
+  {
+   "name": "registration",
+   "label": "plan",
+   "value": "pre-registered #132,508",
+   "color": "green",
+   "href": "https://aspredicted.org/8njc-mpqw.pdf"
+  },
+  {
+   "name": "release",
+   "label": "status",
+   "value": "draft",
+   "color": "amber",
+   "href": null
+  },
+  {
+   "name": "design",
+   "label": "design",
+   "value": "conjoint",
+   "color": "slate",
+   "href": null
+  },
+  {
+   "name": "data",
+   "label": "data",
+   "value": "open data",
+   "color": "green",
+   "href": null
+  },
+  {
+   "name": "cost",
+   "label": "model calls",
+   "value": "$2.29",
+   "color": "slate",
+   "href": null
+  }
+ ]
 }

@@ -9,3 +9,4 @@ __pycache__/
 # respondent-level data stays local (filing policy: report, code and results only)
 data/*.csv
 run.log
+results.prev/

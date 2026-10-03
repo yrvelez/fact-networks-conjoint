@@ -1,0 +1,654 @@
+{
+ "id": "theoretical_debate",
+ "kind": "alternative",
+ "title": "Absolute versus relative misinformation sharing by belief",
+ "rationale": "In the source study, respondents who believe more disputed claims shifted toward misinformation (+5.6 points) and away from true items (-5.5 points), a mirrored pattern that forced choice makes mechanically linked. Belief in disputed claims had no distinguishable overall effect on sharing (intervals about ±1.7 to 2.2 points). Independent single-headline sharing with a 'share nothing' option tests whether the belief slope for misinformation is absolute.",
+ "contribution": "Separates absolute from relative belief-related misinformation sharing by breaking the forced-choice link between misinformation and true items.",
+ "limitations": [
+  "Stated sharing intentions, not behavior.",
+  "Headline stimuli differ from the real-contact framing of the source study.",
+  "Belief is measured pre-treatment and may prime respondents.",
+  "Cross-format interaction needs about double the cell size."
+ ],
+ "design": {
+  "title": "Paired forced choice versus single-headline sharing by belief in disputed claims",
+  "overview": "Respondents first rate belief in disputed claims. They are randomized to a paired forced-choice format (replication) or an independent single-headline format with a 'share nothing' option. Within respondent, each sees true/neutral and false headlines.",
+  "hypothesis": "In forced choice, belief in disputed claims predicts more misinformation and less true-content choice (mirrored). In single-item format, if the belief slope for misinformation sharing remains positive, the effect is absolute; if it is near zero while the true-content slope is negative or null, it is purely relative.",
+  "primaryOutcome": "Share of misinformation headlines shared (single format) or chosen (forced choice), by belief index.",
+  "comparison": "Belief by information-type slope compared across formats (three-way interaction: format x belief x information type).",
+  "population": "US adults from an online panel such as YouGov, matching the source sample.",
+  "conditions": [
+   {
+    "id": "c_forced",
+    "title": "Paired forced choice",
+    "description": "Two headlines (one true/neutral, one false) shown together; choose which to share.",
+    "nodeId": "arm_forced"
+   },
+   {
+    "id": "c_single",
+    "title": "Single headline with opt-out",
+    "description": "One headline at a time; choose to share or share nothing.",
+    "nodeId": "arm_single"
+   }
+  ],
+  "blocks": [
+   {
+    "id": "b_consent",
+    "title": "Consent",
+    "questions": [
+     {
+      "id": "q_consent",
+      "type": "MC",
+      "text": "You are invited to a research survey of about 10 minutes on how people share news headlines. Participation is voluntary and you may stop at any time. Do you consent to participate?",
+      "tag": "consent",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "c1",
+        "text": "I consent",
+        "recode": "1"
+       },
+       {
+        "id": "c2",
+        "text": "I do not consent",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_belief",
+    "title": "Belief in disputed claims",
+    "questions": [
+     {
+      "id": "q_belief",
+      "type": "Matrix",
+      "text": "How likely is each claim to be true?",
+      "tag": "belief_disputed",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "s1",
+        "text": "Definitely false",
+        "recode": "1"
+       },
+       {
+        "id": "s2",
+        "text": "Probably false",
+        "recode": "2"
+       },
+       {
+        "id": "s3",
+        "text": "Probably true",
+        "recode": "3"
+       },
+       {
+        "id": "s4",
+        "text": "Definitely true",
+        "recode": "4"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "Claim A: Vaccines commonly cause autism."
+       },
+       {
+        "id": "r2",
+        "text": "Claim B: The 2020 US presidential election was decided by widespread fraud."
+       },
+       {
+        "id": "r3",
+        "text": "Claim C: Government agencies are hiding evidence of alien visitors."
+       },
+       {
+        "id": "r4",
+        "text": "Claim D: Fluoride in tap water is a secret mind-control tool."
+       }
+      ],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_forced",
+    "title": "Forced choice",
+    "questions": [
+     {
+      "id": "q_f_intro",
+      "type": "DB",
+      "text": "You will see two posts at a time. Please choose one.",
+      "tag": "forced_intro",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_f_pair1",
+      "type": "DB",
+      "text": "Message 1: {{ed:fpost1a}} Message 2: {{ed:fpost1b}}",
+      "tag": "forced_pair1",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_f_share1",
+      "type": "MC",
+      "text": "Which post would you be more likely to share?",
+      "tag": "share_forced1",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "m1",
+        "text": "Message 1",
+        "recode": "1"
+       },
+       {
+        "id": "m2",
+        "text": "Message 2",
+        "recode": "2"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID5"
+     },
+     {
+      "id": "q_f_pair2",
+      "type": "DB",
+      "text": "Message 1: {{ed:fpost2a}} Message 2: {{ed:fpost2b}}",
+      "tag": "forced_pair2",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_f_share2",
+      "type": "MC",
+      "text": "Which post would you be more likely to share?",
+      "tag": "share_forced2",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "n1",
+        "text": "Message 1",
+        "recode": "1"
+       },
+       {
+        "id": "n2",
+        "text": "Message 2",
+        "recode": "2"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID5"
+     }
+    ]
+   },
+   {
+    "id": "b_single",
+    "title": "Single headline",
+    "questions": [
+     {
+      "id": "q_s_p1",
+      "type": "DB",
+      "text": "{{ed:spost1}}",
+      "tag": "single_post1",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_share1",
+      "type": "MC",
+      "text": "Would you share this post?",
+      "tag": "share_single1",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "y1",
+        "text": "Share it",
+        "recode": "1"
+       },
+       {
+        "id": "y0",
+        "text": "Share nothing",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_p2",
+      "type": "DB",
+      "text": "{{ed:spost2}}",
+      "tag": "single_post2",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_share2",
+      "type": "MC",
+      "text": "Would you share this post?",
+      "tag": "share_single2",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "z1",
+        "text": "Share it",
+        "recode": "1"
+       },
+       {
+        "id": "z0",
+        "text": "Share nothing",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_p3",
+      "type": "DB",
+      "text": "{{ed:spost3}}",
+      "tag": "single_post3",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_share3",
+      "type": "MC",
+      "text": "Would you share this post?",
+      "tag": "share_single3",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "w1",
+        "text": "Share it",
+        "recode": "1"
+       },
+       {
+        "id": "w0",
+        "text": "Share nothing",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_p4",
+      "type": "DB",
+      "text": "{{ed:spost4}}",
+      "tag": "single_post4",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_share4",
+      "type": "MC",
+      "text": "Would you share this post?",
+      "tag": "share_single4",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "v1",
+        "text": "Share it",
+        "recode": "1"
+       },
+       {
+        "id": "v0",
+        "text": "Share nothing",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_debrief",
+    "title": "Debrief",
+    "questions": [
+     {
+      "id": "q_debrief",
+      "type": "DB",
+      "text": "Thank you. Some headlines in this survey were false, and some claims in the belief questions are widely disputed or debunked by fact-checkers. Please do not rely on them.",
+      "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   }
+  ],
+  "flow": [
+   {
+    "id": "n_consent",
+    "type": "block",
+    "label": "Consent",
+    "children": [],
+    "blockId": "b_consent",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_end",
+    "type": "end",
+    "label": "End non-consent",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_br",
+    "type": "branch",
+    "label": "No consent",
+    "children": [
+     "n_end"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "q_consent",
+    "choiceId": "c2",
+    "operator": "selected"
+   },
+   {
+    "id": "n_belief",
+    "type": "block",
+    "label": "Belief",
+    "children": [],
+    "blockId": "b_belief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "r1",
+    "type": "randomizer",
+    "label": "Format",
+    "children": [
+     "arm_forced",
+     "arm_single"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_forced",
+    "type": "group",
+    "label": "Forced choice",
+    "children": [
+     "set_f",
+     "e_fp1a",
+     "e_fp1b",
+     "e_fp2a",
+     "e_fp2b",
+     "t_forced"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_f",
+    "type": "embedded",
+    "label": "condition forced",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "forced",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_fp1a",
+    "type": "embedded",
+    "label": "fpost1a",
+    "children": [],
+    "blockId": "",
+    "field": "fpost1a",
+    "value": "[IMAGE: Social post with a true or neutral news headline, pair 1]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_fp1b",
+    "type": "embedded",
+    "label": "fpost1b",
+    "children": [],
+    "blockId": "",
+    "field": "fpost1b",
+    "value": "[IMAGE: Social post with a false news headline, pair 1]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_fp2a",
+    "type": "embedded",
+    "label": "fpost2a",
+    "children": [],
+    "blockId": "",
+    "field": "fpost2a",
+    "value": "[IMAGE: Social post with a false news headline, pair 2]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_fp2b",
+    "type": "embedded",
+    "label": "fpost2b",
+    "children": [],
+    "blockId": "",
+    "field": "fpost2b",
+    "value": "[IMAGE: Social post with a true or neutral news headline, pair 2]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_forced",
+    "type": "block",
+    "label": "Forced block",
+    "children": [],
+    "blockId": "b_forced",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_single",
+    "type": "group",
+    "label": "Single",
+    "children": [
+     "set_s",
+     "e_sp1",
+     "e_sp2",
+     "e_sp3",
+     "e_sp4",
+     "t_single"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_s",
+    "type": "embedded",
+    "label": "condition single",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "single",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_sp1",
+    "type": "embedded",
+    "label": "spost1",
+    "children": [],
+    "blockId": "",
+    "field": "spost1",
+    "value": "[IMAGE: Social post with a true or neutral news headline, item 1]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_sp2",
+    "type": "embedded",
+    "label": "spost2",
+    "children": [],
+    "blockId": "",
+    "field": "spost2",
+    "value": "[IMAGE: Social post with a false news headline, item 2]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_sp3",
+    "type": "embedded",
+    "label": "spost3",
+    "children": [],
+    "blockId": "",
+    "field": "spost3",
+    "value": "[IMAGE: Social post with a false news headline, item 3]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_sp4",
+    "type": "embedded",
+    "label": "spost4",
+    "children": [],
+    "blockId": "",
+    "field": "spost4",
+    "value": "[IMAGE: Social post with a true or neutral news headline, item 4]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_single",
+    "type": "block",
+    "label": "Single block",
+    "children": [],
+    "blockId": "b_single",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_debrief",
+    "type": "block",
+    "label": "Debrief",
+    "children": [],
+    "blockId": "b_debrief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   }
+  ],
+  "roots": [
+   "n_consent",
+   "n_br",
+   "n_belief",
+   "r1",
+   "n_debrief"
+  ],
+  "assumptions": [
+   "Power: about 1800 respondents per arm to detect 0.04 at 80% power (source S3 differences 0.055-0.056, SE 0.017); the cross-format interaction needs about double the cell size, so total N about 3600 or more.",
+   "Platform: YouGov-type US panel; compensation per panel standard.",
+   "Item order randomized; headline sets balanced across topics and counterbalanced across formats; standard errors clustered by respondent.",
+   "Embedded stimulus fields shown for the two formats are fixed sets in the order given; headline-to-slot assignment is randomized by the survey platform."
+  ],
+  "unresolved": [
+   "Actual headline images and the final disputed-claim items must be supplied by the research team.",
+   "IRB approval number and compensation must be supplied by the research team."
+  ],
+  "evidence": [
+   {
+    "id": "ev1",
+    "title": "Source study package",
+    "url": "https://github.com/yrvelez/fact-networks-conjoint",
+    "claim": "the source study this extension builds on",
+    "excerpt": "",
+    "origin": "supplied"
+   },
+   {
+    "id": "ev2",
+    "title": "Pre-registration of the source study",
+    "url": "https://aspredicted.org/8njc-mpqw.pdf",
+    "claim": "the registered design and outcomes",
+    "excerpt": "",
+    "origin": "supplied"
+   }
+  ]
+ }
+}

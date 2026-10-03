@@ -1,0 +1,708 @@
+{
+ "id": "advance_design",
+ "kind": "mechanism",
+ "title": "Randomized sharer profiles for trust and closeness",
+ "rationale": "In the source study, close ties (+3.0 points) and high trust (+5.7 points; low-trust cell n=817) were measured on real contacts and bundle correlated traits. Randomly assigning vignette sharers' closeness and trustworthiness tests whether these associations survive randomization. A 'would not share' option removes the forced-choice link.",
+ "contribution": "Provides randomized estimates of sharer closeness and trustworthiness effects on sharing across true, false and fact-check content.",
+ "limitations": [
+  "Vignette sharers are hypothetical and may differ from real contacts",
+  "Stated sharing likelihood may not match real behaviour; the click is only a subsample proxy",
+  "Trust is described rather than experienced",
+  "Single-post ratings differ from the source's paired forced choice",
+  "The compact instrument shows one profile per respondent; the full run randomizes per task"
+ ],
+ "design": {
+  "title": "Randomized sharer profiles for trust and closeness",
+  "overview": "US adults see 8 single posts. Each post is attributed to a vignette sharer whose closeness (close or distant) and trustworthiness (low, high; mid added in the full run) are randomly assigned, crossed with information type (true, misinformation, fact-check). Respondents give a 0-100 sharing likelihood or choose 'would not share'. A subsample makes a behavioural share-to-feed click.",
+  "hypothesis": "Randomly assigned close and high-trust sharers raise sharing likelihood relative to distant and low-trust sharers (about 3 points), with effects possibly differing by information type.",
+  "primaryOutcome": "Sharing likelihood (0-100), with 'would not share' analysed separately as a binary outcome.",
+  "comparison": "Close vs distant; high vs low trust; main effects pooled over information type, with exploratory interactions with information type.",
+  "population": "Quota-sampled US adults (age, gender, race, party)",
+  "conditions": [
+   {
+    "id": "c_close_hi",
+    "title": "Close, high trust",
+    "description": "Sharer is a close contact who is highly trustworthy.",
+    "nodeId": "arm_close_hi"
+   },
+   {
+    "id": "c_close_lo",
+    "title": "Close, low trust",
+    "description": "Sharer is a close contact who is not very trustworthy.",
+    "nodeId": "arm_close_lo"
+   },
+   {
+    "id": "c_dist_hi",
+    "title": "Distant, high trust",
+    "description": "Sharer is a distant acquaintance who is highly trustworthy.",
+    "nodeId": "arm_dist_hi"
+   },
+   {
+    "id": "c_dist_lo",
+    "title": "Distant, low trust",
+    "description": "Sharer is a distant acquaintance who is not very trustworthy.",
+    "nodeId": "arm_dist_lo"
+   }
+  ],
+  "blocks": [
+   {
+    "id": "b_consent",
+    "title": "Consent",
+    "questions": [
+     {
+      "id": "q_consent",
+      "type": "MC",
+      "text": "This survey asks how you would respond to social media posts. It takes about 10 minutes and is voluntary. Do you agree to participate?",
+      "tag": "consent",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "yes",
+        "text": "I agree",
+        "recode": "1"
+       },
+       {
+        "id": "no",
+        "text": "I do not agree",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_end",
+    "title": "End",
+    "questions": [
+     {
+      "id": "q_end",
+      "type": "DB",
+      "text": "Thank you for your time. The survey ends here.",
+      "tag": "end_msg",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_intro",
+    "title": "Intro",
+    "questions": [
+     {
+      "id": "q_intro",
+      "type": "DB",
+      "text": "You will see several posts. Each was shared with you by a fictional person we describe. Imagine the person is real.",
+      "tag": "intro",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_t_close_hi",
+    "title": "Tasks close high",
+    "questions": [
+     {
+      "id": "q_d_ch",
+      "type": "DB",
+      "text": "The person who shared the next post is a close contact, someone you discuss important matters with. People describe them as very trustworthy. Post: {{ed:post_ch}}",
+      "tag": "desc_close_hi",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_ch",
+      "type": "TE",
+      "text": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
+      "tag": "share_close_hi",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": "QID5"
+     },
+     {
+      "id": "q_n_ch",
+      "type": "MC",
+      "text": "Would you choose not to share this post at all?",
+      "tag": "noshare_close_hi",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "n",
+        "text": "Would not share",
+        "recode": "1"
+       },
+       {
+        "id": "y",
+        "text": "Might share",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_t_close_lo",
+    "title": "Tasks close low",
+    "questions": [
+     {
+      "id": "q_d_cl",
+      "type": "DB",
+      "text": "The person who shared the next post is a close contact, someone you discuss important matters with. People describe them as not very trustworthy. Post: {{ed:post_cl}}",
+      "tag": "desc_close_lo",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_cl",
+      "type": "TE",
+      "text": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
+      "tag": "share_close_lo",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": "QID5"
+     },
+     {
+      "id": "q_n_cl",
+      "type": "MC",
+      "text": "Would you choose not to share this post at all?",
+      "tag": "noshare_close_lo",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "n",
+        "text": "Would not share",
+        "recode": "1"
+       },
+       {
+        "id": "y",
+        "text": "Might share",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_t_dist_hi",
+    "title": "Tasks distant high",
+    "questions": [
+     {
+      "id": "q_d_dh",
+      "type": "DB",
+      "text": "The person who shared the next post is a distant acquaintance you rarely interact with. People describe them as very trustworthy. Post: {{ed:post_dh}}",
+      "tag": "desc_dist_hi",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_dh",
+      "type": "TE",
+      "text": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
+      "tag": "share_dist_hi",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": "QID5"
+     },
+     {
+      "id": "q_n_dh",
+      "type": "MC",
+      "text": "Would you choose not to share this post at all?",
+      "tag": "noshare_dist_hi",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "n",
+        "text": "Would not share",
+        "recode": "1"
+       },
+       {
+        "id": "y",
+        "text": "Might share",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_t_dist_lo",
+    "title": "Tasks distant low",
+    "questions": [
+     {
+      "id": "q_d_dl",
+      "type": "DB",
+      "text": "The person who shared the next post is a distant acquaintance you rarely interact with. People describe them as not very trustworthy. Post: {{ed:post_dl}}",
+      "tag": "desc_dist_lo",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_s_dl",
+      "type": "TE",
+      "text": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
+      "tag": "share_dist_lo",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": "QID5"
+     },
+     {
+      "id": "q_n_dl",
+      "type": "MC",
+      "text": "Would you choose not to share this post at all?",
+      "tag": "noshare_dist_lo",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "n",
+        "text": "Would not share",
+        "recode": "1"
+       },
+       {
+        "id": "y",
+        "text": "Might share",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_click",
+    "title": "Behavioural",
+    "questions": [
+     {
+      "id": "q_click",
+      "type": "MC",
+      "text": "Would you like to add the last post to a practice feed that we will show to other participants?",
+      "tag": "share_click",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "a",
+        "text": "Add to feed",
+        "recode": "1"
+       },
+       {
+        "id": "b",
+        "text": "Do not add",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_debrief",
+    "title": "Debrief",
+    "questions": [
+     {
+      "id": "q_debrief",
+      "type": "DB",
+      "text": "Thank you. The sharers were fictional and some posts were false or corrections. Please do not rely on any false claims you saw.",
+      "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   }
+  ],
+  "flow": [
+   {
+    "id": "n_consent",
+    "type": "block",
+    "label": "Consent",
+    "children": [],
+    "blockId": "b_consent",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_br",
+    "type": "branch",
+    "label": "No consent",
+    "children": [
+     "n_endblock",
+     "n_endnode"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "q_consent",
+    "choiceId": "no",
+    "operator": "selected"
+   },
+   {
+    "id": "n_endblock",
+    "type": "block",
+    "label": "End message",
+    "children": [],
+    "blockId": "b_end",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_endnode",
+    "type": "end",
+    "label": "End",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_intro",
+    "type": "block",
+    "label": "Intro",
+    "children": [],
+    "blockId": "b_intro",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "r1",
+    "type": "randomizer",
+    "label": "Sharer profile",
+    "children": [
+     "arm_close_hi",
+     "arm_close_lo",
+     "arm_dist_hi",
+     "arm_dist_lo"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_close_hi",
+    "type": "group",
+    "label": "Close high",
+    "children": [
+     "e_cond_ch",
+     "e_post_ch",
+     "t_ch"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_cond_ch",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "close_high",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_post_ch",
+    "type": "embedded",
+    "label": "post",
+    "children": [],
+    "blockId": "",
+    "field": "post_ch",
+    "value": "[IMAGE: a social media post with a headline, randomly true, false or a fact-check]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_ch",
+    "type": "block",
+    "label": "Tasks",
+    "children": [],
+    "blockId": "b_t_close_hi",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_close_lo",
+    "type": "group",
+    "label": "Close low",
+    "children": [
+     "e_cond_cl",
+     "e_post_cl",
+     "t_cl"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_cond_cl",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "close_low",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_post_cl",
+    "type": "embedded",
+    "label": "post",
+    "children": [],
+    "blockId": "",
+    "field": "post_cl",
+    "value": "[IMAGE: a social media post with a headline, randomly true, false or a fact-check]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_cl",
+    "type": "block",
+    "label": "Tasks",
+    "children": [],
+    "blockId": "b_t_close_lo",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_dist_hi",
+    "type": "group",
+    "label": "Distant high",
+    "children": [
+     "e_cond_dh",
+     "e_post_dh",
+     "t_dh"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_cond_dh",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "distant_high",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_post_dh",
+    "type": "embedded",
+    "label": "post",
+    "children": [],
+    "blockId": "",
+    "field": "post_dh",
+    "value": "[IMAGE: a social media post with a headline, randomly true, false or a fact-check]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_dh",
+    "type": "block",
+    "label": "Tasks",
+    "children": [],
+    "blockId": "b_t_dist_hi",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_dist_lo",
+    "type": "group",
+    "label": "Distant low",
+    "children": [
+     "e_cond_dl",
+     "e_post_dl",
+     "t_dl"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_cond_dl",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "distant_low",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_post_dl",
+    "type": "embedded",
+    "label": "post",
+    "children": [],
+    "blockId": "",
+    "field": "post_dl",
+    "value": "[IMAGE: a social media post with a headline, randomly true, false or a fact-check]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_dl",
+    "type": "block",
+    "label": "Tasks",
+    "children": [],
+    "blockId": "b_t_dist_lo",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_click",
+    "type": "block",
+    "label": "Click",
+    "children": [],
+    "blockId": "b_click",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_debrief",
+    "type": "block",
+    "label": "Debrief",
+    "children": [],
+    "blockId": "b_debrief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   }
+  ],
+  "roots": [
+   "n_consent",
+   "n_br",
+   "n_intro",
+   "r1",
+   "n_click",
+   "n_debrief"
+  ],
+  "assumptions": [
+   "Power: about 1500 respondents per arm to detect 0.03 at 80% power (observed close-tie 0.030, trust-high 0.057; source H2 MDE 0.0258 at n 6709/5256), with SEs clustered by respondent and task.",
+   "Each respondent completes 8 tasks; the instrument shows one example task and the platform repeats it with new posts, information type randomized per task (true, misinformation, fact-check). The mid-trust level is added in the full factorial.",
+   "Quota-sampled US adults via an online panel; the click is asked of a random subsample.",
+   "The 0-100 likelihood is entered as a number in a text-entry field.",
+   "Within each respondent, sharer profile is fixed in the compact example; the full run randomizes per task."
+  ],
+  "unresolved": [
+   "Actual post images and the headline pool must be supplied by the research team.",
+   "Compensation, IRB number and panel vendor are to be set by the research team."
+  ],
+  "evidence": [
+   {
+    "id": "e1",
+    "title": "Source study package",
+    "url": "https://github.com/yrvelez/fact-networks-conjoint",
+    "claim": "the source study this extension builds on",
+    "excerpt": "",
+    "origin": "supplied"
+   },
+   {
+    "id": "e2",
+    "title": "Pre-registration of the source study",
+    "url": "https://aspredicted.org/8njc-mpqw.pdf",
+    "claim": "the registered design and outcomes",
+    "excerpt": "",
+    "origin": "supplied"
+   }
+  ]
+ }
+}

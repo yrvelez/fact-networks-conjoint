@@ -1,0 +1,1 @@
+Fact-check effect by topic. 2 conditions: Health topic, Political topic. Primary outcome: Share choice for each post (share vs. do not share), with an opt-out.. Population: US adults 18+ recruited from an online panel, with Spanish-language respondents oversampled; survey offered in English or Spanish.

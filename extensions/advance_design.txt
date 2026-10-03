@@ -1,0 +1,1 @@
+Randomized sharer profiles for trust and closeness. 4 conditions: Close, high trust, Close, low trust, Distant, high trust, Distant, low trust. Primary outcome: Sharing likelihood (0-100), with 'would not share' analysed separately as a binary outcome.. Population: Quota-sampled US adults (age, gender, race, party)

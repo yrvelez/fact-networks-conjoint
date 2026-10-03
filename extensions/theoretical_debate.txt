@@ -1,0 +1,1 @@
+Absolute versus relative misinformation sharing by belief. 2 conditions: Paired forced choice, Single headline with opt-out. Primary outcome: Share of misinformation headlines shared (single format) or chosen (forced choice), by belief index.. Population: US adults from an online panel such as YouGov, matching the source sample.

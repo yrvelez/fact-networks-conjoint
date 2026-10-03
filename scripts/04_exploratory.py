@@ -5,40 +5,46 @@ import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('data/clean.csv')
-h1 = [h for h in reg.HYPOTHESES if h['id'] == 'H1'][0]
-est = h1['estimator']; cov = est['covariates']
+H = {h['id']: h for h in reg.HYPOTHESES}
 
-def run(sub):
+def run(hid, sub):
+    h = H[hid]; est = h['estimator']; col = h['treatment']['column']
     out = {}
-    for arm in ['Misinformation', 'Fact-check']:
-        d = sub[sub.infotype.isin([arm, 'True/neutral'])].copy()
-        d = d.dropna(subset=['share', 'resp_id'] + cov).reset_index(drop=True)
-        d['treat'] = (d.infotype == arm).astype(int)
-        f, d2 = reg.build_formula('share', est, cov, d)
-        res = reg.fit(d2, f, est)
-        out[arm] = (float(res.params['treat']), float(res.bse['treat']), int(res.nobs))
+    for arm in h['treatment']['arms']:
+        d = sub[sub[col].isin([arm, h['treatment']['control']])].copy()
+        d['treat'] = (d[col] == arm).astype(int)
+        covs = [c for c in est['covariates'] if c != col]
+        need = [h['outcome'], est['cluster']] + covs + ([est['weights']] if est['weights'] else [])
+        d = d.dropna(subset=need).reset_index(drop=True)
+        e2 = dict(est); e2['covariates'] = covs
+        f, d2 = reg.build_formula(h['outcome'], e2, covs, d)
+        r = reg.fit(d2, f, e2)
+        out[arm] = (r.params['treat'], r.bse['treat'], int(r.nobs))
     return out
 
-o = run(df); a = run(df[df.trial > 1])
-rows = [dict(arm=k, est_orig=o[k][0], se_orig=o[k][1], n_orig=o[k][2], est_alt=a[k][0], se_alt=a[k][1], n_alt=a[k][2]) for k in o]
-pd.DataFrame(rows).to_csv('results/E1_h1_drop_trial1.csv', index=False)
-print('E1 H1 drop trial1: ' + '; '.join(f"{r['arm']} {r['est_orig']:.3f}->{r['est_alt']:.3f} (se {r['se_orig']:.3f}->{r['se_alt']:.3f})" for r in rows))
+rows = []
+for hid in ['H1', 'H2', 'H5']:
+    a = run(hid, df); b = run(hid, df[df.trial > 1])
+    for k in a:
+        rows.append(dict(hyp=hid, term=k, est_full=a[k][0], se_full=a[k][1], n_full=a[k][2],
+                         est_alt=b[k][0], se_alt=b[k][1], n_alt=b[k][2]))
+e1 = pd.DataFrame(rows); e1.to_csv('results/E1_drop_trial1.csv', index=False)
+for _, m in e1.iterrows():
+    print(f"E1 {m.hyp} {m.term}: full {m.est_full:.3f} ({m.se_full:.3f}) vs trials2-4 {m.est_alt:.3f} ({m.se_alt:.3f})")
 
-rows2 = []
-for lv in ['Lowest', 'Middle', 'Highest']:
-    r = run(df[df.age_t == lv])
-    for arm in r:
-        rows2.append(dict(age_tertile=lv, arm=arm, estimate=r[arm][0], std_error=r[arm][1], n=r[arm][2]))
-t = pd.DataFrame(rows2); t.to_csv('results/E2_h1_by_age.csv', index=False)
-m = t[t.arm == 'Misinformation']
-print('E2 misinfo AMCE by age tertile: ' + ', '.join(f"{x.age_tertile} {x.estimate:.3f}" for x in m.itertuples()))
+rows = []
+for tp in ['Health', 'Political']:
+    a = run('H1', df[df.topic_type == tp])
+    for k, v in a.items():
+        rows.append(dict(topic=tp, term=k, estimate=v[0], std_error=v[1], n=v[2]))
+e2 = pd.DataFrame(rows); e2.to_csv('results/E2_infotype_by_topic.csv', index=False)
+for _, r in e2.iterrows():
+    print(f"E2 {r.topic} {r.term}: {r.estimate:.3f} ({r.std_error:.3f}) n={r.n}")
 
 fig, ax = plt.subplots(figsize=(5, 3))
+for i, (_, r) in enumerate(e2.iterrows()):
+    ax.errorbar(r.estimate, i, xerr=1.96 * r.std_error, fmt='o', color='#c0392b' if r.topic == 'Health' else '#222')
+    ax.text(r.estimate, i + 0.25, f"{r.topic}: {r.term}", ha='center', fontsize=7)
+ax.axvline(0, color='#222', lw=0.5); ax.set_yticks([]); ax.set_xlabel('Effect on sharing vs true/neutral')
 for s in ['top', 'right', 'left']: ax.spines[s].set_visible(False)
-ax.grid(False)
-for i, x in enumerate(m.itertuples()):
-    ax.errorbar(x.estimate, i, xerr=1.96 * x.std_error, fmt='o', color='#c0392b', ecolor='#c0392b')
-    ax.text(x.estimate, i + 0.2, x.age_tertile, ha='center', color='black')
-ax.axvline(0, color='black', lw=0.8); ax.set_yticks([])
-ax.set_xlabel('Misinformation AMCE on sharing')
-fig.savefig('figures/E2_age.png', dpi=200, facecolor='white', bbox_inches='tight')
+fig.tight_layout(); fig.savefig('figures/E2_topic.png', dpi=200, facecolor='white')

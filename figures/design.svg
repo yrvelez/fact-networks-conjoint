@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 386" width="100%" role="img" aria-labelledby="fd-title fd-desc"><title id="fd-title">Design: conjoint experiment</title><desc id="fd-desc">A conjoint experiment on yougov respondents in US (N = 12,000 analysed). Each profile is built from 7 features: Information type (True/neutral, Misinformation, Fact-check); Tie strength (Distant tie, Close tie; measured, not randomized); Sharer origin (Foreign origin, Continental US; measured, not randomized); Sharer ideology (Liberal sharer, Moderate sharer, Conservative sharer; measured, not randomized); Trust in sharer (Trust: low, Trust: mid, Trust: high; measured, not randomized); Sharer political knowledge (Knowledge: low, Knowledge: mid, Knowledge: high; measured, not randomized); Sharer belief in disputed claims (Conspiracy belief: low, Conspiracy belief: high; measured, not randomized). Respondents compare two profiles per task and choose one for each outcome. Outcomes: Chosen to share, Chosen as more plausible. Registered moderators: age_t, ideo_self_t, disp_self_t, media_t, survey_language.</desc><style>
+:root{--fd-ink:#1c1b19;--fd-muted:#8a877f;--fd-rule:#d9d5cc;--fd-accent:#8b1e2d;--fd-bg:#ffffff}
+@media (prefers-color-scheme: dark){:root{--fd-ink:#ecebe6;--fd-muted:#b4b1a9;--fd-rule:#4a4a52;--fd-accent:#e08a96;--fd-bg:#1d1d23}}
+.box{fill:var(--fd-bg,#fff);stroke:var(--fd-ink,#1c1b19);stroke-width:1.2}
+.arm{fill:var(--fd-bg,#fff);stroke:var(--fd-accent,#8b1e2d);stroke-width:1.4}
+.soft{fill:var(--fd-bg,#fff);stroke:var(--fd-rule,#d9d5cc);stroke-width:1.2}
+text{font-family:Inter,Helvetica,Arial,sans-serif;fill:var(--fd-ink,#1c1b19);font-size:14px}
+.cap{font-size:12px;fill:var(--fd-muted,#8a877f)}
+.kicker{font-size:11px;letter-spacing:.08em;fill:var(--fd-muted,#8a877f);text-transform:uppercase}
+.edge{stroke:var(--fd-ink,#1c1b19);stroke-width:1.2;fill:none;marker-end:url(#fd-arrow)}
+.assoc{stroke-dasharray:5 4}
+#fd-arrow path{fill:var(--fd-ink,#1c1b19)}
+</style>
+<defs><marker id="fd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs><text class="kicker" x="20" y="16">Design: conjoint experiment</text>
+<text x="20" y="48">Information type</text>
+<text class="cap" x="20" y="64">randomized</text>
+<g id="arm-infotype-True/neutral" data-text="Information type: True/neutral">
+<rect class="arm" x="250" y="30" width="128" height="26" rx="6"/>
+<text x="262" y="52">True/neutral</text>
+</g>
+<g id="arm-infotype-Misinformation" data-text="Information type: Misinformation">
+<rect class="arm" x="386" y="30" width="146" height="26" rx="6"/>
+<text x="398" y="52">Misinformation</text>
+</g>
+<g id="arm-infotype-Fact-check" data-text="Information type: Fact-check">
+<rect class="arm" x="540" y="30" width="110" height="26" rx="6"/>
+<text x="552" y="52">Fact-check</text>
+</g>
+<text x="20" y="96">Tie strength</text>
+<text class="cap" x="20" y="112">measured</text>
+<g id="arm-tie-Distant tie" data-text="Tie strength: Distant tie">
+<rect class="soft" x="250" y="78" width="119" height="26" rx="6"/>
+<text x="262" y="100">Distant tie</text>
+</g>
+<g id="arm-tie-Close tie" data-text="Tie strength: Close tie">
+<rect class="soft" x="377" y="78" width="101" height="26" rx="6"/>
+<text x="389" y="100">Close tie</text>
+</g>
+<text x="20" y="144">Sharer origin</text>
+<text class="cap" x="20" y="160">measured</text>
+<g id="arm-sharer_origin-Foreign origin" data-text="Sharer origin: Foreign origin">
+<rect class="soft" x="250" y="126" width="146" height="26" rx="6"/>
+<text x="262" y="148">Foreign origin</text>
+</g>
+<g id="arm-sharer_origin-Continental US" data-text="Sharer origin: Continental US">
+<rect class="soft" x="404" y="126" width="146" height="26" rx="6"/>
+<text x="416" y="148">Continental US</text>
+</g>
+<text x="20" y="192">Sharer ideology</text>
+<text class="cap" x="20" y="208">measured</text>
+<g id="arm-sharer_ideology-Liberal sharer" data-text="Sharer ideology: Liberal sharer">
+<rect class="soft" x="250" y="174" width="146" height="26" rx="6"/>
+<text x="262" y="196">Liberal sharer</text>
+</g>
+<g id="arm-sharer_ideology-Moderate sharer" data-text="Sharer ideology: Moderate sharer">
+<rect class="soft" x="404" y="174" width="155" height="26" rx="6"/>
+<text x="416" y="196">Moderate sharer</text>
+</g>
+<text x="20" y="240">Trust in sharer</text>
+<text class="cap" x="20" y="256">measured</text>
+<g id="arm-sharer_trust-Trust: low" data-text="Trust in sharer: Trust: low">
+<rect class="soft" x="250" y="222" width="110" height="26" rx="6"/>
+<text x="262" y="244">Trust: low</text>
+</g>
+<g id="arm-sharer_trust-Trust: mid" data-text="Trust in sharer: Trust: mid">
+<rect class="soft" x="368" y="222" width="110" height="26" rx="6"/>
+<text x="380" y="244">Trust: mid</text>
+</g>
+<g id="arm-sharer_trust-Trust: high" data-text="Trust in sharer: Trust: high">
+<rect class="soft" x="486" y="222" width="119" height="26" rx="6"/>
+<text x="498" y="244">Trust: high</text>
+</g>
+<text x="20" y="288">Sharer political knowledge</text>
+<text class="cap" x="20" y="304">measured</text>
+<g id="arm-sharer_knowledge-Knowledge: low" data-text="Sharer political knowledge: Knowledge: low">
+<rect class="soft" x="250" y="270" width="146" height="26" rx="6"/>
+<text x="262" y="292">Knowledge: low</text>
+</g>
+<g id="arm-sharer_knowledge-Knowledge: mid" data-text="Sharer political knowledge: Knowledge: mid">
+<rect class="soft" x="404" y="270" width="146" height="26" rx="6"/>
+<text x="416" y="292">Knowledge: mid</text>
+</g>
+<text x="20" y="336">Sharer belief in disputed claims</text>
+<text class="cap" x="20" y="352">measured</text>
+<g id="arm-sharer_conspiracy-Conspiracy belief: low" data-text="Sharer belief in disputed claims: Conspiracy belief: low">
+<rect class="soft" x="250" y="318" width="170" height="26" rx="6"/>
+<text x="262" y="340">Conspiracy belief:</text>
+<text x="262" y="358">low</text>
+</g>
+<g id="arm-sharer_conspiracy-Conspiracy belief: high" data-text="Sharer belief in disputed claims: Conspiracy belief: high">
+<rect class="soft" x="428" y="318" width="170" height="26" rx="6"/>
+<text x="440" y="340">Conspiracy belief:</text>
+<text x="440" y="358">high</text>
+</g>
+<g>
+<rect class="box" x="720" y="163.0" width="110" height="70" rx="6"/>
+<text x="732" y="185.0">Two</text>
+<text x="732" y="203.0">profiles</text>
+<text x="732" y="221.0">per task</text>
+<text class="cap" x="732" y="239.0">choose one</text>
+</g>
+<path class="edge" d="M700,198.0 L716,198.0"/>
+<g>
+<rect class="box" x="850" y="30" width="100" height="84" rx="6"/>
+<text class="kicker" x="862" y="52">Outcome</text>
+<text x="862" y="70">Chosen to</text>
+<text x="862" y="88">share</text>
+</g>
+<g>
+<rect class="box" x="850" y="124" width="100" height="102" rx="6"/>
+<text class="kicker" x="862" y="146">Outcome</text>
+<text x="862" y="164">Chosen as</text>
+<text x="862" y="182">more</text>
+<text x="862" y="200">plausible</text>
+</g>
+<path class="edge" d="M830,198.0 L846,198.0"/><text class="cap" x="838.0" y="192.0" text-anchor="middle">AMCE</text></svg>

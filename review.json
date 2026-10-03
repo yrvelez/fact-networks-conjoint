@@ -11,281 +11,295 @@
   "orchestrator": "anthropic/claude-sonnet-5.5"
  },
  "model": "anthropic/claude-sonnet-5.5",
- "overall": "The randomized information-type effects are large and well supported: misinformation is about 18 points and fact-checks about 13 points below true/neutral headlines on sharing, with similar results for plausibility. The sharer-attribute results (close tie, high trust) are adjusted associations with modest, partly fragile estimates, and the 'moderated' claims rest on uncorrected tertile contrasts with no interaction tests. The exploratory by-type prose is not backed by the printed models. The most important caveat is that the outcome is a paired forced choice, so the reported 'sharing rates' are relative choice shares, and measured sharer attributes cannot be read causally.",
+ "overall": "The randomized information-type effects are large, precise and consistent across sharing and plausibility: misinformation -18.2 points and fact-checks -13.3 points on sharing. The sharer-trait estimates are measured contrasts and are weaker. Close ties and high trust are the stable ones, and the trait nulls are mostly imprecise. The moderate-sharer result is borderline (p=0.034) and does not hold in the reweighted fit (p=0.056). The key caveat is that the traits are not randomized and the subgroup battery of about 180 contrasts is uncorrected. The paired forced-choice structure is also not modelled, though the report calls the information-type estimates causal.",
  "issues": [
   {
    "severity": "high",
-   "location": "H8 / H1 model specification",
-   "issue": "The H8 formula omits C(infotype) as a separate covariate, but the Details show arm_code as information type. H10-H14 coefficient tables show infotype coefficients where True/neutral is +0.124, while H8 reports Misinformation -0.186. Reference-level labelling of arms and the 'Treatment' reference are inconsistent across tables and hard to verify.",
-   "fix": "State explicitly the coding of arm_code and infotype in each model and confirm all models use the same specification and reference level.",
-   "kind": "presentational",
-   "change": null,
-   "id": "R1",
-   "source": "light",
-   "disposition": "editorial",
-   "disposition_reason": "The coding of arm_code and the reference levels needs to be stated; the estimates are consistent across tables (e.g. H10 infotype coefficients mirror H1)."
-  },
-  {
-   "severity": "high",
-   "location": "Abstract / Key findings / H2-H7",
-   "issue": "Tie strength, trust, knowledge, ideology and sharer belief are respondent ratings of real contacts, yet they are presented as registered 'AMCEs' and 'raised sharing'. Causal verbs (raised, effects) are used. Confounding with contact traits (e.g., closer contacts differ in many ways) is unaddressed.",
-   "fix": "Describe these as adjusted associations throughout; drop 'raised' and 'effect' language; label the figure as marginal contrasts.",
-   "kind": "presentational",
-   "change": null,
-   "id": "R2",
-   "source": "light",
-   "disposition": "editorial",
-   "disposition_reason": "Causal verbs for measured attributes need to be replaced with associational wording."
-  },
-  {
-   "severity": "high",
-   "location": "Planned heterogeneity S1-S10",
-   "issue": "Roughly 180 subgroup contrasts are tested without multiplicity correction, and prose highlights isolated p-values (e.g., p=0.017, 0.028, 0.032). The Abstract says age and belief 'moderated' response, but moderation is shown only as tertile differences in marginal means, not by interaction tests. Low-trust cells are tiny (n≈200-300).",
-   "fix": "Add formal interaction tests and a multiplicity adjustment (e.g., FDR) for S1-S10; restrict prose to adjusted-robust findings.",
+   "location": "Design / H1 / Abstract",
+   "issue": "Design says respondents compare two profiles per task and choose one, yet outcomes are modeled as per-profile OLS with all 12,000 rows treated as independent choices. Paired-choice dependence within tasks is not handled, and the rating/forced-choice structure is unclear. Mean control shares (~0.5) hint at forced choice.",
+   "fix": "State clearly how the outcome is constructed. Cluster at respondent and task, or include task fixed effects, and show the AMCEs are robust.",
    "kind": "analytical",
    "change": {
-    "target": "S1",
+    "target": "H1",
+    "type": "cluster"
+   },
+   "id": "R1",
+   "source": "light",
+   "disposition": "address",
+   "disposition_reason": "Re-fit with task fixed effects or task-level clustering as a robustness check, and describe how the outcome is constructed."
+  },
+  {
+   "severity": "high",
+   "location": "Design / H2-H7, H9-H14",
+   "issue": "Six sharer traits are measured and not randomized, yet they are called AMCEs and pre-registered as effects. They are confounded with respondent-contact selection and each other. The trust effect (+5.7) rests on only 817 low-trust profiles. Mid and high trust are similar in size, which suggests a non-monotone or noisy pattern.",
+   "fix": "Label these as conditional associations everywhere, including headings and the abstract. Add respondent fixed effects or respondent-covariate adjustment as a robustness check.",
+   "kind": "analytical",
+   "change": {
+    "target": "H5",
+    "type": "covariates"
+   },
+   "id": "R2",
+   "source": "light",
+   "disposition": "address",
+   "disposition_reason": "Add respondent fixed effects or covariate adjustment as a robustness fit; relabel the trait estimates as associations."
+  },
+  {
+   "severity": "high",
+   "location": "Abstract / Key findings / H4, H11",
+   "issue": "About 14 registered tests, 10 subgroup families with 18 contrasts each, and many exploratory tests are uncorrected. Findings such as moderate sharer (p=0.034, p=0.026) and the S-table single-cell differences are presented as effects despite being near threshold. The abstract highlights the moderate-sharer result.",
+   "fix": "Add multiplicity-adjusted p-values (e.g. Holm or BH by family). Drop or flag the moderate-sharer result as fragile.",
+   "kind": "analytical",
+   "change": {
+    "target": "H4",
     "type": "robustness"
    },
    "id": "R3",
    "source": "light",
    "disposition": "declined",
-   "disposition_reason": "The registered plan specifies no multiplicity correction, so FDR adjustment is not applied to registered tests; interaction tests could be added as a clearly labelled supplement, and the prose should be caveated."
+   "disposition_reason": "The plan specifies no multiple-testing correction, so adding Holm or BH would change the registered analysis; flag the moderate-sharer result as fragile in prose instead."
   },
   {
    "severity": "medium",
-   "location": "H4/H11 and Re-weighted AMCEs",
-   "issue": "The moderate-sharer effect (p=0.034 on sharing) loses significance when re-weighted (p=0.056), yet the text calls the picture 'essentially unchanged'. Also H4/H11 are flagged 'supported' without correction across 14 tests.",
-   "fix": "Report H4 as fragile and not robust to weighting; apply multiplicity correction to the 14 registered tests.",
+   "location": "Key findings / S3",
+   "issue": "The subgroup result is described as 'Registered subgroup tests show misinformation was shared more by respondents who believe more disputed claims'. These are tertile contrasts of marginal means with no interaction test. The respondent moderator is not randomized, and the true/neutral decline mirrors the rise (a compositional shift in a forced-choice setting).",
+   "fix": "Report formal interaction tests and describe the pattern as a relative reordering of the information types, not an increase in misinformation sharing.",
    "kind": "analytical",
    "change": {
-    "target": "H4",
-    "type": "weights"
+    "target": "S3",
+    "type": "estimator"
    },
    "id": "R4",
    "source": "light",
-   "disposition": "editorial",
-   "disposition_reason": "The weighting caveat is a prose fix; a correction across the 14 tests is declined because the plan specifies none."
+   "disposition": "address",
+   "disposition_reason": "Interaction tests on the same data can be reported alongside the registered tertile contrasts."
   },
   {
    "severity": "medium",
-   "location": "Design and data",
-   "issue": "N is reported as 12,000 analysed, but models use 11,882/11,884; the E1 robustness check on dropping trial 1 shifts effects (-0.182 to -0.170) with no discussion. Missingness handling is vague ('a handful of rows'), and 118 missing rows exceed that. The reference-group n (4,145) is mentioned only in passing. YouGov weights/sample representativeness are not described.",
-   "fix": "Report exact missing counts and handling; discuss E1 and E2 results; describe sample weights and quotas.",
+   "location": "Results prose (H6, H13, H12, X8)",
+   "issue": "Several prose figures do not match the tables or are loosely worded. Knowledge mid is '−0.0', and the conspiracy effect is 'at −0.03 points' on a coefficient of −0.000 (−0.034 points is the exact value). X8 and X9 say 'differed by information type (see XS8)', but no XS8 appears. H1 says 'about ±2 to 4 points' for the nulls.",
+   "fix": "Round consistently, remove the dangling XS8 reference, and make the interval statements match the tables.",
    "kind": "presentational",
    "change": null,
    "id": "R5",
    "source": "light",
    "disposition": "editorial",
-   "disposition_reason": "The N accounting (11,882/11,884 vs 12,000), the missing counts, E1/E2 discussion and the weighting description are all reporting fixes."
+   "disposition_reason": "Rounding, the dangling XS8 reference and the interval statements need fixing."
   },
   {
    "severity": "medium",
-   "location": "Key findings / S3",
-   "issue": "Prose says 'registered subgroup comparisons show...' and E2 reveals H1 effect differs by age (misinformation -0.13 vs -0.22), but this heterogeneity is not integrated. S2 prose says conservatives 'shared continental-US sharers 1.6 points less' ambiguously, and the 'liberal sharers 4.8 points less' lacks the respondent group.",
-   "fix": "Clarify who shared what; discuss E2 explicitly and note that the S3 age/belief contrasts are not corrected.",
+   "location": "Design",
+   "issue": "Missing-data handling is mentioned only in passing: 11,882 of 12,000 profiles are used in the share models, and the report gives no explanation for the 118 dropped. Re-weighting is described as 'very close' even though trust-high moves from 5.7 to 6.7 points.",
+   "fix": "Report missingness by attribute and the exclusion rule. Describe the re-weighting change accurately.",
    "kind": "presentational",
    "change": null,
    "id": "R6",
    "source": "light",
    "disposition": "editorial",
-   "disposition_reason": "Clarify who shared what in the S2 prose and integrate E2 into the discussion."
+   "disposition_reason": "Report the missingness rule and describe the reweighting change accurately."
   },
   {
    "severity": "medium",
-   "location": "H3/H7",
-   "issue": "Null results are described with intervals 'narrow but compatible with small effects', while ±2-4 point intervals aren't equivalence-tested; 'not distinguishable from zero' may be read as no effect. Foreign-origin n is small (2,482).",
-   "fix": "Add equivalence tests or soften to 'inconclusive'.",
+   "location": "Exploratory X1-X11",
+   "issue": "Exploratory models use a 'treat' term and raw continuous predictors. Descriptions say 'by information type' but the models include no interactions. X6 uses a network-level predictor with 3,196 rows from a smaller set of respondents. X10 rests on 266 ratings. The X11 table is truncated.",
+   "fix": "Add the interactions that the descriptions promise, or remove those phrases. Report the number of respondents in X6 and X10. Complete the X11 output.",
    "kind": "presentational",
    "change": null,
    "id": "R7",
    "source": "light",
    "disposition": "address",
-   "disposition_reason": "Equivalence tests can be run on the existing H3/H7 estimates, or the wording softened to 'inconclusive'."
+   "disposition_reason": "Fit the promised interactions on the same data, or drop the 'by information type' phrasing; complete the X11 output and report respondent counts."
   },
   {
    "severity": "low",
-   "location": "Exploratory X1-X12",
-   "issue": "Several exploratory models (X1, X3, X8) use 'treat' for continuous measured variables and prose discusses interactions by information type that the printed models lack; X6 slope comes from a weighted respondent-level regression with a continuous measured predictor. X12 table is truncated.",
-   "fix": "Add interaction terms to the displayed models or remove the by-type claims; restore the truncated table.",
+   "location": "H1 / E1",
+   "issue": "The robustness table E1 (dropping trial 1) and E2 (topic) are not discussed in the prose. Health fact-check shows about −0.03 versus political −0.15, which qualifies the pooled fact-check claim.",
+   "fix": "Discuss E1 and E2 in the text and qualify the pooled fact-check effect.",
    "kind": "presentational",
    "change": null,
    "id": "R8",
    "source": "light",
-   "disposition": "address",
-   "disposition_reason": "Re-fit the X-series with information-type interactions so the printed models match the prose; restore the truncated table."
+   "disposition": "editorial",
+   "disposition_reason": "Discuss E1 and E2 in the prose and qualify the pooled fact-check effect."
   },
   {
-   "severity": "high",
-   "location": "Design and data / H1",
-   "issue": "Sharer attributes are non-randomized yet included in a randomized AMCE framework: Tie, origin, ideology, trust, knowledge and belief in disputed claims are respondent ratings of real contacts, not randomized. They are nonetheless estimated as AMCEs with inverse-probability re-weighting (R1–R12). Re-weighting by 'assignment probability' has no clear meaning for measured attributes. These effects bundle contact identity and respondent traits, and may be confounded with each other and with respondent characteristics. They are also measured by the same respondent who gives the outcome, so common-method bias is possible.",
-   "fix": "Describe the R-series weights and what they assume. Consider respondent fixed effects or contact-level controls. Present the sharer effects as associations throughout, including in the abstract's framing.",
+   "severity": "medium",
+   "location": "Design and data / Results H2–H7, H9–H14",
+   "issue": "Measured sharer traits interpreted as AMCEs without confounding control: Tie, origin, ideology, trust, knowledge and conspiracy belief are respondent ratings of real contacts, not randomized. The 'AMCE' regressions adjust only for the other six features. Unmeasured contact characteristics (e.g., relationship type, closeness history, demographics) are bundled with each trait. Trust and tie are likely correlated with one another and with the contact's identity. The paper flags that these are descriptive, but the labelling as AMCEs and the heading 'effects' still invite causal readings.",
+   "fix": "Report these as conditional associations. Add contact-level fixed effects or respondent fixed effects to separate within-respondent from between-respondent variation. Avoid causal wording.",
    "kind": "analytical",
    "change": {
-    "target": "R1",
+    "target": "H5",
     "type": "robustness"
    },
    "source": "advanced:methodology",
    "confidence": 0.6,
    "id": "A1",
    "disposition": "address",
-   "disposition_reason": "Respondent fixed-effect or contact-level control re-fits are possible on existing data, and the weighting should be explained; the associational framing is an editorial fix."
+   "disposition_reason": "Respondent or contact fixed-effects fits can be added, with associational labels."
   },
   {
-   "severity": "high",
-   "location": "Exploratory X1–X13",
-   "issue": "Exploratory models omit the information-type controls and use a mislabeled 'treat': In X1, X3, X8 and X11, the 'treat' variable is the focal predictor, but the model formulas do not include information type, even though the text claims slopes are 'by information type' and 'net of' the other attributes. The X8 text says it 'differs sharply by information type', but no such estimate is shown. Identical intercepts across X1, X3 and X8 show that these are the same regression relabeled. X6 interprets a 0-1 scale slope of 0.110 with the key regressor 'net_consp' not appearing in the model table.",
-   "fix": "Report the interaction models that the prose describes, label the regressors correctly, and make sure the tables match the stated formulas.",
+   "severity": "medium",
+   "location": "Results H5 / Design",
+   "issue": "Sparse reference categories and imbalance in measured traits: The Trust: low reference has only 817 eligible profiles, against 8,388 for Trust: high. The Trust: mid CI [−0.1, 7.3] is wide. S1–S5 cells for low trust (e.g., 230–336) are tiny. Foreign origin (about 2,500) is also small. Estimates against thin references are imprecise and sensitive to who lands in them.",
+   "fix": "Report the trust effect with the continuous 1–5 measure as primary. Show overlap or balance of the measured traits across information types.",
+   "kind": "analytical",
+   "change": {
+    "target": "H5",
+    "type": "robustness"
+   },
+   "source": "advanced:methodology",
+   "confidence": 0.5,
+   "id": "A2",
+   "disposition": "address",
+   "disposition_reason": "A continuous trust slope (X1) already exists; add a reference-level sensitivity check."
+  },
+  {
+   "severity": "medium",
+   "location": "Planned heterogeneity S1–S10",
+   "issue": "Large uncorrected subgroup battery with selective prose reporting: Each of S1–S10 tests 18 contrasts, about 180 tests with no multiplicity adjustment (a policy choice by the authors). Results such as p=0.03 and p=0.038 are discussed alongside strong ones. Tertile splits also reduce power. The key findings headline S3 (5.6 points) without stating that it is one of roughly 180 tests.",
+   "fix": "Report the number of tests next to the highlights and give the expected number of false positives. Treat the p≈0.01–0.05 results as tentative.",
+   "kind": "presentational",
+   "change": null,
+   "source": "advanced:methodology",
+   "confidence": 0.5,
+   "id": "A3",
+   "disposition": "declined",
+   "disposition_reason": "A correction would conflict with the registered no-correction plan; instead report the number of tests and the expected false positives."
+  },
+  {
+   "severity": "medium",
+   "location": "Results H1 / Design",
+   "issue": "Forced-choice paired design vs. per-profile OLS and sample accounting: Respondents compare two profiles per task and choose one. The two profiles' outcomes are mechanically complementary, so linear regression on profile rows with respondent clustering ignores the within-task dependence. The N differs across outcomes (11,882 vs 11,884) without an explanation of the missing values. The E1 table shows n_full of 7,967 for H1, which is inconsistent with the H1 N of 11,882. Also, 'n (level)' for misinformation is 3,822 against 3,854 eligible, so the missingness is unexplained.",
+   "fix": "Clarify the unit of analysis and the pairing. Cluster at the task level or use task fixed effects. Explain the missing data and the E1 sample-size discrepancy.",
+   "kind": "analytical",
+   "change": {
+    "target": "H1",
+    "type": "robustness"
+   },
+   "source": "advanced:methodology",
+   "confidence": 0.45,
+   "id": "A4",
+   "disposition": "address",
+   "disposition_reason": "Task-clustered re-fit plus an explanation of missingness and of the E1 sample sizes."
+  },
+  {
+   "severity": "medium",
+   "location": "Results H4/H11 and Re-weighted AMCEs",
+   "issue": "Borderline results are described inconsistently across specifications: Moderate sharer on sharing: p=0.034 unweighted, p=0.056 reweighted (−1.7). The text says it 'weakened', while the table still shows the effect as 'supported'. The abstract states the lowering of sharing by 1.9 points without qualification. The Re-weighted section's description of weights (inverse assignment probabilities for measured traits) is also not reproducibly specified.",
+   "fix": "Qualify the abstract claim as fragile. Specify how the weights were constructed for traits that are not randomized.",
+   "kind": "presentational",
+   "change": null,
+   "source": "advanced:methodology",
+   "confidence": 0.45,
+   "id": "A5",
+   "disposition": "editorial",
+   "disposition_reason": "Qualify the moderate-sharer abstract claim and document how the weights were built."
+  },
+  {
+   "severity": "medium",
+   "location": "Exploratory X1–X12",
+   "issue": "Exploratory models omit controls and are unclear about interactions and the 'treat' variable: X1's formula is `share ~ treat + close_num + ...` but omits information type, though the description promises 'how it differs by information type'. No interaction terms are shown. X5 and X7 are unadjusted cell differences, and X7 relies on 'preliminary automated coding' of slant with no validation. X10 rests on N=266. X6 uses n=3,196 with the respondent-level weight.",
+   "fix": "Include the interaction terms the text promises. Validate the slant coding. Label the X10 and X6 results as highly tentative.",
    "kind": "analytical",
    "change": {
     "target": "X1",
     "type": "robustness"
    },
    "source": "advanced:methodology",
-   "confidence": 0.55,
-   "id": "A2",
-   "disposition": "address",
-   "disposition_reason": "Re-estimate X1/X3/X8/X11 with information-type controls and interactions and correct the labels."
-  },
-  {
-   "severity": "medium",
-   "location": "Design and data / H1",
-   "issue": "Sample accounting inconsistent; missing outcome handling unexplained: The text says 12,000 profiles were all analysed and 'no rows dropped'. The models use N=11,882 (share) and 11,884 (plausibility), and the arm counts are inconsistent: 3,822 + 3,915 + 4,145 = 11,882, but the control count of 4,145 is stated in the text for exploratory models. The reason for the missing rows is not given. The unit of the design is also unclear: 'pairs of posts' with a forced choice outcome ('chosen as more plausible') versus a binary share outcome. In a paired design the two profiles in a pair are not independent, and the share outcome may be mechanically related to the plausibility outcome.",
-   "fix": "Report the missingness mechanism and the number of respondents. Clarify the pair structure and whether the paired profile's attributes are accounted for.",
-   "kind": "presentational",
-   "change": null,
-   "source": "advanced:methodology",
-   "confidence": 0.5,
-   "id": "A3",
-   "disposition": "editorial",
-   "disposition_reason": "Report the missingness counts and the pair structure."
-  },
-  {
-   "severity": "medium",
-   "location": "Results H4/H5/H11 and Exploratory X-series",
-   "issue": "Many uncorrected tests; marginal findings emphasized: Across roughly 14 hypotheses, 10 heterogeneity tables with 18 cells each (about 180 tests) and 13 exploratory analyses, no multiplicity adjustment is applied. Results such as the moderate-sharer effect (p=0.034, with the re-weighted estimate at p=0.056) and the many S-table p-values between 0.01 and 0.04 are likely to occur by chance. The authors acknowledge this, but the S-table prose still reports individual cells such as the Spanish-language low-trust cells as findings.",
-   "fix": "Flag p-values near 0.05 as fragile, and report the number of tests alongside the heterogeneity findings, perhaps with a false-discovery-rate sensitivity analysis.",
-   "kind": "presentational",
-   "change": null,
-   "source": "advanced:methodology",
-   "confidence": 0.5,
-   "id": "A4",
-   "disposition": "declined",
-   "disposition_reason": "Corrections conflict with the registered no-correction plan; the number of tests can be reported and near-threshold results flagged."
-  },
-  {
-   "severity": "medium",
-   "location": "Planned heterogeneity S1–S10",
-   "issue": "Heterogeneity uses marginal means with unequal cells and small-cell reliance: The tertile contrasts are based on marginal means, not interaction models. Some cells are very small (e.g. Trust: low n=196–336, foreign-origin n=598). Marginal means for non-randomized attributes mix composition differences. Tertile cutoffs are not described. The claim that age 'moderates' the response to misinformation relies on one cell (p<0.001) and is only supported by the E2 table, where the age gradient looks monotone. The difference in effects relative to true/neutral is not formally tested.",
-   "fix": "Test the information-type × moderator interaction formally in the regression, and report the tertile cutpoints and cell sizes.",
-   "kind": "analytical",
-   "change": null,
-   "source": "advanced:methodology",
    "confidence": 0.45,
-   "id": "A5",
-   "disposition": "address",
-   "disposition_reason": "Information type × moderator interaction models and tertile cutpoints can be produced from the existing data."
-  },
-  {
-   "severity": "medium",
-   "location": "Results H1 (interpretation)",
-   "issue": "Information-type headlines are not randomized across content; stimulus confounds: Randomization is of the headline type, but headlines are specific items (e.g. guanabana, polio, partisan slant), so the type effects mix topic and wording with veracity. Fact-checks and misinformation may differ in length and topic. The ‘drop trial 1’ robustness check (E1) reports a smaller effect (−0.170 vs −0.182), with no explanation of what it addresses. Stated outcomes are hypothetical self-reported sharing.",
-   "fix": "Report item-level effects or item fixed effects. Describe the headline pool and the pairing, and explain the E1 check.",
-   "kind": "analytical",
-   "change": {
-    "target": "H1",
-    "type": "robustness"
-   },
-   "source": "advanced:methodology",
-   "confidence": 0.4,
    "id": "A6",
-   "disposition": "unresolved",
-   "disposition_reason": "Headline content is confounded with veracity type in this design; item fixed effects might help only if item ids exist."
+   "disposition": "address",
+   "disposition_reason": "Add the interaction terms and information-type controls on the same data; label X6 and X10 as tentative."
   },
   {
    "severity": "high",
-   "location": "Planned heterogeneity S1-S10",
-   "issue": "Large number of uncorrected moderator tests; selective narration of significant cells: Each S table contains 18 tests, giving 180 across S1-S10. Prose highlights cells at p<0.05 (e.g. S5 low-trust +7.9 on n=257, S4 low-conspiracy +3.5, S2 continental-US -1.6). With about 180 tests, roughly 9 false positives are expected at 0.05. The authors' multiple-testing policy is 'none', but this is a limitation. The abstract's claim that age 'moderated' response rests on one cell (p=0.0002), and no interaction test across levels is given.",
-   "fix": "Label significant cells as exploratory. Report omnibus interaction tests, and consider FDR-adjusted q-values as a sensitivity display.",
-   "kind": "presentational",
-   "change": null,
-   "source": "advanced:statistics",
-   "confidence": 0.6,
-   "id": "A7",
-   "disposition": "declined",
-   "disposition_reason": "A multiplicity adjustment is not in the plan; omnibus interaction tests may be added as a labelled supplement and the prose caveated."
-  },
-  {
-   "severity": "high",
-   "location": "X1-X3, X6, X8, X11-X12",
-   "issue": "Exploratory models described as 'by information type' but report pooled slopes: X1, X3, X8 and X11 specify a single treatment term (a pooled slope) with no interaction with information type. Yet the prose reports slopes by type (1.9, 1.7, 0.6; 4.7, 3.5, 0.9) that are not in the tables. X8 says the slope 'differs sharply by information type' although the pooled slope is 0.005. X11 and X12 mention a health vs political split that is not shown. The model for the quoted numbers is not given. X11's N=3822 equals all misinformation profiles, not a health/political split.",
-   "fix": "Report the interaction models and subgroup estimates behind the prose figures, or remove the claims.",
+   "location": "X1-X3, X8-X9",
+   "issue": "Exploratory 'by information type' claims are not supported by the models: The descriptions say slopes are examined 'by information type', but the models contain only a main-effect slope with no interaction term. X8 refers to 'differed by information type (see XS8)', but no such result is shown. The 'treat' term is reused for different variables across models. X1 also omits the information-type arm as a control.",
+   "fix": "Either fit and report interaction terms, or change the descriptions and remove the unsupported claim in X8.",
    "kind": "analytical",
    "change": {
     "target": "X8",
     "type": "robustness"
    },
    "source": "advanced:statistics",
-   "confidence": 0.6,
-   "id": "A8",
+   "confidence": 0.55,
+   "id": "A7",
    "disposition": "address",
-   "disposition_reason": "Same as A2: report the interaction models behind the by-type claims or remove them."
+   "disposition_reason": "Fit the interaction models or remove the unsupported 'by information type' claims and the XS8 reference."
   },
   {
-   "severity": "high",
-   "location": "H1 / Design and data",
-   "issue": "Causal claim and 'both posts' forced-choice structure not handled in estimation: Respondents rated pairs of posts and the outcome is 'chosen' for sharing and plausibility. Because the choice is a within-pair forced choice, the two profiles in a pair are mechanically dependent: if one is chosen, the other is not. Clustering by respondent partly handles this, but the mean of share is about 0.50 by construction. The reported 18.2-point effect is therefore a relative preference, not an absolute sharing rate. The text 'Sharing rates were 60.3%/42.1%/47.0%' reads as absolute rates. The H1 model also controls for non-randomized sharer attributes, which are post-treatment-adjacent measures of real contacts.",
-   "fix": "Describe the outcome as a pairwise choice share. Show H1 without the measured covariates and with pair fixed effects. Avoid interpreting rates as absolute sharing probabilities.",
+   "severity": "medium",
+   "location": "Results H4 / H11",
+   "issue": "Borderline moderate-sharer effects overinterpreted given multiplicity: The moderate-sharer effect on sharing (p=0.034) is highlighted in the abstract, but its reweighted p is 0.056, and with 14 registered hypotheses plus many sub-tests, it is easily a false positive. The abstract treats it as a finding alongside much stronger ones. The authors do state that tests are uncorrected.",
+   "fix": "Remove it from the abstract's headline findings or flag it as fragile, stating the reweighted result.",
+   "kind": "presentational",
+   "change": null,
+   "source": "advanced:statistics",
+   "confidence": 0.5,
+   "id": "A8",
+   "disposition": "editorial",
+   "disposition_reason": "Flag the moderate-sharer result as fragile in the abstract."
+  },
+  {
+   "severity": "medium",
+   "location": "Heterogeneity S1-S10",
+   "issue": "Large subgroup families with no multiplicity handling; selective prose: Each of S1-S10 has 18 contrasts, which gives about 180 tests. Several highlighted effects have p of 0.01-0.04 (S5 low trust p=0.022, S4 p=0.032), and the prose treats them as 'distinguishable from zero'. Cells such as low trust (n=196-343) are small, with SEs of 0.04-0.05. The Key findings bullet presents the S3 subgroup result as a main finding. The policy is 'none', so this is a limitation rather than an error.",
+   "fix": "Flag that about 9 false positives are expected at 0.05 across ~180 tests, and emphasize only the p<0.001 results (S1 misinformation, S3, S8).",
+   "kind": "presentational",
+   "change": null,
+   "source": "advanced:statistics",
+   "confidence": 0.5,
+   "id": "A9",
+   "disposition": "declined",
+   "disposition_reason": "Correcting the S-family would alter the registered analysis; report the test count and treat p between 0.01 and 0.05 as tentative."
+  },
+  {
+   "severity": "medium",
+   "location": "X4",
+   "issue": "Conditioning on post-outcome selection: X4 restricts to profiles chosen to share (N=5,938) and compares across randomized arms. Since the arms differ in sharing rates (60% vs 42%), selection into the sample differs by arm, so the comparison is no longer causal.",
+   "fix": "Acknowledge selection bias, or model the joint outcome (share and plausibility) over all profiles.",
+   "kind": "analytical",
+   "change": {
+    "target": "X4",
+    "type": "robustness"
+   },
+   "source": "advanced:statistics",
+   "confidence": 0.45,
+   "id": "A10",
+   "disposition": "address",
+   "disposition_reason": "Re-model the joint outcome on all profiles, or label X4 as selected and non-causal."
+  },
+  {
+   "severity": "medium",
+   "location": "Design and data / H1",
+   "issue": "Causal claim for information type conflicts with within-respondent design and attrition: H1 says 'these are causal estimates', yet the model is adjusted for non-randomized, measured sharer traits (post-treatment-like and possibly correlated with headline assignment). Observations with missing values are dropped (N=11,882 of 12,000), and the E1 drop-trial1 check shows a drop from -0.182 to -0.170. Respondents also rate multiple profiles, and the forced-choice pairing is not described in the estimation, so the 'chosen' outcome mixes pair-level dependence.",
+   "fix": "Report the unadjusted information-type estimate, state the handling of paired tasks, and temper the causal wording to match the conditions of the design.",
    "kind": "analytical",
    "change": {
     "target": "H1",
     "type": "robustness"
    },
    "source": "advanced:statistics",
-   "confidence": 0.5,
-   "id": "A9",
-   "disposition": "address",
-   "disposition_reason": "H1 can be re-fit without the measured covariates as a robustness check, and the outcome described as a paired choice share."
-  },
-  {
-   "severity": "medium",
-   "location": "Design and data / H1",
-   "issue": "Sample size inconsistency and unexplained missing data: Text says 12,000 profiles analysed with 'no rows dropped', yet the models use N=11,882 (share) and 11,884 (plausibility), and arm n for H1 sums to 3822+3915+4145=11,882. The reason for the 118 missing rows is not given. The 'Close tie' n of 6,662 and the S-table cells imply other missingness patterns. Also, E1 drops trial 1 and gives smaller effects (-0.170, -0.115), so the first trial may differ.",
-   "fix": "State exact missingness handling, and discuss the E1 attenuation, which is non-trivial for fact-checks.",
-   "kind": "presentational",
-   "change": null,
-   "source": "advanced:statistics",
-   "confidence": 0.45,
-   "id": "A10",
-   "disposition": "editorial",
-   "disposition_reason": "Explain the 118 missing rows and interpret the E1 attenuation."
-  },
-  {
-   "severity": "medium",
-   "location": "H5 / H12 / S5 / S10",
-   "issue": "Imbalanced reference category (Trust: low) makes estimates imprecise and fragile: Trust: low has only 817 profiles, versus 8,388 for high. The H5 high-trust estimate of 5.7 (CI 2.3 to 9.1) and the S5/S10 low-trust differences (+7.9, +9.0 on n=257 Spanish) rest on small cells. The H12 interval (-0.7 to 5.8) is wide. Mid trust at p=0.056 is described as 'not clearly distinguishable' even though the point estimate (3.6) is nearly as large as the 'supported' effect. The binary 'Supported' flag overemphasizes the threshold.",
-   "fix": "Emphasize estimates and intervals, and consider a continuous trust slope as the primary summary. The X1 exploratory slope helps here.",
-   "kind": "presentational",
-   "change": null,
-   "source": "advanced:statistics",
    "confidence": 0.4,
    "id": "A11",
-   "disposition": "editorial",
-   "disposition_reason": "Emphasise estimates and intervals over the supported flag; the continuous-trust slope already exists in X1."
+   "disposition": "address",
+   "disposition_reason": "Report the unadjusted information-type AMCE and the task-aware SEs."
   },
   {
    "severity": "medium",
-   "location": "H3, H7 and Key findings",
-   "issue": "Null results interpreted without equivalence testing: The text says H3/H6/H7 intervals are 'narrow' (about ±1.6 points) and in the key findings gives 'roughly ±2 to ±4 points'. These are not equivalence tests and no smallest effect of interest is defined. Also, the attributes are measured, so a null may reflect rating measurement error.",
-   "fix": "Define a smallest effect size of interest and run TOST. Discuss measurement error in the ratings.",
+   "location": "Results H5 / Reweighting",
+   "issue": "Trust estimates are fragile: reference group small and weighted estimate differs: The low-trust reference cell has only 817 profiles, and the high-trust estimate (0.057, p=0.001) rests on it. Reweighting moves it to 0.067 (about 18% larger), and the 'very close' description is generous. The Trust: mid CI [-0.1, 7.3] is wide. Trust is a measured, not randomized, attribute, and is probably confounded with tie strength.",
+   "fix": "Report the sensitivity to the choice of reference level, collapse trust into coarser categories or use a continuous trust slope, and describe the weighted shift accurately.",
    "kind": "analytical",
    "change": {
-    "target": "H3",
+    "target": "H5",
     "type": "robustness"
    },
    "source": "advanced:statistics",
    "confidence": 0.4,
-   "id": "A12"
+   "id": "A12",
+   "disposition": "address",
+   "disposition_reason": "Use a continuous or collapsed trust robustness fit and describe the weighted shift accurately."
   },
   {
    "id": "K1",
@@ -293,9 +307,9 @@
    "severity": "medium",
    "kind": "presentational",
    "change": null,
-   "location": "H1",
-   "issue": "Overstated claim: \"Sharing rates were 60.3% for true or neutral headlines, 42.1% for misinformation and 47.0% for fact-checks\". registered_summary means 0.603/0.421/0.470 are raw means, but the outcome is a within-pair choice, so means sit near 0.50 by construction.",
-   "fix": "Call these choice shares in paired comparisons, not absolute sharing rates.",
+   "location": "Abstract",
+   "issue": "Overstated claim: \"fact-checks 13.3 points less often\". H1: -0.133 [-0.156,-0.111] is correct pooled, but E2 shows Health fact-check -0.028 (SE 0.028) vs Political -0.151.",
+   "fix": "Say fact-checks were shared 13.3 points less overall, driven by political items; the health estimate is near zero.",
    "disposition": "editorial",
    "disposition_reason": "claim checked against the tables by the orchestrator"
   },
@@ -306,8 +320,8 @@
    "kind": "presentational",
    "change": null,
    "location": "Abstract",
-   "issue": "Overstated claim: \"Close ties (+3.0 points) and highly trusted sharers (+5.7 points) raised sharing\". H2 0.030 [0.010,0.050]; H5 high trust 0.057 [0.023,0.091]; but both attributes are measured, not randomized.",
-   "fix": "Say close ties and high-trust sharers were associated with 3.0 and 5.7 points higher sharing, adjusted for other attributes.",
+   "issue": "Overstated claim: \"Close ties (+3.0 points) and highly trusted sharers (+5.7 points) raised sharing\". H2 +0.030 [0.010,0.050]; H5 Trust: high +0.057 [0.023,0.091]. Both are measured contrasts, and the trust reference cell has only 817 profiles.",
+   "fix": "Use associational wording: 'were associated with higher sharing'. Note the thin reference cell.",
    "disposition": "editorial",
    "disposition_reason": "claim checked against the tables by the orchestrator"
   },
@@ -317,9 +331,9 @@
    "severity": "medium",
    "kind": "presentational",
    "change": null,
-   "location": "Re-weighted AMCEs",
-   "issue": "Overstated claim: \"The re-weighting left the picture essentially unchanged\". Moderate sharer goes from -0.019 (p=0.034) to -0.017 (p=0.056); high trust moves from 0.057 to 0.067.",
-   "fix": "State that the moderate-sharer result loses significance under weighting and is fragile.",
+   "location": "Abstract",
+   "issue": "Overstated claim: \"a moderate sharer lowered it by 1.9 points\". H4: -0.019, p=0.034, CI [-0.037,-0.001]. Reweighted: -0.017, p=0.056. Measured trait, uncorrected.",
+   "fix": "Present it as a fragile, near-threshold association, or drop it from the abstract.",
    "disposition": "editorial",
    "disposition_reason": "claim checked against the tables by the orchestrator"
   },
@@ -329,9 +343,9 @@
    "severity": "medium",
    "kind": "presentational",
    "change": null,
-   "location": "H4",
-   "issue": "Overstated claim: \"Moderate sharers were chosen 1.9 points less often than liberal sharers\". H4 -0.019, p=0.034, one of many uncorrected tests; p=0.056 once re-weighted.",
-   "fix": "Describe it as a fragile, borderline difference.",
+   "location": "Key findings",
+   "issue": "Overstated claim: \"intervals of about ±2 to 4 points\". Origin and conspiracy intervals are about ±1.6-1.8; knowledge about ±2; the 4-point half-width appears only for trust.",
+   "fix": "State the actual intervals: roughly ±1.7 to ±2.2 points.",
    "disposition": "editorial",
    "disposition_reason": "claim checked against the tables by the orchestrator"
   },
@@ -341,9 +355,9 @@
    "severity": "medium",
    "kind": "presentational",
    "change": null,
-   "location": "Abstract",
-   "issue": "Overstated claim: \"Respondents' own belief in disputed claims and their age moderated the response to misinformation\". S1 misinformation difference -0.061 (p=0.0002); S3 +0.056 (p=0.0008). These are tertile differences in marginal means, not interaction tests. E2 does show a monotone age gradient (-0.130, -0.196, -0.220).",
-   "fix": "Say the oldest tertile shared misinformation less and the highest-belief tertile shared it more, as uncorrected subgroup contrasts.",
+   "location": "Key findings",
+   "issue": "Overstated claim: \"Registered subgroup tests show misinformation was shared more by respondents who believe more disputed claims, by 5.6 points (SE 0.017)\". S3: Misinformation +0.056, SE 0.017, p=0.0008, but true/neutral -0.055, a mirrored shift in a forced-choice design. No interaction test. One of about 180 uncorrected contrasts.",
+   "fix": "Describe it as a relative reordering of information types, report the count of tests, and use an interaction test.",
    "disposition": "editorial",
    "disposition_reason": "claim checked against the tables by the orchestrator"
   },
@@ -353,21 +367,45 @@
    "severity": "medium",
    "kind": "presentational",
    "change": null,
-   "location": "H9",
-   "issue": "Overstated claim: \"Close ties raised plausibility by 2.8 points\". H9 0.028 [0.007,0.048], p=0.008, on a measured attribute.",
-   "fix": "Use associational wording.",
+   "location": "Abstract",
+   "issue": "Overstated claim: \"Plausibility judgments followed a similar pattern\". H8 matches (-0.186, -0.124), but trust is null for plausibility (H12 high +0.025 [-0.007,0.058]) while it was significant for sharing.",
+   "fix": "Say the information-type pattern replicates; trust does not carry over to plausibility.",
    "disposition": "editorial",
    "disposition_reason": "claim checked against the tables by the orchestrator"
   },
   {
    "id": "K7",
    "source": "claims",
-   "severity": "high",
+   "severity": "medium",
    "kind": "presentational",
    "change": null,
-   "location": "X1",
-   "issue": "Unsupported claim: \"Each step up the trust scale was linked to 1.4 points more sharing; the slope was similar for misinformation (1.9) and fact-checks (1.7) and about 0.6 for true/neutral\". X1 model has a single pooled 'treat' slope of 0.014 and no information-type interaction; the by-type numbers are not in the tables.",
-   "fix": "Show the interaction model or delete the by-type figures.",
+   "location": "H1",
+   "issue": "Overstated claim: \"Information type is the randomized feature, so these are causal estimates\". Regression adjusts for six measured traits; E1 drop-trial-1 gives -0.170; pairing of profiles within tasks is not modelled.",
+   "fix": "Report the unadjusted estimate and task-aware SEs, then keep the causal wording for the randomized arm.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K8",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "Re-weighted AMCEs",
+   "issue": "Overstated claim: \"Re-weighting gave estimates very close to the unweighted ones\". Trust: high 0.057 → 0.067; moderate sharer p 0.034 → 0.056.",
+   "fix": "Say most estimates are unchanged but trust-high rose by about 1 point and moderate-sharer lost significance.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K9",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "X2",
+   "issue": "Overstated claim: \"Each step of trust raised plausibility by 1.3 points\". X2 slope 0.013, SE 0.004, exploratory, measured trait; the registered H12 shows no trust effect on plausibility.",
+   "fix": "Use 'was associated with' and note the conflict with H12.",
    "disposition": "editorial",
    "disposition_reason": "claim checked against the tables by the orchestrator"
   }
@@ -375,119 +413,264 @@
  "pending": [],
  "synthesis": {
   "model": "anthropic/claude-sonnet-5.5",
-  "assessment": "The randomized information-type effects are large and well supported: misinformation is about 18 points and fact-checks about 13 points below true/neutral headlines on sharing, with similar results for plausibility. The sharer-attribute results (close tie, high trust) are adjusted associations with modest, partly fragile estimates, and the 'moderated' claims rest on uncorrected tertile contrasts with no interaction tests. The exploratory by-type prose is not backed by the printed models. The most important caveat is that the outcome is a paired forced choice, so the reported 'sharing rates' are relative choice shares, and measured sharer attributes cannot be read causally.",
+  "assessment": "The randomized information-type effects are large, precise and consistent across sharing and plausibility: misinformation -18.2 points and fact-checks -13.3 points on sharing. The sharer-trait estimates are measured contrasts and are weaker. Close ties and high trust are the stable ones, and the trait nulls are mostly imprecise. The moderate-sharer result is borderline (p=0.034) and does not hold in the reweighted fit (p=0.056). The key caveat is that the traits are not randomized and the subgroup battery of about 180 contrasts is uncorrected. The paired forced-choice structure is also not modelled, though the report calls the information-type estimates causal.",
   "claims": [
    {
-    "claim": "misinformation was 18.2 points less likely to be chosen for sharing (95% CI [−20.4, −16.0])",
+    "claim": "Misinformation was chosen for sharing 18.2 points less often than true or neutral content (95% CI [−20.4, −16.0])",
     "location": "Abstract",
     "verdict": "supported",
-    "evidence": "H1 table: Misinformation -0.182, CI [-0.204, -0.160], p<0.0001, N=11882; randomized arm.",
+    "evidence": "H1 table: Misinformation -0.182, SE 0.011, CI [-0.204,-0.160], randomized arm.",
     "fix": ""
    },
    {
-    "claim": "fact-checks 13.3 points less (95% CI [−15.6, −11.1])",
+    "claim": "fact-checks 13.3 points less often",
     "location": "Abstract",
-    "verdict": "supported",
-    "evidence": "H1 table: Fact-check -0.133, CI [-0.156, -0.111].",
-    "fix": ""
-   },
-   {
-    "claim": "Sharing rates were 60.3% for true or neutral headlines, 42.1% for misinformation and 47.0% for fact-checks",
-    "location": "H1",
     "verdict": "overstated",
-    "evidence": "registered_summary means 0.603/0.421/0.470 are raw means, but the outcome is a within-pair choice, so means sit near 0.50 by construction.",
-    "fix": "Call these choice shares in paired comparisons, not absolute sharing rates."
+    "evidence": "H1: -0.133 [-0.156,-0.111] is correct pooled, but E2 shows Health fact-check -0.028 (SE 0.028) vs Political -0.151.",
+    "fix": "Say fact-checks were shared 13.3 points less overall, driven by political items; the health estimate is near zero."
    },
    {
     "claim": "Close ties (+3.0 points) and highly trusted sharers (+5.7 points) raised sharing",
     "location": "Abstract",
     "verdict": "overstated",
-    "evidence": "H2 0.030 [0.010,0.050]; H5 high trust 0.057 [0.023,0.091]; but both attributes are measured, not randomized.",
-    "fix": "Say close ties and high-trust sharers were associated with 3.0 and 5.7 points higher sharing, adjusted for other attributes."
+    "evidence": "H2 +0.030 [0.010,0.050]; H5 Trust: high +0.057 [0.023,0.091]. Both are measured contrasts, and the trust reference cell has only 817 profiles.",
+    "fix": "Use associational wording: 'were associated with higher sharing'. Note the thin reference cell."
+   },
+   {
+    "claim": "a moderate sharer lowered it by 1.9 points",
+    "location": "Abstract",
+    "verdict": "overstated",
+    "evidence": "H4: -0.019, p=0.034, CI [-0.037,-0.001]. Reweighted: -0.017, p=0.056. Measured trait, uncorrected.",
+    "fix": "Present it as a fragile, near-threshold association, or drop it from the abstract."
    },
    {
     "claim": "Sharer origin, knowledge and belief in disputed claims were not distinguishable from zero",
     "location": "Abstract",
     "verdict": "supported",
-    "evidence": "H3 0.002 [-0.014,0.018]; H6 -0.000 and 0.017 (CIs include 0); H7 -0.002 [-0.019,0.016].",
+    "evidence": "H3 0.002 [-0.014,0.018]; H6 high 0.017 [-0.005,0.039]; H7 -0.002 [-0.019,0.016].",
     "fix": ""
    },
    {
-    "claim": "The re-weighting left the picture essentially unchanged",
-    "location": "Re-weighted AMCEs",
+    "claim": "intervals of about ±2 to 4 points",
+    "location": "Key findings",
     "verdict": "overstated",
-    "evidence": "Moderate sharer goes from -0.019 (p=0.034) to -0.017 (p=0.056); high trust moves from 0.057 to 0.067.",
-    "fix": "State that the moderate-sharer result loses significance under weighting and is fragile."
+    "evidence": "Origin and conspiracy intervals are about ±1.6-1.8; knowledge about ±2; the 4-point half-width appears only for trust.",
+    "fix": "State the actual intervals: roughly ±1.7 to ±2.2 points."
    },
    {
-    "claim": "Moderate sharers were chosen 1.9 points less often than liberal sharers",
-    "location": "H4",
+    "claim": "Registered subgroup tests show misinformation was shared more by respondents who believe more disputed claims, by 5.6 points (SE 0.017)",
+    "location": "Key findings",
     "verdict": "overstated",
-    "evidence": "H4 -0.019, p=0.034, one of many uncorrected tests; p=0.056 once re-weighted.",
-    "fix": "Describe it as a fragile, borderline difference."
+    "evidence": "S3: Misinformation +0.056, SE 0.017, p=0.0008, but true/neutral -0.055, a mirrored shift in a forced-choice design. No interaction test. One of about 180 uncorrected contrasts.",
+    "fix": "Describe it as a relative reordering of information types, report the count of tests, and use an interaction test."
    },
    {
-    "claim": "Respondents' own belief in disputed claims and their age moderated the response to misinformation",
+    "claim": "Plausibility judgments followed a similar pattern",
     "location": "Abstract",
     "verdict": "overstated",
-    "evidence": "S1 misinformation difference -0.061 (p=0.0002); S3 +0.056 (p=0.0008). These are tertile differences in marginal means, not interaction tests. E2 does show a monotone age gradient (-0.130, -0.196, -0.220).",
-    "fix": "Say the oldest tertile shared misinformation less and the highest-belief tertile shared it more, as uncorrected subgroup contrasts."
+    "evidence": "H8 matches (-0.186, -0.124), but trust is null for plausibility (H12 high +0.025 [-0.007,0.058]) while it was significant for sharing.",
+    "fix": "Say the information-type pattern replicates; trust does not carry over to plausibility."
    },
    {
-    "claim": "misinformation was judged 18.6 points less often the more plausible post (CI [−20.8, −16.4])",
-    "location": "H8",
-    "verdict": "supported",
-    "evidence": "H8 table: -0.186, CI [-0.208,-0.164]; fact-check -0.124.",
-    "fix": ""
-   },
-   {
-    "claim": "Close ties raised plausibility by 2.8 points",
-    "location": "H9",
+    "claim": "Information type is the randomized feature, so these are causal estimates",
+    "location": "H1",
     "verdict": "overstated",
-    "evidence": "H9 0.028 [0.007,0.048], p=0.008, on a measured attribute.",
-    "fix": "Use associational wording."
+    "evidence": "Regression adjusts for six measured traits; E1 drop-trial-1 gives -0.170; pairing of profiles within tasks is not modelled.",
+    "fix": "Report the unadjusted estimate and task-aware SEs, then keep the causal wording for the randomized arm."
    },
    {
-    "claim": "Each step up the trust scale was linked to 1.4 points more sharing; the slope was similar for misinformation (1.9) and fact-checks (1.7) and about 0.6 for true/neutral",
-    "location": "X1",
-    "verdict": "unsupported",
-    "evidence": "X1 model has a single pooled 'treat' slope of 0.014 and no information-type interaction; the by-type numbers are not in the tables.",
-    "fix": "Show the interaction model or delete the by-type figures."
+    "claim": "Re-weighting gave estimates very close to the unweighted ones",
+    "location": "Re-weighted AMCEs",
+    "verdict": "overstated",
+    "evidence": "Trust: high 0.057 → 0.067; moderate sharer p 0.034 → 0.056.",
+    "fix": "Say most estimates are unchanged but trust-high rose by about 1 point and moderate-sharer lost significance."
    },
    {
-    "claim": "misinformation was 5.5 points more likely to be shared while judged less plausible",
-    "location": "X4",
-    "verdict": "supported",
-    "evidence": "X4: 0.055 [0.030,0.081], N=5938; exploratory.",
-    "fix": ""
+    "claim": "Each step of trust raised plausibility by 1.3 points",
+    "location": "X2",
+    "verdict": "overstated",
+    "evidence": "X2 slope 0.013, SE 0.004, exploratory, measured trait; the registered H12 shows no trust effect on plausibility.",
+    "fix": "Use 'was associated with' and note the conflict with H12."
    }
   ],
   "editorial": [
-   "Describe all sharer-attribute results as adjusted associations, in the Abstract and Key findings too, and drop 'raised' and 'effect'.",
-   "Describe the outcome as a paired forced-choice share and relabel the 60.3/42.1/47.0 figures.",
-   "Fix the sample accounting: N of 12,000 vs 11,882/11,884, the reason for the missing rows, and the number of respondents.",
-   "Say that the moderate-sharer result is fragile (p=0.034, then 0.056 under weights) and rewrite 'essentially unchanged'.",
-   "Present S1-S10 as exploratory, uncorrected contrasts; report the test count and drop isolated small-cell highlights such as low trust among Spanish respondents.",
-   "Make the X-series tables match the prose by adding the interaction models or removing the by-type claims, and discuss E1/E2."
+   "Relabel all sharer-trait estimates as conditional associations in the abstract, headings and hypothesis text; reserve 'causal' for the randomized information type.",
+   "Qualify the moderate-sharer finding as fragile (p=0.034, reweighted p=0.056) or remove it from the abstract.",
+   "State the number of uncorrected tests (about 14 registered plus about 180 subgroup contrasts) next to every highlighted subgroup result, and describe S3 as a mirrored reordering.",
+   "Explain the unit of analysis (paired forced choice), the 118 dropped rows and the E1 sample discrepancy; add a task-clustered robustness fit.",
+   "Discuss E2: the fact-check effect is near zero for health items. Qualify the pooled 13.3-point claim.",
+   "Fix the prose errors: the '−0.0' value, the XS8 reference, the 'about ±2 to 4' interval, and the 'by information type' descriptions that lack interactions."
   ],
   "unresolved": [
    {
-    "question": "Do sharer tie strength, trust and ideology change sharing when randomly assigned, rather than self-rated for real contacts?",
-    "why": "These attributes are measured ratings of real contacts, so they are confounded with contact identity and respondent traits.",
+    "question": "Does contact trust or closeness change sharing when randomized, for instance via randomly assigned sharer profiles, rather than measured on real contacts?",
+    "why": "The traits are respondent ratings of real contacts and are confounded with unmeasured contact characteristics; only a randomized design can separate them.",
     "from": [
      "R2",
-     "A1"
+     "A1",
+     "A12"
     ],
     "id": "U1"
    },
    {
-    "question": "How much of the information-type effect reflects veracity itself versus topic, wording or length of specific headlines?",
-    "why": "The headline pool is not randomized across content, and item-level identifiers or a larger item set are not available here.",
+    "question": "Does misinformation sharing rise with belief in disputed claims in an absolute sense, or only relative to true content, when respondents can decline to share?",
+    "why": "The forced-choice design makes the misinformation increase and the true-content decrease mechanically linked.",
     "from": [
-     "A6"
+     "R4"
     ],
     "id": "U2"
+   },
+   {
+    "question": "Do fact-checks reduce sharing equally for health and political claims?",
+    "why": "The topic cells are small (about 1,100 health profiles) and topic was not randomized.",
+    "from": [
+     "R8"
+    ],
+    "id": "U3"
    }
   ]
+ },
+ "round": 1,
+ "rounds": [],
+ "decision": "major_revision",
+ "revision_notes": [
+  "K1: Abstract and takeaway now say fact-checks were shared 13.3 points less overall, driven by political items, with health near zero.",
+  "K2: Reworded to 'associated with'; thin trust reference cell noted in takeaway and H5.",
+  "K3: Moderate-sharer finding removed from abstract; flagged fragile (re-weighted p=0.056) in H4.",
+  "K4: Takeaway now states intervals of roughly ±1.7 to ±2.2 points.",
+  "K5: S3 described as a mirrored reordering, with the count of about 180 uncorrected contrasts; no separate interaction test is available in the tables.",
+  "K6: Abstract now says the information-type pattern replicated but trust did not carry over.",
+  "K7: H1 notes adjustment for measured traits and the E1 estimate; unadjusted and task-clustered fits are not in the tables, so none were added.",
+  "K8: RW note now says most estimates are unchanged, trust-high rose about 1 point, and moderate-sharer lost significance.",
+  "K9: X2 now says 'associated with' and notes conflict with H12.",
+  "G1: Sharer-trait estimates relabelled as conditional associations; causal wording reserved for information type.",
+  "G2: Moderate-sharer finding qualified as fragile and dropped from the abstract.",
+  "G3: Test counts stated in takeaway, abstract and limitations; S3 called a mirrored reordering.",
+  "G4: Design notes explain the paired forced choice and the 118 dropped rows; E1 sample discrepancy flagged as unexplained. A task-clustered fit cannot be added without new results.",
+  "G5: E2 discussed, and the pooled fact-check claim qualified in the abstract, takeaway and H1.",
+  "G6: Fixed the −0.0 value, the conspiracy figure, the XS8 reference, the interval statement, and added interaction wording to XS notes.",
+  "R5: Rounding made consistent, dangling XS8 reference replaced, and interval statements matched to the tables.",
+  "R6: Missingness stated as far as the tables allow (118 dropped; per-attribute breakdown unavailable); re-weighting described accurately.",
+  "R8: E1 and E2 are now discussed in the H1 note, the exploratory notes and the abstract.",
+  "A5: Abstract claim removed; the weight construction for measured traits is described as a sensitivity check, but the exact construction is not in the supplied material.",
+  "A8: Moderate-sharer result removed from the abstract and flagged as fragile in H4.",
+  "R3: Declined; no correction added.",
+  "A3: Declined; test counts reported instead.",
+  "A9: Declined; test count reported and the results treated as tentative."
+ ],
+ "signoff": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "claims": [
+   {
+    "claim": "Misinformation was chosen for sharing 18.2 points less often than true or neutral content (95% CI [−20.4, −16.0])",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H1 table: -0.182, CI [-0.204,-0.160]; randomized arm.",
+    "fix": "",
+    "previous": "C1",
+    "resolved": true
+   },
+   {
+    "claim": "fact-checks were shared 13.3 points less overall, driven by political items",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H1 -0.133; E2 Political fact-check -0.151 vs Health -0.028 (SE 0.028).",
+    "fix": "",
+    "previous": "C2",
+    "resolved": true
+   },
+   {
+    "claim": "Close ties (+3.0 points) and highly trusted sharers (+5.7 points) were associated with higher sharing",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H2 +0.030 [0.010,0.050]; H5 high +0.057 [0.023,0.091]; associational wording and thin cell noted.",
+    "fix": "",
+    "previous": "C3",
+    "resolved": true
+   },
+   {
+    "claim": "a moderate sharer lowered it by 1.9 points (abstract mention)",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "Removed from the abstract in revision; H4 text now calls it fragile (reweighted p=0.056).",
+    "fix": "",
+    "previous": "C4",
+    "resolved": true
+   },
+   {
+    "claim": "Sharer origin, political knowledge and belief in disputed claims were not distinguishable from zero for sharing",
+    "location": "Key findings",
+    "verdict": "supported",
+    "evidence": "H3 [-0.014,0.018]; H6 high [-0.005,0.039]; H7 [-0.019,0.016].",
+    "fix": "",
+    "previous": "C5",
+    "resolved": true
+   },
+   {
+    "claim": "intervals of roughly ±1.7 to ±2.2 points",
+    "location": "Key findings",
+    "verdict": "supported",
+    "evidence": "Half-widths: origin 1.6, conspiracy 1.75, knowledge high 2.2.",
+    "fix": "",
+    "previous": "C6",
+    "resolved": true
+   },
+   {
+    "claim": "Respondents who believe more disputed claims shifted toward misinformation (+5.6 points) and away from true items (−5.5 points). This is a relative reordering",
+    "location": "Key findings",
+    "verdict": "supported",
+    "evidence": "S3: +0.056 (p=0.0008) and -0.055 (p=0.0004); framed as mirrored reordering, one of ~180 uncorrected contrasts.",
+    "fix": "",
+    "previous": "C7",
+    "resolved": true
+   },
+   {
+    "claim": "The information-type pattern replicated for plausibility, but trust did not",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H8 -0.186/-0.124; H12 high +0.025 [-0.007,0.058].",
+    "fix": "",
+    "previous": "C8",
+    "resolved": true
+   },
+   {
+    "claim": "Information type is randomized, but the model adjusts for six measured traits. An unadjusted fit and a task-clustered fit are not in the tables.",
+    "location": "H1",
+    "verdict": "supported",
+    "evidence": "Causal wording qualified; E1 drop-trial-1 -0.170 reported; missing fits disclosed.",
+    "fix": "",
+    "previous": "C9",
+    "resolved": true
+   },
+   {
+    "claim": "Re-weighting left most estimates essentially unchanged. High trust rose from 5.7 to 6.7; moderate-sharer lost significance",
+    "location": "Re-weighted AMCEs",
+    "verdict": "supported",
+    "evidence": "RW table: Trust high 0.057→0.067; Moderate 0.056 vs 0.034; others within 0.002.",
+    "fix": "",
+    "previous": "C10",
+    "resolved": true
+   },
+   {
+    "claim": "Each step of trust was associated with 1.3 points higher plausibility; conflicts with H12",
+    "location": "X2",
+    "verdict": "supported",
+    "evidence": "X2 slope 0.013 (SE 0.004); associational wording and conflict with H12 noted.",
+    "fix": "",
+    "previous": "C11",
+    "resolved": true
+   },
+   {
+    "claim": "The age gap appeared mainly for misinformation: the oldest tertile shared it 6.1 points less (SE 0.016, p<0.001). Other levels differed by under 3 points",
+    "location": "S1",
+    "verdict": "overstated",
+    "evidence": "S1 misinformation -0.061, p=0.000165. But Fact-check +0.030 is not under 3 points (it is 3.0), and 'mainly' is loose.",
+    "fix": "Say other levels differed by 3 points or less.",
+    "previous": "",
+    "resolved": false
+   }
+  ],
+  "note": "Only minor wording remains: S1 says other levels differed by 'under 3 points' though the fact-check gap is 3.0; change to 'about 3 points or less'.",
+  "decision": "major_revision"
  }
 }

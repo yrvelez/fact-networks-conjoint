@@ -5,48 +5,44 @@ import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('data/clean.csv')
-H = reg.HYPOTHESES
-if isinstance(H, dict):
-    h1 = H.get('H1') or [v for v in H.values() if v.get('id') == 'H1'][0]
-else:
-    h1 = [h for h in H if h.get('id') == 'H1' or h.get('analysis_id') == 'H1'][0]
-est = h1['estimator']
-cov = h1.get('covariates', [])
-outcome = h1.get('outcome', 'share')
+H = {}
+for h in reg.HYPOTHESES:
+    H[h.get('id', h.get('analysis_id'))] = h
 
-def run(sub):
-    f, d2 = reg.build_formula(outcome, est, cov, sub)
-    res = reg.fit(d2, f, est)
+def run(hid, sub):
+    h = H[hid]
+    f, d2 = reg.build_formula(h['outcome'], h['estimator'], h.get('covariates'), sub)
+    r = reg.fit(d2, f, h['estimator'])
     out = {}
-    for arm in ['Misinformation', 'Fact-check']:
-        k = [t for t in res.params.index if 'T.' + arm in t and ':' not in t]
-        out[arm] = (float(res.params[k[0]]), float(res.bse[k[0]]), int(res.nobs))
+    for t in r.params.index:
+        if t.startswith('C(arm_code') or t == 'treat':
+            lab = t.split('[T.')[-1].rstrip(']')
+            out[lab] = (r.params[t], r.bse[t], int(r.nobs))
     return out
 
 rows = []
-o = run(df)
-a = run(df[df.trial > 1])
-for arm in o:
-    rows.append(dict(arm=arm, est_orig=o[arm][0], se_orig=o[arm][1], n_orig=o[arm][2],
-                     est_alt=a[arm][0], se_alt=a[arm][1], n_alt=a[arm][2]))
-pd.DataFrame(rows).to_csv('results/E1_h1_drop_trial1.csv', index=False)
-print('E1 H1 drop trial1: ' + '; '.join(f"{r['arm']} {r['est_orig']:.3f}->{r['est_alt']:.3f} (se {r['se_orig']:.3f}->{r['se_alt']:.3f})" for r in rows))
+for hid in ['H1', 'H2', 'H5']:
+    a = run(hid, df); b = run(hid, df[df.trial > 1])
+    for k in a:
+        rows.append(dict(hyp=hid, term=k, est_full=a[k][0], se_full=a[k][1], n_full=a[k][2],
+                         est_alt=b[k][0], se_alt=b[k][1], n_alt=b[k][2]))
+e1 = pd.DataFrame(rows); e1.to_csv('results/E1_drop_trial1.csv', index=False)
+m = e1[e1.hyp == 'H1'].iloc[0]
+print(f"E1 H1 {m.term}: full {m.est_full:.3f} ({m.se_full:.3f}) vs trials2-4 {m.est_alt:.3f} ({m.se_alt:.3f})")
 
-rows2 = []
-for lv in ['Lowest', 'Middle', 'Highest']:
-    r = run(df[df.age_t == lv])
-    for arm in r:
-        rows2.append(dict(age_tertile=lv, arm=arm, estimate=r[arm][0], std_error=r[arm][1], n=r[arm][2]))
-t = pd.DataFrame(rows2); t.to_csv('results/E2_h1_by_age.csv', index=False)
-m = t[t.arm == 'Misinformation']
-print('E2 misinfo AMCE by age tertile: ' + ', '.join(f"{x.age_tertile} {x.estimate:.3f}" for x in m.itertuples()))
+rows = []
+for tp in ['Health', 'Political']:
+    a = run('H1', df[df.topic_type == tp])
+    for k, v in a.items():
+        rows.append(dict(topic=tp, term=k, estimate=v[0], std_error=v[1], n=v[2]))
+e2 = pd.DataFrame(rows); e2.to_csv('results/E2_infotype_by_topic.csv', index=False)
+for _, r in e2.iterrows():
+    print(f"E2 {r.topic} {r.term}: {r.estimate:.3f} ({r.std_error:.3f}) n={r.n}")
 
 fig, ax = plt.subplots(figsize=(5, 3))
+for i, (_, r) in enumerate(e2.iterrows()):
+    ax.errorbar(r.estimate, i, xerr=1.96 * r.std_error, fmt='o', color='#222' if r.topic == 'Political' else '#c0392b')
+    ax.text(r.estimate, i + 0.25, f"{r.topic}: {r.term}", ha='center', fontsize=7)
+ax.axvline(0, color='#222', lw=0.5); ax.set_yticks([]); ax.set_xlabel('Effect on sharing vs true/neutral')
 for s in ['top', 'right', 'left']: ax.spines[s].set_visible(False)
-ax.grid(False)
-for i, x in enumerate(m.itertuples()):
-    ax.errorbar(x.estimate, i, xerr=1.96 * x.std_error, fmt='o', color='#c0392b', ecolor='#c0392b')
-    ax.text(x.estimate, i + 0.2, x.age_tertile, ha='center', color='black')
-ax.axvline(0, color='black', lw=0.8); ax.set_yticks([])
-ax.set_xlabel('Misinformation AMCE on sharing')
-fig.savefig('figures/E2_age.png', dpi=200, facecolor='white', bbox_inches='tight')
+fig.tight_layout(); fig.savefig('figures/E2_topic.png', dpi=200, facecolor='white')

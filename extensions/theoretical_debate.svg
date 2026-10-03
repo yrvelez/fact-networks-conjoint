@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 230" width="100%" role="img" aria-labelledby="fd-title fd-desc"><title id="fd-title">Proposed follow-up: Absolute versus relative misinformation sharing by belief</title><desc id="fd-desc">Absolute versus relative misinformation sharing by belief. 2 conditions: Paired forced choice, Single headline with opt-out. Primary outcome: Share of misinformation headlines shared (single format) or chosen (forced choice), by belief index.. Population: US adults from an online panel such as YouGov, matching the source sample.</desc><style>
+:root{--fd-ink:#1c1b19;--fd-muted:#8a877f;--fd-rule:#d9d5cc;--fd-accent:#8b1e2d;--fd-bg:#ffffff}
+@media (prefers-color-scheme: dark){:root{--fd-ink:#ecebe6;--fd-muted:#b4b1a9;--fd-rule:#4a4a52;--fd-accent:#e08a96;--fd-bg:#1d1d23}}
+.box{fill:var(--fd-bg,#fff);stroke:var(--fd-ink,#1c1b19);stroke-width:1.2}
+.arm{fill:var(--fd-bg,#fff);stroke:var(--fd-accent,#8b1e2d);stroke-width:1.4}
+.soft{fill:var(--fd-bg,#fff);stroke:var(--fd-rule,#d9d5cc);stroke-width:1.2}
+text{font-family:Inter,Helvetica,Arial,sans-serif;fill:var(--fd-ink,#1c1b19);font-size:14px}
+.cap{font-size:12px;fill:var(--fd-muted,#8a877f)}
+.kicker{font-size:11px;letter-spacing:.08em;fill:var(--fd-muted,#8a877f);text-transform:uppercase}
+.edge{stroke:var(--fd-ink,#1c1b19);stroke-width:1.2;fill:none;marker-end:url(#fd-arrow)}
+.assoc{stroke-dasharray:5 4}
+#fd-arrow path{fill:var(--fd-ink,#1c1b19)}
+</style>
+<defs><marker id="fd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs><text class="kicker" x="20" y="16">Proposed follow-up: Absolute versus relative misinformation sharing by belief</text>
+<g>
+<rect class="box" x="20" y="90.0" width="200" height="60" rx="6"/>
+<text class="kicker" x="32" y="112.0">Population</text>
+<text x="32" y="130.0">US adults from an</text>
+<text x="32" y="148.0">online panel such as</text>
+<text x="32" y="166.0">YouGov, matching the</text>
+<text x="32" y="184.0">source sample.</text>
+</g>
+<polygon class="box" points="280,96.0 316,120.0 280,144.0 244,120.0"/>
+<path class="edge" d="M220,120.0 L242,120.0"/><text class="cap" x="231.0" y="114.0" text-anchor="middle">randomized</text>
+<g id="arm-c_forced" data-text="Two headlines (one true/neutral, one false) shown together; choose which to share.">
+<rect class="arm" x="360" y="30" width="300" height="78" rx="6"/>
+<text x="372" y="52">Paired forced choice</text>
+<text class="cap" x="372" y="70">Two headlines (one true/neutral, one</text>
+<text class="cap" x="372" y="85">false) shown together; choose which to</text>
+</g>
+<path class="edge" d="M318,120.0 L356,69.0"/>
+<g id="arm-c_single" data-text="One headline at a time; choose to share or share nothing.">
+<rect class="arm" x="360" y="120" width="300" height="78" rx="6"/>
+<text x="372" y="142">Single headline with opt-out</text>
+<text class="cap" x="372" y="160">One headline at a time; choose to share</text>
+<text class="cap" x="372" y="175">or share nothing.</text>
+</g>
+<path class="edge" d="M318,120.0 L356,159.0"/>
+<g>
+<rect class="box" x="700" y="60.0" width="240" height="120" rx="6"/>
+<text class="kicker" x="712" y="82.0">Primary outcome</text>
+<text x="712" y="100.0">Share of misinformation</text>
+<text x="712" y="118.0">headlines shared (single</text>
+<text x="712" y="136.0">format) or chosen (forced</text>
+<text x="712" y="154.0">choice), by belief index.</text>
+</g>
+<path class="edge" d="M660,120.0 L696,120.0"/></svg>

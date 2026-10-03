@@ -90,172 +90,207 @@
  "exploratory": [
   {
    "id": "E1",
-   "title": "H1 without trial 1",
-   "rationale": "Checks whether the information-type effect on sharing depends on the first, possibly less attentive, trial.",
-   "method": "Re-fit the registered H1 specification (OLS, cluster by respondent, same covariates) on trials 2-4, one arm against True/neutral at a time.",
-   "table": "results/E1_h1_drop_trial1.csv",
+   "title": "Robustness: drop trial 1",
+   "rationale": "Early-trial inattention or learning could drive the headline AMCEs, so I re-fit them without trial 1.",
+   "method": "Registered OLS spec (cluster by respondent, same covariates) re-fit per arm vs control on trials 2-4; original and re-estimated estimates and SEs side by side.",
+   "table": "results/E1_drop_trial1.csv",
    "figure": null,
-   "finding": "The misinformation effect is -0.170 (SE 0.013) without trial 1, against -0.182 (SE 0.011) in the registered fit, so the result holds."
+   "finding": "Misinformation AMCE on sharing is -0.182 (SE 0.011) in the full sample and -0.170 (SE 0.013) without trial 1, and the trust-high effect is 0.058 vs 0.066, so the registered results hold."
   },
   {
    "id": "E2",
-   "title": "Misinformation effect by age tertile",
-   "rationale": "Age is a demographic the PAP did not register, and it may change how much people penalise false content.",
-   "method": "Re-fit the registered H1 specification within each age tertile.",
-   "table": "results/E2_h1_by_age.csv",
-   "figure": "figures/E2_age.png",
-   "finding": "The misinformation penalty on sharing is -0.130 in the youngest tertile and -0.220 in the oldest, so older respondents share it less."
+   "title": "Information-type effect by health vs political topic",
+   "rationale": "Health misinformation may be judged differently from political misinformation, so I checked whether the main AMCE depends on topic.",
+   "method": "Registered H1 spec fit separately within Health and Political headlines; effects shown in a coefficient plot.",
+   "table": "results/E2_infotype_by_topic.csv",
+   "figure": "figures/E2_topic.png",
+   "finding": "Misinformation lowers sharing by 0.217 (SE 0.028) for health headlines and 0.176 (SE 0.012) for political headlines, so the penalty is similar in both and slightly larger for health."
   }
  ],
  "lit": {
-  "text": "The retrieved list is thin and mostly off-topic for these hypotheses. It contains no experimental or survey findings on how information type, tie strength, sharer trust, ideology, knowledge or conspiracy belief affect sharing or perceived plausibility of misinformation, so it cannot support or contextualize H1-H14, the reweighted robustness checks R1-R12, or the exploratory analyses X1-X13. The only directly relevant item is a general review of fake news, disinformation and misinformation on social media [citation removed: not in retrieved set], whose snippet gives no specific findings. A review of prejudice toward immigrants (Esses, 2020) is only loosely related to the sharer-origin hypotheses (H3, H10, X13). Its snippet reports no findings on how sharer origin affects information sharing or credibility, so I draw no conclusions from it.",
+  "text": "The retrieved list is thin and largely off-topic: none of the ten works reports findings on how information type, tie strength, sharer origin, ideology, trust, political knowledge, or conspiracy belief affect sharing or plausibility judgments of misinformation. The 'supporting' items are broad overviews (Van Bavel et al., 2020; Dwivedi et al., 2019; Jenkins & Purushotma, 2006) with no abstract text bearing on the hypotheses, so they cannot be read as evidence for any of H1-H14. The closest topical neighbors are the conjoint study of deceitful political behavior and political trust [citation removed: not in retrieved set] and the work on political lies and election-loss acceptance (Arceneaux & Truex, 2022). Both concern political deception and trust rather than sharing decisions, so they are context at most. The conjoint design of Christensen et al. (2025) is the only item that resembles the study's method.\n\nThe works do not disagree with each other or with the study's expectations on any substantive question about sharing or plausibility. The 'contesting' items (Chater & Loewenstein, 2022, in two versions; Sutton et al., 2010) address individual-level framing of behavioral policy and distributed memory, and they do not test the hypothesized effects. Because no retrieved work reports findings on these questions, the study's design cannot be said to adjudicate between any of them. The abstract for Nativist disidentification (López Ortega & Turnbull-Dugarte, 2025) mentions out-group signals, which is only loosely related to the origin hypotheses (H3, H10), and the snippet is too brief to support a comparison.",
   "works": [
    {
-    "id": "https://openalex.org/W3085542870",
-    "title": "Prejudice and Discrimination Toward Immigrants",
+    "id": "https://openalex.org/W3016902371",
+    "title": "Using social and behavioural science to support COVID-19 pandemic response",
     "authors": [
-     "Victoria M. Esses"
+     "Jay Joseph Van Bavel",
+     "Katherine Baicker",
+     "Paulo S. Boggio",
+     "Valerio Capraro"
     ],
     "year": 2020,
-    "doi": "10.1146/annurev-psych-080520-102803",
-    "venue": "Annual Review of Psychology",
-    "cited_by": 273,
-    "abstract": "Prejudice and discrimination toward immigrants, and the consequences of these negative attitudes and behavior, are key determinants of the economic, sociocultural, and civic-political future of receiving societies and of the individuals who seek to make these societies their new home. In this article I review and organize the existing literature on the determinants and nature of prejudice and disc"
+    "doi": "10.1038/s41562-020-0884-z",
+    "venue": "Nature Human Behaviour",
+    "cited_by": 5218,
+    "abstract": "",
+    "stance": "supporting",
+    "query": "source trust and tie strength increase misinformation sharing social media"
    },
    {
-    "id": "https://openalex.org/W2894294331",
-    "title": "A Task-Based Taxonomy of Cognitive Biases for Information Visualization",
-    "authors": [
-     "Evanthia Dimara",
-     "Steven Franconeri",
-     "Catherine Plaisant",
-     "Anastasia Bezerianos"
-    ],
-    "year": 2018,
-    "doi": "10.1109/tvcg.2018.2872577",
-    "venue": "IEEE Transactions on Visualization and Computer Graphics",
-    "cited_by": 161,
-    "abstract": "Information visualization designers strive to design data displays that allow for efficient exploration, analysis, and communication of patterns in data, leading to informed decisions. Unfortunately, human judgment and decision making are imperfect and often plagued by cognitive biases. There is limited empirical research documenting how these biases affect visual data analysis activities. Existin"
-   },
-   {
-    "id": "https://openalex.org/W3123615408",
-    "title": "Designing Information Provision Experiments",
-    "authors": [
-     "Ingar Haaland",
-     "Christopher Roth",
-     "Johannes Wohlfart"
-    ],
-    "year": 2020,
-    "doi": "10.2139/ssrn.3638879",
-    "venue": "SSRN Electronic Journal",
-    "cited_by": 74,
-    "abstract": ""
-   },
-   {
-    "id": "https://openalex.org/W3092131469",
-    "title": "Psychology as a Historical Science",
-    "authors": [
-     "Michael Muthukrishna",
-     "Joseph Henrich",
-     "Edward Slingerland"
-    ],
-    "year": 2020,
-    "doi": "10.1146/annurev-psych-082820-111436",
-    "venue": "Annual Review of Psychology",
-    "cited_by": 219,
-    "abstract": "Psychology has traditionally seen itself as the science of universal human cognition, but it has only recently begun seriously grappling with cross-cultural variation. Here we argue that the roots of cross-cultural variation often lie in the past. Therefore, to understand not only how but also why psychology varies, we need to grapple with cross-temporal variation. The traces of past human cogniti"
-   },
-   {
-    "id": "https://openalex.org/W3186826748",
-    "title": "Social Motivation at Work: The Organizational Psychology of Effort for, Against, and with Others",
-    "authors": [
-     "Adam M. Grant",
-     "Marissa S. Shandell"
-    ],
-    "year": 2021,
-    "doi": "10.1146/annurev-psych-060321-033406",
-    "venue": "Annual Review of Psychology",
-    "cited_by": 101,
-    "abstract": "Although a great deal of effort in tasks, projects, and jobs is fueled by our interactions and relationships, psychologists have often overlooked the social forces that shape work motivation. In this review, we examine new developments in research on the interpersonal dynamics that enable and constrain proactivity, persistence, performance, and productivity. The first section examines the impact o"
-   },
-   {
-    "id": "https://openalex.org/W3140719370",
-    "title": "Race, Rhetoric, and Research Methods",
-    "authors": [
-     "Alexandria L. Lockett",
-     "Iris D. Ruiz",
-     "James Chase Sanchez",
-     "Christopher Carter"
-    ],
-    "year": 2021,
-    "doi": "10.37514/per-b.2021.1206",
-    "venue": "The WAC Clearinghouse; University Press of Colorado eBooks",
-    "cited_by": 78,
-    "abstract": "McLeod, and Jonathan Hunt-as well as Mike Palmquist, who coordinates the"
-   },
-   {
-    "id": "https://openalex.org/W2153791616",
-    "title": "Whatever next? Predictive brains, situated agents, and the future of cognitive science",
-    "authors": [
-     "Andy Clark"
-    ],
-    "year": 2013,
-    "doi": "10.1017/s0140525x12000477",
-    "venue": "Behavioral and Brain Sciences",
-    "cited_by": 6157,
-    "abstract": "Brains, it has recently been argued, are essentially prediction machines. They are bundles of cells that support perception and action by constantly attempting to match incoming sensory inputs with top-down expectations or predictions. This is achieved using a hierarchical generative model that aims to minimize prediction error within a bidirectional cascade of cortical processing. Such accounts o"
-   },
-   {
-    "id": "https://openalex.org/W4360620450",
-    "title": "Opinion Paper: “So what if ChatGPT wrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy",
+    "id": "https://openalex.org/W2969625533",
+    "title": "Artificial Intelligence (AI): Multidisciplinary perspectives on emerging challenges, opportunities, and agenda for research, practice and policy",
     "authors": [
      "Yogesh Kumar Dwivedi",
-     "Nir Kshetri",
      "Laurie Hughes",
-     "Emma Louise Slade"
+     "Elvira Ismagilova",
+     "Gert Aarts"
     ],
-    "year": 2023,
-    "doi": "10.1016/j.ijinfomgt.2023.102642",
+    "year": 2019,
+    "doi": "10.1016/j.ijinfomgt.2019.08.002",
     "venue": "International Journal of Information Management",
-    "cited_by": 4426,
-    "abstract": "Transformative artificially intelligent tools, such as ChatGPT, designed to generate sophisticated text indistinguishable from that produced by a human, are applicable across a wide range of contexts. The technology presents opportunities as well as, often ethical and legal, challenges, and has the potential for both positive and negative impacts for organisations, society, and individuals. Offeri"
+    "cited_by": 4526,
+    "abstract": "As far back as the industrial revolution, significant development in technical innovation has succeeded in transforming numerous manual tasks and processes that had been in existence for decades where humans had reached the limits of physical capacity. Artificial Intelligence (AI) offers this same transformative potential for the augmentation and potential replacement of human tasks and activities",
+    "stance": "supporting",
+    "query": "source trust and tie strength increase misinformation sharing social media"
    },
    {
-    "id": "https://openalex.org/W4226278401",
-    "title": "Discernment and Social Learning as a Companion Training Layer",
+    "id": "https://openalex.org/W2112957339",
+    "title": "Confronting the Challenges of Participatory Culture: Media Education for the 21st Century",
     "authors": [
-     "Long Ouyang",
-     "Jeff Wu",
-     "Xu Jiang",
-     "Diogo Almeida"
+     "Henry Jenkins",
+     "Ravi Purushotma"
+    ],
+    "year": 2006,
+    "doi": "",
+    "venue": "BiblioBoard Library Catalog (Open Research Library)",
+    "cited_by": 3184,
+    "abstract": "Henry Jenkins, Director of the Comparative Media Studies Program at the Massachusetts Institute of Technology authored this white paper, exploring new frameworks and models for media literacy.",
+    "stance": "supporting",
+    "query": "source trust and tie strength increase misinformation sharing social media"
+   },
+   {
+    "id": "https://openalex.org/W4294628862",
+    "title": "The i-frame and the s-frame: How focusing on individual-level solutions has led behavioral public policy astray",
+    "authors": [
+     "Nick Chater",
+     "George F. Loewenstein"
     ],
     "year": 2022,
-    "doi": "10.48550/arxiv.2203.02155",
-    "venue": "arXiv (Cornell University)",
-    "cited_by": 4292,
-    "abstract": "I propose a companion curriculum for language model training that explicitly practices how a model responds to error. A failed attempt pauses advancement in the affected skill, followed by observation of verified peer successes, judgments committed before outcome disclosure, diagnosis, and a fresh-task retry. Task performance and discernment remain separately assessed, with bounded interaction thr"
+    "doi": "10.1017/s0140525x22002023",
+    "venue": "Behavioral and Brain Sciences",
+    "cited_by": 584,
+    "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun",
+    "stance": "contesting",
+    "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
    },
    {
-    "id": "https://openalex.org/W4319983294",
-    "title": "Fake news, disinformation and misinformation in social media: a review",
+    "id": "https://openalex.org/W1994178598",
+    "title": "The psychology of memory, extended cognition, and socially distributed remembering",
     "authors": [
-     "Esma Aı̈meur",
-     "Sabrine Amri",
-     "Gilles Brassard"
+     "John David Sutton",
+     "Celia B. Harris",
+     "Paul G. Keil",
+     "Amanda J. Barnier"
     ],
-    "year": 2023,
-    "doi": "10.1007/s13278-023-01028-5",
-    "venue": "Social Network Analysis and Mining",
-    "cited_by": 773,
-    "abstract": ""
+    "year": 2010,
+    "doi": "10.1007/s11097-010-9182-y",
+    "venue": "Phenomenology and the Cognitive Sciences",
+    "cited_by": 383,
+    "abstract": "",
+    "stance": "contesting",
+    "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
+   },
+   {
+    "id": "https://openalex.org/W4226385226",
+    "title": "The i-Frame and the s-Frame: How Focusing on Individual-Level Solutions Has Led Behavioral Public Policy Astray",
+    "authors": [
+     "Nick Chater",
+     "George F. Loewenstein"
+    ],
+    "year": 2022,
+    "doi": "10.2139/ssrn.4046264",
+    "venue": "SSRN Electronic Journal",
+    "cited_by": 189,
+    "abstract": "",
+    "stance": "contesting",
+    "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
+   },
+   {
+    "id": "https://openalex.org/W4220943511",
+    "title": "Donald Trump and the Lie",
+    "authors": [
+     "Kevin Arceneaux",
+     "Rory Truex"
+    ],
+    "year": 2022,
+    "doi": "10.1017/s1537592722000901",
+    "venue": "Perspectives on Politics",
+    "cited_by": 82,
+    "abstract": "The legitimacy of democratically elected governments rests in part on widespread acceptance of the outcome of elections, especially among those who lost. This “losers’ consent” allows the winners to govern, and when the incumbent is the losing party, it allows for a peaceful transition of power. What happens in a democratic system when one side not only refuses to concede but also actively perpetu",
+    "stance": "method",
+    "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+   },
+   {
+    "id": "https://openalex.org/W4417485389",
+    "title": "Selectively (il)liberal: theory and evidence on nativist disidentification",
+    "authors": [
+     "Alberto López Ortega",
+     "Stuart James Turnbull-Dugarte"
+    ],
+    "year": 2025,
+    "doi": "10.1017/psrm.2025.10066",
+    "venue": "Political Science Research and Methods",
+    "cited_by": 2,
+    "abstract": "Abstract Does group-based tribal thinking against ethnic out-groups condition support for both liberal and illiberal policies? Our thesis is that, irrespective of the direction of the policy (progressive or conservative), nativists express selective support for policies based on different signals of group-identity: descriptive markers, group-based substantive representation, in- and out-group norm",
+    "stance": "method",
+    "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+   },
+   {
+    "id": "https://openalex.org/W7115889761",
+    "title": "Report (including policy recommendations) on the consequences of deceitful behaviour for political trust",
+    "authors": [
+     "Christensen, Henrik Serup",
+     "Huttunen, Janette",
+     "Morales, Laura"
+    ],
+    "year": 2025,
+    "doi": "10.5281/zenodo.17647646",
+    "venue": "DIGITAL.CSIC (Spanish National Research Council (CSIC))",
+    "cited_by": 0,
+    "abstract": "In this report, we examine how deceitful behaviours affect evaluations of political leaders. We do so with a conjoint experiment embedded in the ActEU survey. We are therefore able to report causal evidence from 10 European democracies on how politicians’ deceitful behaviours affect how citizens evaluate them.",
+    "stance": "method",
+    "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+   },
+   {
+    "id": "https://openalex.org/W3035680161",
+    "title": "COVID-19 and the workplace: Implications, issues, and insights for future research and action.",
+    "authors": [
+     "Kevin M. Kniffin",
+     "Jayanth Narayanan",
+     "Frederik Anseel",
+     "John Antonakis"
+    ],
+    "year": 2020,
+    "doi": "10.1037/amp0000716",
+    "venue": "American Psychologist",
+    "cited_by": 1647,
+    "abstract": "The impacts of COVID-19 on workers and workplaces across the globe have been dramatic. This broad review of prior research rooted in work and organizational psychology, and related fields, is intended to make sense of the implications for employees, teams, and work organizations. This review and preview of relevant literatures focuses on (a) emergent changes in work practices (e.g., working from h",
+    "stance": "citing",
+    "query": "cites:W3016902371"
    }
   ],
   "queries": [
-   "conjoint experiment misinformation sharing source characteristics tie strength trust",
-   "ego network social ties misinformation sharing Latino",
-   "sharing without believing misinformation plausibility social media",
-   "partisan congruence source ideology news sharing fact-checking"
+   "source trust and tie strength increase misinformation sharing social media",
+   "sharer political knowledge and ideological congruence predict belief and sharing of false news",
+   "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing",
+   "source cues have little effect on news credibility and sharing, null effects of source in misinformation",
+   "conjoint experiment AMCE misinformation sharing personal network survey Latino"
   ],
+  "query_sets": {
+   "supporting": [
+    "source trust and tie strength increase misinformation sharing social media",
+    "sharer political knowledge and ideological congruence predict belief and sharing of false news"
+   ],
+   "contesting": [
+    "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing",
+    "source cues have little effect on news credibility and sharing, null effects of source in misinformation"
+   ],
+   "method": [
+    "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+   ]
+  },
+  "debate_hint": "",
   "degraded": null
  },
  "tags": [
@@ -722,70 +757,410 @@
  ],
  "sections": {
   "takeaways": [
-   "Headlines that were false or that corrected a false claim were shared less than true or neutral ones: misinformation by 18.2 points (95% CI [−20.4, −16.0]), fact-checks by 13.3 points (95% CI [−15.6, −11.1]).",
-   "Among the sharer attributes, which were measured and not randomized, a close tie raised sharing by 3.0 points (95% CI [1.0, 5.0]) and high trust in the sharer by 5.7 points (95% CI [2.3, 9.1]).",
-   "Sharer origin, political knowledge and belief in disputed claims were not distinguishable from zero for sharing, with intervals of roughly ±2 to ±4 points.",
-   "Registered subgroup comparisons show that respondents with high belief in disputed claims shared misinformation 5.6 points more than those with low belief (p<0.001), and older respondents shared it 6.1 points less.",
-   "Many tests were run without correction, and the sharer attributes are measured ratings of real contacts, so their effects are descriptive, not causal."
+   "Misinformation headlines were chosen for sharing 18.2 points less often than true or neutral ones (95% CI [−20.4, −16.0]). Fact-checks were shared 13.3 points less overall, driven by political items; the health estimate is near zero.",
+   "High trust in the sharer was associated with 5.7 points more sharing (95% CI [2.3, 9.1]) and a close tie with 3.0 points more (95% CI [1.0, 5.0]). These are measured contrasts, and the low-trust reference cell is thin.",
+   "Sharer origin, political knowledge and belief in disputed claims were not distinguishable from zero for sharing, with intervals of roughly ±1.7 to ±2.2 points. Trust did not carry over to plausibility.",
+   "Respondents who believe more disputed claims shifted toward misinformation (+5.6 points) and away from true items (−5.5 points). This is a relative reordering, one of about 180 uncorrected subgroup contrasts.",
+   "Only information type is randomized; sharer traits are measured associations. About 14 registered tests plus about 180 subgroup contrasts are uncorrected, so results near p=0.05 are tentative."
   ],
-  "abstract": "This study asks how the type of information and the characteristics of the person sharing it shape whether people say they would share a post and how plausible they find it. In a registered conjoint experiment on a YouGov sample of US respondents (12,000 profiles, all analysed), each headline was randomly true or neutral, false, or a fact-check, and was attributed to one of the respondent's real contacts. Relative to true or neutral headlines, misinformation was 18.2 points less likely to be chosen for sharing (95% CI [−20.4, −16.0]) and fact-checks 13.3 points less (95% CI [−15.6, −11.1]); plausibility showed a similar pattern. Close ties (+3.0 points) and highly trusted sharers (+5.7 points) raised sharing. Sharer origin, knowledge and belief in disputed claims were not distinguishable from zero. Respondents' own belief in disputed claims and their age moderated the response to misinformation. The sharer attributes are measured, not randomized, many tests were uncorrected, and several differences are small.",
-  "design_notes": "Each respondent rated pairs of posts, and the 12,000 profiles were all analysed; no rows were dropped for the main models, though a few outcome cells were missing by a handful of rows. Only the information type was randomized, with True/neutral headlines as the reference level (4,145 profiles with that level in the exploratory models). Tie strength, sharer origin, ideology, trust, knowledge and belief in disputed claims are the respondent's own ratings of real contacts. Their effects are therefore descriptive contrasts that bundle correlated attributes. Standard errors are clustered by respondent. All tests labelled registered follow the AsPredicted plan; those labelled exploratory were specified after seeing the data.",
+  "abstract": "We ask how the type of information and the characteristics of the person who shares it relate to whether people choose to share a post and whether they judge it plausible. In a registered conjoint experiment with 12,000 YouGov profile ratings in the US, headlines (true or neutral, false, or a fact-check) were randomly attributed to real contacts named by respondents, whose traits were measured. Misinformation was chosen for sharing 18.2 points less often than true or neutral content (95% CI [−20.4, −16.0]); fact-checks were shared 13.3 points less overall, driven by political items. Close ties (+3.0 points) and highly trusted sharers (+5.7 points) were associated with higher sharing. The information-type pattern replicated for plausibility, but trust did not. Sharer traits are measured, so these are conditional associations, and about 14 registered tests plus about 180 subgroup contrasts were uncorrected.",
+  "design_notes": "The study was registered (AsPredicted #132,508). Of 12,000 profile ratings, 11,882 entered the sharing models; 118 were dropped for missing values, and the report does not break this down by attribute. Each respondent made paired forced choices between two posts, and standard errors are clustered by respondent, not by task. True or neutral headlines (the reference level) contributed 4,145 profiles. Only the headline's information type and its assignment to a contact are randomized. The six sharer traits are the respondent's own ratings of real contacts, so their AMCEs are descriptive contrasts bundling correlated attributes.",
   "results": {
-   "H1": "False headlines were chosen for sharing 18.2 points less often than true or neutral ones (95% CI [−20.4, −16.0], p<0.001, two-sided). Fact-checks were 13.3 points lower (95% CI [−15.6, −11.1], p<0.001). Sharing rates were 60.3% for true or neutral headlines, 42.1% for misinformation and 47.0% for fact-checks. Because information type was randomized, these are causal estimates.",
-   "H2": "Posts from close ties were chosen for sharing 3.0 points more often than those from distant ties (95% CI [1.0, 5.0], p=0.003, two-sided). Tie strength is a measured rating, so the contrast is descriptive.",
-   "H3": "Posts from sharers in the continental US were not distinguishable from foreign-origin sharers in sharing (+0.2 points, 95% CI [−1.4, 1.8], p=0.81). The interval is narrow but still compatible with small effects either way.",
-   "H4": "Moderate sharers were chosen 1.9 points less often than liberal sharers (95% CI [−3.7, −0.1], p=0.034), a result near the threshold given the many tests. Conservative sharers were −0.7 points (95% CI [−2.8, 1.5]), not distinguishable from liberal ones.",
-   "H5": "Highly trusted sharers were chosen 5.7 points more often than low-trust sharers (95% CI [2.3, 9.1], p<0.001). Mid trust was +3.6 points (95% CI [−0.1, 7.3], p=0.056), not clearly distinguishable from zero.",
-   "H6": "Sharer political knowledge was not distinguishable from zero for sharing: mid knowledge −0.0 points (95% CI [−2.0, 1.9]) and high knowledge +1.7 points (95% CI [−0.5, 3.9]), against low knowledge.",
-   "H7": "High belief in disputed claims by the sharer was not distinguishable from low belief for sharing (−0.2 points, 95% CI [−1.9, 1.6], p=0.87).",
-   "H8": "Misinformation was judged 18.6 points less often the more plausible post than true or neutral headlines (95% CI [−20.8, −16.4], p<0.001, two-sided). Fact-checks were 12.4 points lower (95% CI [−14.7, −10.2], p<0.001).",
-   "H9": "Close ties raised plausibility by 2.8 points relative to distant ties (95% CI [0.7, 4.8], p=0.008).",
-   "H10": "Sharer origin was not distinguishable from zero for plausibility (−0.3 points, 95% CI [−1.9, 1.4]).",
-   "H11": "Moderate sharers were rated 2.1 points less plausible than liberal sharers (95% CI [−4.0, −0.3], p=0.026), near the threshold. Conservative sharers were −1.9 points (95% CI [−4.1, 0.3]), not distinguishable from zero.",
-   "H12": "Trust in the sharer was not distinguishable from zero for plausibility: mid −0.6 points (95% CI [−4.2, 3.0]) and high +2.5 points (95% CI [−0.7, 5.8]).",
-   "H13": "Sharer political knowledge was not distinguishable from zero for plausibility; high knowledge was +1.7 points (95% CI [−0.4, 3.8]) and mid knowledge −0.1 points (95% CI [−2.1, 1.9]).",
-   "H14": "The sharer's belief in disputed claims was not distinguishable from zero for plausibility (−0.0 points, 95% CI [−1.8, 1.8], p=0.97).",
-   "RW": "Re-weighting each source attribute by its inverse assignment probability left the picture essentially unchanged. For sharing, close ties stayed at +3.0 points (95% CI [1.0, 5.0]) and high trust rose slightly to +6.7 points (95% CI [3.3, 10.1]). The moderate-sharer contrast on sharing weakened to −1.7 points (95% CI [−3.5, 0.0], p=0.056). For plausibility, close ties (+2.7 points) and moderate sharers (−2.1 points) kept their sign and size. The remaining re-weighted estimates were not distinguishable from zero.",
-   "S1": "Age moderated the response to information type. Among misinformation profiles, the oldest tertile shared 6.1 points less than the youngest (p<0.001). Differences for fact-checks (+3.0) and true or neutral headlines (+2.6) were not clearly distinguishable from zero. Most other levels showed little age difference.",
-   "S2": "Respondent ideology mattered mainly for true or neutral headlines, which the most conservative tertile shared 5.6 points less than the most liberal (p=0.002). Continental-US sharers were also shared 1.6 points less by the conservative tertile (p=0.005), and liberal sharers 4.8 points less (p=0.017). Other differences were not distinguishable from zero.",
-   "S3": "Respondents with the highest belief in disputed claims shared misinformation 5.6 points more than those with the lowest (p<0.001), and true or neutral headlines 5.5 points less (p<0.001). They also shared posts from trusted sharers (−2.3 points), moderate sharers and continental-US sharers less. Fact-check differences were not distinguishable from zero.",
-   "S4": "Respondents with high media trust shared misinformation 4.8 points more than those with low trust (p=0.003). Other differences were small, and the few at conventional significance, such as high-knowledge sharers (−2.4 points) and low-conspiracy sharers (+3.5 points), should be read cautiously given the many comparisons.",
-   "S5": "Spanish-language respondents shared misinformation 3.6 points more than English-language respondents (p=0.010). Low-trust sharers (+7.9 points) and low-knowledge sharers (+3.2 points) were also shared more in Spanish; these rest on small cells. Most other differences were not distinguishable from zero.",
-   "S6": "For plausibility, the oldest tertile rated misinformation 4.0 points lower than the youngest (p=0.013) and liberal sharers 3.7 points higher (p=0.020). Other age differences were not distinguishable from zero.",
-   "S7": "The most conservative respondents rated true or neutral headlines as less plausible by 4.9 points than the most liberal (p=0.006), and continental-US sharers by 1.5 points (p=0.009). Other differences were not distinguishable from zero.",
-   "S8": "Respondents with the highest belief in disputed claims rated misinformation as 6.8 points more plausible (p<0.001) and true or neutral headlines 6.9 points less (p<0.001). They also rated high-trust (−2.4 points) and high-knowledge (−3.6 points) sharers lower. Fact-check differences were not distinguishable from zero.",
-   "S9": "High media trust was linked to rating misinformation 4.4 points more plausible (p=0.007), and posts from low-conspiracy sharers 4.4 points more plausible (p=0.009). High-knowledge sharers were rated 2.6 points lower (p=0.019). Most other differences were not distinguishable from zero.",
-   "S10": "Spanish-language respondents rated misinformation as 3.7 points more plausible than English-language respondents (p=0.008). They also rated low-trust sharers 9.0 points higher and low-knowledge sharers 3.6 points higher, from small cells. The rest were not distinguishable from zero.",
-   "X1": "Post hoc: each step up the 1-5 trust scale was linked to 1.4 points more sharing (SE 0.4, p<0.001). The slope was similar for misinformation (1.9 points) and fact-checks (1.7 points) and not clearly distinguishable from zero for true or neutral headlines (0.6 points).",
-   "X2": "Post hoc: each step up the trust scale was linked to 1.3 points higher plausibility (SE 0.4, p<0.001). The slope was about 2 points for misinformation and fact-checks and about zero for true or neutral headlines.",
-   "X3": "Post hoc: close ties raised sharing by 2.9 points (SE 1.0, p=0.006). The premium was 4.7 points for fact-checks and 3.5 for misinformation, but only 0.9 points for true or neutral headlines, which was not distinguishable from zero.",
-   "X4": "Post hoc: among profiles chosen to share, misinformation was 5.5 points more likely to be shared while judged less plausible (95% CI [3.0, 8.1], p<0.001), 20.3% against 14.3% for true or neutral headlines. Fact-checks were +1.7 points (95% CI [−0.5, 4.0]).",
-   "X5": "Post hoc: sharing was 4.4 points higher when respondent and sharer shared the same ideological lean than when they opposed (95% CI [0.9, 7.9], p=0.015). Pairs involving a moderate were +0.8 points (95% CI [−2.3, 3.9]).",
-   "X6": "Post hoc: respondents whose contacts were seen as holding more disputed beliefs shared more misinformation, with a slope of 0.110 (SE 0.049, p=0.026, 3,196 profiles). This is a modest result among many tests.",
-   "X7": "Post hoc: among partisan respondents, congenial content was shared 2.5 points more than uncongenial content, not distinguishable from zero (SE 1.9, p=0.18).",
-   "X8": "Post hoc: across all headlines, the sharer's perceived belief in disputed claims was not distinguishable from zero for sharing (slope 0.005, SE 0.014). It differs sharply by information type; see the within-type results.",
-   "X9": "Post hoc: across all headlines, the sharer's perceived belief in disputed claims was not distinguishable from zero for plausibility (slope −0.005, SE 0.014).",
-   "X10": "Post hoc and thin (266 profiles): the anti-vaccine headline was rated 16.5 points more plausible when the sharer was seen as believing the DNA claim (SE 6.7, p=0.013).",
-   "X11": "Post hoc: the trust slope on sharing misinformation was 1.9 points per step across all misinformation (SE 0.8, p=0.013).",
-   "X12": "Post hoc: the close-tie premium on sharing misinformation was 3.5 points (SE 1.7, p=0.040), near the threshold.",
-   "X13": "Post hoc: sharer origin was not distinguishable from zero for sharing in the pooled origin-by-language-and-nativity check (0.2 points, SE 0.8, p=0.78).",
-   "XS1": "Post hoc: the trust slope on sharing was 1.7 points for fact-checks, 1.9 for misinformation and 0.6 for true or neutral headlines. The differences between types were not distinguishable from zero.",
-   "XS2": "Post hoc: the trust slope on plausibility was about 2 points per step for fact-checks and misinformation and about zero for true or neutral headlines. The gap to fact-checks was borderline (p=0.065).",
-   "XS3": "Post hoc: the close-tie premium was 4.7 points for fact-checks, 3.5 for misinformation and 0.9 for true or neutral headlines. The gap between true or neutral headlines and fact-checks was borderline (p=0.050).",
-   "XS5": "Post hoc: the gap between same-lean and opposed-lean sharers was 3.8 to 5.6 points across information types, with intervals including zero. The gaps did not differ clearly by type.",
-   "XS7": "Post hoc: congenial misinformation was shared 5.4 points more than uncongenial (p=0.012), while fact-checks showed −0.2 points. The difference between them was 5.6 points (p=0.007).",
-   "XS8": "Post hoc: a sharer perceived as believing disputed claims raised sharing of misinformation (slope 0.086, p=0.002) but not distinguishably of fact-checks (−0.044) or true or neutral headlines (−0.022). The gap with fact-checks was 0.131 (p=0.001).",
-   "XS9": "Post hoc: the same pattern held for plausibility. The slope was +0.095 for misinformation (p<0.001) and negative for fact-checks and true or neutral headlines. The gap with fact-checks was 0.146 (p<0.001).",
-   "XS11": "Post hoc: the trust slope for sharing misinformation was 2.5 points for health headlines (SE 2.0, 550 profiles) and 1.9 for political headlines. The difference was not distinguishable from zero.",
-   "XS12": "Post hoc: the close-tie premium for misinformation was 0.7 points for health (SE 4.4) and 3.9 for political headlines (p=0.031). The difference was not distinguishable from zero.",
-   "XS13a": "Post hoc: the sharer-origin slope on sharing was 0.4 points in English and 0.0 in Spanish. The difference was not distinguishable from zero (−0.5 points, SE 1.7).",
-   "XS13b": "Post hoc: the sharer-origin slope was +1.3 points for foreign-born respondents and −0.8 for US-born respondents. The difference of −1.8 points (SE 1.6) was not distinguishable from zero."
+   "H1": "Misinformation was shared 18.2 points less often than true or neutral headlines (95% CI [−20.4, −16.0], two-sided p<0.001). Fact-checks were shared 13.3 points less often (95% CI [−15.6, −11.1], p<0.001). Information type is randomized, but the model adjusts for six measured traits. Dropping trial 1 (E1) gave −0.170 for misinformation. An unadjusted fit and a task-clustered fit are not in the tables. The pooled fact-check figure masks a topic difference (see E2).",
+   "H2": "Close ties were chosen for sharing 3.0 points more often than distant ties (95% CI [1.0, 5.0], two-sided p=0.003). This is a measured contrast, not a randomized one.",
+   "H3": "Continental US sharers were shared 0.2 points more often than foreign-origin sharers (95% CI [−1.4, 1.8], p=0.81). This is not distinguishable from zero and rules out only large effects.",
+   "H4": "Moderate sharers were shared 1.9 points less often than liberal sharers (95% CI [−3.7, −0.1], p=0.034). This is fragile: the re-weighted estimate has p=0.056, and the test is uncorrected. Conservative sharers differed by −0.7 points (95% CI [−2.8, 1.5]), not distinguishable from zero.",
+   "H5": "High-trust sharers were shared 5.7 points more often than low-trust ones (95% CI [2.3, 9.1], p<0.001). This is an association with a thin reference cell. Mid trust was 3.6 points higher (95% CI [−0.1, 7.3], p=0.056), not clearly separable from zero.",
+   "H6": "Mid and high political knowledge differed from low knowledge by −0.05 and +1.7 points. The high-knowledge interval ran from −0.5 to 3.9 points, so neither level was distinguishable from zero.",
+   "H7": "Sharers with high belief in disputed claims were shared 0.2 points less often than those with low belief (95% CI [−1.9, 1.6], p=0.87). This is not distinguishable from zero.",
+   "H8": "Misinformation was judged 18.6 points less plausible than true or neutral headlines (95% CI [−20.8, −16.4], p<0.001). Fact-checks were 12.4 points lower (95% CI [−14.7, −10.2], p<0.001).",
+   "H9": "Close ties were associated with 2.8 points higher plausibility (95% CI [0.7, 4.8], two-sided p=0.008). This is a measured contrast.",
+   "H10": "Continental US origin changed plausibility by −0.3 points (95% CI [−1.9, 1.4], p=0.75), not distinguishable from zero.",
+   "H11": "Moderate sharers were rated 2.1 points less plausible than liberal sharers (95% CI [−4.0, −0.3], p=0.026), near the threshold and uncorrected. Conservative sharers were −1.9 points (95% CI [−4.1, 0.3]), not distinguishable from zero.",
+   "H12": "Trust in the sharer was not distinguishable from zero for plausibility. High trust was +2.5 points (95% CI [−0.7, 5.8]) and mid trust −0.6 points (95% CI [−4.2, 3.0]).",
+   "H13": "Sharer knowledge was not distinguishable from zero for plausibility. High knowledge was +1.7 points (95% CI [−0.4, 3.8]) and mid knowledge −0.1 points.",
+   "H14": "Belief in disputed claims by the sharer was not distinguishable from zero for plausibility, at −0.03 points (95% CI [−1.8, 1.8]).",
+   "RW": "Re-weighting by inverse assignment probability left most estimates essentially unchanged. High trust on sharing rose from 5.7 to 6.7 points (95% CI [3.3, 10.1]), and close ties stayed at 3.0 points (95% CI [1.0, 5.0]). The moderate-sharer effect on sharing became −1.7 points (p=0.056) and lost significance; on plausibility it stayed at −2.1 points (p=0.030). Because sharer traits are not randomized, these weights are a sensitivity check, not a correction.",
+   "S1": "The age gap appeared mainly for misinformation: the oldest tertile shared it 6.1 points less than the youngest (SE 0.016, p<0.001). Other levels differed by under 3 points and were not distinguishable from zero. This is one of about 180 uncorrected contrasts.",
+   "S2": "Among conservative-leaning respondents, true or neutral headlines were shared 5.6 points less than among liberal-leaning ones (p=0.002). Continental US sharers (−1.6 points) and liberal sharers (−4.8 points) also differed. About 180 subgroup contrasts were run uncorrected, so treat these as tentative.",
+   "S3": "Respondents with the highest belief in disputed claims shared misinformation 5.6 points more (p<0.001) and true or neutral items 5.5 points less (p<0.001). This is a mirrored reordering of information types in a forced-choice task, not a general rise in sharing. Several sharer levels also differed by 1 to 3 points.",
+   "S4": "Respondents with high media trust shared misinformation 4.8 points more than those with low media trust (p=0.003). Low-belief sharers were shared 3.5 points more by them (p=0.03). Other differences were small.",
+   "S5": "Spanish-language respondents shared misinformation 3.6 points more than English-language ones (p=0.010). Differences for low-trust and low-knowledge sharers were also distinguishable from zero. Most other contrasts were not.",
+   "S6": "The oldest tertile judged misinformation 4.0 points less plausible than the youngest (p=0.013). Liberal sharers were rated 3.7 points more plausible by them (p=0.020). Other differences were not distinguishable from zero.",
+   "S7": "Conservative-leaning respondents rated true or neutral headlines 4.9 points less plausible than liberal-leaning respondents did (p=0.006). Continental US sharers were rated 1.5 points lower (p=0.009). Other contrasts were not distinguishable from zero.",
+   "S8": "Respondents with the most belief in disputed claims rated misinformation 6.8 points more plausible (p<0.001) and true or neutral items 6.9 points less plausible (p<0.001). High-trust and high-knowledge sharers were also rated lower by them.",
+   "S9": "High media trust respondents rated misinformation 4.4 points more plausible (p=0.007). They also rated low-belief sharers 4.4 points higher (p=0.009) and high-knowledge sharers 2.6 points lower.",
+   "S10": "Spanish-language respondents rated misinformation 3.7 points more plausible than English-language respondents (p=0.008). Low-trust sharers were rated 9.0 points higher (SE 0.034) and low-knowledge sharers 3.6 points higher. These rest on small cells.",
+   "X1": "This is a post hoc test. Each extra step of trust in the sharer on the 1-5 scale was associated with 1.4 points more sharing (SE 0.004, p<0.001).",
+   "X2": "This is a post hoc test. Each step of trust was associated with 1.3 points higher plausibility (SE 0.004, p<0.001). This conflicts with the registered trust result for plausibility (H12), which was not distinguishable from zero.",
+   "X3": "This is a post hoc test. The close-tie premium on sharing was 2.9 points (SE 0.010, p=0.006), matching the registered estimate.",
+   "X4": "Among profiles chosen to share, misinformation was 5.5 points more likely than true or neutral content to be judged less plausible than the other post (95% CI [3.0, 8.1], p<0.001). For fact-checks the difference was 1.7 points (95% CI [−0.5, 4.0]), not distinguishable from zero.",
+   "X5": "Respondents shared 4.4 points more when the sharer leaned the same way than when opposite (95% CI [0.9, 7.9], p=0.015). Pairs involving a moderate differed by 0.8 points (95% CI [−2.3, 3.9]).",
+   "X6": "Among misinformation profiles, a network with higher perceived belief in disputed claims was associated with more sharing: 0.110 per unit (SE 0.049, p=0.026). This is post hoc.",
+   "X7": "Among partisan respondents, congenial headlines were shared 2.5 points more than uncongenial ones (SE 0.019, p=0.18), not distinguishable from zero.",
+   "X8": "Overall, the sharer's perceived belief in disputed claims was associated with a 0.5-point change in sharing (SE 0.014, p=0.71), not distinguishable from zero. The slope within each information type is reported in the XS8 note.",
+   "X9": "For plausibility, the slope on the sharer's perceived belief in disputed claims was −0.5 points (SE 0.014, p=0.72), not distinguishable from zero overall. The slope within each information type is reported in the XS9 note.",
+   "X10": "For the anti-vaccine headline, plausibility was 16.5 points higher when the sharer was seen as believing the vaccine claim (SE 0.067, p=0.013). It rests on only 266 ratings, so it is thin.",
+   "X11": "Among misinformation profiles, each trust step was associated with 1.9 points more sharing (SE 0.008, p=0.013), pooling health and political headlines.",
+   "X12": "Among misinformation profiles, the close-tie premium was 3.5 points (SE 0.017, p=0.040), pooling health and political headlines.",
+   "X13": "Sharer origin had a slope of 0.2 points on sharing (SE 0.008, p=0.78), not distinguishable from zero overall. Language and nativity splits are in XS13a and XS13b.",
+   "XS1": "Trust slopes on sharing were 1.7 points for fact-checks, 1.9 for misinformation and 0.6 for true or neutral. The interactions with information type were not distinguishable from zero.",
+   "XS2": "Trust slopes on plausibility were 1.8 points for fact-checks and 2.1 for misinformation, and near zero for true or neutral items. The interaction tests were not conclusive (p=0.47 and 0.065).",
+   "XS3": "The close-tie premium was 4.7 points for fact-checks (p=0.005) and 3.5 for misinformation (p=0.040), but 0.9 for true or neutral content (p=0.59). The interaction with true or neutral was borderline (p=0.050).",
+   "XS5": "The congruent-sharer gap by information type ranged from 3.8 to 5.6 points, each with an interval including zero. Interactions between types were not distinguishable from zero.",
+   "XS7": "Congenial misinformation was shared 5.4 points more than uncongenial misinformation (SE 0.022, p=0.012). For fact-checks the gap was −0.2 points. The interaction was 5.6 points (p=0.007).",
+   "XS8": "A sharer seen as believing disputed claims was associated with 8.6 points more sharing of misinformation (p=0.002). Slopes for fact-checks (−4.4) and true or neutral items (−2.2) were not distinguishable from zero. The interaction for misinformation versus fact-checks was 13.1 points (p=0.001).",
+   "XS9": "Perceived belief in disputed claims was associated with 9.5 points higher plausibility of misinformation (p<0.001). The interaction with fact-checks was 14.6 points (p<0.001). Slopes for the other types were negative.",
+   "XS11": "The trust slope on sharing misinformation was 2.5 points for health (p=0.22, n=550) and 1.9 for political headlines (p=0.024). The interaction was not distinguishable from zero.",
+   "XS12": "The close-tie premium on misinformation was 0.7 points for health headlines (p=0.88) and 3.9 for political ones (p=0.031). The interaction was not distinguishable from zero.",
+   "XS13a": "The origin slope on sharing was 0.4 points in English and 0.04 points in Spanish. The interaction of −0.5 points was not distinguishable from zero (SE 0.017).",
+   "XS13b": "The origin slope was 1.3 points among foreign-born respondents and −0.8 among US-born respondents. The interaction was not distinguishable from zero (p=0.27)."
   },
   "exploratory": {
-   "E1": "Dropping the first trial gave a misinformation effect of −17.0 points (SE 1.3), against −18.2 in the registered fit. This unreviewed check agrees with the registered estimate.",
-   "E2": "In this unreviewed check, the misinformation penalty on sharing was −13.0 points in the youngest tertile and −22.0 in the oldest. Fact-check penalties stayed near −13 points in every tertile."
+   "E1": "This unreviewed check dropped trial 1. The misinformation estimate on sharing went from −0.182 to −0.170, and high trust from 0.058 to 0.066. The sample sizes differ from the main models and are unexplained here.",
+   "E2": "This unreviewed check split information type by topic. Misinformation lowered sharing by 0.217 (SE 0.028) for health and 0.176 (SE 0.012) for political headlines. The fact-check effect was −0.028 (SE 0.028) for health versus −0.151 for political, so the pooled fact-check effect reflects political items."
   },
-  "limitations": "Only information type was randomized. Tie strength, sharer origin, ideology, trust, knowledge and belief in disputed claims are respondents' ratings of real contacts, so their effects are descriptive and bundle correlated traits. The design involves many tests across two outcomes, five registered moderators and a long list of subgroup contrasts, none corrected for multiplicity, so results near p=0.03 to 0.05 (for example the moderate-sharer contrast) deserve caution. Some cells are small, such as low-trust sharers and health headlines, and the Spanish-language contrasts rest on them. The outcome is a stated choice between two posts and not real sharing behaviour. The literature available here offered no benchmarks, so the effects are not placed against earlier work. The exploratory results are post hoc."
+  "limitations": "Only the headline type and its assignment to a contact are randomized. Tie strength, origin, ideology, trust, knowledge and belief in disputed claims are the respondent's ratings of real contacts, so they are conditional associations that bundle correlated traits. About 14 registered tests and about 180 subgroup contrasts have no multiplicity correction, so results near the threshold, such as the moderate-sharer finding, are tentative. Non-significant findings are inconclusive rather than evidence of no effect. Several subgroup cells, the low-trust reference cell and the health-headline analyses are small. Standard errors are not clustered by task. The exploratory analyses were specified after seeing the data, and E1 and E2 come from unreviewed code. The sample is a YouGov panel of US adults.",
+  "revision_notes": [
+   "K1: Abstract and takeaway now say fact-checks were shared 13.3 points less overall, driven by political items, with health near zero.",
+   "K2: Reworded to 'associated with'; thin trust reference cell noted in takeaway and H5.",
+   "K3: Moderate-sharer finding removed from abstract; flagged fragile (re-weighted p=0.056) in H4.",
+   "K4: Takeaway now states intervals of roughly ±1.7 to ±2.2 points.",
+   "K5: S3 described as a mirrored reordering, with the count of about 180 uncorrected contrasts; no separate interaction test is available in the tables.",
+   "K6: Abstract now says the information-type pattern replicated but trust did not carry over.",
+   "K7: H1 notes adjustment for measured traits and the E1 estimate; unadjusted and task-clustered fits are not in the tables, so none were added.",
+   "K8: RW note now says most estimates are unchanged, trust-high rose about 1 point, and moderate-sharer lost significance.",
+   "K9: X2 now says 'associated with' and notes conflict with H12.",
+   "G1: Sharer-trait estimates relabelled as conditional associations; causal wording reserved for information type.",
+   "G2: Moderate-sharer finding qualified as fragile and dropped from the abstract.",
+   "G3: Test counts stated in takeaway, abstract and limitations; S3 called a mirrored reordering.",
+   "G4: Design notes explain the paired forced choice and the 118 dropped rows; E1 sample discrepancy flagged as unexplained. A task-clustered fit cannot be added without new results.",
+   "G5: E2 discussed, and the pooled fact-check claim qualified in the abstract, takeaway and H1.",
+   "G6: Fixed the −0.0 value, the conspiracy figure, the XS8 reference, the interval statement, and added interaction wording to XS notes.",
+   "R5: Rounding made consistent, dangling XS8 reference replaced, and interval statements matched to the tables.",
+   "R6: Missingness stated as far as the tables allow (118 dropped; per-attribute breakdown unavailable); re-weighting described accurately.",
+   "R8: E1 and E2 are now discussed in the H1 note, the exploratory notes and the abstract.",
+   "A5: Abstract claim removed; the weight construction for measured traits is described as a sensitivity check, but the exact construction is not in the supplied material.",
+   "A8: Moderate-sharer result removed from the abstract and flagged as fragile in H4.",
+   "R3: Declined; no correction added.",
+   "A3: Declined; test counts reported instead.",
+   "A9: Declined; test count reported and the results treated as tentative."
+  ]
  },
- "extensions": []
+ "extensions": [
+  {
+   "qsf": "extensions/advance_design.qsf",
+   "qsf_errors": [],
+   "media": [
+    "post_ch: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
+    "post_cl: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
+    "post_dh: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
+    "post_dl: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)"
+   ],
+   "id": "advance_design",
+   "kind": "mechanism",
+   "title": "Randomized sharer profiles for trust and closeness",
+   "brief_id": "advance_design",
+   "mode": "survey_experiment",
+   "debate": null,
+   "why": "Fixes the design cause: randomizing trust and tie removes confounding with real contact traits, and an opt-out answers U1.",
+   "power_target": {
+    "n_per_arm": 1500,
+    "mde": 0.03,
+    "basis": "Observed close-tie 0.030 and trust-high 0.057; H2 MDE 0.0258 at n 6709/5256, so about 1,500 per cell clustered detects 0.03."
+   },
+   "rationale": "In the source study, close ties (+3.0 points) and high trust (+5.7 points; low-trust cell n=817) were measured on real contacts and bundle correlated traits. Randomly assigning vignette sharers' closeness and trustworthiness tests whether these associations survive randomization. A 'would not share' option removes the forced-choice link.",
+   "contribution": "Provides randomized estimates of sharer closeness and trustworthiness effects on sharing across true, false and fact-check content.",
+   "addresses": [
+    "U1"
+   ],
+   "validated_by": "autoexperiment",
+   "status": "proposed",
+   "built_at": null,
+   "survey_id": null,
+   "survey_url": null,
+   "hypothesis": "Randomly assigned close and high-trust sharers raise sharing likelihood relative to distant and low-trust sharers (about 3 points), with effects possibly differing by information type.",
+   "primary_outcome": "Sharing likelihood (0-100), with 'would not share' analysed separately as a binary outcome.",
+   "comparison": "Close vs distant; high vs low trust; main effects pooled over information type, with exploratory interactions with information type.",
+   "conditions": [
+    "Close, high trust",
+    "Close, low trust",
+    "Distant, high trust",
+    "Distant, low trust"
+   ],
+   "unresolved": [
+    "Actual post images and the headline pool must be supplied by the research team.",
+    "Compensation, IRB number and panel vendor are to be set by the research team."
+   ],
+   "label": "Design advance",
+   "text": "extensions/advance_design.txt",
+   "svg": "extensions/advance_design.svg"
+  },
+  {
+   "qsf": "extensions/generalizability_conditional.qsf",
+   "qsf_errors": [],
+   "media": [
+    "hpost1: image stimulus to supply (a social media post about a health claim, randomly drawn from the health item ba)",
+    "hpost2: image stimulus to supply (a social media post about a different health claim, randomly drawn from the bank)",
+    "hpost3: image stimulus to supply (a social media post about a third health claim, randomly drawn from the bank in )",
+    "ppost1: image stimulus to supply (a social media post about a political claim, randomly drawn from the political i)",
+    "ppost2: image stimulus to supply (a social media post about a different political claim, randomly drawn from the b)",
+    "ppost3: image stimulus to supply (a social media post about a third political claim, randomly drawn from the bank )"
+   ],
+   "id": "generalizability_conditional",
+   "kind": "boundary",
+   "title": "Fact-check effect by topic",
+   "brief_id": "generalizability_conditional",
+   "mode": "survey_experiment",
+   "debate": null,
+   "why": "Fixes the sample cause: randomizing topic with adequate health items answers U3.",
+   "power_target": {
+    "n_per_arm": 1200,
+    "mde": 0.04,
+    "basis": "E2 health fact-check -0.028 (SE 0.028) versus political -0.151; difference of about 0.12 is detectable, but 0.04 targets a smaller health effect; MDE 0.031 at n~4,000 per arm."
+   },
+   "rationale": "In the source study fact-checks were shared 13.3 points less overall, but E2 shows the health estimate near zero (-0.028, SE 0.028) against about -0.15 for political items, with only about 1,100 health profiles and topic not randomized. Randomizing topic with a balanced item bank tests whether the penalty really differs by topic, and survey language is added because of language differences.",
+   "contribution": "Provides a randomized, adequately powered test of whether the fact-check sharing penalty holds for health as for political claims, in English and Spanish.",
+   "addresses": [
+    "U3"
+   ],
+   "validated_by": "autoexperiment",
+   "status": "proposed",
+   "built_at": null,
+   "survey_id": null,
+   "survey_url": null,
+   "hypothesis": "The fact-check sharing penalty relative to true/neutral posts is smaller for health than for political items. Misinformation is shared less than true content in both topics. Exploratory: the topic difference varies by survey language.",
+   "primary_outcome": "Share choice for each post (share vs. do not share), with an opt-out.",
+   "comparison": "Fact-check versus true/neutral sharing, compared between health and political topic arms; information type varies within respondent.",
+   "conditions": [
+    "Health topic",
+    "Political topic"
+   ],
+   "unresolved": [
+    "The item bank (at least 20 health and 20 political items in true, false and fact-check versions) and Spanish translations must be supplied by the research team.",
+    "Per-post randomization of information type is implemented in the survey platform; the embedded stimulus slots show one draw.",
+    "Panel vendor, compensation and IRB approval number need to be supplied."
+   ],
+   "label": "Generalizability",
+   "text": "extensions/generalizability_conditional.txt",
+   "svg": "extensions/generalizability_conditional.svg"
+  },
+  {
+   "qsf": "extensions/theoretical_debate.qsf",
+   "qsf_errors": [],
+   "media": [
+    "fpost1a: image stimulus to supply (Social post with a true or neutral news headline, pair 1)",
+    "fpost1b: image stimulus to supply (Social post with a false news headline, pair 1)",
+    "fpost2a: image stimulus to supply (Social post with a false news headline, pair 2)",
+    "fpost2b: image stimulus to supply (Social post with a true or neutral news headline, pair 2)",
+    "spost1: image stimulus to supply (Social post with a true or neutral news headline, item 1)",
+    "spost2: image stimulus to supply (Social post with a false news headline, item 2)",
+    "spost3: image stimulus to supply (Social post with a false news headline, item 3)",
+    "spost4: image stimulus to supply (Social post with a true or neutral news headline, item 4)"
+   ],
+   "id": "theoretical_debate",
+   "kind": "alternative",
+   "title": "Absolute versus relative misinformation sharing by belief",
+   "brief_id": "theoretical_debate",
+   "mode": "survey_experiment",
+   "debate": null,
+   "why": "Fixes the measurement cause: single-item rating with an opt-out breaks the forced-choice link and answers U2.",
+   "power_target": {
+    "n_per_arm": 1800,
+    "mde": 0.04,
+    "basis": "S3 differences of 0.055 to 0.056 with SE 0.017; the interaction across formats needs about double the cell size."
+   },
+   "rationale": "In the source study, respondents who believe more disputed claims shifted toward misinformation (+5.6 points) and away from true items (-5.5 points), a mirrored pattern that forced choice makes mechanically linked. Belief in disputed claims had no distinguishable overall effect on sharing (intervals about ±1.7 to 2.2 points). Independent single-headline sharing with a 'share nothing' option tests whether the belief slope for misinformation is absolute.",
+   "contribution": "Separates absolute from relative belief-related misinformation sharing by breaking the forced-choice link between misinformation and true items.",
+   "addresses": [
+    "U2"
+   ],
+   "validated_by": "autoexperiment",
+   "status": "proposed",
+   "built_at": null,
+   "survey_id": null,
+   "survey_url": null,
+   "hypothesis": "In forced choice, belief in disputed claims predicts more misinformation and less true-content choice (mirrored). In single-item format, if the belief slope for misinformation sharing remains positive, the effect is absolute; if it is near zero while the true-content slope is negative or null, it is purely relative.",
+   "primary_outcome": "Share of misinformation headlines shared (single format) or chosen (forced choice), by belief index.",
+   "comparison": "Belief by information-type slope compared across formats (three-way interaction: format x belief x information type).",
+   "conditions": [
+    "Paired forced choice",
+    "Single headline with opt-out"
+   ],
+   "unresolved": [
+    "Actual headline images and the final disputed-claim items must be supplied by the research team.",
+    "IRB approval number and compensation must be supplied by the research team."
+   ],
+   "label": "Theoretical debate",
+   "text": "extensions/theoretical_debate.txt",
+   "svg": "extensions/theoretical_debate.svg"
+  }
+ ],
+ "sections_draft": {
+  "takeaways": [
+   "Misinformation headlines were chosen for sharing 18.2 points less often than true or neutral ones (95% CI [−20.4, −16.0]); fact-checks were also shared less, by 13.3 points.",
+   "Among the measured sharer attributes, high trust in the sharer raised sharing by 5.7 points (95% CI [2.3, 9.1]) and a close tie by 3.0 points (95% CI [1.0, 5.0]).",
+   "Sharer origin, political knowledge and belief in disputed claims were not distinguishable from zero for sharing, with intervals of about ±2 to 4 points.",
+   "Registered subgroup tests show misinformation was shared more by respondents who believe more disputed claims, by 5.6 points (SE 0.017); true or neutral items were shared less by them.",
+   "Only information type is randomized; the sharer attributes are measured contrasts. The many tests are uncorrected, and the exploratory analyses are post hoc."
+  ],
+  "abstract": "We ask how the type of information and the characteristics of the person who shares it affect whether people choose to share a post and whether they judge it plausible. In a registered conjoint experiment with 12,000 YouGov profile ratings in the US, headlines (true or neutral, false, or a fact-check) were randomly attributed to real contacts named by respondents, whose traits were measured. Misinformation was chosen for sharing 18.2 points less often than true or neutral content (95% CI [−20.4, −16.0]), and fact-checks 13.3 points less often. Close ties (+3.0 points) and highly trusted sharers (+5.7 points) raised sharing, while a moderate sharer lowered it by 1.9 points. Sharer origin, knowledge and belief in disputed claims were not distinguishable from zero. Plausibility judgments followed a similar pattern. Sharer traits are measured rather than randomized, so these are descriptive contrasts, and many tests were uncorrected.",
+  "design_notes": "The study was registered (AsPredicted #132,508). All 12,000 profile ratings were analysed, with small losses from missing values in some models (for example 3,854 eligible misinformation profiles, 3,822 used). The control level, true or neutral headlines, had about 4,100 profiles. Only the information type of the headline and its assignment to a contact are randomized. The six sharer traits are the respondent's own ratings of real contacts, so their effects are descriptive contrasts that bundle correlated attributes. Standard errors are clustered by respondent.",
+  "results": {
+   "H1": "Misinformation was shared 18.2 points less often than true or neutral headlines (95% CI [−20.4, −16.0], two-sided p<0.001). Fact-checks were shared 13.3 points less often (95% CI [−15.6, −11.1], p<0.001). Information type is the randomized feature, so these are causal estimates.",
+   "H2": "Close ties were chosen for sharing 3.0 points more often than distant ties (95% CI [1.0, 5.0], two-sided p=0.003). This is a measured contrast, not a randomized one.",
+   "H3": "Continental US sharers were shared 0.2 points more often than foreign-origin sharers (95% CI [−1.4, 1.8], p=0.81). This is not distinguishable from zero and rules out only large effects.",
+   "H4": "Moderate sharers were shared 1.9 points less often than liberal sharers (95% CI [−3.7, −0.1], p=0.034), a result near the threshold. Conservative sharers differed by −0.7 points (95% CI [−2.8, 1.5]), not distinguishable from zero.",
+   "H5": "High-trust sharers were shared 5.7 points more often than low-trust ones (95% CI [2.3, 9.1], p<0.001). Mid trust was 3.6 points higher (95% CI [−0.1, 7.3], p=0.056), not clearly separable from zero.",
+   "H6": "Mid and high political knowledge differed from low knowledge by −0.0 and +1.7 points. The high-knowledge interval ran from −0.5 to 3.9 points, so neither level was distinguishable from zero.",
+   "H7": "Sharers with high belief in disputed claims were shared 0.2 points less often than those with low belief (95% CI [−1.9, 1.6], p=0.87). This is not distinguishable from zero.",
+   "H8": "Misinformation was judged 18.6 points less plausible than true or neutral headlines (95% CI [−20.8, −16.4], p<0.001). Fact-checks were 12.4 points lower (95% CI [−14.7, −10.2], p<0.001).",
+   "H9": "Close ties raised plausibility by 2.8 points (95% CI [0.7, 4.8], two-sided p=0.008). This is a measured contrast.",
+   "H10": "Continental US origin changed plausibility by −0.3 points (95% CI [−1.9, 1.4], p=0.75), not distinguishable from zero.",
+   "H11": "Moderate sharers were rated 2.1 points less plausible than liberal sharers (95% CI [−4.0, −0.3], p=0.026), near the threshold. Conservative sharers were −1.9 points (95% CI [−4.1, 0.3]), not distinguishable from zero.",
+   "H12": "Trust in the sharer was not distinguishable from zero for plausibility. High trust was +2.5 points (95% CI [−0.7, 5.8]) and mid trust −0.6 points (95% CI [−4.2, 3.0]).",
+   "H13": "Sharer knowledge was not distinguishable from zero for plausibility. High knowledge was +1.7 points (95% CI [−0.4, 3.8]) and mid knowledge −0.1 points.",
+   "H14": "Belief in disputed claims by the sharer was not distinguishable from zero for plausibility, at −0.03 points (95% CI [−1.8, 1.8]).",
+   "RW": "Re-weighting each sharer attribute by its inverse assignment probability gave estimates very close to the unweighted ones. Close ties still raised sharing by 3.0 points (95% CI [1.0, 5.0]) and high trust by 6.7 points (95% CI [3.3, 10.1]). The moderate-sharer effect on sharing weakened to −1.7 points (p=0.056), while on plausibility it stayed at −2.1 points (p=0.030). Other estimates remained indistinguishable from zero.",
+   "S1": "The age gap appeared mainly for misinformation: the oldest tertile shared it 6.1 points less than the youngest (SE 0.016, p<0.001). Other levels differed by under 3 points and were not distinguishable from zero.",
+   "S2": "Among conservative-leaning respondents, true or neutral headlines were shared 5.6 points less than among liberal-leaning ones (p=0.002). Continental US sharers (−1.6 points) and liberal sharers (−4.8 points) also differed. Many subgroup tests were run, so treat these cautiously.",
+   "S3": "Respondents with the highest belief in disputed claims shared misinformation 5.6 points more (p<0.001) and true or neutral items 5.5 points less (p<0.001). Several sharer levels also differed by 1 to 3 points.",
+   "S4": "Respondents with high media trust shared misinformation 4.8 points more than those with low media trust (p=0.003). Low-belief sharers were shared 3.5 points more by them (p=0.03). Other differences were small.",
+   "S5": "Spanish-language respondents shared misinformation 3.6 points more than English-language ones (p=0.010). Differences for low-trust and low-knowledge sharers were also distinguishable from zero. Most other contrasts were not.",
+   "S6": "The oldest tertile judged misinformation 4.0 points less plausible than the youngest (p=0.013). Liberal sharers were rated 3.7 points more plausible by them (p=0.020). Other differences were not distinguishable from zero.",
+   "S7": "Conservative-leaning respondents rated true or neutral headlines 4.9 points less plausible than liberal-leaning respondents did (p=0.006). Continental US sharers were rated 1.5 points lower (p=0.009). Other contrasts were not distinguishable from zero.",
+   "S8": "Respondents with the most belief in disputed claims rated misinformation 6.8 points more plausible (p<0.001) and true or neutral items 6.9 points less plausible (p<0.001). High-trust and high-knowledge sharers were also rated lower by them.",
+   "S9": "High media trust respondents rated misinformation 4.4 points more plausible (p=0.007). They also rated low-belief sharers 4.4 points higher (p=0.009) and high-knowledge sharers 2.6 points lower.",
+   "S10": "Spanish-language respondents rated misinformation 3.7 points more plausible than English-language respondents (p=0.008). Low-trust sharers were rated 9.0 points higher (SE 0.034) and low-knowledge sharers 3.6 points higher. These rest on small cells.",
+   "X1": "This is a post hoc test. Each extra step of trust in the sharer on the 1-5 scale was associated with 1.4 points more sharing (SE 0.004, p<0.001).",
+   "X2": "This is a post hoc test. Each step of trust raised plausibility by 1.3 points (SE 0.004, p<0.001).",
+   "X3": "This is a post hoc test. The close-tie premium on sharing was 2.9 points (SE 0.010, p=0.006), matching the registered estimate.",
+   "X4": "Among profiles chosen to share, misinformation was 5.5 points more likely than true or neutral content to be judged less plausible than the other post (95% CI [3.0, 8.1], p<0.001). For fact-checks the difference was 1.7 points (95% CI [−0.5, 4.0]), not distinguishable from zero.",
+   "X5": "Respondents shared 4.4 points more when the sharer leaned the same way than when opposite (95% CI [0.9, 7.9], p=0.015). Pairs involving a moderate differed by 0.8 points (95% CI [−2.3, 3.9]).",
+   "X6": "Among misinformation profiles, a network with higher perceived belief in disputed claims was associated with more sharing: 0.110 per unit (SE 0.049, p=0.026). This is post hoc.",
+   "X7": "Among partisan respondents, congenial headlines were shared 2.5 points more than uncongenial ones (SE 0.019, p=0.18), not distinguishable from zero.",
+   "X8": "Overall, the sharer's perceived belief in disputed claims was associated with a 0.5-point change in sharing (SE 0.014, p=0.71), not distinguishable from zero. It differed by information type (see XS8).",
+   "X9": "For plausibility, the slope on the sharer's perceived belief in disputed claims was −0.5 points (SE 0.014, p=0.72), not distinguishable from zero overall.",
+   "X10": "For the anti-vaccine headline, plausibility was 16.5 points higher when the sharer was seen as believing the vaccine claim (SE 0.067, p=0.013). It rests on only 266 ratings, so it is thin.",
+   "X11": "Among misinformation profiles, each trust step raised sharing by 1.9 points (SE 0.008, p=0.013), pooling health and political headlines.",
+   "X12": "Among misinformation profiles, the close-tie premium was 3.5 points (SE 0.017, p=0.040), pooling health and political headlines.",
+   "X13": "Sharer origin had a slope of 0.2 points on sharing (SE 0.008, p=0.78), not distinguishable from zero across language and nativity.",
+   "XS1": "Trust slopes on sharing were 1.7 points for fact-checks, 1.9 for misinformation and 0.6 for true or neutral. The differences between types were not distinguishable from zero.",
+   "XS2": "Trust slopes on plausibility were 1.8 points for fact-checks and 2.1 for misinformation, and near zero for true or neutral items. The interaction tests were not conclusive (p=0.47 and 0.065).",
+   "XS3": "The close-tie premium was 4.7 points for fact-checks (p=0.005) and 3.5 for misinformation (p=0.040), but 0.9 for true or neutral content (p=0.59). The difference from fact-checks was borderline (p=0.050).",
+   "XS5": "The congruent-sharer gap by information type ranged from 3.8 to 5.6 points, each with an interval including zero. Interactions between types were not distinguishable from zero.",
+   "XS7": "Congenial misinformation was shared 5.4 points more than uncongenial misinformation (SE 0.022, p=0.012). For fact-checks the gap was −0.2 points. The difference between them was 5.6 points (p=0.007).",
+   "XS8": "A sharer seen as believing disputed claims was associated with 8.6 points more sharing of misinformation (p=0.002). Slopes for fact-checks (−4.4) and true or neutral items (−2.2) were not distinguishable from zero.",
+   "XS9": "Perceived belief in disputed claims raised plausibility of misinformation by 9.5 points (p<0.001). The interaction with fact-checks was 14.6 points (p<0.001). Slopes for the other types were negative.",
+   "XS11": "The trust slope on sharing misinformation was 2.5 points for health (p=0.22, n=550) and 1.9 for political headlines (p=0.024). The difference was not distinguishable from zero.",
+   "XS12": "The close-tie premium on misinformation was 0.7 points for health headlines (p=0.88) and 3.9 for political ones (p=0.031). The difference was not distinguishable from zero.",
+   "XS13a": "The origin slope on sharing was 0.4 points in English and 0.04 points in Spanish. The difference of −0.5 points was not distinguishable from zero (SE 0.017).",
+   "XS13b": "The origin slope was 1.3 points among foreign-born respondents and −0.8 among US-born respondents. The difference was not distinguishable from zero (p=0.27)."
+  },
+  "exploratory": {
+   "E1": "This unreviewed check dropped trial 1. The misinformation estimate on sharing went from −0.182 to −0.170, and high trust from 0.058 to 0.066. Both are consistent with the registered results.",
+   "E2": "This unreviewed check split information type by topic. Misinformation lowered sharing by 0.217 (SE 0.028) for health and 0.176 (SE 0.012) for political headlines. Fact-checks were shared less on political topics only."
+  },
+  "limitations": "Only the headline type and its assignment to a contact are randomized. Tie strength, origin, ideology, trust, knowledge and belief in disputed claims are the respondent's ratings of real contacts, so their effects bundle correlated traits and cannot be read causally. The registered plan has dozens of tests with no multiplicity correction, so effects near the threshold, such as the moderate-sharer results, deserve caution. Non-significant findings are inconclusive rather than evidence of no effect. Several subgroup cells and the health-headline analyses are small. The exploratory analyses were specified after seeing the data, and E1 and E2 come from unreviewed code. The sample is a YouGov panel of US adults and may not generalize."
+ },
+ "potential": {
+  "got_right": [
+   "Information type is randomized and registered: misinformation -18.2 points (CI [-20.4,-16.0]) and fact-check -13.3 points, with the plausibility replication (-18.6, -12.4) agreeing. The result is robust to dropping trial 1 (-0.170).",
+   "Anchoring headlines to real contacts named by respondents gives an ecologically realistic ego-network stimulus, and the report openly labels the sharer traits as measured rather than randomized.",
+   "Re-weighting and drop-trial sensitivity checks were reported, and the report discloses its uncorrected test count (about 14 registered tests plus about 180 subgroup contrasts).",
+   "The topic split (E2) surfaced a useful heterogeneity: the fact-check effect is -0.151 for political items but -0.028 (SE 0.028) for health items."
+  ],
+  "why_it_did_not_land": [
+   {
+    "cause": "design",
+    "detail": "Trust and tie strength, the substantive sharer findings, are respondent ratings of real contacts, so they are confounded with unmeasured contact traits. Only information type was randomized.",
+    "evidence": "H5 high trust +5.7 points and H2 close tie +3.0 points are labelled 'measured contrast'. U1 is unresolved."
+   },
+   {
+    "cause": "power",
+    "detail": "The low-trust reference cell is thin, so the trust contrasts are imprecise and the MDE exceeds the mid-trust estimate. The null results are uninformative for effects below roughly 3 points.",
+    "evidence": "Trust: low n=828, MDE 0.051 to 0.056, against mid-trust estimate 0.036 (p=0.056). MDEs for H3, H4 and H7 are 0.029 to 0.032, and these MDEs ignore clustering."
+   },
+   {
+    "cause": "measurement",
+    "detail": "A paired forced choice mechanically links misinformation and true-content sharing, so the belief-in-disputed-claims result cannot show an absolute increase. There is no opt-out and no behavioural sharing outcome.",
+    "evidence": "S3: misinformation +5.6 points and true/neutral -5.5 points (mirrored). U2 is unresolved."
+   },
+   {
+    "cause": "sample",
+    "detail": "Health items are few and topic was not randomized, so the pooled fact-check claim hides a topic difference.",
+    "evidence": "E2: Health n=1,110, fact-check -0.028 (SE 0.028) versus Political -0.151; pooled -0.133. U3 is unresolved."
+   },
+   {
+    "cause": "analysis",
+    "detail": "Many uncorrected subgroup contrasts and fragile single-test findings leave the heterogeneity results tentative.",
+    "evidence": "About 180 uncorrected contrasts; H4 moderate sharer p=0.034 becomes p=0.056 re-weighted; standard errors clustered by respondent, not task."
+   }
+  ],
+  "debates": [],
+  "briefs": [
+   {
+    "id": "advance_design",
+    "kind_legacy": "mechanism",
+    "mode": "survey_experiment",
+    "title": "Randomized sharer profiles for trust and closeness",
+    "question": "Does a randomly assigned sharer's trustworthiness or closeness change willingness to share a headline?",
+    "why_this_fixes_the_failure": "Fixes the design cause: randomizing trust and tie removes confounding with real contact traits, and an opt-out answers U1.",
+    "debate": null,
+    "addresses": [
+     "U1"
+    ],
+    "design_sketch": "Respondents see single posts, each attributed to a vignette sharer whose relationship (close or distant) and described trustworthiness (low, mid, high) are randomized in a factorial design crossed with information type (true, misinformation, fact-check). The outcome is a 0-100 sharing likelihood plus a 'would not share' option. Quota-sampled US adults answer 8 tasks each, and standard errors are clustered by respondent and task. A subsample also gives a behavioural share-to-feed click.",
+    "moderator_or_condition": null,
+    "power_target": {
+     "n_per_arm": 1500,
+     "mde": 0.03,
+     "basis": "Observed close-tie 0.030 and trust-high 0.057; H2 MDE 0.0258 at n 6709/5256, so about 1,500 per cell clustered detects 0.03."
+    },
+    "needs_qsf": true
+   },
+   {
+    "id": "theoretical_debate",
+    "kind_legacy": "alternative",
+    "mode": "survey_experiment",
+    "title": "Absolute versus relative misinformation sharing by belief",
+    "question": "Do respondents who believe more disputed claims share more misinformation in absolute terms, or only relatively against true content?",
+    "why_this_fixes_the_failure": "Fixes the measurement cause: single-item rating with an opt-out breaks the forced-choice link and answers U2.",
+    "debate": null,
+    "addresses": [
+     "U2"
+    ],
+    "design_sketch": "Randomize format between paired forced choice (replication) and independent single-headline sharing with a 'share nothing' option. Information type is randomized within respondent, and belief in disputed claims is measured pre-treatment. Compare the belief by information-type slope across formats. If the slope for misinformation survives in single-item format, the effect is absolute.",
+    "moderator_or_condition": null,
+    "power_target": {
+     "n_per_arm": 1800,
+     "mde": 0.04,
+     "basis": "S3 differences of 0.055 to 0.056 with SE 0.017; the interaction across formats needs about double the cell size."
+    },
+    "needs_qsf": true
+   },
+   {
+    "id": "generalizability_conditional",
+    "kind_legacy": "boundary",
+    "mode": "survey_experiment",
+    "title": "Fact-check effect by topic",
+    "question": "Does the fact-check sharing penalty hold for health claims as it does for political claims?",
+    "why_this_fixes_the_failure": "Fixes the sample cause: randomizing topic with adequate health items answers U3.",
+    "debate": null,
+    "addresses": [
+     "U3"
+    ],
+    "design_sketch": "Cross information type (true, misinformation, fact-check) with randomized topic (health, political) over a balanced item bank of at least 20 items per topic. Outcome is sharing choice with an opt-out. Sample US adults with oversampled Spanish-language respondents, given the S5 language differences.",
+    "moderator_or_condition": "Topic (health versus political), and survey language as a secondary condition",
+    "power_target": {
+     "n_per_arm": 1200,
+     "mde": 0.04,
+     "basis": "E2 health fact-check -0.028 (SE 0.028) versus political -0.151; difference of about 0.12 is detectable, but 0.04 targets a smaller health effect; MDE 0.031 at n~4,000 per arm."
+    },
+    "needs_qsf": true
+   }
+  ],
+  "verdict": "No genuine debate is visible in the retrieved works, which are off-topic (COVID, AI, behavioural policy), so the debates list is empty and the theoretical-debate brief is built on the editor's open question U2 rather than the literature. A follow-up is worth running because the one robust result, the information-type penalty, is already settled, while the interesting claims about trust, closeness and belief-driven sharing rest on measured traits or a forced-choice artefact. Run the randomized-sharer brief first: it resolves U1, the largest threat to the study's contribution, and it is cheap to field within a single wave. The format and topic experiments can follow..",
+  "model": "anthropic/claude-sonnet-5.5"
+ }
 }

@@ -1,0 +1,100 @@
+{
+ "got_right": [
+  "Information type is randomized and registered: misinformation -18.2 points (CI [-20.4,-16.0]) and fact-check -13.3 points, with the plausibility replication (-18.6, -12.4) agreeing. The result is robust to dropping trial 1 (-0.170).",
+  "Anchoring headlines to real contacts named by respondents gives an ecologically realistic ego-network stimulus, and the report openly labels the sharer traits as measured rather than randomized.",
+  "Re-weighting and drop-trial sensitivity checks were reported, and the report discloses its uncorrected test count (about 14 registered tests plus about 180 subgroup contrasts).",
+  "The topic split (E2) surfaced a useful heterogeneity: the fact-check effect is -0.151 for political items but -0.028 (SE 0.028) for health items."
+ ],
+ "why_it_did_not_land": [
+  {
+   "cause": "design",
+   "detail": "Trust and tie strength, the substantive sharer findings, are respondent ratings of real contacts, so they are confounded with unmeasured contact traits. Only information type was randomized.",
+   "evidence": "H5 high trust +5.7 points and H2 close tie +3.0 points are labelled 'measured contrast'. U1 is unresolved."
+  },
+  {
+   "cause": "power",
+   "detail": "The low-trust reference cell is thin, so the trust contrasts are imprecise and the MDE exceeds the mid-trust estimate. The null results are uninformative for effects below roughly 3 points.",
+   "evidence": "Trust: low n=828, MDE 0.051 to 0.056, against mid-trust estimate 0.036 (p=0.056). MDEs for H3, H4 and H7 are 0.029 to 0.032, and these MDEs ignore clustering."
+  },
+  {
+   "cause": "measurement",
+   "detail": "A paired forced choice mechanically links misinformation and true-content sharing, so the belief-in-disputed-claims result cannot show an absolute increase. There is no opt-out and no behavioural sharing outcome.",
+   "evidence": "S3: misinformation +5.6 points and true/neutral -5.5 points (mirrored). U2 is unresolved."
+  },
+  {
+   "cause": "sample",
+   "detail": "Health items are few and topic was not randomized, so the pooled fact-check claim hides a topic difference.",
+   "evidence": "E2: Health n=1,110, fact-check -0.028 (SE 0.028) versus Political -0.151; pooled -0.133. U3 is unresolved."
+  },
+  {
+   "cause": "analysis",
+   "detail": "Many uncorrected subgroup contrasts and fragile single-test findings leave the heterogeneity results tentative.",
+   "evidence": "About 180 uncorrected contrasts; H4 moderate sharer p=0.034 becomes p=0.056 re-weighted; standard errors clustered by respondent, not task."
+  }
+ ],
+ "debates": [],
+ "briefs": [
+  {
+   "id": "advance_design",
+   "kind_legacy": "mechanism",
+   "mode": "survey_experiment",
+   "title": "Randomized sharer profiles for trust and closeness",
+   "question": "Does a randomly assigned sharer's trustworthiness or closeness change willingness to share a headline?",
+   "why_this_fixes_the_failure": "Fixes the design cause: randomizing trust and tie removes confounding with real contact traits, and an opt-out answers U1.",
+   "debate": null,
+   "addresses": [
+    "U1"
+   ],
+   "design_sketch": "Respondents see single posts, each attributed to a vignette sharer whose relationship (close or distant) and described trustworthiness (low, mid, high) are randomized in a factorial design crossed with information type (true, misinformation, fact-check). The outcome is a 0-100 sharing likelihood plus a 'would not share' option. Quota-sampled US adults answer 8 tasks each, and standard errors are clustered by respondent and task. A subsample also gives a behavioural share-to-feed click.",
+   "moderator_or_condition": null,
+   "power_target": {
+    "n_per_arm": 1500,
+    "mde": 0.03,
+    "basis": "Observed close-tie 0.030 and trust-high 0.057; H2 MDE 0.0258 at n 6709/5256, so about 1,500 per cell clustered detects 0.03."
+   },
+   "needs_qsf": true
+  },
+  {
+   "id": "theoretical_debate",
+   "kind_legacy": "alternative",
+   "mode": "survey_experiment",
+   "title": "Absolute versus relative misinformation sharing by belief",
+   "question": "Do respondents who believe more disputed claims share more misinformation in absolute terms, or only relatively against true content?",
+   "why_this_fixes_the_failure": "Fixes the measurement cause: single-item rating with an opt-out breaks the forced-choice link and answers U2.",
+   "debate": null,
+   "addresses": [
+    "U2"
+   ],
+   "design_sketch": "Randomize format between paired forced choice (replication) and independent single-headline sharing with a 'share nothing' option. Information type is randomized within respondent, and belief in disputed claims is measured pre-treatment. Compare the belief by information-type slope across formats. If the slope for misinformation survives in single-item format, the effect is absolute.",
+   "moderator_or_condition": null,
+   "power_target": {
+    "n_per_arm": 1800,
+    "mde": 0.04,
+    "basis": "S3 differences of 0.055 to 0.056 with SE 0.017; the interaction across formats needs about double the cell size."
+   },
+   "needs_qsf": true
+  },
+  {
+   "id": "generalizability_conditional",
+   "kind_legacy": "boundary",
+   "mode": "survey_experiment",
+   "title": "Fact-check effect by topic",
+   "question": "Does the fact-check sharing penalty hold for health claims as it does for political claims?",
+   "why_this_fixes_the_failure": "Fixes the sample cause: randomizing topic with adequate health items answers U3.",
+   "debate": null,
+   "addresses": [
+    "U3"
+   ],
+   "design_sketch": "Cross information type (true, misinformation, fact-check) with randomized topic (health, political) over a balanced item bank of at least 20 items per topic. Outcome is sharing choice with an opt-out. Sample US adults with oversampled Spanish-language respondents, given the S5 language differences.",
+   "moderator_or_condition": "Topic (health versus political), and survey language as a secondary condition",
+   "power_target": {
+    "n_per_arm": 1200,
+    "mde": 0.04,
+    "basis": "E2 health fact-check -0.028 (SE 0.028) versus political -0.151; difference of about 0.12 is detectable, but 0.04 targets a smaller health effect; MDE 0.031 at n~4,000 per arm."
+   },
+   "needs_qsf": true
+  }
+ ],
+ "verdict": "No genuine debate is visible in the retrieved works, which are off-topic (COVID, AI, behavioural policy), so the debates list is empty and the theoretical-debate brief is built on the editor's open question U2 rather than the literature. A follow-up is worth running because the one robust result, the information-type penalty, is already settled, while the interesting claims about trust, closeness and belief-driven sharing rest on measured traits or a forced-choice artefact. Run the randomized-sharer brief first: it resolves U1, the largest threat to the study's contribution, and it is cheap to field within a single wave. The format and topic experiments can follow..",
+ "model": "anthropic/claude-sonnet-5.5"
+}
