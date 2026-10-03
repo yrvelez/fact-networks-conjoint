@@ -14,99 +14,102 @@
   "n_raw": 12000,
   "n_analysis": 12000
  },
- "pap_source": "papreader agent",
+ "pap_source": "author-supplied pap.json",
  "data_columns": [
   "row_id",
   "resp_id",
   "trial",
   "profile",
   "headline_theme",
+  "chosen_share",
+  "chosen_belief",
   "infotype",
-  "close_tie",
-  "sharer_native_us",
+  "tie",
+  "sharer_origin",
   "sharer_ideology",
   "sharer_trust",
   "sharer_knowledge",
-  "sharer_disputed",
-  "chosen_share",
-  "chosen_belief",
-  "weight",
+  "sharer_conspiracy",
+  "close_num",
+  "origin_num",
+  "trust_raw",
+  "knowledge_raw",
+  "conspiracy_raw",
+  "ipw_tie",
+  "ipw_origin",
+  "ipw_ideology",
+  "ipw_trust",
+  "ipw_knowledge",
+  "ipw_conspiracy",
   "survey_language",
   "age",
   "ideo5_self",
   "disputed_self",
-  "media_trust"
+  "media_trust",
+  "resp_nativity",
+  "weight",
+  "age_t",
+  "ideo_self_t",
+  "disp_self_t",
+  "media_t",
+  "share_not_believe",
+  "src_congruence",
+  "msg_slant",
+  "msg_congenial",
+  "topic_type",
+  "src_covid",
+  "net_consp",
+  "net_ideo_sd",
+  "net_trust",
+  "w_resp_misinfo"
  ],
  "categorical": [
   "trial",
   "profile",
-  "close_tie",
-  "sharer_native_us",
+  "chosen_share",
+  "chosen_belief",
+  "tie",
+  "sharer_origin",
   "sharer_ideology",
   "sharer_trust",
   "sharer_knowledge",
-  "chosen_share",
-  "chosen_belief",
+  "sharer_conspiracy",
   "survey_language",
-  "ideo5_self"
+  "resp_nativity",
+  "age_t",
+  "ideo_self_t",
+  "disp_self_t",
+  "media_t",
+  "share_not_believe",
+  "src_congruence",
+  "msg_slant",
+  "msg_congenial",
+  "topic_type",
+  "src_covid"
  ],
  "exploratory": [
   {
    "id": "E1",
-   "title": "Heterogeneity by respondent ideology",
-   "rationale": "Tests whether the negative effect of misinformation/fact-check on sharing is stronger among conservative respondents, who may be more receptive to partisan misinformation.",
-   "method": "IPW-weighted OLS (HC2) with arm_code × is_conservative interaction, same covariates as registered H1 model, restricted to respondents with non-missing ideo5_self (n=9,910).",
-   "table": "results/E1_ideology_heterogeneity.csv",
-   "figure": "figures/E1_ideology_heterogeneity.png",
-   "finding": "The negative effect of both misinformation and fact-check on sharing is significantly weaker among conservative respondents (interaction: Misinfo +0.104, p=0.001; Fact-check +0.112, p<0.001), meaning conservatives are less deterred from sharing by either information type."
+   "title": "H1 without trial 1",
+   "rationale": "Checks whether the information-type effect on sharing depends on the first, possibly less attentive, trial.",
+   "method": "Re-fit the registered H1 specification (OLS, cluster by respondent, same covariates) on trials 2-4, one arm against True/neutral at a time.",
+   "table": "results/E1_h1_drop_trial1.csv",
+   "figure": null,
+   "finding": "The misinformation effect is -0.170 (SE 0.013) without trial 1, against -0.182 (SE 0.011) in the registered fit, so the result holds."
   },
   {
    "id": "E2",
-   "title": "Treatment effect stability across conjoint trials",
-   "rationale": "Verifies that the treatment effect is stable across the four conjoint trials, ruling out order effects or respondent fatigue as alternative explanations for the registered estimates.",
-   "method": "Re-fit the registered H1 model (arm_code Treatment coding, IPW, HC2, same covariates) separately on each of the four trials (n≈2,972 per trial).",
-   "table": "results/E2_trial_consistency.csv",
-   "figure": "figures/E2_trial_consistency.png",
-   "finding": "The misinformation effect declines modestly from −0.200 in trial 1 to −0.140 in trial 4, suggesting a mild fatigue/order effect, but the effect remains large and significant in every trial."
-  },
-  {
-   "id": "E3",
-   "title": "Treatment effect by headline theme",
-   "rationale": "Tests whether the negative effect is concentrated in specific topic areas, which would suggest the result is content-dependent rather than a general response to information type.",
-   "method": "Re-fit the registered H1 model separately for each of 15 headline themes (n≥100 per theme), extracting arm-specific estimates.",
-   "table": "results/E3_theme_heterogeneity.csv",
-   "figure": null,
-   "finding": "The misinformation effect varies substantially by theme (range −0.325 to +0.152), with some topics showing a positive effect, indicating the overall negative result is driven by a subset of themes rather than being uniform across content."
+   "title": "Misinformation effect by age tertile",
+   "rationale": "Age is a demographic the PAP did not register, and it may change how much people penalise false content.",
+   "method": "Re-fit the registered H1 specification within each age tertile.",
+   "table": "results/E2_h1_by_age.csv",
+   "figure": "figures/E2_age.png",
+   "finding": "The misinformation penalty on sharing is -0.130 in the youngest tertile and -0.220 in the oldest, so older respondents share it less."
   }
  ],
  "lit": {
-  "text": "The retrieved literature offers only limited direct coverage of the study's hypotheses. Lazer et al. (2018) frame fake news as a multidisciplinary problem, noting that the type and source of information shape how audiences evaluate its credibility, which is broadly consistent with H1 and H2. Gigerenzer and Gaissmaier (2010) describe heuristics as efficient processes that ignore part of the available information, providing a mechanism by which information type could influence plausibility judgments (H2). Beyond these, the remaining works address topics (tourism climate, energy acceptance, immigration prejudice, brand psychology, etc.) that do not speak directly to information-type effects on sharing or plausibility.",
+  "text": "The retrieved list is thin and mostly off-topic for these hypotheses. It contains no experimental or survey findings on how information type, tie strength, sharer trust, ideology, knowledge or conspiracy belief affect sharing or perceived plausibility of misinformation, so it cannot support or contextualize H1-H14, the reweighted robustness checks R1-R12, or the exploratory analyses X1-X13. The only directly relevant item is a general review of fake news, disinformation and misinformation on social media [citation removed: not in retrieved set], whose snippet gives no specific findings. A review of prejudice toward immigrants (Esses, 2020) is only loosely related to the sharer-origin hypotheses (H3, H10, X13). Its snippet reports no findings on how sharer origin affects information sharing or credibility, so I draw no conclusions from it.",
   "works": [
-   {
-    "id": "https://openalex.org/W1993022101",
-    "title": "Weather and Climate Information for Tourism",
-    "authors": [
-     "Daniel J. Scott",
-     "Christopher James Lemieux"
-    ],
-    "year": 2010,
-    "doi": "10.1016/j.proenv.2010.09.011",
-    "venue": "Procedia Environmental Sciences",
-    "cited_by": 376,
-    "abstract": "The tourism sector is one of the largest and fastest growing global industries and is a significant contributor to national and local economies around the world. The interface between climate and tourism is multifaceted and complex, as climate represents both a vital resource to be exploited and an important limiting factor that poses risks to be managed by the tourism industry and tourists alike."
-   },
-   {
-    "id": "https://openalex.org/W2885257680",
-    "title": "Social acceptance revisited: gaps, questionable trends, and an auspicious perspective",
-    "authors": [
-     "Maarten Wolsink"
-    ],
-    "year": 2018,
-    "doi": "10.1016/j.erss.2018.07.034",
-    "venue": "Energy Research & Social Science",
-    "cited_by": 304,
-    "abstract": "Recently the field of social acceptance research on energy was mapped by Gaede and Rowlands [1]. Some of their observations are worrying and need reflection. Two essential pivot points have not been recognized, and observed trends in current research practice that must be assessed as highly undesirable are associated with these unnoticed issues. Missing in the analysis is the start of social accep"
-   },
    {
     "id": "https://openalex.org/W3085542870",
     "title": "Prejudice and Discrimination Toward Immigrants",
@@ -120,47 +123,33 @@
     "abstract": "Prejudice and discrimination toward immigrants, and the consequences of these negative attitudes and behavior, are key determinants of the economic, sociocultural, and civic-political future of receiving societies and of the individuals who seek to make these societies their new home. In this article I review and organize the existing literature on the determinants and nature of prejudice and disc"
    },
    {
-    "id": "https://openalex.org/W3016902371",
-    "title": "Using social and behavioural science to support COVID-19 pandemic response",
+    "id": "https://openalex.org/W2894294331",
+    "title": "A Task-Based Taxonomy of Cognitive Biases for Information Visualization",
     "authors": [
-     "Jay Joseph Van Bavel",
-     "Katherine Baicker",
-     "Paulo S. Boggio",
-     "Valerio Capraro"
-    ],
-    "year": 2020,
-    "doi": "10.1038/s41562-020-0884-z",
-    "venue": "Nature Human Behaviour",
-    "cited_by": 5218,
-    "abstract": ""
-   },
-   {
-    "id": "https://openalex.org/W2791544114",
-    "title": "The science of fake news",
-    "authors": [
-     "David M. J. Lazer",
-     "Matthew Baum",
-     "Yochai Roberts Benkler",
-     "Adam J. Berinsky"
+     "Evanthia Dimara",
+     "Steven Franconeri",
+     "Catherine Plaisant",
+     "Anastasia Bezerianos"
     ],
     "year": 2018,
-    "doi": "10.1126/science.aao2998",
-    "venue": "Science",
-    "cited_by": 3998,
-    "abstract": "Addressing fake news requires a multidisciplinary effort"
+    "doi": "10.1109/tvcg.2018.2872577",
+    "venue": "IEEE Transactions on Visualization and Computer Graphics",
+    "cited_by": 161,
+    "abstract": "Information visualization designers strive to design data displays that allow for efficient exploration, analysis, and communication of patterns in data, leading to informed decisions. Unfortunately, human judgment and decision making are imperfect and often plagued by cognitive biases. There is limited empirical research documenting how these biases affect visual data analysis activities. Existin"
    },
    {
-    "id": "https://openalex.org/W2112957339",
-    "title": "Confronting the Challenges of Participatory Culture: Media Education for the 21st Century",
+    "id": "https://openalex.org/W3123615408",
+    "title": "Designing Information Provision Experiments",
     "authors": [
-     "Henry Jenkins",
-     "Ravi Purushotma"
+     "Ingar Haaland",
+     "Christopher Roth",
+     "Johannes Wohlfart"
     ],
-    "year": 2006,
-    "doi": "",
-    "venue": "BiblioBoard Library Catalog (Open Research Library)",
-    "cited_by": 3184,
-    "abstract": "Henry Jenkins, Director of the Comparative Media Studies Program at the Massachusetts Institute of Technology authored this white paper, exploring new frameworks and models for media literacy."
+    "year": 2020,
+    "doi": "10.2139/ssrn.3638879",
+    "venue": "SSRN Electronic Journal",
+    "cited_by": 74,
+    "abstract": ""
    },
    {
     "id": "https://openalex.org/W3092131469",
@@ -175,6 +164,19 @@
     "venue": "Annual Review of Psychology",
     "cited_by": 219,
     "abstract": "Psychology has traditionally seen itself as the science of universal human cognition, but it has only recently begun seriously grappling with cross-cultural variation. Here we argue that the roots of cross-cultural variation often lie in the past. Therefore, to understand not only how but also why psychology varies, we need to grapple with cross-temporal variation. The traces of past human cogniti"
+   },
+   {
+    "id": "https://openalex.org/W3186826748",
+    "title": "Social Motivation at Work: The Organizational Psychology of Effort for, Against, and with Others",
+    "authors": [
+     "Adam M. Grant",
+     "Marissa S. Shandell"
+    ],
+    "year": 2021,
+    "doi": "10.1146/annurev-psych-060321-033406",
+    "venue": "Annual Review of Psychology",
+    "cited_by": 101,
+    "abstract": "Although a great deal of effort in tasks, projects, and jobs is fueled by our interactions and relationships, psychologists have often overlooked the social forces that shape work motivation. In this review, we examine new developments in research on the interpersonal dynamics that enable and constrain proactivity, persistence, performance, and productivity. The first section examines the impact o"
    },
    {
     "id": "https://openalex.org/W3140719370",
@@ -192,39 +194,67 @@
     "abstract": "McLeod, and Jonathan Hunt-as well as Mike Palmquist, who coordinates the"
    },
    {
-    "id": "https://openalex.org/W3083864815",
-    "title": "Psychological Underpinnings of Brands",
+    "id": "https://openalex.org/W2153791616",
+    "title": "Whatever next? Predictive brains, situated agents, and the future of cognitive science",
     "authors": [
-     "Richard P. Bagozzi",
-     "Simona Romani",
-     "Silvia Grappi",
-     "Lia Zarantonello"
+     "Andy Clark"
     ],
-    "year": 2020,
-    "doi": "10.1146/annurev-psych-010419-051008",
-    "venue": "Annual Review of Psychology",
-    "cited_by": 56,
-    "abstract": "Research in psychology has shown that even routinely experienced everyday objects such as brands can trigger cognitively engaging, emotional, and socially meaningful experiences. In this article, we review three key areas where current advances reside: brands as passive objects with utilitarian and symbolic meanings, brands as relationship partners and regulators of personal relationships, and bra"
+    "year": 2013,
+    "doi": "10.1017/s0140525x12000477",
+    "venue": "Behavioral and Brain Sciences",
+    "cited_by": 6157,
+    "abstract": "Brains, it has recently been argued, are essentially prediction machines. They are bundles of cells that support perception and action by constantly attempting to match incoming sensory inputs with top-down expectations or predictions. This is achieved using a hierarchical generative model that aims to minimize prediction error within a bidirectional cascade of cortical processing. Such accounts o"
    },
    {
-    "id": "https://openalex.org/W2096016260",
-    "title": "Heuristic Decision Making",
+    "id": "https://openalex.org/W4360620450",
+    "title": "Opinion Paper: “So what if ChatGPT wrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy",
     "authors": [
-     "Gerd Gigerenzer",
-     "Wolfgang Gaissmaier"
+     "Yogesh Kumar Dwivedi",
+     "Nir Kshetri",
+     "Laurie Hughes",
+     "Emma Louise Slade"
     ],
-    "year": 2010,
-    "doi": "10.1146/annurev-psych-120709-145346",
-    "venue": "Annual Review of Psychology",
-    "cited_by": 4057,
-    "abstract": "As reflected in the amount of controversy, few areas in psychology have undergone such dramatic conceptual changes in the past decade as the emerging science of heuristics. Heuristics are efficient cognitive processes, conscious or unconscious, that ignore part of the information. Because using heuristics saves effort, the classical view has been that heuristic decisions imply greater errors than "
+    "year": 2023,
+    "doi": "10.1016/j.ijinfomgt.2023.102642",
+    "venue": "International Journal of Information Management",
+    "cited_by": 4426,
+    "abstract": "Transformative artificially intelligent tools, such as ChatGPT, designed to generate sophisticated text indistinguishable from that produced by a human, are applicable across a wide range of contexts. The technology presents opportunities as well as, often ethical and legal, challenges, and has the potential for both positive and negative impacts for organisations, society, and individuals. Offeri"
+   },
+   {
+    "id": "https://openalex.org/W4226278401",
+    "title": "Discernment and Social Learning as a Companion Training Layer",
+    "authors": [
+     "Long Ouyang",
+     "Jeff Wu",
+     "Xu Jiang",
+     "Diogo Almeida"
+    ],
+    "year": 2022,
+    "doi": "10.48550/arxiv.2203.02155",
+    "venue": "arXiv (Cornell University)",
+    "cited_by": 4292,
+    "abstract": "I propose a companion curriculum for language model training that explicitly practices how a model responds to error. A failed attempt pauses advancement in the affected skill, followed by observation of verified peer successes, judgments committed before outcome disclosure, diagnosis, and a fresh-task retry. Task performance and discernment remain separately assessed, with bounded interaction thr"
+   },
+   {
+    "id": "https://openalex.org/W4319983294",
+    "title": "Fake news, disinformation and misinformation in social media: a review",
+    "authors": [
+     "Esma Aı̈meur",
+     "Sabrine Amri",
+     "Gilles Brassard"
+    ],
+    "year": 2023,
+    "doi": "10.1007/s13278-023-01028-5",
+    "venue": "Social Network Analysis and Mining",
+    "cited_by": 773,
+    "abstract": ""
    }
   ],
   "queries": [
-   "misinformation sharing conjoint preferences social network",
-   "fact-checking social norms misinformation sharing behavior",
-   "media trust misinformation sharing ego-network Latino",
-   "conjoint experiment information sharing plausibility social influence"
+   "conjoint experiment misinformation sharing source characteristics tie strength trust",
+   "ego network social ties misinformation sharing Latino",
+   "sharing without believing misinformation plausibility social media",
+   "partisan congruence source ideology news sharing fact-checking"
   ],
   "degraded": null
  },
@@ -232,38 +262,448 @@
   {
    "analysis_id": "H1",
    "kind": "hypothesis",
-   "tag": "deviation",
-   "differences": [
-    {
-     "field": "estimator.continuous",
-     "registered": null,
-     "implemented": [
-      "sharer_trust",
-      "sharer_knowledge",
-      "sharer_disputed"
-     ]
-    }
-   ],
+   "tag": "registered",
+   "differences": [],
    "interpretations": [],
-   "justification": "undocumented deviation"
+   "justification": ""
   },
   {
    "analysis_id": "H2",
    "kind": "hypothesis",
-   "tag": "deviation",
-   "differences": [
-    {
-     "field": "estimator.continuous",
-     "registered": null,
-     "implemented": [
-      "sharer_trust",
-      "sharer_knowledge",
-      "sharer_disputed"
-     ]
-    }
-   ],
+   "tag": "registered",
+   "differences": [],
    "interpretations": [],
-   "justification": "undocumented deviation"
+   "justification": ""
+  },
+  {
+   "analysis_id": "H3",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H4",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H5",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H6",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H7",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H8",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H9",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H10",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H11",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H12",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H13",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H14",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R1",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R2",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R3",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R4",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R5",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R6",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R7",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R8",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R9",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R10",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R11",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "R12",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "X1",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X2",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X3",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X4",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X5",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X6",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X7",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X8",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X9",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X10",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X11",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X12",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "X13",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "S1",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S2",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S3",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S4",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S5",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S6",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S7",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S8",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S9",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "S10",
+   "kind": "subgroup",
+   "tag": "registered",
+   "differences": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "XS1",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS2",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS3",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS5",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS7",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS8",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS9",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS11",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS12",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS13a",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "XS13b",
+   "kind": "subgroup",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
   },
   {
    "analysis_id": "E1",
@@ -278,35 +718,74 @@
    "tag": "exploratory",
    "differences": [],
    "justification": "proposed by the exploratory agent; not pre-registered"
-  },
-  {
-   "analysis_id": "E3",
-   "kind": "exploratory",
-   "tag": "exploratory",
-   "differences": [],
-   "justification": "proposed by the exploratory agent; not pre-registered"
   }
  ],
  "sections": {
   "takeaways": [
-   "Misinformation headlines were chosen for sharing 18.2 points less often than True/neutral (placebo) headlines (95% CI [−20.4, −16.0]), a registered test on the forced-choice sharing outcome.",
-   "Fact-check headlines were chosen for sharing 13.3 points less often than True/neutral headlines (95% CI [−15.6, −11.1]), so both information types lowered the sharing choice.",
-   "Misinformation was chosen as more plausible 18.6 points less often than True/neutral (95% CI [−20.8, −16.4]); Fact-check was 12.4 points lower (95% CI [−14.7, −10.2]).",
-   "Exploratory, unreviewed checks suggest the sharing effects vary by respondent ideology and headline theme, so the average effects should not be read as uniform.",
-   "Both registered hypotheses carry an undocumented deviation, and the estimates come from a single survey, so treat the exact magnitudes with caution."
+   "Headlines that were false or that corrected a false claim were shared less than true or neutral ones: misinformation by 18.2 points (95% CI [−20.4, −16.0]), fact-checks by 13.3 points (95% CI [−15.6, −11.1]).",
+   "Among the sharer attributes, which were measured and not randomized, a close tie raised sharing by 3.0 points (95% CI [1.0, 5.0]) and high trust in the sharer by 5.7 points (95% CI [2.3, 9.1]).",
+   "Sharer origin, political knowledge and belief in disputed claims were not distinguishable from zero for sharing, with intervals of roughly ±2 to ±4 points.",
+   "Registered subgroup comparisons show that respondents with high belief in disputed claims shared misinformation 5.6 points more than those with low belief (p<0.001), and older respondents shared it 6.1 points less.",
+   "Many tests were run without correction, and the sharer attributes are measured ratings of real contacts, so their effects are descriptive, not causal."
   ],
-  "abstract": "Does the type of information in a headline change whether people choose to share it and whether they judge it more plausible? We analyse a US conjoint experiment on a YouGov sample (12,000 responses) in which respondents made binary forced choices between headlines. Headlines were Misinformation, Fact-check, or True/neutral (placebo, the reference). Relative to True/neutral, Misinformation was chosen for sharing 18.2 percentage points less often (95% CI [−20.4, −16.0]) and Fact-check 13.3 points less often (95% CI [−15.6, −11.1]). Plausibility choices followed the same pattern: Misinformation was 18.6 points lower (95% CI [−20.8, −16.4]) and Fact-check 12.4 points lower (95% CI [−14.7, −10.2]). All four tests were two-sided with p<0.001. Both hypotheses carry an undocumented deviation from the registered plan, and the choice format may not reflect real-world sharing, so magnitudes should be read cautiously.",
-  "design_notes": "The study is registered (AsPredicted #132508), but both hypotheses carry a deviation tag with no documentation of what changed, so readers should weigh the results accordingly. The raw and eligible sample is 12,000 responses; the sharing model uses 11,882 and the plausibility model 11,884 after dropping rows with missing values. The True/neutral (placebo) control has 4,145 responses. Outcomes are binary forced choices, and standard errors are clustered. Effects are percentage-point differences from the control.",
+  "abstract": "This study asks how the type of information and the characteristics of the person sharing it shape whether people say they would share a post and how plausible they find it. In a registered conjoint experiment on a YouGov sample of US respondents (12,000 profiles, all analysed), each headline was randomly true or neutral, false, or a fact-check, and was attributed to one of the respondent's real contacts. Relative to true or neutral headlines, misinformation was 18.2 points less likely to be chosen for sharing (95% CI [−20.4, −16.0]) and fact-checks 13.3 points less (95% CI [−15.6, −11.1]); plausibility showed a similar pattern. Close ties (+3.0 points) and highly trusted sharers (+5.7 points) raised sharing. Sharer origin, knowledge and belief in disputed claims were not distinguishable from zero. Respondents' own belief in disputed claims and their age moderated the response to misinformation. The sharer attributes are measured, not randomized, many tests were uncorrected, and several differences are small.",
+  "design_notes": "Each respondent rated pairs of posts, and the 12,000 profiles were all analysed; no rows were dropped for the main models, though a few outcome cells were missing by a handful of rows. Only the information type was randomized, with True/neutral headlines as the reference level (4,145 profiles with that level in the exploratory models). Tie strength, sharer origin, ideology, trust, knowledge and belief in disputed claims are the respondent's own ratings of real contacts. Their effects are therefore descriptive contrasts that bundle correlated attributes. Standard errors are clustered by respondent. All tests labelled registered follow the AsPredicted plan; those labelled exploratory were specified after seeing the data.",
   "results": {
-   "H1": "Both treatment arms lowered the chance that a headline was chosen for sharing. Misinformation was 18.2 points lower than True/neutral (−0.182; 95% CI [−20.4, −16.0]; two-sided p<0.001), from 60.3% to 42.1%. Fact-check was 13.3 points lower (95% CI [−15.6, −11.1]; p<0.001), at 47.0%. The intervals are tight and clear of zero. Because the deviation from the plan is undocumented, its effect on these estimates is unknown.",
-   "H2": "Plausibility choices showed the same pattern. Misinformation was chosen as more plausible 18.6 points less often than True/neutral (95% CI [−20.8, −16.4]; two-sided p<0.001), from 60.1% to 41.6%. Fact-check was 12.4 points lower (95% CI [−14.7, −10.2]; p<0.001). Misinformation's drop is larger than Fact-check's, though the intervals for the two arms are close. The undocumented deviation applies here as well."
+   "H1": "False headlines were chosen for sharing 18.2 points less often than true or neutral ones (95% CI [−20.4, −16.0], p<0.001, two-sided). Fact-checks were 13.3 points lower (95% CI [−15.6, −11.1], p<0.001). Sharing rates were 60.3% for true or neutral headlines, 42.1% for misinformation and 47.0% for fact-checks. Because information type was randomized, these are causal estimates.",
+   "H2": "Posts from close ties were chosen for sharing 3.0 points more often than those from distant ties (95% CI [1.0, 5.0], p=0.003, two-sided). Tie strength is a measured rating, so the contrast is descriptive.",
+   "H3": "Posts from sharers in the continental US were not distinguishable from foreign-origin sharers in sharing (+0.2 points, 95% CI [−1.4, 1.8], p=0.81). The interval is narrow but still compatible with small effects either way.",
+   "H4": "Moderate sharers were chosen 1.9 points less often than liberal sharers (95% CI [−3.7, −0.1], p=0.034), a result near the threshold given the many tests. Conservative sharers were −0.7 points (95% CI [−2.8, 1.5]), not distinguishable from liberal ones.",
+   "H5": "Highly trusted sharers were chosen 5.7 points more often than low-trust sharers (95% CI [2.3, 9.1], p<0.001). Mid trust was +3.6 points (95% CI [−0.1, 7.3], p=0.056), not clearly distinguishable from zero.",
+   "H6": "Sharer political knowledge was not distinguishable from zero for sharing: mid knowledge −0.0 points (95% CI [−2.0, 1.9]) and high knowledge +1.7 points (95% CI [−0.5, 3.9]), against low knowledge.",
+   "H7": "High belief in disputed claims by the sharer was not distinguishable from low belief for sharing (−0.2 points, 95% CI [−1.9, 1.6], p=0.87).",
+   "H8": "Misinformation was judged 18.6 points less often the more plausible post than true or neutral headlines (95% CI [−20.8, −16.4], p<0.001, two-sided). Fact-checks were 12.4 points lower (95% CI [−14.7, −10.2], p<0.001).",
+   "H9": "Close ties raised plausibility by 2.8 points relative to distant ties (95% CI [0.7, 4.8], p=0.008).",
+   "H10": "Sharer origin was not distinguishable from zero for plausibility (−0.3 points, 95% CI [−1.9, 1.4]).",
+   "H11": "Moderate sharers were rated 2.1 points less plausible than liberal sharers (95% CI [−4.0, −0.3], p=0.026), near the threshold. Conservative sharers were −1.9 points (95% CI [−4.1, 0.3]), not distinguishable from zero.",
+   "H12": "Trust in the sharer was not distinguishable from zero for plausibility: mid −0.6 points (95% CI [−4.2, 3.0]) and high +2.5 points (95% CI [−0.7, 5.8]).",
+   "H13": "Sharer political knowledge was not distinguishable from zero for plausibility; high knowledge was +1.7 points (95% CI [−0.4, 3.8]) and mid knowledge −0.1 points (95% CI [−2.1, 1.9]).",
+   "H14": "The sharer's belief in disputed claims was not distinguishable from zero for plausibility (−0.0 points, 95% CI [−1.8, 1.8], p=0.97).",
+   "RW": "Re-weighting each source attribute by its inverse assignment probability left the picture essentially unchanged. For sharing, close ties stayed at +3.0 points (95% CI [1.0, 5.0]) and high trust rose slightly to +6.7 points (95% CI [3.3, 10.1]). The moderate-sharer contrast on sharing weakened to −1.7 points (95% CI [−3.5, 0.0], p=0.056). For plausibility, close ties (+2.7 points) and moderate sharers (−2.1 points) kept their sign and size. The remaining re-weighted estimates were not distinguishable from zero.",
+   "S1": "Age moderated the response to information type. Among misinformation profiles, the oldest tertile shared 6.1 points less than the youngest (p<0.001). Differences for fact-checks (+3.0) and true or neutral headlines (+2.6) were not clearly distinguishable from zero. Most other levels showed little age difference.",
+   "S2": "Respondent ideology mattered mainly for true or neutral headlines, which the most conservative tertile shared 5.6 points less than the most liberal (p=0.002). Continental-US sharers were also shared 1.6 points less by the conservative tertile (p=0.005), and liberal sharers 4.8 points less (p=0.017). Other differences were not distinguishable from zero.",
+   "S3": "Respondents with the highest belief in disputed claims shared misinformation 5.6 points more than those with the lowest (p<0.001), and true or neutral headlines 5.5 points less (p<0.001). They also shared posts from trusted sharers (−2.3 points), moderate sharers and continental-US sharers less. Fact-check differences were not distinguishable from zero.",
+   "S4": "Respondents with high media trust shared misinformation 4.8 points more than those with low trust (p=0.003). Other differences were small, and the few at conventional significance, such as high-knowledge sharers (−2.4 points) and low-conspiracy sharers (+3.5 points), should be read cautiously given the many comparisons.",
+   "S5": "Spanish-language respondents shared misinformation 3.6 points more than English-language respondents (p=0.010). Low-trust sharers (+7.9 points) and low-knowledge sharers (+3.2 points) were also shared more in Spanish; these rest on small cells. Most other differences were not distinguishable from zero.",
+   "S6": "For plausibility, the oldest tertile rated misinformation 4.0 points lower than the youngest (p=0.013) and liberal sharers 3.7 points higher (p=0.020). Other age differences were not distinguishable from zero.",
+   "S7": "The most conservative respondents rated true or neutral headlines as less plausible by 4.9 points than the most liberal (p=0.006), and continental-US sharers by 1.5 points (p=0.009). Other differences were not distinguishable from zero.",
+   "S8": "Respondents with the highest belief in disputed claims rated misinformation as 6.8 points more plausible (p<0.001) and true or neutral headlines 6.9 points less (p<0.001). They also rated high-trust (−2.4 points) and high-knowledge (−3.6 points) sharers lower. Fact-check differences were not distinguishable from zero.",
+   "S9": "High media trust was linked to rating misinformation 4.4 points more plausible (p=0.007), and posts from low-conspiracy sharers 4.4 points more plausible (p=0.009). High-knowledge sharers were rated 2.6 points lower (p=0.019). Most other differences were not distinguishable from zero.",
+   "S10": "Spanish-language respondents rated misinformation as 3.7 points more plausible than English-language respondents (p=0.008). They also rated low-trust sharers 9.0 points higher and low-knowledge sharers 3.6 points higher, from small cells. The rest were not distinguishable from zero.",
+   "X1": "Post hoc: each step up the 1-5 trust scale was linked to 1.4 points more sharing (SE 0.4, p<0.001). The slope was similar for misinformation (1.9 points) and fact-checks (1.7 points) and not clearly distinguishable from zero for true or neutral headlines (0.6 points).",
+   "X2": "Post hoc: each step up the trust scale was linked to 1.3 points higher plausibility (SE 0.4, p<0.001). The slope was about 2 points for misinformation and fact-checks and about zero for true or neutral headlines.",
+   "X3": "Post hoc: close ties raised sharing by 2.9 points (SE 1.0, p=0.006). The premium was 4.7 points for fact-checks and 3.5 for misinformation, but only 0.9 points for true or neutral headlines, which was not distinguishable from zero.",
+   "X4": "Post hoc: among profiles chosen to share, misinformation was 5.5 points more likely to be shared while judged less plausible (95% CI [3.0, 8.1], p<0.001), 20.3% against 14.3% for true or neutral headlines. Fact-checks were +1.7 points (95% CI [−0.5, 4.0]).",
+   "X5": "Post hoc: sharing was 4.4 points higher when respondent and sharer shared the same ideological lean than when they opposed (95% CI [0.9, 7.9], p=0.015). Pairs involving a moderate were +0.8 points (95% CI [−2.3, 3.9]).",
+   "X6": "Post hoc: respondents whose contacts were seen as holding more disputed beliefs shared more misinformation, with a slope of 0.110 (SE 0.049, p=0.026, 3,196 profiles). This is a modest result among many tests.",
+   "X7": "Post hoc: among partisan respondents, congenial content was shared 2.5 points more than uncongenial content, not distinguishable from zero (SE 1.9, p=0.18).",
+   "X8": "Post hoc: across all headlines, the sharer's perceived belief in disputed claims was not distinguishable from zero for sharing (slope 0.005, SE 0.014). It differs sharply by information type; see the within-type results.",
+   "X9": "Post hoc: across all headlines, the sharer's perceived belief in disputed claims was not distinguishable from zero for plausibility (slope −0.005, SE 0.014).",
+   "X10": "Post hoc and thin (266 profiles): the anti-vaccine headline was rated 16.5 points more plausible when the sharer was seen as believing the DNA claim (SE 6.7, p=0.013).",
+   "X11": "Post hoc: the trust slope on sharing misinformation was 1.9 points per step across all misinformation (SE 0.8, p=0.013).",
+   "X12": "Post hoc: the close-tie premium on sharing misinformation was 3.5 points (SE 1.7, p=0.040), near the threshold.",
+   "X13": "Post hoc: sharer origin was not distinguishable from zero for sharing in the pooled origin-by-language-and-nativity check (0.2 points, SE 0.8, p=0.78).",
+   "XS1": "Post hoc: the trust slope on sharing was 1.7 points for fact-checks, 1.9 for misinformation and 0.6 for true or neutral headlines. The differences between types were not distinguishable from zero.",
+   "XS2": "Post hoc: the trust slope on plausibility was about 2 points per step for fact-checks and misinformation and about zero for true or neutral headlines. The gap to fact-checks was borderline (p=0.065).",
+   "XS3": "Post hoc: the close-tie premium was 4.7 points for fact-checks, 3.5 for misinformation and 0.9 for true or neutral headlines. The gap between true or neutral headlines and fact-checks was borderline (p=0.050).",
+   "XS5": "Post hoc: the gap between same-lean and opposed-lean sharers was 3.8 to 5.6 points across information types, with intervals including zero. The gaps did not differ clearly by type.",
+   "XS7": "Post hoc: congenial misinformation was shared 5.4 points more than uncongenial (p=0.012), while fact-checks showed −0.2 points. The difference between them was 5.6 points (p=0.007).",
+   "XS8": "Post hoc: a sharer perceived as believing disputed claims raised sharing of misinformation (slope 0.086, p=0.002) but not distinguishably of fact-checks (−0.044) or true or neutral headlines (−0.022). The gap with fact-checks was 0.131 (p=0.001).",
+   "XS9": "Post hoc: the same pattern held for plausibility. The slope was +0.095 for misinformation (p<0.001) and negative for fact-checks and true or neutral headlines. The gap with fact-checks was 0.146 (p<0.001).",
+   "XS11": "Post hoc: the trust slope for sharing misinformation was 2.5 points for health headlines (SE 2.0, 550 profiles) and 1.9 for political headlines. The difference was not distinguishable from zero.",
+   "XS12": "Post hoc: the close-tie premium for misinformation was 0.7 points for health (SE 4.4) and 3.9 for political headlines (p=0.031). The difference was not distinguishable from zero.",
+   "XS13a": "Post hoc: the sharer-origin slope on sharing was 0.4 points in English and 0.0 in Spanish. The difference was not distinguishable from zero (−0.5 points, SE 1.7).",
+   "XS13b": "Post hoc: the sharer-origin slope was +1.3 points for foreign-born respondents and −0.8 for US-born respondents. The difference of −1.8 points (SE 1.6) was not distinguishable from zero."
   },
   "exploratory": {
-   "E1": "In an unreviewed check, the negative effects on sharing were weaker among more conservative respondents. The interaction was +0.104 for Misinformation (95% CI [0.041, 0.166]) and +0.112 for Fact-check (95% CI [0.050, 0.173]).",
-   "E2": "An unreviewed check by trial found the Misinformation effect shrinking from −0.200 in trial 1 to −0.140 in trial 4. Estimates stayed clearly negative in every trial, and Fact-check showed a similar shrinkage.",
-   "E3": "An unreviewed check by headline theme found large variation in the Misinformation effect, from −0.325 for one theme to nearly zero for others. Some themes had intervals including zero, so the average may hide uneven effects."
+   "E1": "Dropping the first trial gave a misinformation effect of −17.0 points (SE 1.3), against −18.2 in the registered fit. This unreviewed check agrees with the registered estimate.",
+   "E2": "In this unreviewed check, the misinformation penalty on sharing was −13.0 points in the youngest tertile and −22.0 in the oldest. Fact-check penalties stayed near −13 points in every tertile."
   },
-  "limitations": "Both hypotheses carry deviation tags with no documentation, so we cannot say how the analysis differs from the registered plan. The outcomes are forced choices between headlines, which may not match real sharing behaviour on social platforms. Only two treatment arms are compared to one control, and the arms and the plausibility and sharing outcomes are tested without correction for multiple comparisons, although the effects are far from the threshold. The exploratory analyses come from unreviewed code and are cut into smaller subgroups, so they are best treated as leads for follow-up rather than findings."
+  "limitations": "Only information type was randomized. Tie strength, sharer origin, ideology, trust, knowledge and belief in disputed claims are respondents' ratings of real contacts, so their effects are descriptive and bundle correlated traits. The design involves many tests across two outcomes, five registered moderators and a long list of subgroup contrasts, none corrected for multiplicity, so results near p=0.03 to 0.05 (for example the moderate-sharer contrast) deserve caution. Some cells are small, such as low-trust sharers and health headlines, and the Spanish-language contrasts rest on them. The outcome is a stated choice between two posts and not real sharing behaviour. The literature available here offered no benchmarks, so the effects are not placed against earlier work. The exploratory results are post hoc."
  },
  "extensions": []
 }

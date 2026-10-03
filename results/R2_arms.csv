@@ -1,0 +1,2 @@
+analysis_id,arm_code,arm_label,estimate,std_error,p_value,conf_low,conf_high,n_arm,n_arm_eligible,mean_control,mean_arm,p_directional,supported
+R2:Continental US,Continental US,Continental US,0.003052605117078314,0.008085893952634756,0.7057855105143767,-0.01279545581289603,0.018900666047052657,9400,9454,0.4943593875906527,0.502127659574468,0.7057855105143767,False

@@ -34,35 +34,68 @@ def num(tag, text):
 
 num("resp_id", "Respondent number (1-1,500). Replaces the YouGov case id; used to cluster standard errors.")
 mc("trial", "Conjoint trial (4 per respondent).", [(str(i), f"Trial {i}") for i in range(1, 5)])
-mc("profile", "Position of the headline within the pair: \"Message 1\" or \"Message 2\".",
-   [("A", "Message 1"), ("B", "Message 2")])
-num("headline_theme", "Topic of the headline shown (e.g. Tucker Carlson, Biden Budget, Guanabana).")
-mc("close_tie", CONTACT + "Whether the contact was named as a close contact or a distant contact.",
-   [("1", "Close contact"), ("0", "Distant contact")])
-mc("sharer_native_us", CONTACT + "\"Where do personal contacts live?\" Recoded: Continental US vs. any other answer "
-   "(Puerto Rico, Latin America, Other region, Don't know).", [("1", "Continental US"), ("0", "Elsewhere or don't know")])
-mc("sharer_trust", CONTACT + "\"Trust personal contacts provide accurate information.\" Reversed so 5 = Trust.",
-   [("5", "Trust"), ("4", "Trust somewhat"), ("3", "Neither trust nor distrust"), ("2", "Distrust somewhat"), ("1", "Distrust")])
-mc("sharer_knowledge", CONTACT + "\"Personal contacts knowledgeable about politics\" (agreement).",
-   [("1", "Strongly disagree"), ("2", "Disagree"), ("3", "Neither agree nor disagree"), ("4", "Agree"), ("5", "Strongly agree")])
-mc("sharer_ideology", CONTACT + "\"Political orientation of personal contacts.\" \"Don't know\" coded Moderate.",
-   [("Liberal", "Liberal"), ("Moderate", "Moderate (incl. Don't know)"), ("Conservative", "Conservative")])
-num("sharer_disputed", CONTACT + "\"Close/distant contacts believe claims\" (check all contacts who believe each "
-    "claim). Share of the six claims the respondent marked the contact as believing, 0-1. Claims: " + CLAIMS)
-mc("chosen_share", "\"Which post would you be more likely to share?\" (Message 1 / Message 2). 1 if this headline "
-   "was chosen.", [("1", "Chosen"), ("0", "Not chosen")])
+mc("profile", "Position of the headline within the pair: \"Message 1\" or \"Message 2\".", [("A", "Message 1"), ("B", "Message 2")])
+num("headline_theme", "Topic of the headline shown (17 topics, e.g. Tucker Carlson, Biden Budget, Guanabana, Polio).")
+mc("chosen_share", "\"Which post would you be more likely to share?\" (Message 1 / Message 2). 1 if this headline was chosen.",
+   [("1", "Chosen"), ("0", "Not chosen")])
 mc("chosen_belief", "\"Based on the available information, which post do you think is more likely to be accurate?\" "
    "(Message 1 / Message 2). 1 if this headline was chosen.", [("1", "Chosen"), ("0", "Not chosen")])
-num("weight", "YouGov survey weight. Not mentioned in the pre-registration.")
-mc("survey_language", "\"Do you prefer to take the survey in English or Spanish?\"",
-   [("English", "English"), ("Spanish", "Spanish")])
+# ---- the seven profile features, coded as in the paper ------------------------------------------
+mc("tie", CONTACT + "Whether the contact was named as a close contact or a distant contact.",
+   [("Distant tie", "Distant tie"), ("Close tie", "Close tie")])
+mc("sharer_origin", CONTACT + "\"Where do personal contacts live?\" Continental US vs. any other answer (Puerto Rico, Latin "
+   "America, Other region, Don't know).", [("Foreign origin", "Foreign origin"), ("Continental US", "Continental US")])
+mc("sharer_ideology", CONTACT + "\"Political orientation of personal contacts.\" \"Don't know\" coded moderate.",
+   [("Liberal sharer", "Liberal sharer"), ("Moderate sharer", "Moderate sharer"), ("Conservative sharer", "Conservative sharer")])
+mc("sharer_trust", CONTACT + "\"Trust personal contacts provide accurate information\" (5 points), binned: low = distrust or "
+   "distrust somewhat, mid = neither, high = trust or trust somewhat.", [("Trust: low", "Trust: low"), ("Trust: mid", "Trust: mid"), ("Trust: high", "Trust: high")])
+mc("sharer_knowledge", CONTACT + "\"Personal contacts knowledgeable about politics\" (5-point agreement), binned: low = "
+   "disagree, mid = neither, high = agree.", [("Knowledge: low", "Knowledge: low"), ("Knowledge: mid", "Knowledge: mid"), ("Knowledge: high", "Knowledge: high")])
+mc("sharer_conspiracy", CONTACT + "Share of six disputed claims the respondent thinks the contact believes, split at the median. "
+   "Claims: " + CLAIMS, [("Conspiracy belief: low", "Conspiracy belief: low"), ("Conspiracy belief: high", "Conspiracy belief: high")])
+# ---- the same source attributes as numbers (for slopes) -----------------------------------------
+num("close_num", CONTACT + "1 = close contact, 0 = distant contact.")
+num("origin_num", CONTACT + "1 = lives in the continental US, 0 = elsewhere or don't know.")
+num("trust_raw", CONTACT + "Trust that the contact provides accurate information, 1 = distrust ... 5 = trust.")
+num("knowledge_raw", CONTACT + "The contact is knowledgeable about politics, 1 = strongly disagree ... 5 = strongly agree.")
+num("conspiracy_raw", CONTACT + "Share of six disputed claims the respondent thinks the contact believes, 0-1.")
+for f, lab in (("tie", "tie strength"), ("origin", "sharer origin"), ("ideology", "sharer ideology"), ("trust", "trust in the sharer"),
+               ("knowledge", "sharer political knowledge"), ("conspiracy", "sharer belief in disputed claims")):
+    num(f"ipw_{f}", f"Stabilized inverse of the realized assignment probability of {lab} (complete cases; mean 1). "
+        "Used for the registered re-weighting.")
+# ---- respondent ----------------------------------------------------------------------------------
+mc("survey_language", "\"Do you prefer to take the survey in English or Spanish?\"", [("English", "English"), ("Spanish", "Spanish")])
 num("age", "Age in years, computed as 2023 minus \"In what year were you born?\"")
-mc("ideo5_self", "\"In general, how would you describe your own political viewpoint?\" \"Not sure\" is missing.",
-   [("1", "Very liberal"), ("2", "Liberal"), ("3", "Moderate"), ("4", "Conservative"), ("5", "Very conservative")])
-num("disputed_self", "\"Claims about American politics\" (True / Not True). Share of the six claims the respondent "
-    "rated True, 0-1. Claims: " + CLAIMS)
-num("media_trust", "\"Trusted political news sources\": mean of six items (Family and friends; WhatsApp groups; "
-    "Social media; Conservative media; Liberal media; Spanish-language media), 1 = Distrust ... 5 = Trust.")
+num("ideo5_self", "\"In general, how would you describe your own political viewpoint?\" 1 = very liberal ... 5 = very "
+    "conservative; \"Not sure\" is missing.")
+num("disputed_self", "\"Claims about American politics\" (True / Not True). Share of the six claims the respondent rated True, 0-1. "
+    "Claims: " + CLAIMS)
+num("media_trust", "\"Trusted political news sources\": mean of six items (Family and friends; WhatsApp groups; Social media; "
+    "Conservative media; Liberal media; Spanish-language media), 1 = distrust ... 5 = trust.")
+mc("resp_nativity", "\"Which of these statements best describes you?\" Immigrant citizen or non-citizen = foreign-born; first, "
+   "second or third generation = US-born.", [("US-born", "US-born"), ("Foreign-born", "Foreign-born")])
+num("weight", "YouGov survey weight. Not mentioned in the pre-registration and not used.")
+for t, lab in (("age_t", "age"), ("ideo_self_t", "respondent ideology (ideo5_self)"), ("disp_self_t", "respondent belief in disputed claims"),
+               ("media_t", "media trust")):
+    mc(t, f"Tertile of {lab}, formed over shown profiles (the registered subgroup splits).",
+       [("Lowest", "Lowest"), ("Middle", "Middle"), ("Highest", "Highest")])
+# ---- constructed for the authors' exploratory analyses ---------------------------------------------
+mc("share_not_believe", "Among profiles chosen to share: 1 if the respondent chose the OTHER post as more plausible (shared "
+   "without believing); missing for profiles not chosen to share.", [("1", "Shared, judged less plausible"), ("0", "Shared and judged more plausible")])
+mc("src_congruence", "Respondent and sharer ideology: Congruent = both liberal or both conservative; Incongruent = opposite leans; "
+   "Neutral = either is moderate. Respondent lean from ideo5_self (1-2 liberal, 3 moderate, 4-5 conservative).",
+   [("Incongruent", "Incongruent"), ("Neutral (a moderate)", "Neutral (a moderate)"), ("Congruent", "Congruent")])
+mc("msg_slant", "Ideological slant of the headline (the paper's preliminary automated coding): which side the content favours.",
+   [("left", "Left"), ("neutral", "Neutral"), ("right", "Right")])
+mc("msg_congenial", "For partisan respondents and partisan-slanted headlines: Congenial = the headline favours the respondent's side.",
+   [("Uncongenial", "Uncongenial"), ("Congenial", "Congenial")])
+mc("topic_type", "Headline topic type: Health (guanabana, polio) or Political (all other topics).", [("Health", "Health"), ("Political", "Political")])
+mc("src_covid", CONTACT + "1 if the respondent thinks this contact believes \"Covid-19 vaccines modify your DNA\".",
+   [("1", "Believes the claim"), ("0", "Does not")])
+num("net_consp", "Ego network: mean perceived belief in disputed claims across the respondent's named contacts (0-1).")
+num("net_ideo_sd", "Ego network: standard deviation of the named contacts' ideology (1-3).")
+num("net_trust", "Ego network: mean trust in the named contacts (1-5).")
+num("w_resp_misinfo", "For misinformation profiles: 1 / the respondent's number of misinformation profiles (respondent-level weighting).")
 
 ARMS = {
     "True/neutral": ["How to improve your sleep quality", "Exercise reduces cortisol levels",

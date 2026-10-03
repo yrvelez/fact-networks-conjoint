@@ -1,0 +1,2 @@
+analysis_id,arm_code,arm_label,estimate,std_error,p_value,conf_low,conf_high,n_arm,n_arm_eligible,mean_control,mean_arm,p_directional,supported
+R7:Close tie,Close tie,Close tie,0.02741074153895602,0.010353013589767339,0.008106300039721945,0.007119207771558299,0.04770227530635374,6664,6728,0.4818007662835249,0.5150060024009604,0.008106300039721945,True

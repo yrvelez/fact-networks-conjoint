@@ -105,7 +105,7 @@
       "tag": "headline_theme",
       "type": "Slider",
       "selector": "HSLIDER",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Topic of the headline shown (e.g. Tucker Carlson, Biden Budget, Guanabana).",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Topic of the headline shown (17 topics, e.g. Tucker Carlson, Biden Budget, Guanabana, Polio).",
       "block": "Measures (reconstructed)",
       "in_randomizer": false,
       "free_text": false,
@@ -118,209 +118,6 @@
     },
     {
       "qid": "QID5",
-      "tag": "close_tie",
-      "type": "MC",
-      "selector": "SAVR",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Whether the contact was named as a close contact or a distant contact.",
-      "block": "Measures (reconstructed)",
-      "in_randomizer": false,
-      "free_text": false,
-      "columns": [
-        "close_tie"
-      ],
-      "choices": [
-        {
-          "id": "1",
-          "label": "Close contact",
-          "recode": "1",
-          "text_entry": false
-        },
-        {
-          "id": "2",
-          "label": "Distant contact",
-          "recode": "0",
-          "text_entry": false
-        }
-      ],
-      "rows": [],
-      "sub_selector": null
-    },
-    {
-      "qid": "QID6",
-      "tag": "sharer_native_us",
-      "type": "MC",
-      "selector": "SAVR",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Where do personal contacts live?\" Recoded: Continental US vs. any other answer (Puerto Rico, Latin America, Other region, Don't know).",
-      "block": "Measures (reconstructed)",
-      "in_randomizer": false,
-      "free_text": false,
-      "columns": [
-        "sharer_native_us"
-      ],
-      "choices": [
-        {
-          "id": "1",
-          "label": "Continental US",
-          "recode": "1",
-          "text_entry": false
-        },
-        {
-          "id": "2",
-          "label": "Elsewhere or don't know",
-          "recode": "0",
-          "text_entry": false
-        }
-      ],
-      "rows": [],
-      "sub_selector": null
-    },
-    {
-      "qid": "QID7",
-      "tag": "sharer_trust",
-      "type": "MC",
-      "selector": "SAVR",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Trust personal contacts provide accurate information.\" Reversed so 5 = Trust.",
-      "block": "Measures (reconstructed)",
-      "in_randomizer": false,
-      "free_text": false,
-      "columns": [
-        "sharer_trust"
-      ],
-      "choices": [
-        {
-          "id": "1",
-          "label": "Trust",
-          "recode": "5",
-          "text_entry": false
-        },
-        {
-          "id": "2",
-          "label": "Trust somewhat",
-          "recode": "4",
-          "text_entry": false
-        },
-        {
-          "id": "3",
-          "label": "Neither trust nor distrust",
-          "recode": "3",
-          "text_entry": false
-        },
-        {
-          "id": "4",
-          "label": "Distrust somewhat",
-          "recode": "2",
-          "text_entry": false
-        },
-        {
-          "id": "5",
-          "label": "Distrust",
-          "recode": "1",
-          "text_entry": false
-        }
-      ],
-      "rows": [],
-      "sub_selector": null
-    },
-    {
-      "qid": "QID8",
-      "tag": "sharer_knowledge",
-      "type": "MC",
-      "selector": "SAVR",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Personal contacts knowledgeable about politics\" (agreement).",
-      "block": "Measures (reconstructed)",
-      "in_randomizer": false,
-      "free_text": false,
-      "columns": [
-        "sharer_knowledge"
-      ],
-      "choices": [
-        {
-          "id": "1",
-          "label": "Strongly disagree",
-          "recode": "1",
-          "text_entry": false
-        },
-        {
-          "id": "2",
-          "label": "Disagree",
-          "recode": "2",
-          "text_entry": false
-        },
-        {
-          "id": "3",
-          "label": "Neither agree nor disagree",
-          "recode": "3",
-          "text_entry": false
-        },
-        {
-          "id": "4",
-          "label": "Agree",
-          "recode": "4",
-          "text_entry": false
-        },
-        {
-          "id": "5",
-          "label": "Strongly agree",
-          "recode": "5",
-          "text_entry": false
-        }
-      ],
-      "rows": [],
-      "sub_selector": null
-    },
-    {
-      "qid": "QID9",
-      "tag": "sharer_ideology",
-      "type": "MC",
-      "selector": "SAVR",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Political orientation of personal contacts.\" \"Don't know\" coded Moderate.",
-      "block": "Measures (reconstructed)",
-      "in_randomizer": false,
-      "free_text": false,
-      "columns": [
-        "sharer_ideology"
-      ],
-      "choices": [
-        {
-          "id": "1",
-          "label": "Liberal",
-          "recode": "Liberal",
-          "text_entry": false
-        },
-        {
-          "id": "2",
-          "label": "Moderate (incl. Don't know)",
-          "recode": "Moderate",
-          "text_entry": false
-        },
-        {
-          "id": "3",
-          "label": "Conservative",
-          "recode": "Conservative",
-          "text_entry": false
-        }
-      ],
-      "rows": [],
-      "sub_selector": null
-    },
-    {
-      "qid": "QID10",
-      "tag": "sharer_disputed",
-      "type": "Slider",
-      "selector": "HSLIDER",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Close/distant contacts believe claims\" (check all contacts who believe each claim). Share of the six claims the respondent marked the contact as believing, 0-1. Claims: Joe Biden is a socialist; The 2020 election was stolen by the Democrats; Covid-19 vaccines modify your DNA; A new world order - elites who control the media, industry, and government - were implicated in most wars over the last 200 years; Trump is still president of the United States; Republicans want to end Social Security and Medicare",
-      "block": "Measures (reconstructed)",
-      "in_randomizer": false,
-      "free_text": false,
-      "columns": [
-        "sharer_disputed"
-      ],
-      "choices": [],
-      "rows": [],
-      "sub_selector": null
-    },
-    {
-      "qid": "QID11",
       "tag": "chosen_share",
       "type": "MC",
       "selector": "SAVR",
@@ -349,7 +146,7 @@
       "sub_selector": null
     },
     {
-      "qid": "QID12",
+      "qid": "QID6",
       "tag": "chosen_belief",
       "type": "MC",
       "selector": "SAVR",
@@ -378,16 +175,208 @@
       "sub_selector": null
     },
     {
-      "qid": "QID13",
-      "tag": "weight",
-      "type": "Slider",
-      "selector": "HSLIDER",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] YouGov survey weight. Not mentioned in the pre-registration.",
+      "qid": "QID7",
+      "tag": "tie",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Whether the contact was named as a close contact or a distant contact.",
       "block": "Measures (reconstructed)",
       "in_randomizer": false,
       "free_text": false,
       "columns": [
-        "weight"
+        "tie"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Distant tie",
+          "recode": "Distant tie",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Close tie",
+          "recode": "Close tie",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID8",
+      "tag": "sharer_origin",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Where do personal contacts live?\" Continental US vs. any other answer (Puerto Rico, Latin America, Other region, Don't know).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "sharer_origin"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Foreign origin",
+          "recode": "Foreign origin",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Continental US",
+          "recode": "Continental US",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID9",
+      "tag": "sharer_ideology",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Political orientation of personal contacts.\" \"Don't know\" coded moderate.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "sharer_ideology"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Liberal sharer",
+          "recode": "Liberal sharer",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Moderate sharer",
+          "recode": "Moderate sharer",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Conservative sharer",
+          "recode": "Conservative sharer",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID10",
+      "tag": "sharer_trust",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Trust personal contacts provide accurate information\" (5 points), binned: low = distrust or distrust somewhat, mid = neither, high = trust or trust somewhat.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "sharer_trust"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Trust: low",
+          "recode": "Trust: low",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Trust: mid",
+          "recode": "Trust: mid",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Trust: high",
+          "recode": "Trust: high",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID11",
+      "tag": "sharer_knowledge",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Personal contacts knowledgeable about politics\" (5-point agreement), binned: low = disagree, mid = neither, high = agree.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "sharer_knowledge"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Knowledge: low",
+          "recode": "Knowledge: low",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Knowledge: mid",
+          "recode": "Knowledge: mid",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Knowledge: high",
+          "recode": "Knowledge: high",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID12",
+      "tag": "sharer_conspiracy",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Share of six disputed claims the respondent thinks the contact believes, split at the median. Claims: Joe Biden is a socialist; The 2020 election was stolen by the Democrats; Covid-19 vaccines modify your DNA; A new world order - elites who control the media, industry, and government - were implicated in most wars over the last 200 years; Trump is still president of the United States; Republicans want to end Social Security and Medicare",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "sharer_conspiracy"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Conspiracy belief: low",
+          "recode": "Conspiracy belief: low",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Conspiracy belief: high",
+          "recode": "Conspiracy belief: high",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID13",
+      "tag": "close_num",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. 1 = close contact, 0 = distant contact.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "close_num"
       ],
       "choices": [],
       "rows": [],
@@ -395,6 +384,166 @@
     },
     {
       "qid": "QID14",
+      "tag": "origin_num",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. 1 = lives in the continental US, 0 = elsewhere or don't know.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "origin_num"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID15",
+      "tag": "trust_raw",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Trust that the contact provides accurate information, 1 = distrust ... 5 = trust.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "trust_raw"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID16",
+      "tag": "knowledge_raw",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. The contact is knowledgeable about politics, 1 = strongly disagree ... 5 = strongly agree.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "knowledge_raw"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID17",
+      "tag": "conspiracy_raw",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Share of six disputed claims the respondent thinks the contact believes, 0-1.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "conspiracy_raw"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID18",
+      "tag": "ipw_tie",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of tie strength (complete cases; mean 1). Used for the registered re-weighting.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "ipw_tie"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID19",
+      "tag": "ipw_origin",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of sharer origin (complete cases; mean 1). Used for the registered re-weighting.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "ipw_origin"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID20",
+      "tag": "ipw_ideology",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of sharer ideology (complete cases; mean 1). Used for the registered re-weighting.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "ipw_ideology"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID21",
+      "tag": "ipw_trust",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of trust in the sharer (complete cases; mean 1). Used for the registered re-weighting.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "ipw_trust"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID22",
+      "tag": "ipw_knowledge",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of sharer political knowledge (complete cases; mean 1). Used for the registered re-weighting.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "ipw_knowledge"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID23",
+      "tag": "ipw_conspiracy",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of sharer belief in disputed claims (complete cases; mean 1). Used for the registered re-weighting.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "ipw_conspiracy"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID24",
       "tag": "survey_language",
       "type": "MC",
       "selector": "SAVR",
@@ -423,7 +572,7 @@
       "sub_selector": null
     },
     {
-      "qid": "QID15",
+      "qid": "QID25",
       "tag": "age",
       "type": "Slider",
       "selector": "HSLIDER",
@@ -439,54 +588,23 @@
       "sub_selector": null
     },
     {
-      "qid": "QID16",
+      "qid": "QID26",
       "tag": "ideo5_self",
-      "type": "MC",
-      "selector": "SAVR",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"In general, how would you describe your own political viewpoint?\" \"Not sure\" is missing.",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"In general, how would you describe your own political viewpoint?\" 1 = very liberal ... 5 = very conservative; \"Not sure\" is missing.",
       "block": "Measures (reconstructed)",
       "in_randomizer": false,
       "free_text": false,
       "columns": [
         "ideo5_self"
       ],
-      "choices": [
-        {
-          "id": "1",
-          "label": "Very liberal",
-          "recode": "1",
-          "text_entry": false
-        },
-        {
-          "id": "2",
-          "label": "Liberal",
-          "recode": "2",
-          "text_entry": false
-        },
-        {
-          "id": "3",
-          "label": "Moderate",
-          "recode": "3",
-          "text_entry": false
-        },
-        {
-          "id": "4",
-          "label": "Conservative",
-          "recode": "4",
-          "text_entry": false
-        },
-        {
-          "id": "5",
-          "label": "Very conservative",
-          "recode": "5",
-          "text_entry": false
-        }
-      ],
+      "choices": [],
       "rows": [],
       "sub_selector": null
     },
     {
-      "qid": "QID17",
+      "qid": "QID27",
       "tag": "disputed_self",
       "type": "Slider",
       "selector": "HSLIDER",
@@ -502,11 +620,11 @@
       "sub_selector": null
     },
     {
-      "qid": "QID18",
+      "qid": "QID28",
       "tag": "media_trust",
       "type": "Slider",
       "selector": "HSLIDER",
-      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Trusted political news sources\": mean of six items (Family and friends; WhatsApp groups; Social media; Conservative media; Liberal media; Spanish-language media), 1 = Distrust ... 5 = Trust.",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Trusted political news sources\": mean of six items (Family and friends; WhatsApp groups; Social media; Conservative media; Liberal media; Spanish-language media), 1 = distrust ... 5 = trust.",
       "block": "Measures (reconstructed)",
       "in_randomizer": false,
       "free_text": false,
@@ -518,7 +636,442 @@
       "sub_selector": null
     },
     {
-      "qid": "QID19",
+      "qid": "QID29",
+      "tag": "resp_nativity",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Which of these statements best describes you?\" Immigrant citizen or non-citizen = foreign-born; first, second or third generation = US-born.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "resp_nativity"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "US-born",
+          "recode": "US-born",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Foreign-born",
+          "recode": "Foreign-born",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID30",
+      "tag": "weight",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] YouGov survey weight. Not mentioned in the pre-registration and not used.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "weight"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID31",
+      "tag": "age_t",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Tertile of age, formed over shown profiles (the registered subgroup splits).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "age_t"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Lowest",
+          "recode": "Lowest",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Middle",
+          "recode": "Middle",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Highest",
+          "recode": "Highest",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID32",
+      "tag": "ideo_self_t",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Tertile of respondent ideology (ideo5_self), formed over shown profiles (the registered subgroup splits).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "ideo_self_t"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Lowest",
+          "recode": "Lowest",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Middle",
+          "recode": "Middle",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Highest",
+          "recode": "Highest",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID33",
+      "tag": "disp_self_t",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Tertile of respondent belief in disputed claims, formed over shown profiles (the registered subgroup splits).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "disp_self_t"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Lowest",
+          "recode": "Lowest",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Middle",
+          "recode": "Middle",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Highest",
+          "recode": "Highest",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID34",
+      "tag": "media_t",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Tertile of media trust, formed over shown profiles (the registered subgroup splits).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "media_t"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Lowest",
+          "recode": "Lowest",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Middle",
+          "recode": "Middle",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Highest",
+          "recode": "Highest",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID35",
+      "tag": "share_not_believe",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Among profiles chosen to share: 1 if the respondent chose the OTHER post as more plausible (shared without believing); missing for profiles not chosen to share.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "share_not_believe"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Shared, judged less plausible",
+          "recode": "1",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Shared and judged more plausible",
+          "recode": "0",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID36",
+      "tag": "src_congruence",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Respondent and sharer ideology: Congruent = both liberal or both conservative; Incongruent = opposite leans; Neutral = either is moderate. Respondent lean from ideo5_self (1-2 liberal, 3 moderate, 4-5 conservative).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "src_congruence"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Incongruent",
+          "recode": "Incongruent",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Neutral (a moderate)",
+          "recode": "Neutral (a moderate)",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Congruent",
+          "recode": "Congruent",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID37",
+      "tag": "msg_slant",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Ideological slant of the headline (the paper's preliminary automated coding): which side the content favours.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "msg_slant"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Left",
+          "recode": "left",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Neutral",
+          "recode": "neutral",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Right",
+          "recode": "right",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID38",
+      "tag": "msg_congenial",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] For partisan respondents and partisan-slanted headlines: Congenial = the headline favours the respondent's side.",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "msg_congenial"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Uncongenial",
+          "recode": "Uncongenial",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Congenial",
+          "recode": "Congenial",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID39",
+      "tag": "topic_type",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Headline topic type: Health (guanabana, polio) or Political (all other topics).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "topic_type"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Health",
+          "recode": "Health",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Political",
+          "recode": "Political",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID40",
+      "tag": "src_covid",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. 1 if the respondent thinks this contact believes \"Covid-19 vaccines modify your DNA\".",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "src_covid"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Believes the claim",
+          "recode": "1",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Does not",
+          "recode": "0",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID41",
+      "tag": "net_consp",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Ego network: mean perceived belief in disputed claims across the respondent's named contacts (0-1).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "net_consp"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID42",
+      "tag": "net_ideo_sd",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Ego network: standard deviation of the named contacts' ideology (1-3).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "net_ideo_sd"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID43",
+      "tag": "net_trust",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Ego network: mean trust in the named contacts (1-5).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "net_trust"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID44",
+      "tag": "w_resp_misinfo",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "[Reconstructed from YouGov .sav labels; not the fielded instrument] For misinformation profiles: 1 / the respondent's number of misinformation profiles (respondent-level weighting).",
+      "block": "Measures (reconstructed)",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "w_resp_misinfo"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID45",
       "tag": "stim_1",
       "type": "DB",
       "selector": "TB",
@@ -532,7 +1085,7 @@
       "sub_selector": null
     },
     {
-      "qid": "QID20",
+      "qid": "QID46",
       "tag": "stim_2",
       "type": "DB",
       "selector": "TB",
@@ -546,7 +1099,7 @@
       "sub_selector": null
     },
     {
-      "qid": "QID21",
+      "qid": "QID47",
       "tag": "stim_3",
       "type": "DB",
       "selector": "TB",
@@ -575,13 +1128,13 @@
     "source": "flow_embedded",
     "blocks": {
       "True/neutral": [
-        "QID19"
+        "QID45"
       ],
       "Misinformation": [
-        "QID20"
+        "QID46"
       ],
       "Fact-check": [
-        "QID21"
+        "QID47"
       ]
     }
   },
@@ -638,8 +1191,38 @@
       "qid": "QID4",
       "kind": "question",
       "dtype": "text",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Topic of the headline shown (e.g. Tucker Carlson, Biden Budget, Guanabana).",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Topic of the headline shown (17 topics, e.g. Tucker Carlson, Biden Budget, Guanabana, Polio).",
       "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "chosen_share",
+      "qid": "QID5",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Which post would you be more likely to share?\" (Message 1 / Message 2). 1 if this headline was chosen.",
+      "values": {
+        "1": "Chosen",
+        "0": "Not chosen"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "chosen_belief",
+      "qid": "QID6",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Based on the available information, which post do you think is more likely to be accurate?\" (Message 1 / Message 2). 1 if this headline was chosen.",
+      "values": {
+        "1": "Chosen",
+        "0": "Not chosen"
+      },
       "free_text": false,
       "pii_flag": false,
       "pii_reason": "",
@@ -658,14 +1241,14 @@
       "dropped": false
     },
     {
-      "name": "close_tie",
-      "qid": "QID5",
+      "name": "tie",
+      "qid": "QID7",
       "kind": "question",
-      "dtype": "numeric",
+      "dtype": "text",
       "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Whether the contact was named as a close contact or a distant contact.",
       "values": {
-        "1": "Close contact",
-        "0": "Distant contact"
+        "Distant tie": "Distant tie",
+        "Close tie": "Close tie"
       },
       "free_text": false,
       "pii_flag": false,
@@ -673,14 +1256,14 @@
       "dropped": false
     },
     {
-      "name": "sharer_native_us",
-      "qid": "QID6",
+      "name": "sharer_origin",
+      "qid": "QID8",
       "kind": "question",
-      "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Where do personal contacts live?\" Recoded: Continental US vs. any other answer (Puerto Rico, Latin America, Other region, Don't know).",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Where do personal contacts live?\" Continental US vs. any other answer (Puerto Rico, Latin America, Other region, Don't know).",
       "values": {
-        "1": "Continental US",
-        "0": "Elsewhere or don't know"
+        "Foreign origin": "Foreign origin",
+        "Continental US": "Continental US"
       },
       "free_text": false,
       "pii_flag": false,
@@ -692,11 +1275,11 @@
       "qid": "QID9",
       "kind": "question",
       "dtype": "text",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Political orientation of personal contacts.\" \"Don't know\" coded Moderate.",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Political orientation of personal contacts.\" \"Don't know\" coded moderate.",
       "values": {
-        "Liberal": "Liberal",
-        "Moderate": "Moderate (incl. Don't know)",
-        "Conservative": "Conservative"
+        "Liberal sharer": "Liberal sharer",
+        "Moderate sharer": "Moderate sharer",
+        "Conservative sharer": "Conservative sharer"
       },
       "free_text": false,
       "pii_flag": false,
@@ -705,16 +1288,14 @@
     },
     {
       "name": "sharer_trust",
-      "qid": "QID7",
+      "qid": "QID10",
       "kind": "question",
-      "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Trust personal contacts provide accurate information.\" Reversed so 5 = Trust.",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Trust personal contacts provide accurate information\" (5 points), binned: low = distrust or distrust somewhat, mid = neither, high = trust or trust somewhat.",
       "values": {
-        "5": "Trust",
-        "4": "Trust somewhat",
-        "3": "Neither trust nor distrust",
-        "2": "Distrust somewhat",
-        "1": "Distrust"
+        "Trust: low": "Trust: low",
+        "Trust: mid": "Trust: mid",
+        "Trust: high": "Trust: high"
       },
       "free_text": false,
       "pii_flag": false,
@@ -723,16 +1304,14 @@
     },
     {
       "name": "sharer_knowledge",
-      "qid": "QID8",
+      "qid": "QID11",
       "kind": "question",
-      "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Personal contacts knowledgeable about politics\" (agreement).",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Personal contacts knowledgeable about politics\" (5-point agreement), binned: low = disagree, mid = neither, high = agree.",
       "values": {
-        "1": "Strongly disagree",
-        "2": "Disagree",
-        "3": "Neither agree nor disagree",
-        "4": "Agree",
-        "5": "Strongly agree"
+        "Knowledge: low": "Knowledge: low",
+        "Knowledge: mid": "Knowledge: mid",
+        "Knowledge: high": "Knowledge: high"
       },
       "free_text": false,
       "pii_flag": false,
@@ -740,11 +1319,26 @@
       "dropped": false
     },
     {
-      "name": "sharer_disputed",
-      "qid": "QID10",
+      "name": "sharer_conspiracy",
+      "qid": "QID12",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Share of six disputed claims the respondent thinks the contact believes, split at the median. Claims: Joe Biden is a socialist; The 2020 election was stolen by the Democrats; Covid-19 vaccines modify your DNA; A new world order - elites who control the media, industry, and government - were implicated in most wars over the last 200 years; Trump is still president of the United States; Republicans want to end Social Security and Medicare",
+      "values": {
+        "Conspiracy belief: low": "Conspiracy belief: low",
+        "Conspiracy belief: high": "Conspiracy belief: high"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "close_num",
+      "qid": "QID13",
       "kind": "question",
       "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. \"Close/distant contacts believe claims\" (check all contacts who believe each claim). Share of the six claims the respondent marked the contact as believing, 0-1. Claims: Joe Biden is a socialist; The 2020 election was stolen by the Democrats; Covid-19 vaccines modify your DNA; A new world order - elites who control the media, industry, and government - were implicated in most wars over the last 200 years; Trump is still president of the United States; Republicans want to end Social Security and Medicare",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. 1 = close contact, 0 = distant contact.",
       "values": {},
       "free_text": false,
       "pii_flag": false,
@@ -752,41 +1346,119 @@
       "dropped": false
     },
     {
-      "name": "chosen_share",
-      "qid": "QID11",
+      "name": "origin_num",
+      "qid": "QID14",
       "kind": "question",
       "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Which post would you be more likely to share?\" (Message 1 / Message 2). 1 if this headline was chosen.",
-      "values": {
-        "1": "Chosen",
-        "0": "Not chosen"
-      },
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. 1 = lives in the continental US, 0 = elsewhere or don't know.",
+      "values": {},
       "free_text": false,
       "pii_flag": false,
       "pii_reason": "",
       "dropped": false
     },
     {
-      "name": "chosen_belief",
-      "qid": "QID12",
+      "name": "trust_raw",
+      "qid": "QID15",
       "kind": "question",
       "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Based on the available information, which post do you think is more likely to be accurate?\" (Message 1 / Message 2). 1 if this headline was chosen.",
-      "values": {
-        "1": "Chosen",
-        "0": "Not chosen"
-      },
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Trust that the contact provides accurate information, 1 = distrust ... 5 = trust.",
+      "values": {},
       "free_text": false,
       "pii_flag": false,
       "pii_reason": "",
       "dropped": false
     },
     {
-      "name": "weight",
-      "qid": "QID13",
+      "name": "knowledge_raw",
+      "qid": "QID16",
       "kind": "question",
       "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] YouGov survey weight. Not mentioned in the pre-registration.",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. The contact is knowledgeable about politics, 1 = strongly disagree ... 5 = strongly agree.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "conspiracy_raw",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. Share of six disputed claims the respondent thinks the contact believes, 0-1.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ipw_tie",
+      "qid": "QID18",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of tie strength (complete cases; mean 1). Used for the registered re-weighting.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ipw_origin",
+      "qid": "QID19",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of sharer origin (complete cases; mean 1). Used for the registered re-weighting.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ipw_ideology",
+      "qid": "QID20",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of sharer ideology (complete cases; mean 1). Used for the registered re-weighting.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ipw_trust",
+      "qid": "QID21",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of trust in the sharer (complete cases; mean 1). Used for the registered re-weighting.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ipw_knowledge",
+      "qid": "QID22",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of sharer political knowledge (complete cases; mean 1). Used for the registered re-weighting.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ipw_conspiracy",
+      "qid": "QID23",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Stabilized inverse of the realized assignment probability of sharer belief in disputed claims (complete cases; mean 1). Used for the registered re-weighting.",
       "values": {},
       "free_text": false,
       "pii_flag": false,
@@ -795,7 +1467,7 @@
     },
     {
       "name": "survey_language",
-      "qid": "QID14",
+      "qid": "QID24",
       "kind": "question",
       "dtype": "text",
       "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Do you prefer to take the survey in English or Spanish?\"",
@@ -810,7 +1482,7 @@
     },
     {
       "name": "age",
-      "qid": "QID15",
+      "qid": "QID25",
       "kind": "question",
       "dtype": "numeric",
       "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Age in years, computed as 2023 minus \"In what year were you born?\"",
@@ -822,17 +1494,11 @@
     },
     {
       "name": "ideo5_self",
-      "qid": "QID16",
+      "qid": "QID26",
       "kind": "question",
       "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"In general, how would you describe your own political viewpoint?\" \"Not sure\" is missing.",
-      "values": {
-        "1": "Very liberal",
-        "2": "Liberal",
-        "3": "Moderate",
-        "4": "Conservative",
-        "5": "Very conservative"
-      },
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"In general, how would you describe your own political viewpoint?\" 1 = very liberal ... 5 = very conservative; \"Not sure\" is missing.",
+      "values": {},
       "free_text": false,
       "pii_flag": false,
       "pii_reason": "",
@@ -840,7 +1506,7 @@
     },
     {
       "name": "disputed_self",
-      "qid": "QID17",
+      "qid": "QID27",
       "kind": "question",
       "dtype": "numeric",
       "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Claims about American politics\" (True / Not True). Share of the six claims the respondent rated True, 0-1. Claims: Joe Biden is a socialist; The 2020 election was stolen by the Democrats; Covid-19 vaccines modify your DNA; A new world order - elites who control the media, industry, and government - were implicated in most wars over the last 200 years; Trump is still president of the United States; Republicans want to end Social Security and Medicare",
@@ -852,10 +1518,241 @@
     },
     {
       "name": "media_trust",
-      "qid": "QID18",
+      "qid": "QID28",
       "kind": "question",
       "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Trusted political news sources\": mean of six items (Family and friends; WhatsApp groups; Social media; Conservative media; Liberal media; Spanish-language media), 1 = Distrust ... 5 = Trust.",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Trusted political news sources\": mean of six items (Family and friends; WhatsApp groups; Social media; Conservative media; Liberal media; Spanish-language media), 1 = distrust ... 5 = trust.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "resp_nativity",
+      "qid": "QID29",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Which of these statements best describes you?\" Immigrant citizen or non-citizen = foreign-born; first, second or third generation = US-born.",
+      "values": {
+        "US-born": "US-born",
+        "Foreign-born": "Foreign-born"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "weight",
+      "qid": "QID30",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] YouGov survey weight. Not mentioned in the pre-registration and not used.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "age_t",
+      "qid": "QID31",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Tertile of age, formed over shown profiles (the registered subgroup splits).",
+      "values": {
+        "Lowest": "Lowest",
+        "Middle": "Middle",
+        "Highest": "Highest"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ideo_self_t",
+      "qid": "QID32",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Tertile of respondent ideology (ideo5_self), formed over shown profiles (the registered subgroup splits).",
+      "values": {
+        "Lowest": "Lowest",
+        "Middle": "Middle",
+        "Highest": "Highest"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "disp_self_t",
+      "qid": "QID33",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Tertile of respondent belief in disputed claims, formed over shown profiles (the registered subgroup splits).",
+      "values": {
+        "Lowest": "Lowest",
+        "Middle": "Middle",
+        "Highest": "Highest"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "media_t",
+      "qid": "QID34",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Tertile of media trust, formed over shown profiles (the registered subgroup splits).",
+      "values": {
+        "Lowest": "Lowest",
+        "Middle": "Middle",
+        "Highest": "Highest"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "share_not_believe",
+      "qid": "QID35",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Among profiles chosen to share: 1 if the respondent chose the OTHER post as more plausible (shared without believing); missing for profiles not chosen to share.",
+      "values": {
+        "1": "Shared, judged less plausible",
+        "0": "Shared and judged more plausible"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "src_congruence",
+      "qid": "QID36",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Respondent and sharer ideology: Congruent = both liberal or both conservative; Incongruent = opposite leans; Neutral = either is moderate. Respondent lean from ideo5_self (1-2 liberal, 3 moderate, 4-5 conservative).",
+      "values": {
+        "Incongruent": "Incongruent",
+        "Neutral (a moderate)": "Neutral (a moderate)",
+        "Congruent": "Congruent"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "msg_slant",
+      "qid": "QID37",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Ideological slant of the headline (the paper's preliminary automated coding): which side the content favours.",
+      "values": {
+        "left": "Left",
+        "neutral": "Neutral",
+        "right": "Right"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "msg_congenial",
+      "qid": "QID38",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] For partisan respondents and partisan-slanted headlines: Congenial = the headline favours the respondent's side.",
+      "values": {
+        "Uncongenial": "Uncongenial",
+        "Congenial": "Congenial"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "topic_type",
+      "qid": "QID39",
+      "kind": "question",
+      "dtype": "text",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Headline topic type: Health (guanabana, polio) or Political (all other topics).",
+      "values": {
+        "Health": "Health",
+        "Political": "Political"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "src_covid",
+      "qid": "QID40",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Asked about each of six contacts the respondent named: three close contacts (\"From time to time, most people discuss important matters with others. Looking back over the last six months, who are the people with whom you discussed matters important to you?\") and three distant contacts (\"people you interact with on a regular basis, but do not consider a close contact\"). Value for the contact this headline was attributed to. 1 if the respondent thinks this contact believes \"Covid-19 vaccines modify your DNA\".",
+      "values": {
+        "1": "Believes the claim",
+        "0": "Does not"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "net_consp",
+      "qid": "QID41",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Ego network: mean perceived belief in disputed claims across the respondent's named contacts (0-1).",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "net_ideo_sd",
+      "qid": "QID42",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Ego network: standard deviation of the named contacts' ideology (1-3).",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "net_trust",
+      "qid": "QID43",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] Ego network: mean trust in the named contacts (1-5).",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "w_resp_misinfo",
+      "qid": "QID44",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] For misinformation profiles: 1 / the respondent's number of misinformation profiles (respondent-level weighting).",
       "values": {},
       "free_text": false,
       "pii_flag": false,

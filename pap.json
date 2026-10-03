@@ -1,24 +1,28 @@
 {
+  "source": "pap.md",
   "title": "Who Shares What From Whom: An Ego-Network Conjoint of Misinformation Sharing",
   "constructs": [
     "misinformation",
     "fact_checking",
     "conjoint_preferences",
     "social_norms",
-    "media_trust"
+    "media_trust",
+    "partisanship"
   ],
   "keywords": [
     "misinformation",
     "sharing",
     "conjoint",
-    "social network",
+    "ego network",
+    "social networks",
     "fact-check",
+    "source credibility",
     "Latino"
   ],
   "registration": {
     "status": "registered",
     "url": "https://aspredicted.org/8njc-mpqw.pdf",
-    "note": "AsPredicted #132508"
+    "note": "AsPredicted #132,508"
   },
   "design": {
     "type": "conjoint",
@@ -29,17 +33,87 @@
         "Fact-check"
       ],
       "control": "True/neutral",
-      "labels": {
-        "Misinformation": "Misinformation",
-        "Fact-check": "Fact-check",
-        "True/neutral": "True/neutral (placebo)"
+      "labels": {},
+      "descriptions": {
+        "True/neutral": "A true or neutral headline (the plan's placebo).",
+        "Misinformation": "A false headline.",
+        "Fact-check": "A headline correcting a false claim."
       }
     },
+    "features": [
+      {
+        "column": "infotype",
+        "label": "Information type",
+        "levels": [
+          "True/neutral",
+          "Misinformation",
+          "Fact-check"
+        ],
+        "randomized": true
+      },
+      {
+        "column": "tie",
+        "label": "Tie strength",
+        "levels": [
+          "Distant tie",
+          "Close tie"
+        ],
+        "randomized": false
+      },
+      {
+        "column": "sharer_origin",
+        "label": "Sharer origin",
+        "levels": [
+          "Foreign origin",
+          "Continental US"
+        ],
+        "randomized": false
+      },
+      {
+        "column": "sharer_ideology",
+        "label": "Sharer ideology",
+        "levels": [
+          "Liberal sharer",
+          "Moderate sharer",
+          "Conservative sharer"
+        ],
+        "randomized": false
+      },
+      {
+        "column": "sharer_trust",
+        "label": "Trust in sharer",
+        "levels": [
+          "Trust: low",
+          "Trust: mid",
+          "Trust: high"
+        ],
+        "randomized": false
+      },
+      {
+        "column": "sharer_knowledge",
+        "label": "Sharer political knowledge",
+        "levels": [
+          "Knowledge: low",
+          "Knowledge: mid",
+          "Knowledge: high"
+        ],
+        "randomized": false
+      },
+      {
+        "column": "sharer_conspiracy",
+        "label": "Sharer belief in disputed claims",
+        "levels": [
+          "Conspiracy belief: low",
+          "Conspiracy belief: high"
+        ],
+        "randomized": false
+      }
+    ],
+    "measured_note": "the respondent's own ratings of the real contact each headline was attributed to; only the headline and its assignment to a contact are randomized",
     "population": {
       "country": "US",
       "sample": "yougov"
-    },
-    "outcome_type": "binary forced choice"
+    }
   },
   "registered": {
     "outcomes": [
@@ -55,7 +129,7 @@
           0,
           1
         ],
-        "construction": "chosen_share"
+        "construction": "1 if the profile was chosen in 'Which post would you be more likely to share?'"
       },
       {
         "name": "plausibility",
@@ -69,14 +143,15 @@
           0,
           1
         ],
-        "construction": "chosen_belief"
+        "construction": "1 if chosen in 'which post do you think is more likely to be accurate?'"
       }
     ],
     "hypotheses": [
       {
         "id": "H1",
-        "text": "Information type affects sharing.",
+        "text": "AMCE of information type on sharing: each level against 'True/neutral', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
         "outcome": "share",
+        "label": "Information type → sharing",
         "treatment": {
           "column": "infotype",
           "arms": [
@@ -86,28 +161,281 @@
           "control": "True/neutral"
         },
         "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
         "estimator": {
           "kind": "ols",
-          "robust": "HC2",
+          "robust": "HC1",
           "cluster": "resp_id",
           "weights": null,
           "covariates": [
-            "close_tie",
-            "sharer_native_us",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
             "sharer_trust",
             "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "tie",
+            "sharer_origin",
             "sharer_ideology",
-            "sharer_disputed"
-          ]
-        },
-        "pooled": false,
-        "subgroup": null,
-        "exclusions": []
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
       },
       {
         "id": "H2",
-        "text": "Information type affects plausibility choice.",
+        "text": "AMCE of tie strength on sharing: each level against 'Distant tie', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Tie strength → sharing",
+        "treatment": {
+          "column": "tie",
+          "arms": [
+            "Close tie"
+          ],
+          "control": "Distant tie"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H3",
+        "text": "AMCE of sharer origin on sharing: each level against 'Foreign origin', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Sharer origin → sharing",
+        "treatment": {
+          "column": "sharer_origin",
+          "arms": [
+            "Continental US"
+          ],
+          "control": "Foreign origin"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H4",
+        "text": "AMCE of sharer ideology on sharing: each level against 'Liberal sharer', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Sharer ideology → sharing",
+        "treatment": {
+          "column": "sharer_ideology",
+          "arms": [
+            "Moderate sharer",
+            "Conservative sharer"
+          ],
+          "control": "Liberal sharer"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H5",
+        "text": "AMCE of trust in sharer on sharing: each level against 'Trust: low', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Trust in sharer → sharing",
+        "treatment": {
+          "column": "sharer_trust",
+          "arms": [
+            "Trust: mid",
+            "Trust: high"
+          ],
+          "control": "Trust: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H6",
+        "text": "AMCE of sharer political knowledge on sharing: each level against 'Knowledge: low', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Sharer political knowledge → sharing",
+        "treatment": {
+          "column": "sharer_knowledge",
+          "arms": [
+            "Knowledge: mid",
+            "Knowledge: high"
+          ],
+          "control": "Knowledge: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H7",
+        "text": "AMCE of sharer belief in disputed claims on sharing: each level against 'Conspiracy belief: low', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Sharer belief in disputed claims → sharing",
+        "treatment": {
+          "column": "sharer_conspiracy",
+          "arms": [
+            "Conspiracy belief: high"
+          ],
+          "control": "Conspiracy belief: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H8",
+        "text": "AMCE of information type on plausibility: each level against 'True/neutral', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
         "outcome": "plausibility",
+        "label": "Information type → plausibility",
         "treatment": {
           "column": "infotype",
           "arms": [
@@ -117,29 +445,993 @@
           "control": "True/neutral"
         },
         "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
         "estimator": {
           "kind": "ols",
-          "robust": "HC2",
+          "robust": "HC1",
           "cluster": "resp_id",
           "weights": null,
           "covariates": [
-            "close_tie",
-            "sharer_native_us",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
             "sharer_trust",
             "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "tie",
+            "sharer_origin",
             "sharer_ideology",
-            "sharer_disputed"
-          ]
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H9",
+        "text": "AMCE of tie strength on plausibility: each level against 'Distant tie', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Tie strength → plausibility",
+        "treatment": {
+          "column": "tie",
+          "arms": [
+            "Close tie"
+          ],
+          "control": "Distant tie"
         },
+        "direction": "two_sided",
         "pooled": false,
         "subgroup": null,
-        "exclusions": []
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H10",
+        "text": "AMCE of sharer origin on plausibility: each level against 'Foreign origin', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Sharer origin → plausibility",
+        "treatment": {
+          "column": "sharer_origin",
+          "arms": [
+            "Continental US"
+          ],
+          "control": "Foreign origin"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H11",
+        "text": "AMCE of sharer ideology on plausibility: each level against 'Liberal sharer', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Sharer ideology → plausibility",
+        "treatment": {
+          "column": "sharer_ideology",
+          "arms": [
+            "Moderate sharer",
+            "Conservative sharer"
+          ],
+          "control": "Liberal sharer"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H12",
+        "text": "AMCE of trust in sharer on plausibility: each level against 'Trust: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Trust in sharer → plausibility",
+        "treatment": {
+          "column": "sharer_trust",
+          "arms": [
+            "Trust: mid",
+            "Trust: high"
+          ],
+          "control": "Trust: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H13",
+        "text": "AMCE of sharer political knowledge on plausibility: each level against 'Knowledge: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Sharer political knowledge → plausibility",
+        "treatment": {
+          "column": "sharer_knowledge",
+          "arms": [
+            "Knowledge: mid",
+            "Knowledge: high"
+          ],
+          "control": "Knowledge: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H14",
+        "text": "AMCE of sharer belief in disputed claims on plausibility: each level against 'Conspiracy belief: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Sharer belief in disputed claims → plausibility",
+        "treatment": {
+          "column": "sharer_conspiracy",
+          "arms": [
+            "Conspiracy belief: high"
+          ],
+          "control": "Conspiracy belief: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R1",
+        "text": "AMCE of tie strength on sharing: each level against 'Distant tie', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of tie strength (stabilized).",
+        "outcome": "share",
+        "label": "Tie strength → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "tie",
+          "arms": [
+            "Close tie"
+          ],
+          "control": "Distant tie"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_tie",
+          "covariates": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R2",
+        "text": "AMCE of sharer origin on sharing: each level against 'Foreign origin', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer origin (stabilized).",
+        "outcome": "share",
+        "label": "Sharer origin → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_origin",
+          "arms": [
+            "Continental US"
+          ],
+          "control": "Foreign origin"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_origin",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R3",
+        "text": "AMCE of sharer ideology on sharing: each level against 'Liberal sharer', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer ideology (stabilized).",
+        "outcome": "share",
+        "label": "Sharer ideology → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_ideology",
+          "arms": [
+            "Moderate sharer",
+            "Conservative sharer"
+          ],
+          "control": "Liberal sharer"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_ideology",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R4",
+        "text": "AMCE of trust in sharer on sharing: each level against 'Trust: low', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of trust in sharer (stabilized).",
+        "outcome": "share",
+        "label": "Trust in sharer → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_trust",
+          "arms": [
+            "Trust: mid",
+            "Trust: high"
+          ],
+          "control": "Trust: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_trust",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R5",
+        "text": "AMCE of sharer political knowledge on sharing: each level against 'Knowledge: low', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer political knowledge (stabilized).",
+        "outcome": "share",
+        "label": "Sharer political knowledge → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_knowledge",
+          "arms": [
+            "Knowledge: mid",
+            "Knowledge: high"
+          ],
+          "control": "Knowledge: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_knowledge",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R6",
+        "text": "AMCE of sharer belief in disputed claims on sharing: each level against 'Conspiracy belief: low', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer belief in disputed claims (stabilized).",
+        "outcome": "share",
+        "label": "Sharer belief in disputed claims → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_conspiracy",
+          "arms": [
+            "Conspiracy belief: high"
+          ],
+          "control": "Conspiracy belief: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_conspiracy",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R7",
+        "text": "AMCE of tie strength on plausibility: each level against 'Distant tie', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of tie strength (stabilized).",
+        "outcome": "plausibility",
+        "label": "Tie strength → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "tie",
+          "arms": [
+            "Close tie"
+          ],
+          "control": "Distant tie"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_tie",
+          "covariates": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R8",
+        "text": "AMCE of sharer origin on plausibility: each level against 'Foreign origin', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer origin (stabilized).",
+        "outcome": "plausibility",
+        "label": "Sharer origin → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_origin",
+          "arms": [
+            "Continental US"
+          ],
+          "control": "Foreign origin"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_origin",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R9",
+        "text": "AMCE of sharer ideology on plausibility: each level against 'Liberal sharer', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer ideology (stabilized).",
+        "outcome": "plausibility",
+        "label": "Sharer ideology → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_ideology",
+          "arms": [
+            "Moderate sharer",
+            "Conservative sharer"
+          ],
+          "control": "Liberal sharer"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_ideology",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R10",
+        "text": "AMCE of trust in sharer on plausibility: each level against 'Trust: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of trust in sharer (stabilized).",
+        "outcome": "plausibility",
+        "label": "Trust in sharer → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_trust",
+          "arms": [
+            "Trust: mid",
+            "Trust: high"
+          ],
+          "control": "Trust: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_trust",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R11",
+        "text": "AMCE of sharer political knowledge on plausibility: each level against 'Knowledge: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer political knowledge (stabilized).",
+        "outcome": "plausibility",
+        "label": "Sharer political knowledge → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_knowledge",
+          "arms": [
+            "Knowledge: mid",
+            "Knowledge: high"
+          ],
+          "control": "Knowledge: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_knowledge",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R12",
+        "text": "AMCE of sharer belief in disputed claims on plausibility: each level against 'Conspiracy belief: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer belief in disputed claims (stabilized).",
+        "outcome": "plausibility",
+        "label": "Sharer belief in disputed claims → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_conspiracy",
+          "arms": [
+            "Conspiracy belief: high"
+          ],
+          "control": "Conspiracy belief: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_conspiracy",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "continuous": []
+        }
       }
     ],
-    "subgroups": [],
+    "subgroups": [
+      {
+        "id": "S1",
+        "hypothesis": "H1",
+        "moderator": "age_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: highest minus lowest tertile of age",
+        "label": "Marginal means of every feature level on sharing: highest minus lowest tertile of age"
+      },
+      {
+        "id": "S2",
+        "hypothesis": "H1",
+        "moderator": "ideo_self_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: highest minus lowest tertile of respondent ideology (1 very liberal ... 5 very conservative)",
+        "label": "Marginal means of every feature level on sharing: highest minus lowest tertile of respondent ideology (1 very liberal ... 5 very conservative)"
+      },
+      {
+        "id": "S3",
+        "hypothesis": "H1",
+        "moderator": "disp_self_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: highest minus lowest tertile of respondent belief in disputed claims",
+        "label": "Marginal means of every feature level on sharing: highest minus lowest tertile of respondent belief in disputed claims"
+      },
+      {
+        "id": "S4",
+        "hypothesis": "H1",
+        "moderator": "media_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: highest minus lowest tertile of trust in media",
+        "label": "Marginal means of every feature level on sharing: highest minus lowest tertile of trust in media"
+      },
+      {
+        "id": "S5",
+        "hypothesis": "H1",
+        "moderator": "survey_language",
+        "levels": {
+          "English": "English",
+          "Spanish": "Spanish"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: Spanish minus English survey language",
+        "label": "Marginal means of every feature level on sharing: Spanish minus English survey language"
+      },
+      {
+        "id": "S6",
+        "hypothesis": "H8",
+        "moderator": "age_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: highest minus lowest tertile of age",
+        "label": "Marginal means of every feature level on plausibility: highest minus lowest tertile of age"
+      },
+      {
+        "id": "S7",
+        "hypothesis": "H8",
+        "moderator": "ideo_self_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: highest minus lowest tertile of respondent ideology (1 very liberal ... 5 very conservative)",
+        "label": "Marginal means of every feature level on plausibility: highest minus lowest tertile of respondent ideology (1 very liberal ... 5 very conservative)"
+      },
+      {
+        "id": "S8",
+        "hypothesis": "H8",
+        "moderator": "disp_self_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: highest minus lowest tertile of respondent belief in disputed claims",
+        "label": "Marginal means of every feature level on plausibility: highest minus lowest tertile of respondent belief in disputed claims"
+      },
+      {
+        "id": "S9",
+        "hypothesis": "H8",
+        "moderator": "media_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: highest minus lowest tertile of trust in media",
+        "label": "Marginal means of every feature level on plausibility: highest minus lowest tertile of trust in media"
+      },
+      {
+        "id": "S10",
+        "hypothesis": "H8",
+        "moderator": "survey_language",
+        "levels": {
+          "English": "English",
+          "Spanish": "Spanish"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: Spanish minus English survey language",
+        "label": "Marginal means of every feature level on plausibility: Spanish minus English survey language"
+      }
+    ],
     "sample_exclusions": [],
     "multiple_testing": "none",
-    "alpha": 0.05
+    "alpha": 0.05,
+    "groups": {
+      "RW": "Re-weighted AMCEs: each source attribute re-weighted by its inverse assignment probability"
+    }
   },
   "implemented": {
     "outcomes": [
@@ -155,7 +1447,7 @@
           0,
           1
         ],
-        "construction": "chosen_share"
+        "construction": "1 if the profile was chosen in 'Which post would you be more likely to share?'"
       },
       {
         "name": "plausibility",
@@ -169,14 +1461,29 @@
           0,
           1
         ],
-        "construction": "chosen_belief"
+        "construction": "1 if chosen in 'which post do you think is more likely to be accurate?'"
+      },
+      {
+        "name": "share_not_believe",
+        "label": "Shared but not judged more plausible",
+        "kind": "single_item",
+        "columns": [
+          "share_not_believe"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "among profiles chosen to share: 1 if the respondent chose the other post as more plausible"
       }
     ],
     "hypotheses": [
       {
         "id": "H1",
-        "text": "Information type affects sharing.",
+        "text": "AMCE of information type on sharing: each level against 'True/neutral', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
         "outcome": "share",
+        "label": "Information type → sharing",
         "treatment": {
           "column": "infotype",
           "arms": [
@@ -186,33 +1493,281 @@
           "control": "True/neutral"
         },
         "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
         "estimator": {
           "kind": "ols",
-          "robust": "HC2",
+          "robust": "HC1",
           "cluster": "resp_id",
           "weights": null,
           "covariates": [
-            "close_tie",
-            "sharer_native_us",
-            "sharer_trust",
-            "sharer_knowledge",
+            "tie",
+            "sharer_origin",
             "sharer_ideology",
-            "sharer_disputed"
-          ],
-          "continuous": [
             "sharer_trust",
             "sharer_knowledge",
-            "sharer_disputed"
-          ]
-        },
-        "pooled": false,
-        "subgroup": null,
-        "exclusions": []
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
       },
       {
         "id": "H2",
-        "text": "Information type affects plausibility choice.",
+        "text": "AMCE of tie strength on sharing: each level against 'Distant tie', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Tie strength → sharing",
+        "treatment": {
+          "column": "tie",
+          "arms": [
+            "Close tie"
+          ],
+          "control": "Distant tie"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H3",
+        "text": "AMCE of sharer origin on sharing: each level against 'Foreign origin', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Sharer origin → sharing",
+        "treatment": {
+          "column": "sharer_origin",
+          "arms": [
+            "Continental US"
+          ],
+          "control": "Foreign origin"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H4",
+        "text": "AMCE of sharer ideology on sharing: each level against 'Liberal sharer', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Sharer ideology → sharing",
+        "treatment": {
+          "column": "sharer_ideology",
+          "arms": [
+            "Moderate sharer",
+            "Conservative sharer"
+          ],
+          "control": "Liberal sharer"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H5",
+        "text": "AMCE of trust in sharer on sharing: each level against 'Trust: low', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Trust in sharer → sharing",
+        "treatment": {
+          "column": "sharer_trust",
+          "arms": [
+            "Trust: mid",
+            "Trust: high"
+          ],
+          "control": "Trust: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H6",
+        "text": "AMCE of sharer political knowledge on sharing: each level against 'Knowledge: low', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Sharer political knowledge → sharing",
+        "treatment": {
+          "column": "sharer_knowledge",
+          "arms": [
+            "Knowledge: mid",
+            "Knowledge: high"
+          ],
+          "control": "Knowledge: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H7",
+        "text": "AMCE of sharer belief in disputed claims on sharing: each level against 'Conspiracy belief: low', from the regression of sharing on all seven profile features, SEs clustered by respondent.",
+        "outcome": "share",
+        "label": "Sharer belief in disputed claims → sharing",
+        "treatment": {
+          "column": "sharer_conspiracy",
+          "arms": [
+            "Conspiracy belief: high"
+          ],
+          "control": "Conspiracy belief: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H8",
+        "text": "AMCE of information type on plausibility: each level against 'True/neutral', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
         "outcome": "plausibility",
+        "label": "Information type → plausibility",
         "treatment": {
           "column": "infotype",
           "arms": [
@@ -222,69 +1777,1571 @@
           "control": "True/neutral"
         },
         "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
         "estimator": {
           "kind": "ols",
-          "robust": "HC2",
+          "robust": "HC1",
           "cluster": "resp_id",
           "weights": null,
           "covariates": [
-            "close_tie",
-            "sharer_native_us",
-            "sharer_trust",
-            "sharer_knowledge",
+            "tie",
+            "sharer_origin",
             "sharer_ideology",
-            "sharer_disputed"
-          ],
-          "continuous": [
             "sharer_trust",
             "sharer_knowledge",
-            "sharer_disputed"
-          ]
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H9",
+        "text": "AMCE of tie strength on plausibility: each level against 'Distant tie', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Tie strength → plausibility",
+        "treatment": {
+          "column": "tie",
+          "arms": [
+            "Close tie"
+          ],
+          "control": "Distant tie"
         },
+        "direction": "two_sided",
         "pooled": false,
         "subgroup": null,
-        "exclusions": []
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H10",
+        "text": "AMCE of sharer origin on plausibility: each level against 'Foreign origin', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Sharer origin → plausibility",
+        "treatment": {
+          "column": "sharer_origin",
+          "arms": [
+            "Continental US"
+          ],
+          "control": "Foreign origin"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H11",
+        "text": "AMCE of sharer ideology on plausibility: each level against 'Liberal sharer', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Sharer ideology → plausibility",
+        "treatment": {
+          "column": "sharer_ideology",
+          "arms": [
+            "Moderate sharer",
+            "Conservative sharer"
+          ],
+          "control": "Liberal sharer"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H12",
+        "text": "AMCE of trust in sharer on plausibility: each level against 'Trust: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Trust in sharer → plausibility",
+        "treatment": {
+          "column": "sharer_trust",
+          "arms": [
+            "Trust: mid",
+            "Trust: high"
+          ],
+          "control": "Trust: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H13",
+        "text": "AMCE of sharer political knowledge on plausibility: each level against 'Knowledge: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Sharer political knowledge → plausibility",
+        "treatment": {
+          "column": "sharer_knowledge",
+          "arms": [
+            "Knowledge: mid",
+            "Knowledge: high"
+          ],
+          "control": "Knowledge: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "H14",
+        "text": "AMCE of sharer belief in disputed claims on plausibility: each level against 'Conspiracy belief: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent.",
+        "outcome": "plausibility",
+        "label": "Sharer belief in disputed claims → plausibility",
+        "treatment": {
+          "column": "sharer_conspiracy",
+          "arms": [
+            "Conspiracy belief: high"
+          ],
+          "control": "Conspiracy belief: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R1",
+        "text": "AMCE of tie strength on sharing: each level against 'Distant tie', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of tie strength (stabilized).",
+        "outcome": "share",
+        "label": "Tie strength → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "tie",
+          "arms": [
+            "Close tie"
+          ],
+          "control": "Distant tie"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_tie",
+          "covariates": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R2",
+        "text": "AMCE of sharer origin on sharing: each level against 'Foreign origin', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer origin (stabilized).",
+        "outcome": "share",
+        "label": "Sharer origin → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_origin",
+          "arms": [
+            "Continental US"
+          ],
+          "control": "Foreign origin"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_origin",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R3",
+        "text": "AMCE of sharer ideology on sharing: each level against 'Liberal sharer', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer ideology (stabilized).",
+        "outcome": "share",
+        "label": "Sharer ideology → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_ideology",
+          "arms": [
+            "Moderate sharer",
+            "Conservative sharer"
+          ],
+          "control": "Liberal sharer"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_ideology",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R4",
+        "text": "AMCE of trust in sharer on sharing: each level against 'Trust: low', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of trust in sharer (stabilized).",
+        "outcome": "share",
+        "label": "Trust in sharer → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_trust",
+          "arms": [
+            "Trust: mid",
+            "Trust: high"
+          ],
+          "control": "Trust: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_trust",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R5",
+        "text": "AMCE of sharer political knowledge on sharing: each level against 'Knowledge: low', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer political knowledge (stabilized).",
+        "outcome": "share",
+        "label": "Sharer political knowledge → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_knowledge",
+          "arms": [
+            "Knowledge: mid",
+            "Knowledge: high"
+          ],
+          "control": "Knowledge: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_knowledge",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R6",
+        "text": "AMCE of sharer belief in disputed claims on sharing: each level against 'Conspiracy belief: low', from the regression of sharing on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer belief in disputed claims (stabilized).",
+        "outcome": "share",
+        "label": "Sharer belief in disputed claims → sharing (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_conspiracy",
+          "arms": [
+            "Conspiracy belief: high"
+          ],
+          "control": "Conspiracy belief: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_conspiracy",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R7",
+        "text": "AMCE of tie strength on plausibility: each level against 'Distant tie', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of tie strength (stabilized).",
+        "outcome": "plausibility",
+        "label": "Tie strength → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "tie",
+          "arms": [
+            "Close tie"
+          ],
+          "control": "Distant tie"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_tie",
+          "covariates": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R8",
+        "text": "AMCE of sharer origin on plausibility: each level against 'Foreign origin', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer origin (stabilized).",
+        "outcome": "plausibility",
+        "label": "Sharer origin → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_origin",
+          "arms": [
+            "Continental US"
+          ],
+          "control": "Foreign origin"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_origin",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R9",
+        "text": "AMCE of sharer ideology on plausibility: each level against 'Liberal sharer', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer ideology (stabilized).",
+        "outcome": "plausibility",
+        "label": "Sharer ideology → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_ideology",
+          "arms": [
+            "Moderate sharer",
+            "Conservative sharer"
+          ],
+          "control": "Liberal sharer"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_ideology",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_trust",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R10",
+        "text": "AMCE of trust in sharer on plausibility: each level against 'Trust: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of trust in sharer (stabilized).",
+        "outcome": "plausibility",
+        "label": "Trust in sharer → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_trust",
+          "arms": [
+            "Trust: mid",
+            "Trust: high"
+          ],
+          "control": "Trust: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_trust",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_knowledge",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R11",
+        "text": "AMCE of sharer political knowledge on plausibility: each level against 'Knowledge: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer political knowledge (stabilized).",
+        "outcome": "plausibility",
+        "label": "Sharer political knowledge → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_knowledge",
+          "arms": [
+            "Knowledge: mid",
+            "Knowledge: high"
+          ],
+          "control": "Knowledge: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_knowledge",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_conspiracy"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "R12",
+        "text": "AMCE of sharer belief in disputed claims on plausibility: each level against 'Conspiracy belief: low', from the regression of plausibility on all seven profile features, SEs clustered by respondent; re-weighted by the inverse of the realized assignment probability of sharer belief in disputed claims (stabilized).",
+        "outcome": "plausibility",
+        "label": "Sharer belief in disputed claims → plausibility (re-weighted)",
+        "group": "RW",
+        "treatment": {
+          "column": "sharer_conspiracy",
+          "arms": [
+            "Conspiracy belief: high"
+          ],
+          "control": "Conspiracy belief: low"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "ipw_conspiracy",
+          "covariates": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "categorical": [
+            "infotype",
+            "tie",
+            "sharer_origin",
+            "sharer_ideology",
+            "sharer_trust",
+            "sharer_knowledge"
+          ],
+          "continuous": []
+        }
+      },
+      {
+        "id": "X1",
+        "text": "A1. Source credibility is conditional on content uncertainty: the slope of sharing on trust in the sharer (1-5), net of the other source attributes, and how it differs by information type.",
+        "outcome": "share",
+        "treatment": {
+          "column": "trust_raw",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "close_num",
+            "origin_num",
+            "sharer_ideology",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "close_num",
+            "origin_num",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ]
+        },
+        "label": "A1. Trust in the sharer → sharing"
+      },
+      {
+        "id": "X2",
+        "text": "A1. The slope of plausibility on trust in the sharer, by information type.",
+        "outcome": "plausibility",
+        "treatment": {
+          "column": "trust_raw",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "close_num",
+            "origin_num",
+            "sharer_ideology",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "close_num",
+            "origin_num",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ]
+        },
+        "label": "A1. Trust in the sharer → plausibility"
+      },
+      {
+        "id": "X3",
+        "text": "A1. The close-tie premium on sharing, net of the other source attributes, by information type.",
+        "outcome": "share",
+        "treatment": {
+          "column": "close_num",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "trust_raw",
+            "origin_num",
+            "sharer_ideology",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "trust_raw",
+            "origin_num",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ]
+        },
+        "label": "A1. Close tie → sharing"
+      },
+      {
+        "id": "X4",
+        "text": "A2. Sharing without believing: among profiles chosen to share, the probability that the respondent judged the other post more plausible, by information type, net of source attributes, media trust and age.",
+        "outcome": "share_not_believe",
+        "treatment": {
+          "column": "infotype",
+          "arms": [
+            "Misinformation",
+            "Fact-check"
+          ],
+          "control": "True/neutral"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "trust_raw",
+            "close_num",
+            "origin_num",
+            "sharer_ideology",
+            "knowledge_raw",
+            "conspiracy_raw",
+            "media_trust",
+            "age"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "trust_raw",
+            "close_num",
+            "origin_num",
+            "knowledge_raw",
+            "conspiracy_raw",
+            "media_trust",
+            "age"
+          ]
+        },
+        "label": "A2. Sharing without believing"
+      },
+      {
+        "id": "X5",
+        "text": "A3. Co-ideological messenger: sharing when the respondent and the sharer lean the same way (both liberal or both conservative) against opposite leans; pairs involving a moderate form a third group. Cell differences, no controls.",
+        "outcome": "share",
+        "treatment": {
+          "column": "src_congruence",
+          "arms": [
+            "Congruent",
+            "Neutral (a moderate)"
+          ],
+          "control": "Incongruent"
+        },
+        "direction": "two_sided",
+        "pooled": false,
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "diff_means",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [],
+          "categorical": [],
+          "continuous": []
+        },
+        "label": "A3. Co-ideological sharer → sharing"
+      },
+      {
+        "id": "X6",
+        "text": "A4. Ego-network composition: the respondent's six named contacts as a measured network. Among misinformation profiles, sharing on the network's mean perceived belief in disputed claims, net of network ideological spread, mean trust, age and ideology. Each misinformation profile is weighted by 1 / the respondent's number of them, which reproduces the respondent-level regression of the misinformation-sharing rate.",
+        "outcome": "share",
+        "treatment": {
+          "column": "net_consp",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [
+          "infotype == 'Misinformation'"
+        ],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": "w_resp_misinfo",
+          "covariates": [
+            "net_ideo_sd",
+            "net_trust",
+            "age",
+            "ideo5_self"
+          ],
+          "categorical": [],
+          "continuous": [
+            "net_ideo_sd",
+            "net_trust",
+            "age",
+            "ideo5_self"
+          ]
+        },
+        "label": "A4. Ego-network conspiracy load → sharing misinformation"
+      },
+      {
+        "id": "X7",
+        "text": "B1. Message x respondent congruence: among partisan respondents shown partisan-slanted headlines, sharing of congenial against uncongenial content (headline slant from the paper's preliminary automated coding), by information type.",
+        "outcome": "share",
+        "treatment": {
+          "column": "msg_congenial",
+          "contrast": [
+            "Congenial",
+            "Uncongenial"
+          ]
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "diff_means",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [],
+          "categorical": [],
+          "continuous": []
+        },
+        "label": "B1. Congenial content → sharing"
+      },
+      {
+        "id": "X8",
+        "text": "B2. A conspiracy-prone source: the slope of sharing on the sharer's perceived belief in disputed claims (0-1), net of the other source attributes, by information type.",
+        "outcome": "share",
+        "treatment": {
+          "column": "conspiracy_raw",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "trust_raw",
+            "close_num",
+            "origin_num",
+            "sharer_ideology",
+            "knowledge_raw"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "trust_raw",
+            "close_num",
+            "origin_num",
+            "knowledge_raw"
+          ]
+        },
+        "label": "B2. Conspiracy-prone sharer → sharing"
+      },
+      {
+        "id": "X9",
+        "text": "B2. The slope of plausibility on the sharer's perceived belief in disputed claims, by information type.",
+        "outcome": "plausibility",
+        "treatment": {
+          "column": "conspiracy_raw",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "trust_raw",
+            "close_num",
+            "origin_num",
+            "sharer_ideology",
+            "knowledge_raw"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "trust_raw",
+            "close_num",
+            "origin_num",
+            "knowledge_raw"
+          ]
+        },
+        "label": "B2. Conspiracy-prone sharer → plausibility"
+      },
+      {
+        "id": "X10",
+        "text": "B2, claim-specific (thin): for the anti-vaccine (polio) misinformation headline, plausibility when the sharer is seen as believing 'Covid-19 vaccines modify your DNA' against not.",
+        "outcome": "plausibility",
+        "treatment": {
+          "column": "src_covid",
+          "contrast": [
+            "1",
+            "0"
+          ]
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [
+          "headline_theme == 'Polio'",
+          "infotype == 'Misinformation'"
+        ],
+        "estimator": {
+          "kind": "diff_means",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [],
+          "categorical": [],
+          "continuous": []
+        },
+        "label": "B2. Sharer believes the vaccine claim → plausibility of anti-vaccine misinformation"
+      },
+      {
+        "id": "X11",
+        "text": "B3. Health vs. political misinformation: among misinformation profiles, the trust slope on sharing for health (guanabana, polio) and political headlines.",
+        "outcome": "share",
+        "treatment": {
+          "column": "trust_raw",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [
+          "infotype == 'Misinformation'"
+        ],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "close_num",
+            "origin_num",
+            "sharer_ideology",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "close_num",
+            "origin_num",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ]
+        },
+        "label": "B3. Trust → sharing misinformation, health vs. political"
+      },
+      {
+        "id": "X12",
+        "text": "B3. Among misinformation profiles, the close-tie premium for health and political headlines.",
+        "outcome": "share",
+        "treatment": {
+          "column": "close_num",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [
+          "infotype == 'Misinformation'"
+        ],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "trust_raw",
+            "origin_num",
+            "sharer_ideology",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "trust_raw",
+            "origin_num",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ]
+        },
+        "label": "B3. Close tie → sharing misinformation, health vs. political"
+      },
+      {
+        "id": "X13",
+        "text": "B4. Sharer origin (continental US vs. elsewhere) and sharing, by survey language and by the respondent's nativity.",
+        "outcome": "share",
+        "treatment": {
+          "column": "origin_num",
+          "continuous": true
+        },
+        "direction": "two_sided",
+        "subgroup": null,
+        "exclusions": [],
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC1",
+          "cluster": "resp_id",
+          "weights": null,
+          "covariates": [
+            "trust_raw",
+            "close_num",
+            "sharer_ideology",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ],
+          "categorical": [
+            "sharer_ideology"
+          ],
+          "continuous": [
+            "trust_raw",
+            "close_num",
+            "knowledge_raw",
+            "conspiracy_raw"
+          ]
+        },
+        "label": "B4. Sharer origin → sharing, by language and nativity"
       }
     ],
-    "subgroups": [],
+    "subgroups": [
+      {
+        "id": "S1",
+        "hypothesis": "H1",
+        "moderator": "age_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: highest minus lowest tertile of age",
+        "label": "Marginal means of every feature level on sharing: highest minus lowest tertile of age"
+      },
+      {
+        "id": "S2",
+        "hypothesis": "H1",
+        "moderator": "ideo_self_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: highest minus lowest tertile of respondent ideology (1 very liberal ... 5 very conservative)",
+        "label": "Marginal means of every feature level on sharing: highest minus lowest tertile of respondent ideology (1 very liberal ... 5 very conservative)"
+      },
+      {
+        "id": "S3",
+        "hypothesis": "H1",
+        "moderator": "disp_self_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: highest minus lowest tertile of respondent belief in disputed claims",
+        "label": "Marginal means of every feature level on sharing: highest minus lowest tertile of respondent belief in disputed claims"
+      },
+      {
+        "id": "S4",
+        "hypothesis": "H1",
+        "moderator": "media_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: highest minus lowest tertile of trust in media",
+        "label": "Marginal means of every feature level on sharing: highest minus lowest tertile of trust in media"
+      },
+      {
+        "id": "S5",
+        "hypothesis": "H1",
+        "moderator": "survey_language",
+        "levels": {
+          "English": "English",
+          "Spanish": "Spanish"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on sharing: Spanish minus English survey language",
+        "label": "Marginal means of every feature level on sharing: Spanish minus English survey language"
+      },
+      {
+        "id": "S6",
+        "hypothesis": "H8",
+        "moderator": "age_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: highest minus lowest tertile of age",
+        "label": "Marginal means of every feature level on plausibility: highest minus lowest tertile of age"
+      },
+      {
+        "id": "S7",
+        "hypothesis": "H8",
+        "moderator": "ideo_self_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: highest minus lowest tertile of respondent ideology (1 very liberal ... 5 very conservative)",
+        "label": "Marginal means of every feature level on plausibility: highest minus lowest tertile of respondent ideology (1 very liberal ... 5 very conservative)"
+      },
+      {
+        "id": "S8",
+        "hypothesis": "H8",
+        "moderator": "disp_self_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: highest minus lowest tertile of respondent belief in disputed claims",
+        "label": "Marginal means of every feature level on plausibility: highest minus lowest tertile of respondent belief in disputed claims"
+      },
+      {
+        "id": "S9",
+        "hypothesis": "H8",
+        "moderator": "media_t",
+        "levels": {
+          "Lowest": "Lowest",
+          "Highest": "Highest"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: highest minus lowest tertile of trust in media",
+        "label": "Marginal means of every feature level on plausibility: highest minus lowest tertile of trust in media"
+      },
+      {
+        "id": "S10",
+        "hypothesis": "H8",
+        "moderator": "survey_language",
+        "levels": {
+          "English": "English",
+          "Spanish": "Spanish"
+        },
+        "estimand": "mm_diff",
+        "features": [
+          "infotype",
+          "tie",
+          "sharer_origin",
+          "sharer_ideology",
+          "sharer_trust",
+          "sharer_knowledge",
+          "sharer_conspiracy"
+        ],
+        "expected": "Marginal means of every feature level on plausibility: Spanish minus English survey language",
+        "label": "Marginal means of every feature level on plausibility: Spanish minus English survey language"
+      },
+      {
+        "id": "XS1",
+        "hypothesis": "X1",
+        "moderator": "infotype",
+        "expected": "Trust slope on sharing within each information type, and its interaction with information type",
+        "estimand": "effect_by",
+        "covariates": true
+      },
+      {
+        "id": "XS2",
+        "hypothesis": "X2",
+        "moderator": "infotype",
+        "expected": "Trust slope on plausibility within each information type",
+        "estimand": "effect_by",
+        "covariates": true
+      },
+      {
+        "id": "XS3",
+        "hypothesis": "X3",
+        "moderator": "infotype",
+        "expected": "Close-tie premium on sharing within each information type",
+        "estimand": "effect_by",
+        "covariates": true
+      },
+      {
+        "id": "XS5",
+        "hypothesis": "X5",
+        "moderator": "infotype",
+        "expected": "Congruent minus incongruent sharing gap within each information type",
+        "estimand": "effect_by",
+        "covariates": false
+      },
+      {
+        "id": "XS7",
+        "hypothesis": "X7",
+        "moderator": "infotype",
+        "expected": "Congenial minus uncongenial sharing premium within misinformation and within fact-checks",
+        "estimand": "effect_by",
+        "covariates": false
+      },
+      {
+        "id": "XS8",
+        "hypothesis": "X8",
+        "moderator": "infotype",
+        "expected": "Conspiracy-prone-source slope on sharing within each information type",
+        "estimand": "effect_by",
+        "covariates": true
+      },
+      {
+        "id": "XS9",
+        "hypothesis": "X9",
+        "moderator": "infotype",
+        "expected": "Conspiracy-prone-source slope on plausibility within each information type",
+        "estimand": "effect_by",
+        "covariates": true
+      },
+      {
+        "id": "XS11",
+        "hypothesis": "X11",
+        "moderator": "topic_type",
+        "expected": "Trust slope on sharing misinformation: health vs. political headlines",
+        "estimand": "effect_by",
+        "covariates": true
+      },
+      {
+        "id": "XS12",
+        "hypothesis": "X12",
+        "moderator": "topic_type",
+        "expected": "Close-tie premium on sharing misinformation: health vs. political headlines",
+        "estimand": "effect_by",
+        "covariates": true
+      },
+      {
+        "id": "XS13a",
+        "hypothesis": "X13",
+        "moderator": "survey_language",
+        "expected": "Sharer-origin slope on sharing by survey language",
+        "estimand": "effect_by",
+        "covariates": true
+      },
+      {
+        "id": "XS13b",
+        "hypothesis": "X13",
+        "moderator": "resp_nativity",
+        "expected": "Sharer-origin slope on sharing by respondent nativity",
+        "estimand": "effect_by",
+        "covariates": true
+      }
+    ],
     "sample_exclusions": [],
     "multiple_testing": "none",
-    "alpha": 0.05
+    "alpha": 0.05,
+    "groups": {
+      "RW": "Re-weighted AMCEs: each source attribute re-weighted by its inverse assignment probability"
+    }
   },
   "ambiguities": [
     {
       "hypothesis": "H1",
       "field": "estimator.covariates",
       "kind": "interpretation",
-      "pap_text": "Regress DV on information type ... closeness of tie, national origin/nativity, perceived trust...",
-      "interpretation": "Additive OLS with all conjoint features as covariates (AMCE), clustered by respondent; trust/knowledge/disputed entered linearly",
+      "pap_text": "Regress DV on information type (placebo, misinformation, fact-check), closeness of tie, national origin/nativity, perceived trust, perceived political knowledge, ideology, and beliefs in disputed claims",
+      "interpretation": "One additive OLS with all seven features as categorical factors; each feature is reported as its own hypothesis (treatment = that feature, covariates = the other six), which reproduces the joint model's AMCEs. Feature levels follow the authors' coding: trust and knowledge binned low (1-2), mid (3), high (4-5); belief in disputed claims split at the median; 'Don't know' sharer ideology coded moderate.",
       "alternatives": [
-        "trust and knowledge as dummies"
+        "trust, knowledge and disputed beliefs as linear terms"
       ],
-      "reason": "PAP silent on coding"
+      "reason": "The plan does not say how the measured attributes are coded."
+    },
+    {
+      "hypothesis": "R1",
+      "field": "estimator.weights",
+      "kind": "interpretation",
+      "pap_text": "re-weighting the AMCE to account for different assignment probabilities associated with the meta-data fields",
+      "interpretation": "For each source attribute, a stabilized inverse of its realized marginal assignment probability among complete cases (weights normalized to mean 1); the attribute's AMCE is re-estimated from the full weighted model. A joint six-way re-weighting is degenerate in these data.",
+      "alternatives": [
+        "joint inverse-probability weights",
+        "the YouGov survey weight"
+      ],
+      "reason": "The plan names the goal, not the weights."
+    },
+    {
+      "hypothesis": "S1",
+      "field": "subgroup",
+      "kind": "interpretation",
+      "pap_text": "subset analyses using age, ideology, beliefs in disputed claims, trust in media, and survey language (marginal means). Tertile splits comparing upper and lower tertiles",
+      "interpretation": "For each moderator, the difference in marginal means (Pr chosen) of every feature level between the highest and lowest tertile (Spanish minus English for survey language), from a cell-means model with respondent-clustered SEs. Tertiles are formed over shown profiles; ideology is the respondent's 5-point self-placement.",
+      "alternatives": [
+        "differences in AMCEs"
+      ],
+      "reason": "The plan names the estimand (marginal means) but not the test."
     },
     {
       "hypothesis": "H1",
       "field": "estimator.weights",
       "kind": "interpretation",
-      "pap_text": "re-weighting the AMCE to account for different assignment probabilities",
-      "interpretation": "No weights; survey weight not mentioned and reweighting was only a possible analysis",
+      "pap_text": "(no survey weights mentioned)",
+      "interpretation": "Unweighted; the YouGov survey weight is not used.",
       "alternatives": [
-        "weight column"
+        "YouGov weight"
       ],
-      "reason": "Not registered firmly"
-    },
-    {
-      "hypothesis": "H1",
-      "field": "subgroups",
-      "kind": "interpretation",
-      "pap_text": "Possible analyses: (1) conducting subset analyses using age, ideology...",
-      "interpretation": "Subgroup analyses not included as they are optional and tertile splits are unspecified",
-      "alternatives": [
-        "tertile subgroups"
-      ],
-      "reason": "Described as possible only"
+      "reason": "The plan does not mention survey weights."
     }
-  ],
-  "source": "pap.md"
+  ]
 }

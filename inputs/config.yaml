@@ -1,0 +1,8 @@
+# Run-specific overrides (merged over filedrawer's config.yaml). Every model stage on the strong tier for this study,
+# and enough output budget for a report with 26 registered and 13 author-specified analyses.
+budgets:
+  cleaner:     {turns: 6, max_tokens: 16000, tier: strong}
+  exploratory: {turns: 12, max_tokens: 16000, tier: strong}
+  litreview:   {turns: 2, max_tokens: 8000, tier: strong}
+  writer:      {turns: 2, max_tokens: 32000, tier: strong}
+  advanced:    {turns: 1, max_tokens: 8000, tier: strong}

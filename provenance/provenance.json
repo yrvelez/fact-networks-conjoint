@@ -8,14 +8,14 @@
  },
  "provider": "openrouter",
  "zero_retention_requested": true,
- "cost_usd": 0.237586,
+ "cost_usd": 1.326339,
  "tokens": {
-  "in": 122895,
-  "out": 28737
+  "in": 560993,
+  "out": 21775
  },
  "tool_version": "0.1.0",
- "created": "2026-10-02T19:58:15Z",
- "pap_source": "papreader agent",
+ "created": "2026-10-02T21:18:38Z",
+ "pap_source": "author-supplied pap.json",
  "pii": {
   "dropped": [],
   "kept_with_override": [],
@@ -25,62 +25,72 @@
  },
  "degraded": [],
  "inputs": {
-  "raw_csv_sha256": "384ce59f5f7c72d2c2a3ef29142b2a5c39ed067a951ca155839a65c75dbb56e0",
-  "pap_sha256": "4e713d289a1b4618cdd71b22b2af0bab7342ed9ae584b6b856501a06ceea9ad7",
-  "qsf_sha256": "1488d5cc44c0ecc2185c0b9640c72ae8b5473244f52f36115182c4e9ea93c8be"
+  "raw_csv_sha256": "809822695bc45859d5fd9fd14295dbe0d445b8ec23d1e356df72a9f32f3eb2e9",
+  "pap_sha256": "9598817224862d83d72871de8bfa7fae3532f31573524d74ca57c6c8b11151b2",
+  "qsf_sha256": "737cd5257ede9c7c0fa513c021bc34362f686c186a7ffebb1b6bc5c4f1fb982c",
+  "pap_json_sha256": "9c2cade04591cc9e25023a5bc4176fdd64bb4f3a235d8e3a9abaa5e057765591"
  },
- "review_mode": "light",
+ "review_mode": "light,advanced",
  "usage_by_agent": {
-  "papreader": {
-   "calls": 1,
-   "in": 6002,
-   "out": 2030,
-   "cost": 0.03198096,
+  "exploratory": {
+   "calls": 5,
+   "in": 346524,
+   "out": 5886,
+   "cost": 0.74438892,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
-  "exploratory": {
-   "calls": 7,
-   "in": 85707,
-   "out": 20120,
-   "cost": 0.088470056664,
-   "models": [
-    "qwen/qwen3.8-27b"
-   ]
-  },
   "litreview": {
    "calls": 2,
-   "in": 1427,
-   "out": 997,
-   "cost": 0.00287129898,
+   "in": 7628,
+   "out": 423,
+   "cost": 0.01929114,
    "models": [
-    "qwen/qwen3.8-27b"
+    "anthropic/claude-sonnet-5.5"
    ]
   },
   "writer": {
    "calls": 1,
-   "in": 5540,
-   "out": 1658,
-   "cost": 0.0273834,
+   "in": 45755,
+   "out": 5831,
+   "cost": 0.1483218,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
   "reviewer": {
    "calls": 1,
-   "in": 11336,
-   "out": 1483,
-   "cost": 0.03712698,
+   "in": 40519,
+   "out": 1653,
+   "cost": 0.09659232,
+   "models": [
+    "anthropic/claude-sonnet-5.5"
+   ]
+  },
+  "advanced_methodology": {
+   "calls": 1,
+   "in": 40322,
+   "out": 2054,
+   "cost": 0.10017216,
+   "models": [
+    "anthropic/claude-sonnet-5.5"
+   ]
+  },
+  "advanced_statistics": {
+   "calls": 1,
+   "in": 40515,
+   "out": 2590,
+   "cost": 0.1058607,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
   "review_orchestrator": {
    "calls": 1,
-   "in": 12883,
-   "out": 2449,
-   "cost": 0.04975344,
+   "in": 39730,
+   "out": 3338,
+   "cost": 0.1117116,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
@@ -88,41 +98,70 @@
  },
  "stage_seconds": {
   "ingest": 0.0,
-  "pii": 0.1,
-  "tidy": 0.09,
-  "pap": 11.64,
-  "clean": 0.4,
-  "registered": 1.52,
+  "pii": 0.23,
+  "tidy": 0.24,
+  "pap": 0.02,
+  "clean": 0.56,
+  "registered": 20.03,
   "tag": 0.0,
-  "exploratory": 720.38,
-  "litreview": 10.98,
-  "write": 12.87,
-  "review": 29.63,
+  "exploratory": 49.89,
+  "litreview": 6.48,
+  "write": 39.75,
+  "review": 79.99,
   "package": 0.0
  },
- "total_seconds": 787.6,
+ "total_seconds": 197.2,
  "log": [
-  "2026-10-02T19:58:15Z stage ingest",
-  "2026-10-02T19:58:15Z stage pii",
-  "2026-10-02T19:58:15Z PII scan: no identifier or free-text columns flagged.",
-  "2026-10-02T19:58:15Z stage tidy",
-  "2026-10-02T19:58:15Z stage pap",
-  "2026-10-02T19:58:27Z cleared 8 file(s) from the previous run",
-  "2026-10-02T19:58:27Z stage clean",
-  "2026-10-02T19:58:27Z wrote data/clean.csv: 12000 rows, 25 columns",
-  "2026-10-02T19:58:27Z stage registered",
-  "2026-10-02T19:58:29Z H1: dropped 118 of 12000 eligible rows with a missing outcome, covariate, weight or cluster value",
-  "2026-10-02T19:58:29Z H1: share ~ C(arm_code, Treatment(reference='True/neutral')) + C(close_tie) + C(sharer_native_us) + sharer_trust + sharer_knowledge + C(sharer_ideology) + sharer_disputed | 2 arms vs True/neutral (placebo), N=11882, cluster SEs; 2 arm(s) supported",
-  "2026-10-02T19:58:29Z H2: dropped 116 of 12000 eligible rows with a missing outcome, covariate, weight or cluster value",
-  "2026-10-02T19:58:29Z H2: plausibility ~ C(arm_code, Treatment(reference='True/neutral')) + C(close_tie) + C(sharer_native_us) + sharer_trust + sharer_knowledge + C(sharer_ideology) + sharer_disputed | 2 arms vs True/neutral (placebo), N=11884, cluster SEs; 2 arm(s) supported",
-  "2026-10-02T19:58:29Z wrote results/registered_summary.csv (4 rows)",
-  "2026-10-02T19:58:29Z stage tag",
-  "2026-10-02T19:58:29Z stage exploratory",
-  "2026-10-02T20:10:29Z tags: H1=deviation, H2=deviation, E1=exploratory, E2=exploratory, E3=exploratory",
-  "2026-10-02T20:10:29Z stage litreview",
-  "2026-10-02T20:10:40Z stage write",
-  "2026-10-02T20:10:53Z stage review",
-  "2026-10-02T20:11:22Z review (light): 14 issue(s)",
-  "2026-10-02T20:11:22Z stage package"
+  "2026-10-02T21:18:38Z stage ingest",
+  "2026-10-02T21:18:38Z stage pii",
+  "2026-10-02T21:18:39Z PII scan: no identifier or free-text columns flagged.",
+  "2026-10-02T21:18:39Z stage tidy",
+  "2026-10-02T21:18:39Z stage pap",
+  "2026-10-02T21:18:39Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
+  "2026-10-02T21:18:39Z cleared 131 file(s) from the previous run",
+  "2026-10-02T21:18:39Z stage clean",
+  "2026-10-02T21:18:39Z wrote data/clean.csv: 12000 rows, 51 columns",
+  "2026-10-02T21:18:39Z stage registered",
+  "2026-10-02T21:18:59Z H1: dropped 118 of 12000 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-02T21:18:59Z H1: share ~ C(arm_code, Treatment(reference='True/neutral')) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy) | 2 arms vs True/neutral, N=11882, cluster SEs; 2 arm(s) supported",
+  "2026-10-02T21:18:59Z H2: dropped 115 of 11997 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-02T21:18:59Z H2: share ~ C(arm_code, Treatment(reference='Distant tie')) + C(infotype) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy) | 1 arms vs Distant tie, N=11882, cluster SEs; 1 arm(s) supported",
+  "2026-10-02T21:18:59Z H3: dropped 68 of 11950 eligible rows with a missing outcome, covariate",
+  "2026-10-02T21:18:59Z ... [25640 chars omitted] ...",
+  "2026-10-02T21:18:59Z SE 0.034, p=0.0075)",
+  "2026-10-02T21:18:59Z S10: sharer_trust=Trust: mid MM Spanish - English = -0.006 (SE 0.014, p=0.6844)",
+  "2026-10-02T21:18:59Z S10: sharer_knowledge=Knowledge: high MM Spanish - English = -0.008 (SE 0.010, p=0.4290)",
+  "2026-10-02T21:18:59Z S10: sharer_knowledge=Knowledge: low MM Spanish - English = +0.036 (SE 0.015, p=0.0161)",
+  "2026-10-02T21:18:59Z S10: sharer_knowledge=Knowledge: mid MM Spanish - English = +0.001 (SE 0.008, p=0.9425)",
+  "2026-10-02T21:18:59Z S10: sharer_conspiracy=Conspiracy belief: high MM Spanish - English = -0.007 (SE 0.005, p=0.1309)",
+  "2026-10-02T21:18:59Z S10: sharer_conspiracy=Conspiracy belief: low MM Spanish - English = +0.021 (SE 0.015, p=0.1453)",
+  "2026-10-02T21:18:59Z XS1: interaction trust_raw x Misinformation (vs Fact-check) = 0.003 (SE 0.011, p=0.7611)",
+  "2026-10-02T21:18:59Z XS1: interaction trust_raw x True/neutral (vs Fact-check) = -0.015 (SE 0.011, p=0.1793)",
+  "2026-10-02T21:18:59Z XS2: interaction trust_raw x Misinformation (vs Fact-check) = 0.008 (SE 0.011, p=0.4689)",
+  "2026-10-02T21:18:59Z XS2: interaction trust_raw x True/neutral (vs Fact-check) = -0.021 (SE 0.011, p=0.0646)",
+  "2026-10-02T21:18:59Z XS3: interaction close_num x Misinformation (vs Fact-check) = -0.007 (SE 0.023, p=0.7548)",
+  "2026-10-02T21:18:59Z XS3: interaction close_num x True/neutral (vs Fact-check) = -0.044 (SE 0.023, p=0.0503)",
+  "2026-10-02T21:18:59Z XS5: interaction Congruent x Misinformation = 0.001 (SE 0.051, p=0.9804)",
+  "2026-10-02T21:18:59Z XS5: interaction Neutral (a moderate) x Misinformation = -0.004 (SE 0.049, p=0.9325)",
+  "2026-10-02T21:18:59Z XS5: interaction Congruent x True/neutral = 0.018 (SE 0.052, p=0.7352)",
+  "2026-10-02T21:18:59Z XS5: interaction Neutral (a moderate) x True/neutral = 0.050 (SE 0.049, p=0.3065)",
+  "2026-10-02T21:18:59Z XS7: interaction msg_congenial x Misinformation (vs Fact-check) = 0.056 (SE 0.021, p=0.0074)",
+  "2026-10-02T21:18:59Z XS8: interaction conspiracy_raw x Misinformation (vs Fact-check) = 0.131 (SE 0.041, p=0.0013)",
+  "2026-10-02T21:18:59Z XS8: interaction conspiracy_raw x True/neutral (vs Fact-check) = 0.020 (SE 0.041, p=0.6274)",
+  "2026-10-02T21:18:59Z XS9: interaction conspiracy_raw x Misinformation (vs Fact-check) = 0.146 (SE 0.042, p=0.0004)",
+  "2026-10-02T21:18:59Z XS9: interaction conspiracy_raw x True/neutral (vs Fact-check) = -0.003 (SE 0.043, p=0.9417)",
+  "2026-10-02T21:18:59Z XS11: interaction trust_raw x Political (vs Health) = 0.007 (SE 0.019, p=0.7167)",
+  "2026-10-02T21:18:59Z XS12: interaction close_num x Political (vs Health) = 0.035 (SE 0.046, p=0.4392)",
+  "2026-10-02T21:18:59Z XS13a: interaction origin_num x Spanish (vs English) = -0.005 (SE 0.017, p=0.7515)",
+  "2026-10-02T21:18:59Z XS13b: interaction origin_num x US-born (vs Foreign-born) = -0.018 (SE 0.016, p=0.2659)",
+  "2026-10-02T21:18:59Z wrote results/registered_summary.csv (254 rows)",
+  "2026-10-02T21:18:59Z stage tag",
+  "2026-10-02T21:18:59Z stage exploratory",
+  "2026-10-02T21:19:49Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=registered, H6=registered, H7=registered, H8=registered, H9=registered, H10=registered, H11=registered, H12=registered, H13=registered, H14=registered, R1=registered, R2=registered, R3=registered, R4=registered, R5=registered, R6=registered, R7=registered, R8=registered, R9=registered, R10=registered, R11=registered, R12=registered, X1=exploratory, X2=exploratory, X3=exploratory, X4=exploratory, X5=exploratory, X6=exploratory, X7=exploratory, X8=exploratory, X9=exploratory, X10=exploratory, X11=exploratory, X12=exploratory, X13=exploratory, S1=registered, S2=registered, S3=registered, S4=registered, S5=registered, S6=registered, S7=registered, S8=registered, S9=registered, S10=registered, XS1=exploratory, XS2=exploratory, XS3=exploratory, XS5=exploratory, XS7=exploratory, XS8=exploratory, XS9=exploratory, XS11=exploratory, XS12=exploratory, XS13a=exploratory, XS13b=exploratory, E1=exploratory, E2=exploratory",
+  "2026-10-02T21:19:49Z stage litreview",
+  "2026-10-02T21:19:56Z stage write",
+  "2026-10-02T21:20:36Z stage review",
+  "2026-10-02T21:21:55Z review (light,advanced): 27 issue(s)",
+  "2026-10-02T21:21:55Z stage package"
  ]
 }

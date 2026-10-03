@@ -1,0 +1,2 @@
+analysis_id,arm_code,arm_label,estimate,std_error,p_value,conf_low,conf_high,n_arm,n_arm_eligible,mean_control,mean_arm,p_directional,supported
+R6:Conspiracy belief: high,Conspiracy belief: high,Conspiracy belief: high,-0.001391121312429086,0.009071805784242217,0.8781257586826592,-0.019171533924285968,0.0163892912994278,8675,8756,0.49859681945743684,0.5012103746397695,0.8781257586826592,False

@@ -1,218 +1,55 @@
 import importlib.util, pathlib
-_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
-reg = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(reg)
-
-import pandas as pd
-import numpy as np
-import statsmodels.formula.api as smf
-import matplotlib
-matplotlib.use('Agg')
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py')); reg = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(reg)
+import pandas as pd, numpy as np
+import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-# ── Load & prep ──────────────────────────────────────────────────────────────
 df = pd.read_csv('data/clean.csv')
-for col in ['share', 'plausibility', 'ideo5_self', 'trial', 'weight']:
-    df[col] = pd.to_numeric(df[col], errors='coerce')
+H = reg.HYPOTHESES
+if isinstance(H, dict):
+    h1 = H['H1']
+else:
+    h1 = [h for h in H if h.get('id') == 'H1' or h.get('analysis_id') == 'H1'][0]
+est = h1['estimator']; outcome = h1.get('outcome', 'share'); cov = h1.get('covariates', []) or []
 
-# Registered H1 info
-h1 = [h for h in reg.HYPOTHESES if h['id'] == 'H1'][0]
-est_h1 = h1['estimator']
-outcome_h1 = 'share'
-covariates = ['close_tie', 'sharer_native_us', 'sharer_ideology',
-              'sharer_trust', 'sharer_knowledge', 'sharer_disputed']
+def run(sub):
+    f, d2 = reg.build_formula(outcome, est, cov, sub)
+    r = reg.fit(d2, f, est)
+    out = {}
+    for lev in ['Misinformation', 'Fact-check']:
+        k = [i for i in r.params.index if 'T.' + lev in i and 'arm_code' in i]
+        out[lev] = (float(r.params[k[0]]), float(r.bse[k[0]])) if k else (np.nan, np.nan)
+    return out, int(r.nobs)
 
-arm_term = "C(arm_code, Treatment(reference='True/neutral'))"
-cov_str = ' + '.join(
-    [f"C({c})" if c in ['close_tie', 'sharer_native_us', 'sharer_ideology'] else c
-     for c in covariates]
-)
+rows = []
+base, nb = run(df)
+for lev, (b, s) in base.items():
+    rows.append(dict(group='All', level=lev, estimate=b, std_error=s, n=nb))
+for g in ['Lowest', 'Middle', 'Highest']:
+    o, n = run(df[df['media_t'] == g])
+    for lev, (b, s) in o.items():
+        rows.append(dict(group='media trust ' + g, level=lev, estimate=b, std_error=s, n=n))
+e1 = pd.DataFrame(rows); e1.to_csv('results/E1_media_trust_het.csv', index=False)
+m = e1[(e1.level == 'Misinformation')]
+print('E1 misinfo effect by media trust:', '; '.join(f"{a}={b:.3f}({c:.3f})" for a, b, c in zip(m.group, m.estimate, m.std_error)))
 
-# ── E1: Heterogeneity by respondent ideology ─────────────────────────────────
-# Rationale: Tests whether the negative effect of misinformation/fact-check on
-# sharing is stronger among conservative respondents, who may be more receptive
-# to partisan misinformation.
+# E2 straight-lining exclusion
+d = df.copy()
+d['pickA'] = np.where(d['chosen_share'].isna(), np.nan, ((d['profile'] == 'A') == (d['chosen_share'] == 1)).astype(float))
+sl = d.groupby('resp_id')['pickA'].transform(lambda x: (x.dropna().nunique() == 1) and x.notna().sum() >= 4)
+sub = d[~sl]
+alt, na = run(sub)
+rows = []
+for lev in base:
+    rows.append(dict(level=lev, orig_estimate=base[lev][0], orig_se=base[lev][1], orig_n=nb,
+                     alt_estimate=alt[lev][0], alt_se=alt[lev][1], alt_n=na))
+e2 = pd.DataFrame(rows); e2.to_csv('results/E2_straightline_excl.csv', index=False)
+print(f"E2 excluding straight-liners (n {nb}->{na}): misinfo {base['Misinformation'][0]:.3f}->{alt['Misinformation'][0]:.3f}, se {base['Misinformation'][1]:.3f}->{alt['Misinformation'][1]:.3f}")
 
-df['is_conservative'] = (df['ideo5_self'] >= 4).astype(float)
-df.loc[df['ideo5_self'].isna(), 'is_conservative'] = np.nan
-
-df_e1 = df.dropna(subset=['share', 'ideo5_self'] + covariates).copy()
-df_e1['ipw'] = df_e1['weight']
-
-formula_e1 = f"share ~ {arm_term} * C(is_conservative) + {cov_str}"
-res_e1 = smf.wls(formula_e1, data=df_e1, weights=df_e1['ipw']).fit(cov_type='HC2')
-
-rows_e1 = []
-for term in res_e1.params.index:
-    if 'arm_code' in term:
-        rows_e1.append({
-            'term': term,
-            'estimate': res_e1.params[term],
-            'std_error': res_e1.bse[term],
-            'p_value': res_e1.pvalues[term],
-            'conf_low': res_e1.conf_int().loc[term, 0],
-            'conf_high': res_e1.conf_int().loc[term, 1],
-        })
-e1_df = pd.DataFrame(rows_e1)
-e1_df.to_csv('results/E1_ideology_heterogeneity.csv', index=False)
-
-# Figure: forest plot
-fig, ax = plt.subplots(figsize=(9, 4.5))
-ACCENT = '#D62828'
-INK = '#222222'
-
-# Build display rows: main effects (non-cons), interactions, totals (cons)
-display = []  # (label, est, lo, hi, color)
-main_terms = [t for t in res_e1.params.index
-              if 'arm_code' in t and 'is_conservative' not in t]
-inter_terms = [t for t in res_e1.params.index
-               if 'arm_code' in t and 'is_conservative' in t]
-
-for t in main_terms:
-    arm = 'Misinformation' if 'Misinformation' in t else 'Fact-check'
-    display.append((f'{arm} (non-conservative)',
-                    res_e1.params[t],
-                    res_e1.conf_int().loc[t, 0],
-                    res_e1.conf_int().loc[t, 1], INK))
-
-for t in inter_terms:
-    arm = 'Misinformation' if 'Misinformation' in t else 'Fact-check'
-    display.append((f'{arm} (cons − non-cons)',
-                    res_e1.params[t],
-                    res_e1.conf_int().loc[t, 0],
-                    res_e1.conf_int().loc[t, 1], ACCENT))
-
-v = res_e1.cov_params()
-for t in main_terms:
-    arm = 'Misinformation' if 'Misinformation' in t else 'Fact-check'
-    it = [x for x in inter_terms if arm in x][0]
-    total = res_e1.params[t] + res_e1.params[it]
-    se = np.sqrt(v.loc[t, t] + v.loc[it, it] + 2 * v.loc[t, it])
-    display.append((f'{arm} (conservative total)',
-                    total, total - 1.96 * se, total + 1.96 * se, ACCENT))
-
-y = np.arange(len(display))
-for i, (label, est, lo, hi, c) in enumerate(display):
-    ax.hlines(i, lo, hi, color=c, linewidth=1.8)
-    ax.scatter(est, i, color=c, s=40, zorder=5)
-    ax.text(max(hi, est) + 0.005, i, f'{est:+.3f}', va='center', fontsize=9, color=INK)
-
-ax.axvline(0, color='#AAAAAA', linewidth=0.6, linestyle='--')
-ax.set_yticks(y)
-ax.set_yticklabels([d[0] for d in display], fontsize=10)
-ax.set_xlabel('Effect on probability of sharing', fontsize=10)
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.tick_params(left=False)
-ax.set_xlim(-0.35, 0.05)
-plt.tight_layout()
-plt.savefig('figures/E1_ideology_heterogeneity.png', dpi=200, bbox_inches='tight')
-plt.close()
-
-# Summary line
-mis_inter = [t for t in inter_terms if 'Misinformation' in t][0]
-fc_inter = [t for t in inter_terms if 'Fact-check' in t][0]
-print(f"E1: Ideology heterogeneity (n={len(df_e1)}): "
-      f"Misinfo cons−noncons={res_e1.params[mis_inter]:+.4f} (SE={res_e1.bse[mis_inter]:.4f}, p={res_e1.pvalues[mis_inter]:.4f}); "
-      f"Fact-check cons−noncons={res_e1.params[fc_inter]:+.4f} (SE={res_e1.bse[fc_inter]:.4f}, p={res_e1.pvalues[fc_inter]:.4f})")
-
-# ── E2: Treatment effect by trial (manipulation / order check) ───────────────
-# Rationale: Verifies that the treatment effect is stable across the four
-# conjoint trials, ruling out order effects or respondent fatigue as
-# alternative explanations for the registered estimates.
-
-rows_e2 = []
-for trial_num in [1, 2, 3, 4]:
-    d_sub = df[df['trial'] == trial_num].dropna(subset=['share'] + covariates).copy()
-    formula_t, d2_t = reg.build_formula(outcome_h1, est_h1, covariates, d_sub)
-    res_t = reg.fit(d2_t, formula_t, est_h1)
-    for arm in ['Misinformation', 'Fact-check']:
-        match = [t for t in res_t.params.index if arm in t and 'arm_code' in t]
-        if match:
-            t = match[0]
-            rows_e2.append({
-                'trial': trial_num,
-                'arm': arm,
-                'estimate': res_t.params[t],
-                'std_error': res_t.bse[t],
-                'p_value': res_t.pvalues[t],
-                'conf_low': res_t.conf_int().loc[t, 0],
-                'conf_high': res_t.conf_int().loc[t, 1],
-                'n': len(d2_t),
-            })
-
-e2_df = pd.DataFrame(rows_e2)
-e2_df.to_csv('results/E2_trial_consistency.csv', index=False)
-
-# Figure: effect by trial with direct labels
-fig, ax = plt.subplots(figsize=(7, 4))
-for arm, color in [('Misinformation', INK), ('Fact-check', ACCENT)]:
-    sub = e2_df[e2_df['arm'] == arm].sort_values('trial')
-    ax.errorbar(sub['trial'], sub['estimate'],
-                yerr=[(sub['estimate'] - sub['conf_low']).values,
-                      (sub['conf_high'] - sub['estimate']).values],
-                fmt='o-', color=color, capsize=5, linewidth=1.5, markersize=6)
-    for _, r in sub.iterrows():
-        ax.annotate(f"{r['estimate']:+.3f}", (r['trial'], r['estimate']),
-                    textcoords='offset points', xytext=(0, 10),
-                    ha='center', fontsize=8, color=color)
-
-ax.axhline(0, color='#AAAAAA', linewidth=0.6, linestyle='--')
-ax.set_xlabel('Conjoint trial', fontsize=10)
-ax.set_ylabel('Effect on sharing', fontsize=10)
-ax.set_xticks([1, 2, 3, 4])
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.tick_params(left=False)
-# Direct labels at right edge
-ax.text(4.15, e2_df[e2_df['arm']=='Misinformation']['estimate'].mean(),
-        'Misinformation', fontsize=9, color=INK, va='center')
-ax.text(4.15, e2_df[e2_df['arm']=='Fact-check']['estimate'].mean(),
-        'Fact-check', fontsize=9, color=ACCENT, va='center')
-ax.set_xlim(0.7, 4.8)
-plt.tight_layout()
-plt.savefig('figures/E2_trial_consistency.png', dpi=200, bbox_inches='tight')
-plt.close()
-
-mis_trials = e2_df[e2_df['arm'] == 'Misinformation']['estimate'].values
-print(f"E2: Trial consistency (n per trial ≈{e2_df['n'].iloc[0]}): "
-      f"Misinfo by trial = {', '.join(f'T{int(r)}={v:+.3f}' for r, v in zip(e2_df[e2_df.arm=='Misinformation']['trial'], mis_trials))}; "
-      f"range = [{mis_trials.min():+.3f}, {mis_trials.max():+.3f}]")
-
-# ── E3: Treatment effect by headline theme ───────────────────────────────────
-# Rationale: Tests whether the negative effect is concentrated in specific
-# topic areas, which would suggest the result is content-dependent rather
-# than a general response to information type.
-
-rows_e3 = []
-for theme in sorted(df['headline_theme'].dropna().unique()):
-    d_sub = df[df['headline_theme'] == theme].dropna(subset=['share'] + covariates).copy()
-    if len(d_sub) < 100:
-        continue
-    formula_th, d2_th = reg.build_formula(outcome_h1, est_h1, covariates, d_sub)
-    res_th = reg.fit(d2_th, formula_th, est_h1)
-    for arm in ['Misinformation', 'Fact-check']:
-        match = [t for t in res_th.params.index if arm in t and 'arm_code' in t]
-        if match:
-            t = match[0]
-            rows_e3.append({
-                'headline_theme': theme,
-                'arm': arm,
-                'estimate': res_th.params[t],
-                'std_error': res_th.bse[t],
-                'p_value': res_th.pvalues[t],
-                'conf_low': res_th.conf_int().loc[t, 0],
-                'conf_high': res_th.conf_int().loc[t, 1],
-                'n': len(d2_th),
-            })
-
-e3_df = pd.DataFrame(rows_e3)
-e3_df.to_csv('results/E3_theme_heterogeneity.csv', index=False)
-
-mis_e3 = e3_df[e3_df['arm'] == 'Misinformation']['estimate']
-fc_e3 = e3_df[e3_df['arm'] == 'Fact-check']['estimate']
-print(f"E3: Theme heterogeneity ({len(e3_df)} arm-theme cells, {e3_df['headline_theme'].nunique()} themes): "
-      f"Misinfo range [{mis_e3.min():+.3f}, {mis_e3.max():+.3f}], "
-      f"Fact-check range [{fc_e3.min():+.3f}, {fc_e3.max():+.3f}]")
+fig, ax = plt.subplots(figsize=(5, 3))
+mm = e1[e1.level == 'Misinformation'].reset_index(drop=True)
+ax.errorbar(mm.estimate, range(len(mm)), xerr=1.96 * mm.std_error, fmt='o', color='#b22', ecolor='#222')
+ax.set_yticks(range(len(mm))); ax.set_yticklabels(mm.group); ax.axvline(0, color='#222', lw=.8)
+ax.set_xlabel('Misinformation effect on sharing')
+for s in ['top', 'right', 'left']: ax.spines[s].set_visible(False)
+ax.grid(False); fig.tight_layout(); fig.savefig('figures/E1_media_trust.png', dpi=200, facecolor='white')

@@ -1,6 +1,63 @@
 analysis_id,kind,tag,n_differences,differences,justification
-H1,hypothesis,deviation,1,"[{""field"": ""estimator.continuous"", ""registered"": null, ""implemented"": [""sharer_trust"", ""sharer_knowledge"", ""sharer_disputed""]}]",undocumented deviation
-H2,hypothesis,deviation,1,"[{""field"": ""estimator.continuous"", ""registered"": null, ""implemented"": [""sharer_trust"", ""sharer_knowledge"", ""sharer_disputed""]}]",undocumented deviation
+H1,hypothesis,registered,0,[],
+H2,hypothesis,registered,0,[],
+H3,hypothesis,registered,0,[],
+H4,hypothesis,registered,0,[],
+H5,hypothesis,registered,0,[],
+H6,hypothesis,registered,0,[],
+H7,hypothesis,registered,0,[],
+H8,hypothesis,registered,0,[],
+H9,hypothesis,registered,0,[],
+H10,hypothesis,registered,0,[],
+H11,hypothesis,registered,0,[],
+H12,hypothesis,registered,0,[],
+H13,hypothesis,registered,0,[],
+H14,hypothesis,registered,0,[],
+R1,hypothesis,registered,0,[],
+R2,hypothesis,registered,0,[],
+R3,hypothesis,registered,0,[],
+R4,hypothesis,registered,0,[],
+R5,hypothesis,registered,0,[],
+R6,hypothesis,registered,0,[],
+R7,hypothesis,registered,0,[],
+R8,hypothesis,registered,0,[],
+R9,hypothesis,registered,0,[],
+R10,hypothesis,registered,0,[],
+R11,hypothesis,registered,0,[],
+R12,hypothesis,registered,0,[],
+X1,hypothesis,exploratory,0,[],no registered counterpart
+X2,hypothesis,exploratory,0,[],no registered counterpart
+X3,hypothesis,exploratory,0,[],no registered counterpart
+X4,hypothesis,exploratory,0,[],no registered counterpart
+X5,hypothesis,exploratory,0,[],no registered counterpart
+X6,hypothesis,exploratory,0,[],no registered counterpart
+X7,hypothesis,exploratory,0,[],no registered counterpart
+X8,hypothesis,exploratory,0,[],no registered counterpart
+X9,hypothesis,exploratory,0,[],no registered counterpart
+X10,hypothesis,exploratory,0,[],no registered counterpart
+X11,hypothesis,exploratory,0,[],no registered counterpart
+X12,hypothesis,exploratory,0,[],no registered counterpart
+X13,hypothesis,exploratory,0,[],no registered counterpart
+S1,subgroup,registered,0,[],
+S2,subgroup,registered,0,[],
+S3,subgroup,registered,0,[],
+S4,subgroup,registered,0,[],
+S5,subgroup,registered,0,[],
+S6,subgroup,registered,0,[],
+S7,subgroup,registered,0,[],
+S8,subgroup,registered,0,[],
+S9,subgroup,registered,0,[],
+S10,subgroup,registered,0,[],
+XS1,subgroup,exploratory,0,[],no registered counterpart
+XS2,subgroup,exploratory,0,[],no registered counterpart
+XS3,subgroup,exploratory,0,[],no registered counterpart
+XS5,subgroup,exploratory,0,[],no registered counterpart
+XS7,subgroup,exploratory,0,[],no registered counterpart
+XS8,subgroup,exploratory,0,[],no registered counterpart
+XS9,subgroup,exploratory,0,[],no registered counterpart
+XS11,subgroup,exploratory,0,[],no registered counterpart
+XS12,subgroup,exploratory,0,[],no registered counterpart
+XS13a,subgroup,exploratory,0,[],no registered counterpart
+XS13b,subgroup,exploratory,0,[],no registered counterpart
 E1,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
 E2,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
-E3,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered

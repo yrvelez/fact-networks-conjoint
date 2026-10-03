@@ -13,13 +13,13 @@ import pandas as pd
 warnings.filterwarnings("ignore")
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
-OUTCOMES = json.loads("[{\"name\": \"share\", \"label\": \"Chosen to share\", \"kind\": \"single_item\", \"columns\": [\"chosen_share\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"chosen_share\"}, {\"name\": \"plausibility\", \"label\": \"Chosen as more plausible\", \"kind\": \"single_item\", \"columns\": [\"chosen_belief\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"chosen_belief\"}]")
+OUTCOMES = json.loads("[{\"name\": \"share\", \"label\": \"Chosen to share\", \"kind\": \"single_item\", \"columns\": [\"chosen_share\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"1 if the profile was chosen in 'Which post would you be more likely to share?'\"}, {\"name\": \"plausibility\", \"label\": \"Chosen as more plausible\", \"kind\": \"single_item\", \"columns\": [\"chosen_belief\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"1 if chosen in 'which post do you think is more likely to be accurate?'\"}, {\"name\": \"share_not_believe\", \"label\": \"Shared but not judged more plausible\", \"kind\": \"single_item\", \"columns\": [\"share_not_believe\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"among profiles chosen to share: 1 if the respondent chose the other post as more plausible\"}]")
 EXCLUSIONS = []
 DERIVED = json.loads("{}")
 ARM_COL = "infotype"
 TREATED = ["Misinformation", "Fact-check"]            # list of treated arm values (strings)
 CONTROL = "True/neutral"
-ARM_LABELS = json.loads("{\"Misinformation\": \"Misinformation\", \"Fact-check\": \"Fact-check\", \"True/neutral\": \"True/neutral (placebo)\"}")
+ARM_LABELS = json.loads("{}")
 
 def arm_str(v):
     """Canonical arm value: integral numbers (1, 1.0, "1.0") -> "1"."""

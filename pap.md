@@ -40,36 +40,28 @@ Possible analyses: (1) conducting subset analyses using age, ideology, beliefs i
 
 ---
 
-## Notes on the data file (not part of the registration)
+## Notes on the data file and the structured plan (not part of the registration)
 
-Added by the depositor to map the registration onto `inputs/export.csv`. These notes describe the
-data; they do not add to or change the registered analysis.
+Added by the depositor. They describe the data and how the registration was operationalized; they do not
+add to the registered analysis.
 
 - **Sample and design.** YouGov sample of 1,500 U.S. Hispanic adults, English or Spanish survey. No
-  Qualtrics file exists for this survey. Respondents first named three close contacts ("people with
-  whom you discussed matters important to you") and three distant contacts ("people you interact
-  with on a regular basis, but do not consider a close contact"), then rated each contact. In each
-  of 4 forced-choice trials they saw two headlines (profiles A and B), each attributed to one of their
-  six named contacts, and chose which one they would share and which was more plausible. The fielded
-  instrument used 4 trials per respondent, not the 8 stated in item 3.
-- **Unit of analysis.** One row per shown profile: 1,500 respondents × 4 trials × 2 profiles = 12,000
-  rows. `resp_id` is the respondent (cluster) identifier.
-- **Outcomes.** `chosen_share` = 1 if this profile was chosen in "which would you share" (sharing);
-  `chosen_belief` = 1 if chosen in "which is more plausible" (plausibility). Missing = item nonresponse.
-- **Information type** (randomized headline): `infotype` = "True/neutral" (the registration's
-  "placebo"), "Misinformation", or "Fact-check". Headlines were randomly assigned to contacts.
-- **Source attributes** (respondent's ratings of the contact the headline was attributed to; not
-  randomized themselves, only the headline-to-contact assignment is):
-  - `close_tie`: 1 = close contact, 0 = distant contact (closeness of tie).
-  - `sharer_native_us`: 1 = contact is from the continental U.S., 0 = otherwise (national origin/nativity).
-  - `sharer_trust`: 1-5, 5 = most trusted (perceived trust).
-  - `sharer_knowledge`: 1-5, 5 = most knowledgeable about politics (perceived political knowledge).
-  - `sharer_ideology`: Liberal / Moderate / Conservative ("Don't know" coded Moderate).
-  - `sharer_disputed`: share of six disputed claims the respondent thinks the contact believes, 0-1
-    (beliefs in disputed claims).
-- **Respondent covariates for the registered subset analyses:** `age` (years), `ideo5_self` (1 = very
-  liberal … 5 = very conservative; "not sure" is missing), `disputed_self` (share of six disputed
-  claims the respondent believes, 0-1), `media_trust` (mean of six media-trust items), and
-  `survey_language` (English / Spanish).
-- **Other columns:** `trial`, `profile`, `headline_theme` (topic of the headline). `weight` is the
-  YouGov survey weight; the registration does not mention survey weights.
+  Qualtrics file exists; `inputs/survey.qsf` is reconstructed from the YouGov variable and value labels.
+  Respondents named three close contacts ("people with whom you discussed matters important to you") and
+  three distant contacts ("people you interact with on a regular basis, but do not consider a close
+  contact") and rated each. In each of 4 forced-choice trials they saw two headlines (Message 1 and 2),
+  each attributed to one of their six contacts, and chose which they would share and which was more
+  plausible. The fielded instrument used 4 trials per respondent, not the 8 stated in item 3.
+- **What is randomized.** The headline (and so its information type) and its assignment to a contact.
+  The six source attributes are the respondent's own ratings of real people, so they are measured, not
+  randomized, and correlated with each other; their AMCEs average over that realized joint distribution.
+- **Unit and estimand.** One row per shown profile (1,500 × 4 × 2 = 12,000), `resp_id` = cluster.
+  Outcomes `chosen_share`, `chosen_belief`. Features, coded as in the authors' analysis: `infotype`
+  (True/neutral = the registration's placebo), `tie`, `sharer_origin`, `sharer_ideology`, `sharer_trust`,
+  `sharer_knowledge`, `sharer_conspiracy` (see `survey.qsf` for levels and wording).
+- **Structured plan.** `inputs/pap.json` is written by the depositor (`inputs/build_pap.py`), not read
+  from this text by a model. Registered: the AMCE of every feature on both outcomes (H1–H14), the
+  per-field re-weighting of item 8(2) (R1–R12) and the item 8(1) subgroup marginal means (S1–S10).
+  Implemented only, so tagged exploratory: the authors' post hoc analyses (X1–X13 and their subgroups).
+- **Data construction.** `inputs/prepare_export.R` builds `inputs/export.csv` from the authors' analysis
+  repository and documents every derived column (weights, tertiles, congruence, slant, network aggregates).
