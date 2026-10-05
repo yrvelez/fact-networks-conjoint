@@ -6,7 +6,10 @@ inputs/*.xlsx
 raw_export.csv
 .mplconfig/
 __pycache__/
-# respondent-level data stays local (filing policy: report, code and results only)
+# respondent-level data: only the two analytic files below ship (45 analysis fields, no identifiers);
+# anything else written to data/ stays local
 data/*.csv
+!data/raw_tidy.csv
+!data/clean.csv
 run.log
 results.prev/

@@ -13,6 +13,17 @@ must never be committed (the raw export), how to strip identifiers, and what the
 - `survey.qsf`  survey schema
 - `pap.md`      pre-analysis plan as text
 
+## Data (`data/`)
+
+- `raw_tidy.csv`  12,000 rows (one per conjoint profile shown; 1,500 respondents x 4 trials x 2 profiles) and 45
+  analysis fields. Built by `inputs/prepare_export.R` from a trimmed, pseudonymized YouGov file: no YouGov ids,
+  no contact names, no headline text, no open-ended answers. `resp_id` is a sequential index (1-1500). The only
+  respondent attributes are those the analysis uses: age, five-point ideology, media trust, survey language and
+  nativity (with their tertiles), plus the survey weight. The full YouGov dataset is not included.
+- `clean.csv`     `raw_tidy.csv` plus the analysis columns `scripts/02_clean.py` derives from it.
+
+`filedrawer reproduce .` re-runs the scripts from `raw_tidy.csv` and checks every table in `results/` is identical.
+
 ## Run
 
 ```bash
@@ -25,5 +36,5 @@ filedrawer reproduce .
 git add -A && git commit -m "Study package" && git push
 ```
 
-Then file it: paste `https://github.com/yrvelez/fact-networks-conjoint` on the journal's Submit page (or `filedrawer submit https://github.com/yrvelez/fact-networks-conjoint --server <journal>`).
+Then file it: paste `https://github.com/yrvelez/fact-networks-conjoint` on the Submit page at https://filedrawer.org (or `filedrawer submit https://github.com/yrvelez/fact-networks-conjoint --server https://filedrawer.org`).
 After reading the report: `filedrawer attest . --step "..." --by "..."`, and `filedrawer release .` before making the repository public.
