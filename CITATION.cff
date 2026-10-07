@@ -5,6 +5,6 @@ type: dataset
 authors:
   - family-names: "Velez"
     given-names: "Yamil R."
-date-released: "2026-10-03"
+date-released: "2026-10-07"
 repository-code: "https://github.com/yrvelez/fact-networks-conjoint"
 abstract: "Unpublished study package (report, de-identified data, scripts and provenance) generated with filedrawer 0.1.0 and filed in The File Drawer."

@@ -1,7 +1,7 @@
 {
  "SurveyEntry": {
   "SurveyID": "SV_filedrawer00000",
-  "SurveyName": "Randomized sharer profiles for trust and closeness (extension of: Who Shares What From Whom: An Ego-",
+  "SurveyName": "Randomized sharer tie and trust in forwarded posts (extension of: Who Shares What From Whom: An Ego-",
   "SurveyDescription": null,
   "SurveyOwnerID": "UR_filedrawer00000",
   "SurveyBrandID": "",
@@ -11,9 +11,9 @@
   "SurveyStatus": "Inactive",
   "SurveyStartDate": "0000-00-00 00:00:00",
   "SurveyExpirationDate": "0000-00-00 00:00:00",
-  "SurveyCreationDate": "2026-10-03 11:24:48",
+  "SurveyCreationDate": "2026-10-07 02:46:28",
   "CreatorID": "UR_filedrawer00000",
-  "LastModified": "2026-10-03 11:24:48",
+  "LastModified": "2026-10-07 02:46:28",
   "LastAccessed": "0000-00-00 00:00:00",
   "LastActivated": "0000-00-00 00:00:00",
   "Deleted": null
@@ -39,8 +39,8 @@
     },
     {
      "Type": "Standard",
-     "Description": "End",
-     "ID": "BL_b_end",
+     "Description": "True",
+     "ID": "BL_b_true",
      "BlockElements": [
       {
        "Type": "Question",
@@ -50,8 +50,8 @@
     },
     {
      "Type": "Standard",
-     "Description": "Intro",
-     "ID": "BL_b_intro",
+     "Description": "False",
+     "ID": "BL_b_false",
      "BlockElements": [
       {
        "Type": "Question",
@@ -61,16 +61,20 @@
     },
     {
      "Type": "Standard",
-     "Description": "Tasks close high",
-     "ID": "BL_b_t_close_hi",
+     "Description": "Fact-check",
+     "ID": "BL_b_fc",
      "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID4"
-      },
-      {
-       "Type": "Page Break"
-      },
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Outcomes",
+     "ID": "BL_b_out",
+     "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID5"
@@ -86,8 +90,8 @@
     },
     {
      "Type": "Standard",
-     "Description": "Tasks close low",
-     "ID": "BL_b_t_close_lo",
+     "Description": "Real contact benchmark",
+     "ID": "BL_b_bench",
      "BlockElements": [
       {
        "Type": "Question",
@@ -99,74 +103,6 @@
       {
        "Type": "Question",
        "QuestionID": "QID8"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID9"
-      }
-     ]
-    },
-    {
-     "Type": "Standard",
-     "Description": "Tasks distant high",
-     "ID": "BL_b_t_dist_hi",
-     "BlockElements": [
-      {
-       "Type": "Question",
-       "QuestionID": "QID10"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID11"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID12"
-      }
-     ]
-    },
-    {
-     "Type": "Standard",
-     "Description": "Tasks distant low",
-     "ID": "BL_b_t_dist_lo",
-     "BlockElements": [
-      {
-       "Type": "Question",
-       "QuestionID": "QID13"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID14"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID15"
-      }
-     ]
-    },
-    {
-     "Type": "Standard",
-     "Description": "Behavioural",
-     "ID": "BL_b_click",
-     "BlockElements": [
-      {
-       "Type": "Question",
-       "QuestionID": "QID16"
       }
      ]
     },
@@ -177,7 +113,7 @@
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID17"
+       "QuestionID": "QID9"
       }
      ]
     },
@@ -227,37 +163,25 @@
       },
       "Flow": [
        {
-        "Type": "Standard",
-        "ID": "BL_b_end",
-        "FlowID": "FL_4",
-        "Autofill": []
-       },
-       {
         "Type": "EndSurvey",
-        "FlowID": "FL_5"
+        "FlowID": "FL_4"
        }
       ]
      },
      {
-      "Type": "Standard",
-      "ID": "BL_b_intro",
-      "FlowID": "FL_6",
-      "Autofill": []
-     },
-     {
       "Type": "BlockRandomizer",
-      "FlowID": "FL_7",
+      "FlowID": "FL_5",
       "SubSet": 1,
       "EvenPresentation": true,
       "Flow": [
        {
         "Type": "Group",
-        "FlowID": "FL_8",
-        "Description": "Close high",
+        "FlowID": "FL_6",
+        "Description": "True",
         "Flow": [
          {
           "Type": "EmbeddedData",
-          "FlowID": "FL_9",
+          "FlowID": "FL_7",
           "EmbeddedData": [
            {
             "Description": "condition",
@@ -266,28 +190,49 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "close_high"
+            "Value": "true"
            }
           ]
          },
          {
           "Type": "EmbeddedData",
-          "FlowID": "FL_10",
+          "FlowID": "FL_8",
           "EmbeddedData": [
            {
-            "Description": "post_ch",
+            "Description": "tie1",
             "Type": "Custom",
-            "Field": "post_ch",
+            "Field": "tie1",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "[IMAGE TO SUPPLY: a social media post with a headline, randomly true, false or a fact-check]"
+            "Value": "a close friend or family member"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_9",
+          "EmbeddedData": [
+           {
+            "Description": "trust1",
+            "Type": "Custom",
+            "Field": "trust1",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "trust a lot"
            }
           ]
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_t_close_hi",
+          "ID": "BL_b_true",
+          "FlowID": "FL_10",
+          "Autofill": []
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_out",
           "FlowID": "FL_11",
           "Autofill": []
          }
@@ -296,7 +241,7 @@
        {
         "Type": "Group",
         "FlowID": "FL_12",
-        "Description": "Close low",
+        "Description": "False",
         "Flow": [
          {
           "Type": "EmbeddedData",
@@ -309,7 +254,7 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "close_low"
+            "Value": "false"
            }
           ]
          },
@@ -318,32 +263,53 @@
           "FlowID": "FL_14",
           "EmbeddedData": [
            {
-            "Description": "post_cl",
+            "Description": "tie1",
             "Type": "Custom",
-            "Field": "post_cl",
+            "Field": "tie1",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "[IMAGE TO SUPPLY: a social media post with a headline, randomly true, false or a fact-check]"
+            "Value": "an acquaintance you see occasionally"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_15",
+          "EmbeddedData": [
+           {
+            "Description": "trust1",
+            "Type": "Custom",
+            "Field": "trust1",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "do not trust much"
            }
           ]
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_t_close_lo",
-          "FlowID": "FL_15",
+          "ID": "BL_b_false",
+          "FlowID": "FL_16",
+          "Autofill": []
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_out",
+          "FlowID": "FL_17",
           "Autofill": []
          }
         ]
        },
        {
         "Type": "Group",
-        "FlowID": "FL_16",
-        "Description": "Distant high",
+        "FlowID": "FL_18",
+        "Description": "Fact-check",
         "Flow": [
          {
           "Type": "EmbeddedData",
-          "FlowID": "FL_17",
+          "FlowID": "FL_19",
           "EmbeddedData": [
            {
             "Description": "condition",
@@ -352,71 +318,49 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "distant_high"
+            "Value": "factcheck"
            }
           ]
          },
          {
           "Type": "EmbeddedData",
-          "FlowID": "FL_18",
+          "FlowID": "FL_20",
           "EmbeddedData": [
            {
-            "Description": "post_dh",
+            "Description": "tie1",
             "Type": "Custom",
-            "Field": "post_dh",
+            "Field": "tie1",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "[IMAGE TO SUPPLY: a social media post with a headline, randomly true, false or a fact-check]"
+            "Value": "a close friend or family member"
            }
           ]
          },
-         {
-          "Type": "Standard",
-          "ID": "BL_b_t_dist_hi",
-          "FlowID": "FL_19",
-          "Autofill": []
-         }
-        ]
-       },
-       {
-        "Type": "Group",
-        "FlowID": "FL_20",
-        "Description": "Distant low",
-        "Flow": [
          {
           "Type": "EmbeddedData",
           "FlowID": "FL_21",
           "EmbeddedData": [
            {
-            "Description": "condition",
+            "Description": "trust1",
             "Type": "Custom",
-            "Field": "condition",
+            "Field": "trust1",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "distant_low"
-           }
-          ]
-         },
-         {
-          "Type": "EmbeddedData",
-          "FlowID": "FL_22",
-          "EmbeddedData": [
-           {
-            "Description": "post_dl",
-            "Type": "Custom",
-            "Field": "post_dl",
-            "VariableType": "String",
-            "DataVisibility": [],
-            "AnalyzeText": false,
-            "Value": "[IMAGE TO SUPPLY: a social media post with a headline, randomly true, false or a fact-check]"
+            "Value": "trust a lot"
            }
           ]
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_t_dist_lo",
+          "ID": "BL_b_fc",
+          "FlowID": "FL_22",
+          "Autofill": []
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_out",
           "FlowID": "FL_23",
           "Autofill": []
          }
@@ -426,7 +370,7 @@
      },
      {
       "Type": "Standard",
-      "ID": "BL_b_click",
+      "ID": "BL_b_bench",
       "FlowID": "FL_24",
       "Autofill": []
      },
@@ -451,7 +395,7 @@
    "TertiaryAttribute": null,
    "Payload": {
     "PreviewType": "Brand",
-    "PreviewID": "ed332173-fece-4ba6-a43e-aa711a569520"
+    "PreviewID": "23ff56b6-9b59-4150-9b24-82a4164b716c"
    }
   },
   {
@@ -469,7 +413,7 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "QC",
    "PrimaryAttribute": "Survey Question Count",
-   "SecondaryAttribute": "17",
+   "SecondaryAttribute": "9",
    "TertiaryAttribute": null,
    "Payload": null
   },
@@ -519,7 +463,7 @@
     "ValidationMessage": null,
     "PreviousButton": "",
     "NextButton": "",
-    "SurveyTitle": "Randomized sharer profiles for trust and closeness (extension of: Who Shares What From Whom: An Ego-",
+    "SurveyTitle": "Randomized sharer tie and trust in forwarded posts (extension of: Who Shares What From Whom: An Ego-",
     "SkinLibrary": "Qualtrics",
     "SkinType": "templated",
     "Skin": {
@@ -528,7 +472,7 @@
      "overrides": null
     },
     "NewScoring": 1,
-    "SurveyMetaDescription": "US adults see 8 single posts. Each post is attributed to a vignette sharer whose closeness (close..."
+    "SurveyMetaDescription": "Respondents consent, then see forwarded posts. Headline type (true, false, fact-check) is randomi..."
    }
   },
   {
@@ -546,10 +490,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID1",
-   "SecondaryAttribute": "This survey asks how you would respond to social media posts. It takes about 10 ",
+   "SecondaryAttribute": "You are invited to a research survey about how people share news online. It take",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "This survey asks how you would respond to social media posts. It takes about 10 minutes and is voluntary. Do you agree to participate?",
+    "QuestionText": "You are invited to a research survey about how people share news online. It takes about 10 minutes and is voluntary. Do you agree to take part?",
     "DataExportTag": "consent",
     "DataVisibility": {
      "Private": false,
@@ -558,7 +502,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "This survey asks how you would respond to social media posts. It takes about 10 minutes and is vo...",
+    "QuestionDescription": "You are invited to a research survey about how people share news online. It takes about 10 minute...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -573,10 +517,10 @@
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "I agree"
+      "Display": "Yes, I agree"
      },
      "2": {
-      "Display": "I do not agree"
+      "Display": "No"
      }
     },
     "ChoiceOrder": [
@@ -595,10 +539,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID2",
-   "SecondaryAttribute": "Thank you for your time. The survey ends here.",
+   "SecondaryAttribute": "Imagine you receive a forwarded post in a messaging app. The sender is described",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Thank you for your time. The survey ends here.",
+    "QuestionText": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/tie1} and as someone you ${e://Field/trust1}. The post reads: \"City council approves new budget for road repairs after public hearing.\"",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -606,7 +550,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Thank you for your time. The survey ends here.",
+    "QuestionDescription": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/t...",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -621,17 +565,17 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_end"
+    "DataExportTag": "q_t_intro"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID3",
-   "SecondaryAttribute": "You will see several posts. Each was shared with you by a fictional person we de",
+   "SecondaryAttribute": "Imagine you receive a forwarded post in a messaging app. The sender is described",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "You will see several posts. Each was shared with you by a fictional person we describe. Imagine the person is real.",
+    "QuestionText": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/tie1} and as someone you ${e://Field/trust1}. The post reads: \"Doctors admit common vaccine contains hidden tracking chips.\"",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -639,7 +583,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "You will see several posts. Each was shared with you by a fictional person we describe. Imagine t...",
+    "QuestionDescription": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/t...",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -654,17 +598,17 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_intro"
+    "DataExportTag": "q_f_intro"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID4",
-   "SecondaryAttribute": "The person who shared the next post is a close contact, someone you discuss impo",
+   "SecondaryAttribute": "Imagine you receive a forwarded post in a messaging app. The sender is described",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "The person who shared the next post is a close contact, someone you discuss important matters with. People describe them as very trustworthy. Post: ${e://Field/post_ch}",
+    "QuestionText": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/tie1} and as someone you ${e://Field/trust1}. The post reads: \"Fact-check: claim that vaccines contain tracking chips is false.\"",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -672,7 +616,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "The person who shared the next post is a close contact, someone you discuss important matters wit...",
+    "QuestionDescription": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/t...",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -687,18 +631,18 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_d_ch"
+    "DataExportTag": "q_c_intro"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID5",
-   "SecondaryAttribute": "How likely are you to share this post? Enter a number from 0 (not at all) to 100",
+   "SecondaryAttribute": "Would you share this post to your mock feed?",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
-    "DataExportTag": "share_close_hi",
+    "QuestionText": "Would you share this post to your mock feed?",
+    "DataExportTag": "share_feed",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -706,7 +650,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
+    "QuestionDescription": "Would you share this post to your mock feed?",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -716,12 +660,26 @@
     },
     "Language": [],
     "QuestionID": "QID5",
-    "QuestionType": "TE",
-    "Selector": "SL",
-    "NextChoiceId": 1,
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Share"
+     },
+     "2": {
+      "Display": "Do not share"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
     "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
     }
    }
   },
@@ -729,11 +687,11 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID6",
-   "SecondaryAttribute": "Would you choose not to share this post at all?",
+   "SecondaryAttribute": "Based on the available information, do you think this post is more likely to be ",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Would you choose not to share this post at all?",
-    "DataExportTag": "noshare_close_hi",
+    "QuestionText": "Based on the available information, do you think this post is more likely to be accurate or inaccurate?",
+    "DataExportTag": "plausibility",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -741,7 +699,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Would you choose not to share this post at all?",
+    "QuestionDescription": "Based on the available information, do you think this post is more likely to be accurate or inacc...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -756,10 +714,10 @@
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "Would not share"
+      "Display": "Accurate"
      },
      "2": {
-      "Display": "Might share"
+      "Display": "Inaccurate"
      }
     },
     "ChoiceOrder": [
@@ -778,10 +736,11 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID7",
-   "SecondaryAttribute": "The person who shared the next post is a close contact, someone you discuss impo",
+   "SecondaryAttribute": "Think of someone you discuss important matters with. Using initials only, enter ",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "The person who shared the next post is a close contact, someone you discuss important matters with. People describe them as not very trustworthy. Post: ${e://Field/post_cl}",
+    "QuestionText": "Think of someone you discuss important matters with. Using initials only, enter who it is.",
+    "DataExportTag": "real_contact",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -789,33 +748,34 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "The person who shared the next post is a close contact, someone you discuss important matters wit...",
+    "QuestionDescription": "Think of someone you discuss important matters with. Using initials only, enter who it is.",
     "Validation": {
      "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
       "Type": "None"
      }
     },
     "Language": [],
     "QuestionID": "QID7",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
+    "QuestionType": "TE",
+    "Selector": "SL",
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_d_cl"
+    "SearchSource": {
+     "AllowFreeResponse": "false"
+    }
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID8",
-   "SecondaryAttribute": "How likely are you to share this post? Enter a number from 0 (not at all) to 100",
+   "SecondaryAttribute": "If this person forwarded you the same post, would you share it to your mock feed",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
-    "DataExportTag": "share_close_lo",
+    "QuestionText": "If this person forwarded you the same post, would you share it to your mock feed?",
+    "DataExportTag": "benchmark_share",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -823,7 +783,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
+    "QuestionDescription": "If this person forwarded you the same post, would you share it to your mock feed?",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -833,12 +793,26 @@
     },
     "Language": [],
     "QuestionID": "QID8",
-    "QuestionType": "TE",
-    "Selector": "SL",
-    "NextChoiceId": 1,
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Share"
+     },
+     "2": {
+      "Display": "Do not share"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
     "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
     }
    }
   },
@@ -846,11 +820,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID9",
-   "SecondaryAttribute": "Would you choose not to share this post at all?",
+   "SecondaryAttribute": "Thank you. Some posts were false and the senders were fictional. No post was act",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Would you choose not to share this post at all?",
-    "DataExportTag": "noshare_close_lo",
+    "QuestionText": "Thank you. Some posts were false and the senders were fictional. No post was actually shared. Please do not spread the false claims.",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -858,345 +831,14 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Would you choose not to share this post at all?",
+    "QuestionDescription": "Thank you. Some posts were false and the senders were fictional. No post was actually shared. Ple...",
     "Validation": {
      "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
       "Type": "None"
      }
     },
     "Language": [],
     "QuestionID": "QID9",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "Would not share"
-     },
-     "2": {
-      "Display": "Might share"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2"
-    ],
-    "NextChoiceId": 3,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "0"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID10",
-   "SecondaryAttribute": "The person who shared the next post is a distant acquaintance you rarely interac",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "The person who shared the next post is a distant acquaintance you rarely interact with. People describe them as very trustworthy. Post: ${e://Field/post_dh}",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "The person who shared the next post is a distant acquaintance you rarely interact with. People de...",
-    "Validation": {
-     "Settings": {
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID10",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "DataExportTag": "q_d_dh"
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID11",
-   "SecondaryAttribute": "How likely are you to share this post? Enter a number from 0 (not at all) to 100",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
-    "DataExportTag": "share_dist_hi",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID11",
-    "QuestionType": "TE",
-    "Selector": "SL",
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID12",
-   "SecondaryAttribute": "Would you choose not to share this post at all?",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Would you choose not to share this post at all?",
-    "DataExportTag": "noshare_dist_hi",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Would you choose not to share this post at all?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID12",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "Would not share"
-     },
-     "2": {
-      "Display": "Might share"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2"
-    ],
-    "NextChoiceId": 3,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "0"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID13",
-   "SecondaryAttribute": "The person who shared the next post is a distant acquaintance you rarely interac",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "The person who shared the next post is a distant acquaintance you rarely interact with. People describe them as not very trustworthy. Post: ${e://Field/post_dl}",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "The person who shared the next post is a distant acquaintance you rarely interact with. People de...",
-    "Validation": {
-     "Settings": {
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID13",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "DataExportTag": "q_d_dl"
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID14",
-   "SecondaryAttribute": "How likely are you to share this post? Enter a number from 0 (not at all) to 100",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
-    "DataExportTag": "share_dist_lo",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "How likely are you to share this post? Enter a number from 0 (not at all) to 100 (certainly).",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID14",
-    "QuestionType": "TE",
-    "Selector": "SL",
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID15",
-   "SecondaryAttribute": "Would you choose not to share this post at all?",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Would you choose not to share this post at all?",
-    "DataExportTag": "noshare_dist_lo",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Would you choose not to share this post at all?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID15",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "Would not share"
-     },
-     "2": {
-      "Display": "Might share"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2"
-    ],
-    "NextChoiceId": 3,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "0"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID16",
-   "SecondaryAttribute": "Would you like to add the last post to a practice feed that we will show to othe",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Would you like to add the last post to a practice feed that we will show to other participants?",
-    "DataExportTag": "share_click",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Would you like to add the last post to a practice feed that we will show to other participants?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID16",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "Add to feed"
-     },
-     "2": {
-      "Display": "Do not add"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2"
-    ],
-    "NextChoiceId": 3,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "0"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID17",
-   "SecondaryAttribute": "Thank you. The sharers were fictional and some posts were false or corrections. ",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Thank you. The sharers were fictional and some posts were false or corrections. Please do not rely on any false claims you saw.",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Thank you. The sharers were fictional and some posts were false or corrections. Please do not rel...",
-    "Validation": {
-     "Settings": {
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID17",
     "QuestionType": "DB",
     "Selector": "TB",
     "DefaultChoices": false,

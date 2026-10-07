@@ -1,34 +1,34 @@
 {
  "id": "generalizability_conditional",
  "kind": "boundary",
- "title": "Fact-check effect by topic",
- "rationale": "In the source study fact-checks were shared 13.3 points less overall, but E2 shows the health estimate near zero (-0.028, SE 0.028) against about -0.15 for political items, with only about 1,100 health profiles and topic not randomized. Randomizing topic with a balanced item bank tests whether the penalty really differs by topic, and survey language is added because of language differences.",
- "contribution": "Provides a randomized, adequately powered test of whether the fact-check sharing penalty holds for health as for political claims, in English and Spanish.",
+ "title": "Does the misinformation penalty hold across belief in disputed claims?",
+ "rationale": "The source found misinformation shared 18.2 points less than true/neutral content (95% CI [-20.4,-16.0]), but respondents with higher belief in disputed claims shared misinformation 5.6 points more (p<0.001), a tertile contrast that was underpowered and US-English only. This design pre-selects belief in disputed claims as the moderator, stratifies on it and on survey language (English/Spanish), and tests one registered interaction.",
+ "contribution": "Tests whether the misinformation sharing penalty shrinks among high-belief respondents and whether it generalizes to Spanish-language samples.",
  "limitations": [
-  "Single-post sharing with an opt-out differs from the forced-pair choice of the source study.",
-  "Item content differs between topics even in a balanced bank; topic effects may reflect item features.",
-  "Spanish-language respondents are self-selected into language and language is not randomized.",
-  "Hypothetical sharing, not behavior on a platform."
+  "Interaction power is lower than main-effect power; language subgroup effects are exploratory.",
+  "Belief tertiles are measured, not randomized, so the moderator may bundle correlated traits.",
+  "Single-headline sharing intent differs from the source forced-choice pair design.",
+  "Translation may change headline plausibility."
  ],
  "design": {
-  "title": "Fact-check sharing penalty: health versus political claims",
-  "overview": "US adults, with Spanish-language respondents oversampled, are randomized to a topic (health or political). Each sees several posts from a bank of at least 20 items per topic, each shown as true/neutral, misinformation, or fact-check, and chooses whether to share or not share.",
-  "hypothesis": "The fact-check sharing penalty relative to true/neutral posts is smaller for health than for political items. Misinformation is shared less than true content in both topics. Exploratory: the topic difference varies by survey language.",
-  "primaryOutcome": "Share choice for each post (share vs. do not share), with an opt-out.",
-  "comparison": "Fact-check versus true/neutral sharing, compared between health and political topic arms; information type varies within respondent.",
-  "population": "US adults 18+ recruited from an online panel, with Spanish-language respondents oversampled; survey offered in English or Spanish.",
+  "title": "Headline type by belief in disputed claims and survey language",
+  "overview": "Respondents first complete a belief-in-disputed-claims scale. They are then randomized to see a true/neutral or a false headline, and report sharing intent and plausibility. Recruitment is stratified by belief tertile and by language (English or Spanish).",
+  "hypothesis": "The gap in sharing between misinformation and true/neutral headlines is smaller among respondents in the top tertile of belief in disputed claims than in the bottom tertile (a positive infotype-by-moderator interaction). The penalty is present in both languages.",
+  "primaryOutcome": "Share: chosen/likely to share the headline (infotype x belief tertile interaction).",
+  "comparison": "Misinformation vs true/neutral headline, interacted with belief tertile (top vs bottom), with respondent-clustered SEs; language is a secondary stratum.",
+  "population": "Adults in the US, recruited via online panel, in English and Spanish, with quotas by belief tertile.",
   "conditions": [
    {
-    "id": "c_health",
-    "title": "Health topic",
-    "description": "Respondent sees health posts only: true/neutral, misinformation and fact-check items.",
-    "nodeId": "arm_health"
+    "id": "c_true",
+    "title": "True/neutral headline",
+    "description": "Respondent sees a true or neutral headline.",
+    "nodeId": "arm_true"
    },
    {
-    "id": "c_political",
-    "title": "Political topic",
-    "description": "Respondent sees political posts only: true/neutral, misinformation and fact-check items.",
-    "nodeId": "arm_political"
+    "id": "c_misinfo",
+    "title": "Misinformation headline",
+    "description": "Respondent sees a false headline.",
+    "nodeId": "arm_misinfo"
    }
   ],
   "blocks": [
@@ -39,18 +39,18 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "This survey asks about how you would respond to posts on social media. It takes about 10 minutes and is voluntary. Do you agree to participate?",
+      "text": "You are invited to a short research survey about how people react to news headlines. Participation is voluntary and you may stop at any time. Do you agree to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "c_yes",
+        "id": "yes",
         "text": "I agree",
         "recode": "1"
        },
        {
-        "id": "c_no",
+        "id": "no",
         "text": "I do not agree",
         "recode": "0"
        }
@@ -61,262 +61,168 @@
     ]
    },
    {
-    "id": "b_lang",
-    "title": "Language",
+    "id": "b_mod",
+    "title": "Belief in disputed claims",
     "questions": [
      {
       "id": "q_lang",
       "type": "MC",
-      "text": "In which language are you completing this survey?",
+      "text": "Survey language",
       "tag": "survey_language",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "l_en",
+        "id": "en",
         "text": "English",
+        "recode": "0"
+       },
+       {
+        "id": "es",
+        "text": "Español",
+        "recode": "1"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_belief",
+      "type": "Matrix",
+      "text": "How likely do you think each of the following claims is to be true?",
+      "tag": "belief_disputed",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "s1",
+        "text": "Definitely false",
         "recode": "1"
        },
        {
-        "id": "l_es",
-        "text": "Spanish",
+        "id": "s2",
+        "text": "Probably false",
         "recode": "2"
+       },
+       {
+        "id": "s3",
+        "text": "Unsure",
+        "recode": "3"
+       },
+       {
+        "id": "s4",
+        "text": "Probably true",
+        "recode": "4"
+       },
+       {
+        "id": "s5",
+        "text": "Definitely true",
+        "recode": "5"
        }
       ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "Vaccines cause autism."
+       },
+       {
+        "id": "r2",
+        "text": "Climate change is a hoax."
+       },
+       {
+        "id": "r3",
+        "text": "The 2020 US presidential election was stolen."
+       },
+       {
+        "id": "r4",
+        "text": "A small group of people secretly controls world events."
+       }
+      ],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_true",
+    "title": "True headline",
+    "questions": [
+     {
+      "id": "q_true_stim",
+      "type": "DB",
+      "text": "Here is a news post. {{ed:post_true}}",
+      "tag": "stim_true",
+      "multiple": false,
+      "required": false,
+      "choices": [],
       "rows": [],
       "sourceQuestionId": ""
      }
     ]
    },
    {
-    "id": "b_health",
-    "title": "Health posts",
+    "id": "b_misinfo",
+    "title": "False headline",
     "questions": [
      {
-      "id": "q_h_intro",
+      "id": "q_mis_stim",
       "type": "DB",
-      "text": "You will see six posts about health. For each, tell us whether you would share it.",
-      "tag": "health_intro",
+      "text": "Here is a news post. {{ed:post_mis}}",
+      "tag": "stim_misinfo",
       "multiple": false,
       "required": false,
       "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_h_p1",
-      "type": "DB",
-      "text": "{{ed:hpost1}}",
-      "tag": "health_post1",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_h_s1",
-      "type": "MC",
-      "text": "Would you share this post?",
-      "tag": "health_share1",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "hs1y",
-        "text": "Share",
-        "recode": "1"
-       },
-       {
-        "id": "hs1n",
-        "text": "Do not share",
-        "recode": "0"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_h_p2",
-      "type": "DB",
-      "text": "{{ed:hpost2}}",
-      "tag": "health_post2",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_h_s2",
-      "type": "MC",
-      "text": "Would you share this post?",
-      "tag": "health_share2",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "hs2y",
-        "text": "Share",
-        "recode": "1"
-       },
-       {
-        "id": "hs2n",
-        "text": "Do not share",
-        "recode": "0"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_h_p3",
-      "type": "DB",
-      "text": "{{ed:hpost3}}",
-      "tag": "health_post3",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_h_s3",
-      "type": "MC",
-      "text": "Would you share this post?",
-      "tag": "health_share3",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "hs3y",
-        "text": "Share",
-        "recode": "1"
-       },
-       {
-        "id": "hs3n",
-        "text": "Do not share",
-        "recode": "0"
-       }
-      ],
       "rows": [],
       "sourceQuestionId": ""
      }
     ]
    },
    {
-    "id": "b_pol",
-    "title": "Political posts",
+    "id": "b_out",
+    "title": "Outcomes",
     "questions": [
      {
-      "id": "q_p_intro",
-      "type": "DB",
-      "text": "You will see six posts about politics. For each, tell us whether you would share it.",
-      "tag": "pol_intro",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_p_p1",
-      "type": "DB",
-      "text": "{{ed:ppost1}}",
-      "tag": "pol_post1",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_p_s1",
+      "id": "q_share",
       "type": "MC",
-      "text": "Would you share this post?",
-      "tag": "pol_share1",
+      "text": "Would you be more likely to share this post?",
+      "tag": "share",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "ps1y",
-        "text": "Share",
+        "id": "y",
+        "text": "Yes, I would share it",
         "recode": "1"
        },
        {
-        "id": "ps1n",
-        "text": "Do not share",
+        "id": "n",
+        "text": "No, I would not share it",
         "recode": "0"
        }
       ],
       "rows": [],
-      "sourceQuestionId": ""
+      "sourceQuestionId": "QID5"
      },
      {
-      "id": "q_p_p2",
-      "type": "DB",
-      "text": "{{ed:ppost2}}",
-      "tag": "pol_post2",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_p_s2",
+      "id": "q_plaus",
       "type": "MC",
-      "text": "Would you share this post?",
-      "tag": "pol_share2",
+      "text": "Based on the available information, do you think this post is likely to be accurate?",
+      "tag": "plausibility",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "ps2y",
-        "text": "Share",
+        "id": "y",
+        "text": "Yes, likely accurate",
         "recode": "1"
        },
        {
-        "id": "ps2n",
-        "text": "Do not share",
+        "id": "n",
+        "text": "No, not likely accurate",
         "recode": "0"
        }
       ],
       "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_p_p3",
-      "type": "DB",
-      "text": "{{ed:ppost3}}",
-      "tag": "pol_post3",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_p_s3",
-      "type": "MC",
-      "text": "Would you share this post?",
-      "tag": "pol_share3",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "ps3y",
-        "text": "Share",
-        "recode": "1"
-       },
-       {
-        "id": "ps3n",
-        "text": "Do not share",
-        "recode": "0"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": ""
+      "sourceQuestionId": "QID6"
      }
     ]
    },
@@ -327,7 +233,7 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. Some posts you saw were false, and some were fact-checks correcting false claims. They were shown for research only. Please rely on reliable health and news sources for accurate information.",
+      "text": "Thank you. Some headlines shown in this study were false and were created for research. Please do not share them. Accurate information on these topics is available from public health and fact-checking organizations.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
@@ -354,7 +260,7 @@
    {
     "id": "n_end",
     "type": "end",
-    "label": "End non-consent",
+    "label": "No consent",
     "children": [],
     "blockId": "",
     "field": "",
@@ -364,9 +270,9 @@
     "operator": "equals"
    },
    {
-    "id": "n_br",
+    "id": "n_branch",
     "type": "branch",
-    "label": "No consent",
+    "label": "Non-consent exit",
     "children": [
      "n_end"
     ],
@@ -374,15 +280,15 @@
     "field": "",
     "value": "",
     "questionId": "q_consent",
-    "choiceId": "c_no",
+    "choiceId": "no",
     "operator": "selected"
    },
    {
-    "id": "n_lang",
+    "id": "n_mod",
     "type": "block",
-    "label": "Language",
+    "label": "Moderator",
     "children": [],
-    "blockId": "b_lang",
+    "blockId": "b_mod",
     "field": "",
     "value": "",
     "questionId": "",
@@ -392,10 +298,10 @@
    {
     "id": "r1",
     "type": "randomizer",
-    "label": "Topic",
+    "label": "Headline type",
     "children": [
-     "arm_health",
-     "arm_political"
+     "arm_true",
+     "arm_misinfo"
     ],
     "blockId": "",
     "field": "",
@@ -405,15 +311,13 @@
     "operator": "equals"
    },
    {
-    "id": "arm_health",
+    "id": "arm_true",
     "type": "group",
-    "label": "Health",
+    "label": "True/neutral",
     "children": [
-     "e_cond_h",
-     "e_hp1",
-     "e_hp2",
-     "e_hp3",
-     "n_health"
+     "set_true",
+     "set_post_true",
+     "t_true"
     ],
     "blockId": "",
     "field": "",
@@ -423,59 +327,35 @@
     "operator": "equals"
    },
    {
-    "id": "e_cond_h",
+    "id": "set_true",
     "type": "embedded",
-    "label": "cond health",
+    "label": "condition true",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "health",
+    "value": "true",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_hp1",
+    "id": "set_post_true",
     "type": "embedded",
-    "label": "hpost1",
+    "label": "true post",
     "children": [],
     "blockId": "",
-    "field": "hpost1",
-    "value": "[IMAGE: a social media post about a health claim, randomly drawn from the health item bank in the version true/neutral, misinformation or fact-check]",
+    "field": "post_true",
+    "value": "[IMAGE: a social media post showing a true, neutral news headline on a topic such as a city budget update]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_hp2",
-    "type": "embedded",
-    "label": "hpost2",
-    "children": [],
-    "blockId": "",
-    "field": "hpost2",
-    "value": "[IMAGE: a social media post about a different health claim, randomly drawn from the bank in one of the three versions]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_hp3",
-    "type": "embedded",
-    "label": "hpost3",
-    "children": [],
-    "blockId": "",
-    "field": "hpost3",
-    "value": "[IMAGE: a social media post about a third health claim, randomly drawn from the bank in one of the three versions]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_health",
+    "id": "t_true",
     "type": "block",
-    "label": "Health block",
+    "label": "True stimulus",
     "children": [],
-    "blockId": "b_health",
+    "blockId": "b_true",
     "field": "",
     "value": "",
     "questionId": "",
@@ -483,15 +363,13 @@
     "operator": "equals"
    },
    {
-    "id": "arm_political",
+    "id": "arm_misinfo",
     "type": "group",
-    "label": "Political",
+    "label": "Misinformation",
     "children": [
-     "e_cond_p",
-     "e_pp1",
-     "e_pp2",
-     "e_pp3",
-     "n_pol"
+     "set_mis",
+     "set_post_mis",
+     "t_mis"
     ],
     "blockId": "",
     "field": "",
@@ -501,59 +379,35 @@
     "operator": "equals"
    },
    {
-    "id": "e_cond_p",
+    "id": "set_mis",
     "type": "embedded",
-    "label": "cond political",
+    "label": "condition misinfo",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "political",
+    "value": "misinfo",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_pp1",
+    "id": "set_post_mis",
     "type": "embedded",
-    "label": "ppost1",
+    "label": "false post",
     "children": [],
     "blockId": "",
-    "field": "ppost1",
-    "value": "[IMAGE: a social media post about a political claim, randomly drawn from the political item bank in the version true/neutral, misinformation or fact-check]",
+    "field": "post_mis",
+    "value": "[IMAGE: a social media post showing a false news headline on a disputed topic]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_pp2",
-    "type": "embedded",
-    "label": "ppost2",
-    "children": [],
-    "blockId": "",
-    "field": "ppost2",
-    "value": "[IMAGE: a social media post about a different political claim, randomly drawn from the bank in one of the three versions]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_pp3",
-    "type": "embedded",
-    "label": "ppost3",
-    "children": [],
-    "blockId": "",
-    "field": "ppost3",
-    "value": "[IMAGE: a social media post about a third political claim, randomly drawn from the bank in one of the three versions]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_pol",
+    "id": "t_mis",
     "type": "block",
-    "label": "Political block",
+    "label": "False stimulus",
     "children": [],
-    "blockId": "b_pol",
+    "blockId": "b_misinfo",
     "field": "",
     "value": "",
     "questionId": "",
@@ -561,7 +415,19 @@
     "operator": "equals"
    },
    {
-    "id": "n_debrief",
+    "id": "n_out",
+    "type": "block",
+    "label": "Outcomes",
+    "children": [],
+    "blockId": "b_out",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_deb",
     "type": "block",
     "label": "Debrief",
     "children": [],
@@ -575,37 +441,36 @@
   ],
   "roots": [
    "n_consent",
-   "n_br",
-   "n_lang",
+   "n_branch",
+   "n_mod",
    "r1",
-   "n_debrief"
+   "n_out",
+   "n_deb"
   ],
   "assumptions": [
-   "Power target: about 1200 per arm to detect 0.04 at 80% power; E2 health fact-check -0.028 (SE 0.028) versus political -0.151; difference of about 0.12 is detectable, but 0.04 targets a smaller health effect; MDE 0.031 at n~4,000 per arm.",
-   "Total about 2,400 or more, with at least 600 Spanish-language respondents; standard errors clustered by respondent and item random effects.",
-   "Three posts per respondent are shown here for brevity; the full version would show about six per topic with information type randomized per item, to fit 10 minutes.",
-   "Information type is assigned randomly per post, balanced across the item bank of at least 20 items per topic; each item exists in all three versions where possible.",
-   "Spanish items are professionally translated and back-translated."
+   "Power: about 1300 per arm to detect an interaction of 0.056 at 80% power (S3 misinformation difference 0.056, SE 0.017; interaction MDE exceeds the main-effect MDE of 0.031).",
+   "Belief tertiles are computed from the scale mean; quota targets use panel pre-screen data.",
+   "Spanish items are professionally translated and back-translated.",
+   "Single pre-registered primary test: infotype x top-vs-bottom tertile interaction on share."
   ],
   "unresolved": [
-   "The item bank (at least 20 health and 20 political items in true, false and fact-check versions) and Spanish translations must be supplied by the research team.",
-   "Per-post randomization of information type is implemented in the survey platform; the embedded stimulus slots show one draw.",
-   "Panel vendor, compensation and IRB approval number need to be supplied."
+   "Actual headline images and Spanish translations must be supplied by the research team.",
+   "IRB number, compensation and panel vendor must be set by the research team."
   ],
   "evidence": [
    {
-    "id": "ev1",
+    "id": "e1",
     "title": "Source study package",
     "url": "https://github.com/yrvelez/fact-networks-conjoint",
-    "claim": "E2 reports the near-zero health fact-check estimate and the small health cell.",
+    "claim": "the source study this extension builds on",
     "excerpt": "",
     "origin": "supplied"
    },
    {
-    "id": "ev2",
+    "id": "e2",
     "title": "Pre-registration of the source study",
     "url": "https://aspredicted.org/8njc-mpqw.pdf",
-    "claim": "The registered design and outcomes.",
+    "claim": "the registered design and outcomes",
     "excerpt": "",
     "origin": "supplied"
    }

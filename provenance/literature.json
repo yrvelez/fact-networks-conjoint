@@ -1,5 +1,5 @@
 {
- "text": "The retrieved list is thin and largely off-topic: none of the ten works reports findings on how information type, tie strength, sharer origin, ideology, trust, political knowledge, or conspiracy belief affect sharing or plausibility judgments of misinformation. The 'supporting' items are broad overviews (Van Bavel et al., 2020; Dwivedi et al., 2019; Jenkins & Purushotma, 2006) with no abstract text bearing on the hypotheses, so they cannot be read as evidence for any of H1-H14. The closest topical neighbors are the conjoint study of deceitful political behavior and political trust [citation removed: not in retrieved set] and the work on political lies and election-loss acceptance (Arceneaux & Truex, 2022). Both concern political deception and trust rather than sharing decisions, so they are context at most. The conjoint design of Christensen et al. (2025) is the only item that resembles the study's method.\n\nThe works do not disagree with each other or with the study's expectations on any substantive question about sharing or plausibility. The 'contesting' items (Chater & Loewenstein, 2022, in two versions; Sutton et al., 2010) address individual-level framing of behavioral policy and distributed memory, and they do not test the hypothesized effects. Because no retrieved work reports findings on these questions, the study's design cannot be said to adjudicate between any of them. The abstract for Nativist disidentification (López Ortega & Turnbull-Dugarte, 2025) mentions out-group signals, which is only loosely related to the origin hypotheses (H3, H10), and the snippet is too brief to support a comparison.",
+ "text": "The retrieved list is thin and mostly off-topic, so it says little directly about the hypotheses on source cues (tie strength, origin, ideology, trust, knowledge, conspiracy belief) and information type in sharing and plausibility. The closest items are general. Lewandowsky et al. (2017) discuss how misinformation spreads and influences people, and Roozenbeek et al. (2020) report predictors of belief in COVID-19 misinformation across countries, including links to health behaviours. Neither tests how sharer attributes shape sharing or plausibility, so neither bears on the AMCE estimates for H1-H14 or the weighted robustness checks R1-R12. Van Bavel et al. (2020) is a broad pandemic-response review with no abstract available. Three retrieved works are unrelated to the hypotheses: Dwivedi et al. (2019) on AI, Jenkins and Purushotma (2006) on media education, and Kniffin et al. (2020) on workplaces. The EMNLP 2021 proceedings entry (2021) is also unrelated. The works tagged as method concern attitudes toward the unvaccinated (Bor et al., 2022), election-lie acceptance (Arceneaux & Truex, 2022), and a vaccine-hesitancy survey with embedded conjoint experiments (Stamm et al., 2022). Only the last is a design precedent, as another conjoint on a health topic, and its abstract snippet reports no findings relevant here.\n\nThe retrieved works do not clearly disagree with each other or with the study's expectations, because none reports findings on the specific source-cue effects. The one tension is loose. Lewandowsky et al. (2017) frame misinformation as a broad societal problem, while Roozenbeek et al. (2020) locate susceptibility in individual and country-level predictors. Neither speaks to whether sharing depends on who shares, or to sharing without believing (X4). The study's conjoint design, which randomizes source attributes and measures both sharing and plausibility, can speak to that question directly, but the retrieved literature offers no benchmark against which to compare the estimates.",
  "works": [
   {
    "id": "https://openalex.org/W3016902371",
@@ -16,7 +16,7 @@
    "cited_by": 5218,
    "abstract": "",
    "stance": "supporting",
-   "query": "source trust and tie strength increase misinformation sharing social media"
+   "query": "source trust tie strength misinformation sharing social media"
   },
   {
    "id": "https://openalex.org/W2969625533",
@@ -30,10 +30,10 @@
    "year": 2019,
    "doi": "10.1016/j.ijinfomgt.2019.08.002",
    "venue": "International Journal of Information Management",
-   "cited_by": 4526,
+   "cited_by": 4536,
    "abstract": "As far back as the industrial revolution, significant development in technical innovation has succeeded in transforming numerous manual tasks and processes that had been in existence for decades where humans had reached the limits of physical capacity. Artificial Intelligence (AI) offers this same transformative potential for the augmentation and potential replacement of human tasks and activities",
    "stance": "supporting",
-   "query": "source trust and tie strength increase misinformation sharing social media"
+   "query": "source trust tie strength misinformation sharing social media"
   },
   {
    "id": "https://openalex.org/W2112957339",
@@ -45,57 +45,54 @@
    "year": 2006,
    "doi": "",
    "venue": "BiblioBoard Library Catalog (Open Research Library)",
-   "cited_by": 3184,
+   "cited_by": 3185,
    "abstract": "Henry Jenkins, Director of the Comparative Media Studies Program at the Massachusetts Institute of Technology authored this white paper, exploring new frameworks and models for media literacy.",
    "stance": "supporting",
-   "query": "source trust and tie strength increase misinformation sharing social media"
+   "query": "source trust tie strength misinformation sharing social media"
   },
   {
-   "id": "https://openalex.org/W4294628862",
-   "title": "The i-frame and the s-frame: How focusing on individual-level solutions has led behavioral public policy astray",
+   "id": "https://openalex.org/W2760944227",
+   "title": "Beyond misinformation: Understanding and coping with the “post-truth” era.",
    "authors": [
-    "Nick Chater",
-    "George F. Loewenstein"
+    "Stephan Lewandowsky",
+    "Ullrich K. H. Ecker",
+    "John Cook"
+   ],
+   "year": 2017,
+   "doi": "10.1016/j.jarmac.2017.07.008",
+   "venue": "Journal of Applied Research in Memory and Cognition",
+   "cited_by": 2025,
+   "abstract": "The terms \"post-truth\" and \"fake news\" have become increasingly prevalent in public discourse over the last year. This article explores the growing abundance of misinformation, how it influences people, and how to counter it. We examine the ways in which misinformation can have an adverse impact on society. We summarize how people respond to corrections of misinformation, and what kinds of correct",
+   "stance": "contesting",
+   "query": "accuracy nudge sharing without believing partisan identity motivated sharing misinformation"
+  },
+  {
+   "id": "https://openalex.org/W4205807230",
+   "title": "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+   "authors": [],
+   "year": 2021,
+   "doi": "10.18653/v1/2021.emnlp-main",
+   "venue": "",
+   "cited_by": 1686,
+   "abstract": "Message from the General Chair EMNLP 2021 is one of the first hybrid conferences in the field of natural language processing.It is also for us, the organizing team, uncharted domain.Organizing a hybrid conference has felt like organizing two conferences, a virtual one and an in-person one, which seamlessly must work together and with a kind of multi-task objective make the conference experience sy",
+   "stance": "contesting",
+   "query": "content over source effects news sharing source cues weak effect misinformation"
+  },
+  {
+   "id": "https://openalex.org/W4310938206",
+   "title": "Discriminatory attitudes against unvaccinated people during the pandemic",
+   "authors": [
+    "Alexander Bor",
+    "Frederik Juhl Jørgensen",
+    "Michael Bang Petersen"
    ],
    "year": 2022,
-   "doi": "10.1017/s0140525x22002023",
-   "venue": "Behavioral and Brain Sciences",
-   "cited_by": 584,
-   "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun",
-   "stance": "contesting",
-   "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
-  },
-  {
-   "id": "https://openalex.org/W1994178598",
-   "title": "The psychology of memory, extended cognition, and socially distributed remembering",
-   "authors": [
-    "John David Sutton",
-    "Celia B. Harris",
-    "Paul G. Keil",
-    "Amanda J. Barnier"
-   ],
-   "year": 2010,
-   "doi": "10.1007/s11097-010-9182-y",
-   "venue": "Phenomenology and the Cognitive Sciences",
-   "cited_by": 383,
+   "doi": "10.1038/s41586-022-05607-y",
+   "venue": "Nature",
+   "cited_by": 122,
    "abstract": "",
-   "stance": "contesting",
-   "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
-  },
-  {
-   "id": "https://openalex.org/W4226385226",
-   "title": "The i-Frame and the s-Frame: How Focusing on Individual-Level Solutions Has Led Behavioral Public Policy Astray",
-   "authors": [
-    "Nick Chater",
-    "George F. Loewenstein"
-   ],
-   "year": 2022,
-   "doi": "10.2139/ssrn.4046264",
-   "venue": "SSRN Electronic Journal",
-   "cited_by": 189,
-   "abstract": "",
-   "stance": "contesting",
-   "query": "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing"
+   "stance": "method",
+   "query": "conjoint experiment AMCE social media sharing misinformation respondent-clustered"
   },
   {
    "id": "https://openalex.org/W4220943511",
@@ -110,38 +107,24 @@
    "cited_by": 82,
    "abstract": "The legitimacy of democratically elected governments rests in part on widespread acceptance of the outcome of elections, especially among those who lost. This “losers’ consent” allows the winners to govern, and when the incumbent is the losing party, it allows for a peaceful transition of power. What happens in a democratic system when one side not only refuses to concede but also actively perpetu",
    "stance": "method",
-   "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+   "query": "conjoint experiment AMCE social media sharing misinformation respondent-clustered"
   },
   {
-   "id": "https://openalex.org/W4417485389",
-   "title": "Selectively (il)liberal: theory and evidence on nativist disidentification",
+   "id": "https://openalex.org/W4224239280",
+   "title": "Coronavirus vaccine hesitancy among unvaccinated Austrians: Assessing underlying motivations and the effectiveness of interventions based on a cross-sectional survey with two embedded conjoint experiments",
    "authors": [
-    "Alberto López Ortega",
-    "Stuart James Turnbull-Dugarte"
+    "Tanja Stamm",
+    "Julia Partheymüller",
+    "Erika Mosor",
+    "Valentin Ritschl"
    ],
-   "year": 2025,
-   "doi": "10.1017/psrm.2025.10066",
-   "venue": "Political Science Research and Methods",
-   "cited_by": 2,
-   "abstract": "Abstract Does group-based tribal thinking against ethnic out-groups condition support for both liberal and illiberal policies? Our thesis is that, irrespective of the direction of the policy (progressive or conservative), nativists express selective support for policies based on different signals of group-identity: descriptive markers, group-based substantive representation, in- and out-group norm",
+   "year": 2022,
+   "doi": "10.1016/j.lanepe.2022.100389",
+   "venue": "The Lancet Regional Health - Europe",
+   "cited_by": 43,
+   "abstract": "Background: To date, Austria is among the countries with the lowest coronavirus vaccination rates in Western Europe. It has announced the introduction of a general vaccine mandate but is experiencing an increasing societal polarization over this issue. We, therefore, aimed to provide evidence on the underlying motivations of vaccine hesitancy and evaluate what kinds of interventions - information,",
    "stance": "method",
-   "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
-  },
-  {
-   "id": "https://openalex.org/W7115889761",
-   "title": "Report (including policy recommendations) on the consequences of deceitful behaviour for political trust",
-   "authors": [
-    "Christensen, Henrik Serup",
-    "Huttunen, Janette",
-    "Morales, Laura"
-   ],
-   "year": 2025,
-   "doi": "10.5281/zenodo.17647646",
-   "venue": "DIGITAL.CSIC (Spanish National Research Council (CSIC))",
-   "cited_by": 0,
-   "abstract": "In this report, we examine how deceitful behaviours affect evaluations of political leaders. We do so with a conjoint experiment embedded in the ActEU survey. We are therefore able to report causal evidence from 10 European democracies on how politicians’ deceitful behaviours affect how citizens evaluate them.",
-   "stance": "method",
-   "query": "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+   "query": "conjoint experiment AMCE social media sharing misinformation respondent-clustered"
   },
   {
    "id": "https://openalex.org/W3035680161",
@@ -155,30 +138,47 @@
    "year": 2020,
    "doi": "10.1037/amp0000716",
    "venue": "American Psychologist",
-   "cited_by": 1647,
+   "cited_by": 1654,
    "abstract": "The impacts of COVID-19 on workers and workplaces across the globe have been dramatic. This broad review of prior research rooted in work and organizational psychology, and related fields, is intended to make sense of the implications for employees, teams, and work organizations. This review and preview of relevant literatures focuses on (a) emergent changes in work practices (e.g., working from h",
+   "stance": "citing",
+   "query": "cites:W3016902371"
+  },
+  {
+   "id": "https://openalex.org/W3092858700",
+   "title": "Susceptibility to misinformation about COVID-19 around the world",
+   "authors": [
+    "Jon Roozenbeek",
+    "Claudia R. Schneider",
+    "Sarah Dryhurst",
+    "John Richard Kerr"
+   ],
+   "year": 2020,
+   "doi": "10.1098/rsos.201199",
+   "venue": "Royal Society Open Science",
+   "cited_by": 1520,
+   "abstract": "700), we examine predictors of belief in the most common statements about the virus that contain misinformation. We also investigate the prevalence of belief in COVID-19 misinformation across different countries and the role of belief in such misinformation in predicting relevant health behaviours. We find that while public belief in misinformation about COVID-19 is not particularly common, a subs",
    "stance": "citing",
    "query": "cites:W3016902371"
   }
  ],
  "queries": [
-  "source trust and tie strength increase misinformation sharing social media",
-  "sharer political knowledge and ideological congruence predict belief and sharing of false news",
-  "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing",
-  "source cues have little effect on news credibility and sharing, null effects of source in misinformation",
-  "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+  "source trust tie strength misinformation sharing social media",
+  "sharer credibility and close ties increase sharing and belief of false news",
+  "accuracy nudge sharing without believing partisan identity motivated sharing misinformation",
+  "content over source effects news sharing source cues weak effect misinformation",
+  "conjoint experiment AMCE social media sharing misinformation respondent-clustered"
  ],
  "query_sets": {
   "supporting": [
-   "source trust and tie strength increase misinformation sharing social media",
-   "sharer political knowledge and ideological congruence predict belief and sharing of false news"
+   "source trust tie strength misinformation sharing social media",
+   "sharer credibility and close ties increase sharing and belief of false news"
   ],
   "contesting": [
-   "accuracy nudge sharing disconnected from belief, content over source cues in misinformation sharing",
-   "source cues have little effect on news credibility and sharing, null effects of source in misinformation"
+   "accuracy nudge sharing without believing partisan identity motivated sharing misinformation",
+   "content over source effects news sharing source cues weak effect misinformation"
   ],
   "method": [
-   "conjoint experiment AMCE misinformation sharing personal network survey Latino"
+   "conjoint experiment AMCE social media sharing misinformation respondent-clustered"
   ]
  },
  "debate_hint": "",

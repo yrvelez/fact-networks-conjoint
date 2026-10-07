@@ -1,55 +1,50 @@
 import importlib.util, pathlib
 _spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py')); reg = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(reg)
-import pandas as pd, numpy as np
-import matplotlib; matplotlib.use('Agg')
+import pandas as pd, numpy as np, matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('data/clean.csv')
-H = reg.HYPOTHESES
-if isinstance(H, dict):
-    h1 = H['H1']
-else:
-    h1 = [h for h in H if h.get('id') == 'H1' or h.get('analysis_id') == 'H1'][0]
-est = h1['estimator']; outcome = h1.get('outcome', 'share'); cov = h1.get('covariates', []) or []
+H = [h for h in reg.HYPOTHESES if (h.get('id') or h.get('analysis_id')) == 'H1'][0]
+est = H['estimator']; cov = H.get('covariates', [])
 
-def run(sub):
-    f, d2 = reg.build_formula(outcome, est, cov, sub)
+def amce(sub, arm='Misinformation'):
+    f, d2 = reg.build_formula('share', est, cov, sub)
     r = reg.fit(d2, f, est)
-    out = {}
-    for lev in ['Misinformation', 'Fact-check']:
-        k = [i for i in r.params.index if 'T.' + lev in i and 'arm_code' in i]
-        out[lev] = (float(r.params[k[0]]), float(r.bse[k[0]])) if k else (np.nan, np.nan)
-    return out, int(r.nobs)
+    k = [i for i in r.params.index if 'arm_code' in i and arm in i][0]
+    return float(r.params[k]), float(r.bse[k]), int(r.nobs)
 
+orig = pd.read_csv('results/registered_summary.csv')
+orig = orig[orig.analysis_id == 'H1:Misinformation'].iloc[0]
+
+# E1: drop respondents who picked the same screen position in all trials
+pos = df.assign(a=(df.profile == 'A').astype(float)).loc[df.chosen_share == 1]
+g = pos.groupby('resp_id')['a'].agg(['mean', 'count'])
+bad = g.index[(g['count'] >= 3) & (g['mean'].isin([0, 1]))]
+sub = df[~df.resp_id.isin(bad)]
+b, s, n = amce(sub)
+e1 = pd.DataFrame([{'sample': 'registered', 'estimate': orig.estimate, 'se': orig.std_error, 'n': orig.n},
+                   {'sample': 'drop position-straightliners', 'estimate': b, 'se': s, 'n': n}])
+e1.to_csv('results/E1_straightliners.csv', index=False)
+print(f'E1 misinfo AMCE {orig.estimate:.3f} -> {b:.3f} (se {orig.std_error:.3f}->{s:.3f}), dropped {len(bad)} resp')
+
+# E2: heterogeneity by age tertile
 rows = []
-base, nb = run(df)
-for lev, (b, s) in base.items():
-    rows.append(dict(group='All', level=lev, estimate=b, std_error=s, n=nb))
-for g in ['Lowest', 'Middle', 'Highest']:
-    o, n = run(df[df['media_t'] == g])
-    for lev, (b, s) in o.items():
-        rows.append(dict(group='media trust ' + g, level=lev, estimate=b, std_error=s, n=n))
-e1 = pd.DataFrame(rows); e1.to_csv('results/E1_media_trust_het.csv', index=False)
-m = e1[(e1.level == 'Misinformation')]
-print('E1 misinfo effect by media trust:', '; '.join(f"{a}={b:.3f}({c:.3f})" for a, b, c in zip(m.group, m.estimate, m.std_error)))
-
-# E2 straight-lining exclusion
-d = df.copy()
-d['pickA'] = np.where(d['chosen_share'].isna(), np.nan, ((d['profile'] == 'A') == (d['chosen_share'] == 1)).astype(float))
-sl = d.groupby('resp_id')['pickA'].transform(lambda x: (x.dropna().nunique() == 1) and x.notna().sum() >= 4)
-sub = d[~sl]
-alt, na = run(sub)
-rows = []
-for lev in base:
-    rows.append(dict(level=lev, orig_estimate=base[lev][0], orig_se=base[lev][1], orig_n=nb,
-                     alt_estimate=alt[lev][0], alt_se=alt[lev][1], alt_n=na))
-e2 = pd.DataFrame(rows); e2.to_csv('results/E2_straightline_excl.csv', index=False)
-print(f"E2 excluding straight-liners (n {nb}->{na}): misinfo {base['Misinformation'][0]:.3f}->{alt['Misinformation'][0]:.3f}, se {base['Misinformation'][1]:.3f}->{alt['Misinformation'][1]:.3f}")
-
-fig, ax = plt.subplots(figsize=(5, 3))
-mm = e1[e1.level == 'Misinformation'].reset_index(drop=True)
-ax.errorbar(mm.estimate, range(len(mm)), xerr=1.96 * mm.std_error, fmt='o', color='#b22', ecolor='#222')
-ax.set_yticks(range(len(mm))); ax.set_yticklabels(mm.group); ax.axvline(0, color='#222', lw=.8)
-ax.set_xlabel('Misinformation effect on sharing')
-for s in ['top', 'right', 'left']: ax.spines[s].set_visible(False)
-ax.grid(False); fig.tight_layout(); fig.savefig('figures/E1_media_trust.png', dpi=200, facecolor='white')
+for t in ['Lowest', 'Middle', 'Highest']:
+    for arm in ['Misinformation', 'Fact-check']:
+        b, s, n = amce(df[df.age_t == t], arm)
+        rows.append({'age_tertile': t, 'arm': arm, 'estimate': b, 'se': s, 'n': n})
+e2 = pd.DataFrame(rows); e2.to_csv('results/E2_age_tertile.csv', index=False)
+fig, ax = plt.subplots(figsize=(5, 3.5), facecolor='white')
+for arm, c, off in [('Misinformation', '#c0392b', -0.05), ('Fact-check', '#333333', 0.05)]:
+    d = e2[e2.arm == arm]; x = np.arange(3) + off
+    ax.errorbar(x, d.estimate, yerr=1.96 * d.se, fmt='o', color=c, capsize=0)
+    ax.text(2.2, d.estimate.iloc[-1], arm, color=c, va='center')
+ax.axhline(0, color='#333333', lw=0.5)
+ax.set_xticks(range(3)); ax.set_xticklabels(['Youngest', 'Middle', 'Oldest'])
+ax.set_xlim(-0.4, 3.2); ax.set_ylabel('AMCE on sharing')
+for sp in ['top', 'right', 'left']: ax.spines[sp].set_visible(False)
+ax.grid(False)
+fig.tight_layout(); fig.savefig('figures/E2_age_tertile.png', dpi=200)
+m = e2[e2.arm == 'Misinformation'].estimate
+print(f'E2 misinfo AMCE by age tertile: {m.round(3).tolist()}')

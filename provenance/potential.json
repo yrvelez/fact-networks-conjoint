@@ -1,35 +1,35 @@
 {
  "got_right": [
-  "Information type is randomized and registered: misinformation -18.2 points (CI [-20.4,-16.0]) and fact-check -13.3 points, with the plausibility replication (-18.6, -12.4) agreeing. The result is robust to dropping trial 1 (-0.170).",
-  "Anchoring headlines to real contacts named by respondents gives an ecologically realistic ego-network stimulus, and the report openly labels the sharer traits as measured rather than randomized.",
-  "Re-weighting and drop-trial sensitivity checks were reported, and the report discloses its uncorrected test count (about 14 registered tests plus about 180 subgroup contrasts).",
-  "The topic split (E2) surfaced a useful heterogeneity: the fact-check effect is -0.151 for political items but -0.028 (SE 0.028) for health items."
+  "Randomized information type with a registered plan produced a clean causal result: misinformation −18.2 points (95% CI [−20.4, −16.0]) and fact-checks −13.3 points on sharing, against a 0.031 MDE.",
+  "Source attributes (tie, trust, ideology, knowledge) were taken from respondents' real contacts, which gives an ego-network setting. The report labels them honestly as measured associations, not causal effects.",
+  "The inverse-probability re-weighting (R1–R12) left the estimates essentially unchanged: close tie 0.030, high trust 0.067. The weighted moderate-sharer contrast was correctly flagged as non-significant (p = 0.056).",
+  "Sharing and plausibility were measured for every profile and gave near-identical patterns (H1 vs H8). The registered subgroup on belief in disputed claims (S3, S8) shows a coherent respondent-level moderation."
  ],
  "why_it_did_not_land": [
   {
    "cause": "design",
-   "detail": "Trust and tie strength, the substantive sharer findings, are respondent ratings of real contacts, so they are confounded with unmeasured contact traits. Only information type was randomized.",
-   "evidence": "H5 high trust +5.7 points and H2 close tie +3.0 points are labelled 'measured contrast'. U1 is unresolved."
+   "detail": "The 'who' and 'from whom' questions in the title rest on contact attributes that were not randomized, so tie, trust, ideology and the rest bundle with the real person. The only causal result is the headline-type effect, which is expected and well known.",
+   "evidence": "Only infotype is randomized; H2 and H5 are descriptive contrasts (close tie +0.030, high trust +0.057)."
   },
   {
    "cause": "power",
-   "detail": "The low-trust reference cell is thin, so the trust contrasts are imprecise and the MDE exceeds the mid-trust estimate. The null results are uninformative for effects below roughly 3 points.",
-   "evidence": "Trust: low n=828, MDE 0.051 to 0.056, against mid-trust estimate 0.036 (p=0.056). MDEs for H3, H4 and H7 are 0.029 to 0.032, and these MDEs ignore clustering."
-  },
-  {
-   "cause": "measurement",
-   "detail": "A paired forced choice mechanically links misinformation and true-content sharing, so the belief-in-disputed-claims result cannot show an absolute increase. There is no opt-out and no behavioural sharing outcome.",
-   "evidence": "S3: misinformation +5.6 points and true/neutral -5.5 points (mirrored). U2 is unresolved."
-  },
-  {
-   "cause": "sample",
-   "detail": "Health items are few and topic was not randomized, so the pooled fact-check claim hides a topic difference.",
-   "evidence": "E2: Health n=1,110, fact-check -0.028 (SE 0.028) versus Political -0.151; pooled -0.133. U3 is unresolved."
+   "detail": "The trust and knowledge contrasts compare against thin reference cells, and the MDEs are optimistic because they ignore clustering. Null findings there are therefore inconclusive.",
+   "evidence": "Trust: low n=828, MDE 0.051–0.056 vs observed mid 0.036; Knowledge: low n=2065, MDE 0.037 vs observed high 0.017."
   },
   {
    "cause": "analysis",
-   "detail": "Many uncorrected subgroup contrasts and fragile single-test findings leave the heterogeneity results tentative.",
-   "evidence": "About 180 uncorrected contrasts; H4 moderate sharer p=0.034 becomes p=0.056 re-weighted; standard errors clustered by respondent, not task."
+   "detail": "Many uncorrected tests (14 hypotheses, 12 re-weighted, about 10 subgroup tables with 18 rows each). Several subgroup findings sit near the threshold and are likely chance.",
+   "evidence": "S5 low-trust cell +7.9 points, p=0.022, with 257 and 571 profiles; H4 moderate sharer p=0.034."
+  },
+  {
+   "cause": "measurement",
+   "detail": "Sharing was a forced choice between two profiles, and the study offers no behavioural outcome or check on real-world sharing. Plausibility mirrors sharing so closely that the two outcomes may not be distinct constructs.",
+   "evidence": "H1 vs H8: −0.182/−0.133 vs −0.186/−0.124."
+  },
+  {
+   "cause": "missing_moderator",
+   "detail": "The belief-in-disputed-claims subgroup effect on misinformation sharing (+5.6 points) is the most interesting result, but it is a registered subgroup contrast, not a manipulated mechanism, so the study cannot say why.",
+   "evidence": "S3 misinformation +0.056, p<0.001; S8 plausibility +0.068."
   }
  ],
  "debates": [],
@@ -38,63 +38,57 @@
    "id": "advance_design",
    "kind_legacy": "mechanism",
    "mode": "survey_experiment",
-   "title": "Randomized sharer profiles for trust and closeness",
-   "question": "Does a randomly assigned sharer's trustworthiness or closeness change willingness to share a headline?",
-   "why_this_fixes_the_failure": "Fixes the design cause: randomizing trust and tie removes confounding with real contact traits, and an opt-out answers U1.",
+   "title": "Randomize the sharer's attributes, with a behavioural share",
+   "question": "Does a sharer's tie strength or trust causally change willingness to share a false headline?",
+   "why_this_fixes_the_failure": "Fixes the design cause: randomizing attributes in vignettes turns the descriptive close-tie and high-trust contrasts into causal estimates and removes bundling with the real contact.",
    "debate": null,
-   "addresses": [
-    "U1"
-   ],
-   "design_sketch": "Respondents see single posts, each attributed to a vignette sharer whose relationship (close or distant) and described trustworthiness (low, mid, high) are randomized in a factorial design crossed with information type (true, misinformation, fact-check). The outcome is a 0-100 sharing likelihood plus a 'would not share' option. Quota-sampled US adults answer 8 tasks each, and standard errors are clustered by respondent and task. A subsample also gives a behavioural share-to-feed click.",
+   "addresses": [],
+   "design_sketch": "Crossed vignette: headline type (true, false, fact-check) x randomized sharer tie (close/distant) x randomized trust (high/low) shown as a forwarded post. The outcome is a real share to a mock feed, plus plausibility. Include a within-respondent block with each respondent's real contact as a benchmark. Sample is a YouGov-type US panel, with respondent clustering handled in the analysis.",
    "moderator_or_condition": null,
    "power_target": {
-    "n_per_arm": 1500,
+    "n_per_arm": 2000,
     "mde": 0.03,
-    "basis": "Observed close-tie 0.030 and trust-high 0.057; H2 MDE 0.0258 at n 6709/5256, so about 1,500 per cell clustered detects 0.03."
+    "basis": "H2 close tie 0.030 vs MDE 0.0258; H5 high trust 0.057 vs MDE 0.051"
    },
    "needs_qsf": true
   },
   {
    "id": "theoretical_debate",
    "kind_legacy": "alternative",
-   "mode": "survey_experiment",
-   "title": "Absolute versus relative misinformation sharing by belief",
-   "question": "Do respondents who believe more disputed claims share more misinformation in absolute terms, or only relatively against true content?",
-   "why_this_fixes_the_failure": "Fixes the measurement cause: single-item rating with an opt-out breaks the forced-choice link and answers U2.",
+   "mode": "data_collection",
+   "title": "No debate visible in the retrieved works",
+   "question": "Not applicable: the retrieved works do not frame a live disagreement that this design can discriminate.",
+   "why_this_fixes_the_failure": "The retrieved literature (COVID, AI, media education) does not bear directly on sharing from ties, so I decline to invent a debate. Instead this brief tests the measurement cause: whether sharing and plausibility are distinct.",
    "debate": null,
-   "addresses": [
-    "U2"
-   ],
-   "design_sketch": "Randomize format between paired forced choice (replication) and independent single-headline sharing with a 'share nothing' option. Information type is randomized within respondent, and belief in disputed claims is measured pre-treatment. Compare the belief by information-type slope across formats. If the slope for misinformation survives in single-item format, the effect is absolute.",
+   "addresses": [],
+   "design_sketch": "Within-respondent design that measures plausibility, then sharing, in separate counterbalanced blocks, and adds a manipulation of accuracy salience (accuracy prompt vs none). If the misinformation sharing gap closes under the prompt while plausibility stays fixed, the two are separable. Use the same headline pool and a US panel.",
    "moderator_or_condition": null,
    "power_target": {
-    "n_per_arm": 1800,
-    "mde": 0.04,
-    "basis": "S3 differences of 0.055 to 0.056 with SE 0.017; the interaction across formats needs about double the cell size."
+    "n_per_arm": 1600,
+    "mde": 0.031,
+    "basis": "H1 MDE 0.031; observed misinformation effect −0.182 leaves ample margin for detecting a partial reduction"
    },
-   "needs_qsf": true
+   "needs_qsf": false
   },
   {
    "id": "generalizability_conditional",
    "kind_legacy": "boundary",
    "mode": "survey_experiment",
-   "title": "Fact-check effect by topic",
-   "question": "Does the fact-check sharing penalty hold for health claims as it does for political claims?",
-   "why_this_fixes_the_failure": "Fixes the sample cause: randomizing topic with adequate health items answers U3.",
+   "title": "Does the misinformation penalty hold across belief in disputed claims?",
+   "question": "Is the gap in sharing misinformation vs true content smaller among respondents high in belief in disputed claims, and does the pattern hold in Spanish-language samples?",
+   "why_this_fixes_the_failure": "Fixes the missing_moderator cause: it pre-selects the moderator from S3 and S8 and tests it with enough power instead of relying on a tertile contrast.",
    "debate": null,
-   "addresses": [
-    "U3"
-   ],
-   "design_sketch": "Cross information type (true, misinformation, fact-check) with randomized topic (health, political) over a balanced item bank of at least 20 items per topic. Outcome is sharing choice with an opt-out. Sample US adults with oversampled Spanish-language respondents, given the S5 language differences.",
-   "moderator_or_condition": "Topic (health versus political), and survey language as a secondary condition",
+   "addresses": [],
+   "design_sketch": "Randomize headline type, stratifying recruitment by belief-in-disputed-claims tertile and by survey language (English/Spanish). Use the same share and plausibility outcomes. Estimate the infotype x moderator interaction with respondent-clustered SEs. Pre-register a single primary interaction.",
+   "moderator_or_condition": "respondent belief in disputed claims (tertile) and survey language",
    "power_target": {
-    "n_per_arm": 1200,
-    "mde": 0.04,
-    "basis": "E2 health fact-check -0.028 (SE 0.028) versus political -0.151; difference of about 0.12 is detectable, but 0.04 targets a smaller health effect; MDE 0.031 at n~4,000 per arm."
+    "n_per_arm": 1300,
+    "mde": 0.056,
+    "basis": "S3 misinformation difference 0.056 (SE 0.017); interaction MDE is larger than main-effect MDE 0.031"
    },
    "needs_qsf": true
   }
  ],
- "verdict": "No genuine debate is visible in the retrieved works, which are off-topic (COVID, AI, behavioural policy), so the debates list is empty and the theoretical-debate brief is built on the editor's open question U2 rather than the literature. A follow-up is worth running because the one robust result, the information-type penalty, is already settled, while the interesting claims about trust, closeness and belief-driven sharing rest on measured traits or a forced-choice artefact. Run the randomized-sharer brief first: it resolves U1, the largest threat to the study's contribution, and it is cheap to field within a single wave. The format and topic experiments can follow..",
+ "verdict": "A follow-up is worth running, but the headline-type effect is already settled and adds nothing new. The retrieved literature shows no genuine debate this study bears on, so the debate brief is replaced by a measurement test. Run the advance_design brief first: randomizing tie and trust with a behavioural share is the only way to turn the study's most interesting claims (close ties and high trust) into causal estimates. The moderator brief should follow, sized to the 0.056 subgroup gap.",
  "model": "anthropic/claude-sonnet-5.5"
 }

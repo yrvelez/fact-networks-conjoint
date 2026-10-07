@@ -2,46 +2,37 @@
  {
   "qsf": "extensions/advance_design.qsf",
   "qsf_errors": [],
-  "media": [
-   "post_ch: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
-   "post_cl: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
-   "post_dh: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)",
-   "post_dl: image stimulus to supply (a social media post with a headline, randomly true, false or a fact-check)"
-  ],
+  "media": [],
   "id": "advance_design",
   "kind": "mechanism",
-  "title": "Randomized sharer profiles for trust and closeness",
+  "title": "Randomize the sharer's attributes, with a behavioural share",
   "brief_id": "advance_design",
   "mode": "survey_experiment",
   "debate": null,
-  "why": "Fixes the design cause: randomizing trust and tie removes confounding with real contact traits, and an opt-out answers U1.",
+  "why": "Fixes the design cause: randomizing attributes in vignettes turns the descriptive close-tie and high-trust contrasts into causal estimates and removes bundling with the real contact.",
   "power_target": {
-   "n_per_arm": 1500,
+   "n_per_arm": 2000,
    "mde": 0.03,
-   "basis": "Observed close-tie 0.030 and trust-high 0.057; H2 MDE 0.0258 at n 6709/5256, so about 1,500 per cell clustered detects 0.03."
+   "basis": "H2 close tie 0.030 vs MDE 0.0258; H5 high trust 0.057 vs MDE 0.051"
   },
-  "rationale": "In the source study, close ties (+3.0 points) and high trust (+5.7 points; low-trust cell n=817) were measured on real contacts and bundle correlated traits. Randomly assigning vignette sharers' closeness and trustworthiness tests whether these associations survive randomization. A 'would not share' option removes the forced-choice link.",
-  "contribution": "Provides randomized estimates of sharer closeness and trustworthiness effects on sharing across true, false and fact-check content.",
-  "addresses": [
-   "U1"
-  ],
+  "rationale": "In the source study close ties (+3.0 points, CI [1.0, 5.0]) and high trust (+5.7 points, CI [2.3, 9.1]) were associated with more sharing, but these attributes were respondents' ratings of real contacts and so bundle correlated traits. Randomizing tie and trust in a forwarded-post vignette tests whether they cause sharing of false headlines (misinformation was shared 18.2 points less than true headlines).",
+  "contribution": "Turns descriptive tie-strength and trust contrasts into causal estimates, using a behavioural share outcome and a real-contact benchmark.",
+  "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "Randomly assigned close and high-trust sharers raise sharing likelihood relative to distant and low-trust sharers (about 3 points), with effects possibly differing by information type.",
-  "primary_outcome": "Sharing likelihood (0-100), with 'would not share' analysed separately as a binary outcome.",
-  "comparison": "Close vs distant; high vs low trust; main effects pooled over information type, with exploratory interactions with information type.",
+  "hypothesis": "H1: a randomized close tie raises the probability of sharing by about 0.03. H2: randomized high trust raises it by about 0.05. Both effects hold for false headlines.",
+  "primary_outcome": "Share of the forwarded post to the mock feed (binary).",
+  "comparison": "Close vs distant tie and high vs low trust, within headline type. Standard errors are clustered by respondent. Headline type is a between-subject factor.",
   "conditions": [
-   "Close, high trust",
-   "Close, low trust",
-   "Distant, high trust",
-   "Distant, low trust"
+   "True headline",
+   "False headline",
+   "Fact-check"
   ],
   "unresolved": [
-   "Actual post images and the headline pool must be supplied by the research team.",
-   "Compensation, IRB number and panel vendor are to be set by the research team."
+   "The platform's randomization of tie and trust within each arm, the mock feed implementation, compensation and IRB number must be supplied by the research team."
   ],
   "label": "Design advance",
   "text": "extensions/advance_design.txt",
@@ -51,97 +42,94 @@
   "qsf": "extensions/generalizability_conditional.qsf",
   "qsf_errors": [],
   "media": [
-   "hpost1: image stimulus to supply (a social media post about a health claim, randomly drawn from the health item ba)",
-   "hpost2: image stimulus to supply (a social media post about a different health claim, randomly drawn from the bank)",
-   "hpost3: image stimulus to supply (a social media post about a third health claim, randomly drawn from the bank in )",
-   "ppost1: image stimulus to supply (a social media post about a political claim, randomly drawn from the political i)",
-   "ppost2: image stimulus to supply (a social media post about a different political claim, randomly drawn from the b)",
-   "ppost3: image stimulus to supply (a social media post about a third political claim, randomly drawn from the bank )"
+   "post_true: image stimulus to supply (a social media post showing a true, neutral news headline on a topic such as a c)",
+   "post_mis: image stimulus to supply (a social media post showing a false news headline on a disputed topic)"
   ],
   "id": "generalizability_conditional",
   "kind": "boundary",
-  "title": "Fact-check effect by topic",
+  "title": "Does the misinformation penalty hold across belief in disputed claims?",
   "brief_id": "generalizability_conditional",
   "mode": "survey_experiment",
   "debate": null,
-  "why": "Fixes the sample cause: randomizing topic with adequate health items answers U3.",
+  "why": "Fixes the missing_moderator cause: it pre-selects the moderator from S3 and S8 and tests it with enough power instead of relying on a tertile contrast.",
   "power_target": {
-   "n_per_arm": 1200,
-   "mde": 0.04,
-   "basis": "E2 health fact-check -0.028 (SE 0.028) versus political -0.151; difference of about 0.12 is detectable, but 0.04 targets a smaller health effect; MDE 0.031 at n~4,000 per arm."
+   "n_per_arm": 1300,
+   "mde": 0.056,
+   "basis": "S3 misinformation difference 0.056 (SE 0.017); interaction MDE is larger than main-effect MDE 0.031"
   },
-  "rationale": "In the source study fact-checks were shared 13.3 points less overall, but E2 shows the health estimate near zero (-0.028, SE 0.028) against about -0.15 for political items, with only about 1,100 health profiles and topic not randomized. Randomizing topic with a balanced item bank tests whether the penalty really differs by topic, and survey language is added because of language differences.",
-  "contribution": "Provides a randomized, adequately powered test of whether the fact-check sharing penalty holds for health as for political claims, in English and Spanish.",
-  "addresses": [
-   "U3"
-  ],
+  "rationale": "The source found misinformation shared 18.2 points less than true/neutral content (95% CI [-20.4,-16.0]), but respondents with higher belief in disputed claims shared misinformation 5.6 points more (p<0.001), a tertile contrast that was underpowered and US-English only. This design pre-selects belief in disputed claims as the moderator, stratifies on it and on survey language (English/Spanish), and tests one registered interaction.",
+  "contribution": "Tests whether the misinformation sharing penalty shrinks among high-belief respondents and whether it generalizes to Spanish-language samples.",
+  "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "The fact-check sharing penalty relative to true/neutral posts is smaller for health than for political items. Misinformation is shared less than true content in both topics. Exploratory: the topic difference varies by survey language.",
-  "primary_outcome": "Share choice for each post (share vs. do not share), with an opt-out.",
-  "comparison": "Fact-check versus true/neutral sharing, compared between health and political topic arms; information type varies within respondent.",
+  "hypothesis": "The gap in sharing between misinformation and true/neutral headlines is smaller among respondents in the top tertile of belief in disputed claims than in the bottom tertile (a positive infotype-by-moderator interaction). The penalty is present in both languages.",
+  "primary_outcome": "Share: chosen/likely to share the headline (infotype x belief tertile interaction).",
+  "comparison": "Misinformation vs true/neutral headline, interacted with belief tertile (top vs bottom), with respondent-clustered SEs; language is a secondary stratum.",
   "conditions": [
-   "Health topic",
-   "Political topic"
+   "True/neutral headline",
+   "Misinformation headline"
   ],
   "unresolved": [
-   "The item bank (at least 20 health and 20 political items in true, false and fact-check versions) and Spanish translations must be supplied by the research team.",
-   "Per-post randomization of information type is implemented in the survey platform; the embedded stimulus slots show one draw.",
-   "Panel vendor, compensation and IRB approval number need to be supplied."
+   "Actual headline images and Spanish translations must be supplied by the research team.",
+   "IRB number, compensation and panel vendor must be set by the research team."
   ],
   "label": "Generalizability",
   "text": "extensions/generalizability_conditional.txt",
   "svg": "extensions/generalizability_conditional.svg"
  },
  {
-  "qsf": "extensions/theoretical_debate.qsf",
+  "qsf": null,
   "qsf_errors": [],
-  "media": [
-   "fpost1a: image stimulus to supply (Social post with a true or neutral news headline, pair 1)",
-   "fpost1b: image stimulus to supply (Social post with a false news headline, pair 1)",
-   "fpost2a: image stimulus to supply (Social post with a false news headline, pair 2)",
-   "fpost2b: image stimulus to supply (Social post with a true or neutral news headline, pair 2)",
-   "spost1: image stimulus to supply (Social post with a true or neutral news headline, item 1)",
-   "spost2: image stimulus to supply (Social post with a false news headline, item 2)",
-   "spost3: image stimulus to supply (Social post with a false news headline, item 3)",
-   "spost4: image stimulus to supply (Social post with a true or neutral news headline, item 4)"
-  ],
+  "media": [],
   "id": "theoretical_debate",
-  "kind": "alternative",
-  "title": "Absolute versus relative misinformation sharing by belief",
+  "kind": "observational",
+  "title": "No debate visible in the retrieved works",
   "brief_id": "theoretical_debate",
-  "mode": "survey_experiment",
+  "mode": "data_collection",
   "debate": null,
-  "why": "Fixes the measurement cause: single-item rating with an opt-out breaks the forced-choice link and answers U2.",
-  "power_target": {
-   "n_per_arm": 1800,
-   "mde": 0.04,
-   "basis": "S3 differences of 0.055 to 0.056 with SE 0.017; the interaction across formats needs about double the cell size."
-  },
-  "rationale": "In the source study, respondents who believe more disputed claims shifted toward misinformation (+5.6 points) and away from true items (-5.5 points), a mirrored pattern that forced choice makes mechanically linked. Belief in disputed claims had no distinguishable overall effect on sharing (intervals about ±1.7 to 2.2 points). Independent single-headline sharing with a 'share nothing' option tests whether the belief slope for misinformation is absolute.",
-  "contribution": "Separates absolute from relative belief-related misinformation sharing by breaking the forced-choice link between misinformation and true items.",
-  "addresses": [
-   "U2"
-  ],
+  "why": "The retrieved literature (COVID, AI, media education) does not bear directly on sharing from ties, so I decline to invent a debate. Instead this brief tests the measurement cause: whether sharing and plausibility are distinct.",
+  "power_target": null,
+  "rationale": "The source study found that plausibility ratings tracked sharing closely (both showed the same misinformation penalty), but it measured them in the same conjoint task with no manipulation that could dissociate them. This follow-up tests whether sharing and plausibility are separable constructs by introducing an accuracy-salience prompt that should reduce sharing of misinformation without changing perceived plausibility, and by measuring the two outcomes in counterbalanced blocks to rule out order confounds.",
+  "contribution": "Establishes whether the sharing–plausibility correlation observed in the source conjoint reflects a single underlying judgment or two separable processes, with direct implications for how to model and intervene on misinformation sharing.",
+  "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "In forced choice, belief in disputed claims predicts more misinformation and less true-content choice (mirrored). In single-item format, if the belief slope for misinformation sharing remains positive, the effect is absolute; if it is near zero while the true-content slope is negative or null, it is purely relative.",
-  "primary_outcome": "Share of misinformation headlines shared (single format) or chosen (forced choice), by belief index.",
-  "comparison": "Belief by information-type slope compared across formats (three-way interaction: format x belief x information type).",
-  "conditions": [
-   "Paired forced choice",
-   "Single headline with opt-out"
-  ],
+  "hypothesis": "The accuracy-salience prompt will narrow the misinformation sharing gap (false vs true/neutral) by at least 0.031 standard units relative to the control arm, while leaving the plausibility gap unchanged, demonstrating that sharing and plausibility are separable processes.",
+  "primary_outcome": "Primary outcome: sharing intention, measured as a binary share/don't-share choice for each headline profile (same as source study). Secondary outcome: plausibility, measured on a 0–100 slider ('How plausible is this claim?') for the same profiles. The key estimand is the interaction between accuracy prompt and information type (false vs true/neutral) on sharing, tested against the null that the prompt does not differentially reduce sharing of false headlines. A secondary estimand is the same interaction on plausibility, expected to be null if the constructs are separable.",
+  "comparison": "Accuracy-salience prompt (binary, between-respondent randomization): in the prompt arm, before each sharing decision the respondent sees the instruction 'Before you decide, consider whether this claim is accurate.' In the control arm, no such instruction appears. The prompt is the manipulated variable; its variation comes from random assignment at the respondent level. Within each arm, the order in which plausibility and sharing blocks appear is counterbalanced (plausibility-first vs sharing-first, randomized per respondent) to separate the two outcome measures from order effects.",
+  "conditions": [],
   "unresolved": [
-   "Actual headline images and the final disputed-claim items must be supplied by the research team.",
-   "IRB approval number and compensation must be supplied by the research team."
+   "Demand characteristics: respondents who notice the accuracy prompt may share less across all content, not just misinformation, confounding the interaction. Mitigated by including true/neutral and fact-check headlines as within-respondent controls.",
+   "Construct drift: the prompt may shift the meaning of 'plausible' (e.g., respondents start equating plausibility with accuracy), producing a spurious null on plausibility. Mitigated by a post-hoc probe asking respondents to define 'plausible' in their own words (qualitative, not in primary analysis).",
+   "Order effects: if plausibility is rated first, it may anchor the sharing decision (or vice versa). Mitigated by the counterbalanced block design and a pre-specified equivalence test on the order × information-type interaction.",
+   "Panel fatigue and attrition: a within-subject design with multiple profiles per respondent may produce fatigue, inflating noise. Mitigated by capping the number of profiles per respondent and monitoring completion rates.",
+   "The prompt may be too weak to move sharing at all, producing a null that is uninformative about separability. Mitigated by the power calculation targeting a 0.031 effect and by a pre-specified dose-response check (if available, a two-level prompt: mild vs strong accuracy reminder)."
   ],
+  "plan": {
+   "data_sources": [
+    "YouGov US panel (same platform as source study): provides the respondent sample, demographic and attitudinal covariates, and the delivery infrastructure for the online experiment.",
+    "Source-study headline pool (12 headlines: 4 true/neutral, 4 false, 4 fact-check, as used in the registered conjoint): provides the stimulus set, ensuring comparability of the misinformation penalty estimate with the source study's −18.2-point finding.",
+    "Pre-registered analysis code and stimulus materials from the source study's OSF repository: provides the exact headline texts, fact-check texts, and conjoint profile structure for replication of the stimulus set."
+   ],
+   "units": "Individual US adult panel respondents (N ≈ 3,200 total; ~1,600 per accuracy-salience arm). Each respondent completes the full within-subject design, so the unit of analysis for the primary contrast is the respondent, with headline-level observations nested within respondents.",
+   "exposure": "Accuracy-salience prompt (binary, between-respondent randomization): in the prompt arm, before each sharing decision the respondent sees the instruction 'Before you decide, consider whether this claim is accurate.' In the control arm, no such instruction appears. The prompt is the manipulated variable; its variation comes from random assignment at the respondent level. Within each arm, the order in which plausibility and sharing blocks appear is counterbalanced (plausibility-first vs sharing-first, randomized per respondent) to separate the two outcome measures from order effects.",
+   "outcome": "Primary outcome: sharing intention, measured as a binary share/don't-share choice for each headline profile (same as source study). Secondary outcome: plausibility, measured on a 0–100 slider ('How plausible is this claim?') for the same profiles. The key estimand is the interaction between accuracy prompt and information type (false vs true/neutral) on sharing, tested against the null that the prompt does not differentially reduce sharing of false headlines. A secondary estimand is the same interaction on plausibility, expected to be null if the constructs are separable.",
+   "identification": "Two comparisons do the work. First, within the prompt arm, compare the sharing gap (false minus true/neutral) to the sharing gap in the control arm: if the prompt selectively narrows the misinformation gap on sharing while leaving the plausibility gap unchanged, sharing and plausibility are separable. Second, the counterbalanced block order (plausibility-first vs sharing-first) is used to verify that the sharing–plausibility correlation is not an artifact of measuring one immediately after the other. What must hold: the prompt must not change perceived plausibility (verified by the null interaction on plausibility), and the two block orders must produce equivalent estimates (verified by a pre-specified equivalence test).",
+   "threats": [
+    "Demand characteristics: respondents who notice the accuracy prompt may share less across all content, not just misinformation, confounding the interaction. Mitigated by including true/neutral and fact-check headlines as within-respondent controls.",
+    "Construct drift: the prompt may shift the meaning of 'plausible' (e.g., respondents start equating plausibility with accuracy), producing a spurious null on plausibility. Mitigated by a post-hoc probe asking respondents to define 'plausible' in their own words (qualitative, not in primary analysis).",
+    "Order effects: if plausibility is rated first, it may anchor the sharing decision (or vice versa). Mitigated by the counterbalanced block design and a pre-specified equivalence test on the order × information-type interaction.",
+    "Panel fatigue and attrition: a within-subject design with multiple profiles per respondent may produce fatigue, inflating noise. Mitigated by capping the number of profiles per respondent and monitoring completion rates.",
+    "The prompt may be too weak to move sharing at all, producing a null that is uninformative about separability. Mitigated by the power calculation targeting a 0.031 effect and by a pre-specified dose-response check (if available, a two-level prompt: mild vs strong accuracy reminder)."
+   ],
+   "analysis_plan": "Estimator: linear mixed model with random intercepts for respondents and random slopes for information type, fitted separately for sharing (binary, logit link) and plausibility (continuous, identity link). Adjustment set: respondent age, sex, education, political ideology (same covariates as source study), block order (plausibility-first vs sharing-first), and wave (if multi-wave). Standard errors: cluster-robust at the respondent level (accounting for within-respondent correlation across profiles). Pre-specified tests: (1) Interaction of accuracy prompt × information type (false vs true/neutral) on sharing — primary test, two-sided α = 0.05, with a pre-registered equivalence margin of ±0.015 to distinguish 'no effect' from 'underpowered null.' (2) Same interaction on plausibility — secondary test, same α and equivalence margin. (3) Equivalence test on block order × information type interaction (TOST, equivalence margin ±0.01) to confirm order does not confound the sharing–plausibility relationship. Power: with ~1,600 respondents per arm and ~12 profiles per respondent, the design is powered to detect a 0.031 difference in the misinformation sharing gap between prompt and control arms at 80% power, α = 0.05, assuming a within-respondent correlation of 0.30 across profiles (conservative relative to the source study's observed ICC)."
+  },
   "label": "Theoretical debate",
   "text": "extensions/theoretical_debate.txt",
   "svg": "extensions/theoretical_debate.svg"

@@ -1505,18 +1505,6 @@
       "dropped": false
     },
     {
-      "name": "disputed_self",
-      "qid": "QID27",
-      "kind": "question",
-      "dtype": "numeric",
-      "label": "[Reconstructed from YouGov .sav labels; not the fielded instrument] \"Claims about American politics\" (True / Not True). Share of the six claims the respondent rated True, 0-1. Claims: Joe Biden is a socialist; The 2020 election was stolen by the Democrats; Covid-19 vaccines modify your DNA; A new world order - elites who control the media, industry, and government - were implicated in most wars over the last 200 years; Trump is still president of the United States; Republicans want to end Social Security and Medicare",
-      "values": {},
-      "free_text": false,
-      "pii_flag": false,
-      "pii_reason": "",
-      "dropped": false
-    },
-    {
       "name": "media_trust",
       "qid": "QID28",
       "kind": "question",

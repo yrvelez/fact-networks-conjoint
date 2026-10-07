@@ -33,7 +33,6 @@ Source: qsf
 | `survey_language` | QID24 | question | [Reconstructed from YouGov .sav labels; not the fielded instrument] "Do you pref | English=English; Spanish=Spanish |
 | `age` | QID25 | question | [Reconstructed from YouGov .sav labels; not the fielded instrument] Age in years |  |
 | `ideo5_self` | QID26 | question | [Reconstructed from YouGov .sav labels; not the fielded instrument] "In general, |  |
-| `disputed_self` | QID27 | question | [Reconstructed from YouGov .sav labels; not the fielded instrument] "Claims abou |  |
 | `media_trust` | QID28 | question | [Reconstructed from YouGov .sav labels; not the fielded instrument] "Trusted pol |  |
 | `resp_nativity` | QID29 | question | [Reconstructed from YouGov .sav labels; not the fielded instrument] "Which of th | US-born=US-born; Foreign-born=Foreign-born |
 | `weight` | QID30 | question | [Reconstructed from YouGov .sav labels; not the fielded instrument] YouGov surve |  |
