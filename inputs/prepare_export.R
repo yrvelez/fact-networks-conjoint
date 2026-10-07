@@ -94,7 +94,7 @@ out <- long |> transmute(
   close_num = close, origin_num = native_us, trust_raw = trust, knowledge_raw = knowledge, conspiracy_raw = round(disputed, 4),
   ipw_tie = ipw_close_f, ipw_origin = ipw_native_f, ipw_ideology = ipw_ideo_f, ipw_trust = ipw_trust_f,
   ipw_knowledge = ipw_know_f, ipw_conspiracy = ipw_disp_f,
-  survey_language = c("English", "Spanish")[langpref], age, ideo5_self, disputed_self = round(disputed_self, 4),
+  survey_language = c("English", "Spanish")[langpref], age, ideo5_self,   # disputed_self is used only for its tertile (disp_self_t) and is not exported
   media_trust = round(media_trust, 4), resp_nativity, weight,
   age_t, ideo_self_t, disp_self_t, media_t,
   share_not_believe, src_congruence, msg_slant = slant, msg_congenial, topic_type, src_covid,
