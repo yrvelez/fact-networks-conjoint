@@ -1,11 +1,44 @@
-# Depositing a study in the File Drawer
+# AGENTS.md: Who Shares What From Whom: An Ego-Network Conjoint of Misinformation Sharing
+
+This repository is a study package from [The File Drawer](https://filedrawer.org). If you are an AI coding agent, you are most likely here to reproduce or reanalyze the study: start with the next section. The deposit routine the authors followed is at the end and does not apply to reanalysis.
+
+## Reanalyzing this study
+
+**Data (public, de-identified; read and analyze them directly):**
+- `data/clean.csv`: the analysis file, after the planned exclusions; 1,500 respondents, several rows each keyed by `resp_id` (12,000 rows).
+- `data/raw_tidy.csv`: the de-identified file before exclusions.
+
+**What the columns mean:** `codebook.md` (labels and value labels; `codebook.json` for code). Identifier and free-text columns were removed before release.
+
+**The analysis plan:** `pap.md` (prose) and `pap.json` (every hypothesis with its outcome, comparison, estimator, covariates and exclusions). Whether the plan was pre-registered is stated in `pap.md` and in the report's badge row.
+
+**Reproduce every table** (Python with pandas, numpy, statsmodels, scipy, matplotlib; see `RUN.md`):
+
+```bash
+python scripts/02_clean.py        # data/raw_tidy.csv -> data/clean.csv
+python scripts/03_registered.py   # planned analyses -> results/
+python scripts/04_exploratory.py  # exploratory analyses -> results/E*.csv
+```
+
+**Results:** `results/registered_summary.csv` holds every planned estimate; `results/H*.csv` and `results/E*.csv` the per-analysis tables; `report.md` the write-up, with each analysis tagged registered, deviation or exploratory.
+
+**Rules for new work:**
+1. Analyses beyond `pap.json` are exploratory relative to this study. Label them so and never present them as its registered results.
+2. Report the specification you ran (outcome, comparison, estimator, standard errors, sample) next to every estimate.
+3. Do not try to re-identify respondents or link these rows to other data.
+4. Cite the study with `CITATION.cff` when you use its data, code or numbers.
+
+---
+
+## How this package was deposited (for authors)
 
 Instructions for a coding agent (Claude Code, Codex, Cursor, or similar) or a person preparing a
-survey experiment for the File Drawer. Follow them in order. The goal is a public GitHub repository
-that holds a complete, reproducible study package and **no restricted data**: no identifiers, no
-free-text answers, no raw panel export.
+survey experiment for the File Drawer. Follow them in order. The goal is a complete, reproducible
+study package with **no restricted data** (no identifiers, no free-text answers, no raw panel export),
+filed from the author's own machine with `filedrawer submit`. A GitHub repository is optional: keep one
+for version control if you like, but the File Drawer does not need it.
 
-## Hard rules
+### Hard rules
 
 1. **Never commit the raw export.** The Qualtrics/CloudResearch/Prolific export stays in `inputs/`
    and is gitignored. If it has already been committed, stop and tell the author; the history must
@@ -18,9 +51,10 @@ free-text answers, no raw panel export.
 4. **Keep the plan honest.** Transcribe the pre-registration or the original analysis script as
    written. Do not add multiple-testing corrections, covariates or outcomes the authors did not
    specify. If something cannot be run as planned, let the pipeline record it as a deviation.
-5. **The author makes the repository public, not you.** Finish every check below, then hand over.
+5. **The author files the package, not you.** Finish every check below, run the submission as a dry
+   run, then hand over. Never pass `--yes` or `--ack` on the author's behalf.
 
-## What goes in the repository
+### What goes in the repository
 
 | Path | Contents | Public? |
 |---|---|---|
@@ -37,9 +71,36 @@ labels, which questions are free text, and often the randomizer that defines the
 include it. For non-Qualtrics surveys, include the questionnaire as a PDF or markdown under
 `inputs/` and describe the arm variable in `pap.md`.
 
-## Step by step
+### Step by step
 
-### 1. Scaffold
+#### 0. Choose the setup with the author (do not skip)
+
+Before the first run, ask the author these questions in one round, offering the recommended option first, and
+write their answers with `filedrawer configure` in the study folder once it is scaffolded (step 1). Do not
+choose for them: `run.sh` will not start until
+`filedrawer.setup.yaml` exists. `filedrawer configure --questions` prints the same questions, options and notes as
+JSON, so you can show them in your own question interface.
+
+1. **Where should the models run?** Hosted via OpenRouter (recommended: about 5 minutes and $0.40-1.50 per paper,
+   needs the author's own key, zero data retention) or local on this machine (free, hours per paper, about 32 GB of
+   memory and a local model server).
+2. **Which models?** Claude Sonnet 5.5 for the plan, writing and review with Claude Haiku 5.5 for code and the
+   literature (recommended), Sonnet 5.5 for everything, or other OpenRouter models. For local runs: the model name
+   and server URL (tested: `qwen/qwen3.8-27b` in LM Studio).
+3. **Outside review?** The Light Pass always runs. Optionally plan an outside review to import after the run:
+   Coarse, Refine, or a review from OpenReview or any other referee.
+4. **Follow-up studies?** Yes (recommended; two or three designs with Qualtrics files) or no.
+5. **Identifier detection?** Rules (recommended, always on) or rules plus a small local model (`pip install
+   'filedrawer[pii-model]'`, about 2 GB, CPU only).
+6. **Literature search?** On (recommended; only the title, keywords and hypotheses are sent to OpenAlex) or off.
+
+```bash
+filedrawer configure . --yes --where hosted --models sonnet+haiku --outside-review none \
+  --extensions yes --pii rules --literature on          # or plain `filedrawer configure .` in a terminal
+filedrawer configure . --show                             # what was chosen
+```
+
+#### 1. Scaffold
 
 ```bash
 pip install "filedrawer @ git+https://github.com/yrvelez/filedrawer"      # Python 3.11+
@@ -51,7 +112,7 @@ filedrawer init-study . --slug my-study --title "Study title" --authors "A. Auth
 This writes `run.sh`, `README.md`, `.gitignore` (which ignores `inputs/*.csv`, `inputs/*.sav`,
 `inputs/*.dta`, `inputs/*.xlsx`) and a stub `inputs/pap.md`.
 
-### 2. Put the inputs in place
+#### 2. Put the inputs in place
 
 - Copy the raw export to `inputs/export.csv`. Confirm `git status` does not list it.
 - Copy the survey schema to `inputs/survey.qsf`.
@@ -62,7 +123,7 @@ This writes `run.sh`, `README.md`, `.gitignore` (which ignores `inputs/*.csv`, `
 - If assignment probabilities, weights or cluster ids are in the data, name the columns in the
   plan. The pipeline only uses what the plan names.
 
-### 3. De-identify before the pipeline runs
+#### 3. De-identify before the pipeline runs
 
 The pipeline drops columns it recognises as identifiers (dates, IP address, location, response id,
 recipient fields, panel and worker ids, anything matching email/phone/name/address/birth-date
@@ -91,7 +152,7 @@ EOF
 
 If a non-numeric column is free text, drop it. If it is a label (e.g. an arm name), keep it.
 
-### 4. Run
+#### 4. Run
 
 Expect about $0.10 of model calls per full run with the default models (roughly 100k input and 20k output tokens; the
 exact figure is written to `provenance/provenance.json`). Reruns after fixing the plan cost the same again.
@@ -106,21 +167,23 @@ Read `report.md` and `review.md`. If the reviewer flags a problem with the plan 
 (wrong outcome, missing weights), fix `inputs/pap.md` and run again. Do not edit generated files
 by hand.
 
-### 4b. Answer the reviewer (optional)
+#### 4b. Answer the reviewer (optional)
 
-`review.md` and `review.json` list the automated reviewers' issues (`--review light,advanced,coarse,refine`; Refine
-is manual: upload `report.md` at refine.ink, then `filedrawer review-import . refine <file>`). For the analytical ones (other covariates,
+`review.md` and `review.json` list the Light Pass's corrections. Outside reviews are added afterwards with
+`filedrawer review-import`: Coarse (`uvx coarse-ink review report.md`, then `review-import . coarse <file>`), Refine
+(upload `report.md` at refine.ink, then `review-import . refine <file>`), or a review from OpenReview or any other
+referee (`review-import . openreview <file>`). For the analytical ones (other covariates,
 estimator, sample), run `filedrawer address . --by "A. Author"`: it proposes one robustness addendum per issue,
 waits for approval, re-estimates, re-writes, re-reviews and writes `responses.md`. Never edit the registered
 specification to satisfy a reviewer; addenda sit beside it.
 
-### 4c. Follow-up designs (optional)
+#### 4c. Follow-up designs (optional)
 
 `filedrawer extensions .` proposes three follow-up experiments under `extensions/`. They are proposals, never
 findings. Building one as a Qualtrics draft (`filedrawer build-extension . <id>`) is the author's step: it writes
 to their Qualtrics account and needs their local Qualtrics MCP setup. Do not build on the author's behalf unless asked.
 
-### 5. Verify before publishing
+#### 5. Verify before publishing
 
 Run every check; all must pass.
 
@@ -139,7 +202,7 @@ EOF
 The email grep will match institutional addresses in consent text inside the QSF; that is fine.
 Anything else is a stop.
 
-### 6. Commit, hand over
+#### 6. Commit, hand over
 
 ```bash
 git add -A && git commit -m "Study package" && git push -u origin main
@@ -156,11 +219,48 @@ filedrawer attest . --step "read report.md and review.md" --by "A. Author"   # r
 filedrawer release .                                                          # re-scans data/*.csv for identifiers, marks released
 ```
 
-Then they make the repository public and paste its URL on the File Drawer's Submit page, or run
-`filedrawer submit https://github.com/<owner>/my-study --server https://<journal host>`. The journal
-reads `study.json`, `report.md` and the result tables; it never copies data.
+Show them the dry run, which sends nothing:
 
-## What the models see, for the record
+```bash
+filedrawer submit . --server https://filedrawer.org --dry-run
+```
+
+It prints the code that is running (version, commit, local changes, a hash of the source), runs the
+offline self-check (a synthetic study with planted canaries must not reach a model or the package),
+scans the package for identifiers and contact details, and checks it is committed and pushed to the author's
+public GitHub repository. Then the author files it:
+
+```bash
+filedrawer submit . --server https://filedrawer.org
+```
+
+They confirm each contact detail the scan found (for example an IRB phone number in consent text), and
+only the repository link is sent. The File Drawer reads `study.json`, `report.md` and the result tables from
+GitHub, stores a metadata record, and never copies data, code, the report or figures. Pasting the link on the
+Submit page does the same.
+
+### Methods comparisons (no arms)
+
+If the study compares methods against a benchmark instead of randomizing respondents (for example,
+synthetic survey responses scored against observed ones), the pipeline does not apply. Scaffold with
+`filedrawer init-study . --design methods_comparison --slug ... --title ... --authors ...` and build the
+package by hand:
+
+- Fill in `study.json`: `design.methods`, `design.benchmark`, `design.metrics`, `n_analysis`,
+  `population`, `constructs` (from `src/filedrawer/vocab/constructs.json`), `keywords`, and `references`.
+  Leave `hypotheses` empty and `registration.status` as `none` unless a plan was registered.
+- Put analysis code in `scripts/` and list it, with the outputs it rebuilds, under `reproduce`.
+  `filedrawer reproduce .` must print `"ok": true`.
+- Put licensed source data (e.g. a national survey whose terms forbid redistribution) in `external/`,
+  which is gitignored, and say in `README.md` where to obtain it. Derived data that may be shared goes
+  in `data/`; `filedrawer release` scans every CSV under it.
+- Write `report.md` findings first. Describe prior work neutrally and cite it in the text and under
+  References.
+
+Hard rules 2, 3 and 5 still apply; the step 5 checks apply except the `provenance.json` PII block,
+which a hand-built package does not have.
+
+### What the models see, for the record
 
 - The plan reader sees `pap.md` and the codebook (column names, labels, value labels).
 - The code-writing agents see the codebook, a profile of `data/clean.csv` (per-column counts of
@@ -171,11 +271,12 @@ reads `study.json`, `report.md` and the result tables; it never copies data.
 - Every request is logged to `provenance/llm_log.jsonl`. A test in the pipeline plants a canary
   string in a free-text column of the demo data and asserts it never appears in any request.
 
-## Copy-paste prompt for an agent
+### Copy-paste prompt for an agent
 
 ```
 You are preparing a survey experiment for deposit in the File Drawer (https://github.com/yrvelez/filedrawer).
-Read AGENTS.md in this repository and follow it exactly. Hard rules: never commit or print raw
+Read AGENTS.md in this repository and follow it exactly. Before running anything, ask me the setup questions
+in step 0 and record my answers with `filedrawer configure`. Hard rules: never commit or print raw
 respondent data; never send data to a model yourself; transcribe the analysis plan as written with
 no corrections or additions; leave the repository private and the package in draft; report what
 the PII scan dropped and what you removed by hand. Inputs: the raw export is at <path>, the QSF at
