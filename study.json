@@ -5,7 +5,7 @@
  "authors": [
   "Yamil R. Velez"
  ],
- "summary": "This study asks how the type of information, and who shares it, shape willingness to share a post and judgments of its plausibility. We ran a conjoint experiment with 12,000 profiles from US Latino (Hispanic) adults in a YouGov sample, surveyed in English or Spanish. Only the headline type was randomized; the sharer's tie strength, origin, ideology, trust, knowledge and belief in disputed claims are measured attributes of the respondent's real contacts. Compared with true or neutral headlines, misinformation was chosen 18.2 points less often (95% CI [−20.4, −16.0]) and fact-checks 13.3 points less often (95% CI [−15.6, −11.1]). Plausibility showed the same pattern. High trust in the sharer (+5.7 points) and a close tie (+3.0 points) were associated with more sharing. Origin, knowledge and ",
+ "summary": "This study asks how the type of information, and who shares it, shape willingness to share a post and judgments of its plausibility. We ran a conjoint experiment in which 1,500 US Latino (Hispanic) adults each rated 8 profiles (12,000 in all) in a YouGov sample, surveyed in English or Spanish. Only the headline type was randomized; the sharer's tie strength, origin, ideology, trust, knowledge and belief in disputed claims are measured attributes of the respondent's real contacts. Compared with true or neutral headlines, misinformation was chosen 18.2 points less often (95% CI [−20.4, −16.0]) and fact-checks 13.3 points less often (95% CI [−15.6, −11.1]). Plausibility showed the same pattern. High trust in the sharer (+5.7 points) and a close tie (+3.0 points) were associated with more sharing. Origin, knowledge and ",
  "created": "2026-10-08",
  "synthetic": false,
  "design": {
@@ -16,8 +16,11 @@
    "True/neutral"
   ],
   "arm_labels": {},
-  "n_raw": 12000,
-  "n_analysis": 12000,
+  "n_raw": 1500,
+  "n_analysis": 1500,
+  "unit_column": "resp_id",
+  "rows_raw": 12000,
+  "rows_analysis": 12000,
   "outcome_type": "",
   "causal": true,
   "sample_kind": "human",

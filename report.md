@@ -1,6 +1,6 @@
 # Who Shares What From Whom: An Ego-Network Conjoint of Misinformation Sharing
 
-*Yamil R. Velez · 2026-10-08 · N = 12,000 analysed of 12,000 collected · conjoint experiment*
+*Yamil R. Velez · 2026-10-08 · N = 1,500 respondents analysed of 1,500 collected (12,000 rows) · conjoint experiment*
 
 <!-- fd:badges -->
 ![provenance: fully agentic](figures/badges/provenance.svg) ![review: light pass · 12/12 claims supported](figures/badges/review.svg) [![plan: pre-registered #132,508](figures/badges/registration.svg)](https://aspredicted.org/8njc-mpqw.pdf) ![status: draft](figures/badges/release.svg) ![design: conjoint](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $1.41](figures/badges/cost.svg)
@@ -10,7 +10,7 @@
 <!-- fd:section id=abstract -->
 ## Abstract
 
-This study asks how the type of information, and who shares it, shape willingness to share a post and judgments of its plausibility. We ran a conjoint experiment with 12,000 profiles from US Latino (Hispanic) adults in a YouGov sample, surveyed in English or Spanish. Only the headline type was randomized; the sharer's tie strength, origin, ideology, trust, knowledge and belief in disputed claims are measured attributes of the respondent's real contacts. Compared with true or neutral headlines, misinformation was chosen 18.2 points less often (95% CI [−20.4, −16.0]) and fact-checks 13.3 points less often (95% CI [−15.6, −11.1]). Plausibility showed the same pattern. High trust in the sharer (+5.7 points) and a close tie (+3.0 points) were associated with more sharing. Origin, knowledge and conspiracy belief were not distinguishable from zero. Results come from many uncorrected tests, and the sharer contrasts are descriptive rather than causal.
+This study asks how the type of information, and who shares it, shape willingness to share a post and judgments of its plausibility. We ran a conjoint experiment in which 1,500 US Latino (Hispanic) adults each rated 8 profiles (12,000 in all) in a YouGov sample, surveyed in English or Spanish. Only the headline type was randomized; the sharer's tie strength, origin, ideology, trust, knowledge and belief in disputed claims are measured attributes of the respondent's real contacts. Compared with true or neutral headlines, misinformation was chosen 18.2 points less often (95% CI [−20.4, −16.0]) and fact-checks 13.3 points less often (95% CI [−15.6, −11.1]). Plausibility showed the same pattern. High trust in the sharer (+5.7 points) and a close tie (+3.0 points) were associated with more sharing. Origin, knowledge and conspiracy belief were not distinguishable from zero. Results come from many uncorrected tests, and the sharer contrasts are descriptive rather than causal.
 
 <!-- fd:section id=findings -->
 ## Key findings
@@ -24,16 +24,16 @@ This study asks how the type of information, and who shares it, shape willingnes
 <!-- fd:section id=design -->
 ## Design and data
 
-A conjoint experiment with 7 profile features: randomized, Information type (True/neutral, Misinformation, Fact-check); measured rather than randomized (the respondent's own ratings of the real contact each headline was attributed to; only the headline and its assignment to a contact are randomized), Tie strength (Distant tie, Close tie); Sharer origin (Foreign origin, Continental US); Sharer ideology (Liberal sharer, Moderate sharer, Conservative sharer); Trust in sharer (Trust: low, Trust: mid, Trust: high); Sharer political knowledge (Knowledge: low, Knowledge: mid, Knowledge: high); Sharer belief in disputed claims (Conspiracy belief: low, Conspiracy belief: high); yougov, US. 12,000 responses were collected and 12,000 are analysed. The plan is pre-registered at https://aspredicted.org/8njc-mpqw.pdf. Identifier and free-text columns removed before any model saw the data: none.
+A conjoint experiment with 7 profile features: randomized, Information type (True/neutral, Misinformation, Fact-check); measured rather than randomized (the respondent's own ratings of the real contact each headline was attributed to; only the headline and its assignment to a contact are randomized), Tie strength (Distant tie, Close tie); Sharer origin (Foreign origin, Continental US); Sharer ideology (Liberal sharer, Moderate sharer, Conservative sharer); Trust in sharer (Trust: low, Trust: mid, Trust: high); Sharer political knowledge (Knowledge: low, Knowledge: mid, Knowledge: high); Sharer belief in disputed claims (Conspiracy belief: low, Conspiracy belief: high); yougov, US. 1,500 respondents were collected and 1,500 are analysed, 12,000 rows in all (several per respondent, keyed by `resp_id`). The plan is pre-registered at https://aspredicted.org/8njc-mpqw.pdf. Identifier and free-text columns removed before any model saw the data: none.
 
 ![Design at a glance](figures/design.svg)
 
 #### Details: the design in words
 
-A conjoint experiment on yougov respondents in US (N = 12,000 analysed). Each profile is built from 7 features: Information type (True/neutral, Misinformation, Fact-check); Tie strength (Distant tie, Close tie; measured, not randomized); Sharer origin (Foreign origin, Continental US; measured, not randomized); Sharer ideology (Liberal sharer, Moderate sharer, Conservative sharer; measured, not randomized); Trust in sharer (Trust: low, Trust: mid, Trust: high; measured, not randomized); Sharer political knowledge (Knowledge: low, Knowledge: mid, Knowledge: high; measured, not randomized); Sharer belief in disputed claims (Conspiracy belief: low, Conspiracy belief: high; measured, not randomized). Respondents compare two profiles per task and choose one for each outcome. Outcomes: Chosen to share, Chosen as more plausible. Registered moderators: age, respondent ideology, respondent belief in disputed claims, trust in media, survey language.
+A conjoint experiment on yougov respondents in US (N = 1,500 respondents analysed, 12,000 profiles). Each profile is built from 7 features: Information type (True/neutral, Misinformation, Fact-check); Tie strength (Distant tie, Close tie; measured, not randomized); Sharer origin (Foreign origin, Continental US; measured, not randomized); Sharer ideology (Liberal sharer, Moderate sharer, Conservative sharer; measured, not randomized); Trust in sharer (Trust: low, Trust: mid, Trust: high; measured, not randomized); Sharer political knowledge (Knowledge: low, Knowledge: mid, Knowledge: high; measured, not randomized); Sharer belief in disputed claims (Conspiracy belief: low, Conspiracy belief: high; measured, not randomized). Respondents compare two profiles per task and choose one for each outcome. Outcomes: Chosen to share, Chosen as more plausible. Registered moderators: age, respondent ideology, respondent belief in disputed claims, trust in media, survey language.
 
 
-The plan was registered (AsPredicted #132,508). Each respondent chose between profiles, and the outcomes were being chosen to share and being judged more plausible. The headline type was randomized: true or neutral (the reference level), misinformation, or fact-check. The six sharer features describe the respondent's own real contacts, so their effects are descriptive contrasts that bundle correlated attributes. The sample is US Latino (Hispanic) adults from YouGov, surveyed in English or Spanish. All 12,000 raw rows entered analysis, with about 100 dropped from individual models for missing values. The reference group of true or neutral headlines has 4,145 profiles. Standard errors are clustered by respondent.
+The plan was registered (AsPredicted #132,508). Each respondent chose between profiles, and the outcomes were being chosen to share and being judged more plausible. The headline type was randomized: true or neutral (the reference level), misinformation, or fact-check. The six sharer features describe the respondent's own real contacts, so their effects are descriptive contrasts that bundle correlated attributes. The sample is US Latino (Hispanic) adults from YouGov, surveyed in English or Spanish. All 1,500 respondents (12,000 profile rows) entered analysis, with about 100 dropped from individual models for missing values. The reference group of true or neutral headlines has 4,145 profiles. Standard errors are clustered by respondent.
 
 <!-- fd:section id=results -->
 ## Results
@@ -54,7 +54,7 @@ Misinformation was chosen to share 18.2 points less often than true or neutral h
 
 ```
 share ~ C(arm_code, Treatment(reference='True/neutral')) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -74,7 +74,7 @@ Close-tie profiles were chosen 3.0 points more often than distant-tie profiles (
 
 ```
 share ~ C(arm_code, Treatment(reference='Distant tie')) + C(infotype) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -93,7 +93,7 @@ Continental US origin differed from foreign origin by 0.2 points (95% CI [−1.4
 
 ```
 share ~ C(arm_code, Treatment(reference='Foreign origin')) + C(infotype) + C(tie) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -112,7 +112,7 @@ A moderate sharer was chosen 1.9 points less often than a liberal sharer (95% CI
 
 ```
 share ~ C(arm_code, Treatment(reference='Liberal sharer')) + C(infotype) + C(tie) + C(sharer_origin) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -132,7 +132,7 @@ High trust in the sharer was associated with 5.7 points more sharing than low tr
 
 ```
 share ~ C(arm_code, Treatment(reference='Trust: low')) + C(infotype) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -152,7 +152,7 @@ Neither mid nor high sharer knowledge was distinguishable from low knowledge. Hi
 
 ```
 share ~ C(arm_code, Treatment(reference='Knowledge: low')) + C(infotype) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -172,7 +172,7 @@ High belief in disputed claims among sharers differed from low belief by −0.2 
 
 ```
 share ~ C(arm_code, Treatment(reference='Conspiracy belief: low')) + C(infotype) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge)
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -191,7 +191,7 @@ Misinformation was judged 18.6 points less plausible than true or neutral headli
 
 ```
 plausibility ~ C(arm_code, Treatment(reference='True/neutral')) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -211,7 +211,7 @@ Close ties were associated with 2.8 points higher plausibility (95% CI [0.7, 4.8
 
 ```
 plausibility ~ C(arm_code, Treatment(reference='Distant tie')) + C(infotype) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -230,7 +230,7 @@ Sharer origin differed on plausibility by −0.3 points (95% CI [−1.9, 1.4]). 
 
 ```
 plausibility ~ C(arm_code, Treatment(reference='Foreign origin')) + C(infotype) + C(tie) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -249,7 +249,7 @@ A moderate sharer was rated 2.1 points less plausible than a liberal sharer (95%
 
 ```
 plausibility ~ C(arm_code, Treatment(reference='Liberal sharer')) + C(infotype) + C(tie) + C(sharer_origin) + C(sharer_trust) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -269,7 +269,7 @@ Neither mid trust (−0.6 points, 95% CI [−4.2, 3.0]) nor high trust (2.5 poin
 
 ```
 plausibility ~ C(arm_code, Treatment(reference='Trust: low')) + C(infotype) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_knowledge) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -289,7 +289,7 @@ Sharer knowledge was not distinguishable from zero for plausibility. High knowle
 
 ```
 plausibility ~ C(arm_code, Treatment(reference='Knowledge: low')) + C(infotype) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_conspiracy)
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -309,7 +309,7 @@ High belief in disputed claims among sharers was associated with a 0.0-point dif
 
 ```
 plausibility ~ C(arm_code, Treatment(reference='Conspiracy belief: low')) + C(infotype) + C(tie) + C(sharer_origin) + C(sharer_ideology) + C(sharer_trust) + C(sharer_knowledge)
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | Level | Estimate | SE | p | 95% CI | n (level) | Supported |
@@ -640,7 +640,7 @@ Spanish-language respondents rated misinformation 3.7 points more plausible than
 *A1. Source credibility is conditional on content uncertainty: the slope of sharing on trust in the sharer (1-5), net of the other source attributes, and how it differs by information type.*  
 *Exploratory, not pre-registered.*
 
-Slope of Chosen to share on `trust_raw`: 0.014 (SE 0.004, p < 0.001, N = 11882). Significant at alpha = 0.05: yes.
+Slope of Chosen to share on `trust_raw`: 0.014 (SE 0.004, p < 0.001, N = 11,882 rows from 1,498 respondents). Significant at alpha = 0.05: yes.
 
 This is a post hoc estimate. Each additional step of trust in the sharer (1-5) was associated with 1.4 points more sharing (SE 0.4, two-sided p < 0.001).
 
@@ -648,7 +648,7 @@ This is a post hoc estimate. Each additional step of trust in the sharer (1-5) w
 
 ```
 share ~ treat + close_num + origin_num + C(sharer_ideology) + knowledge_raw + conspiracy_raw
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | analysis_id | term | estimate | std_error | statistic | p_value | conf_low | conf_high |
@@ -668,7 +668,7 @@ OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
 *A1. The slope of plausibility on trust in the sharer, by information type.*  
 *Exploratory, not pre-registered.*
 
-Slope of Chosen as more plausible on `trust_raw`: 0.013 (SE 0.004, p < 0.001, N = 11884). Significant at alpha = 0.05: yes.
+Slope of Chosen as more plausible on `trust_raw`: 0.013 (SE 0.004, p < 0.001, N = 11,884 rows from 1,498 respondents). Significant at alpha = 0.05: yes.
 
 Post hoc. Each step of trust in the sharer was associated with 1.3 points higher plausibility (SE 0.4, p < 0.001).
 
@@ -676,7 +676,7 @@ Post hoc. Each step of trust in the sharer was associated with 1.3 points higher
 
 ```
 plausibility ~ treat + close_num + origin_num + C(sharer_ideology) + knowledge_raw + conspiracy_raw
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | analysis_id | term | estimate | std_error | statistic | p_value | conf_low | conf_high |
@@ -696,7 +696,7 @@ OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
 *A1. The close-tie premium on sharing, net of the other source attributes, by information type.*  
 *Exploratory, not pre-registered.*
 
-Slope of Chosen to share on `close_num`: 0.029 (SE 0.010, p = 0.006, N = 11882). Significant at alpha = 0.05: yes.
+Slope of Chosen to share on `close_num`: 0.029 (SE 0.010, p = 0.006, N = 11,882 rows from 1,498 respondents). Significant at alpha = 0.05: yes.
 
 Post hoc. The close-tie premium on sharing was 2.9 points (SE 1.0, p = 0.006), consistent with the registered estimate.
 
@@ -704,7 +704,7 @@ Post hoc. The close-tie premium on sharing was 2.9 points (SE 1.0, p = 0.006), c
 
 ```
 share ~ treat + trust_raw + origin_num + C(sharer_ideology) + knowledge_raw + conspiracy_raw
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | analysis_id | term | estimate | std_error | statistic | p_value | conf_low | conf_high |
@@ -812,7 +812,7 @@ difference in means | cluster-robust SEs on resp_id | N = 3016 | two-sided test,
 *B2. A conspiracy-prone source: the slope of sharing on the sharer's perceived belief in disputed claims (0-1), net of the other source attributes, by information type.*  
 *Exploratory, not pre-registered.*
 
-Slope of Chosen to share on `conspiracy_raw`: 0.005 (SE 0.014, p = 0.706, N = 11882). Significant at alpha = 0.05: no.
+Slope of Chosen to share on `conspiracy_raw`: 0.005 (SE 0.014, p = 0.706, N = 11,882 rows from 1,498 respondents). Significant at alpha = 0.05: no.
 
 Post hoc. The overall slope of sharing on the sharer's perceived belief in disputed claims was 0.5 points (SE 1.4, p = 0.71), not distinguishable from zero.
 
@@ -820,7 +820,7 @@ Post hoc. The overall slope of sharing on the sharer's perceived belief in dispu
 
 ```
 share ~ treat + trust_raw + close_num + origin_num + C(sharer_ideology) + knowledge_raw
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | analysis_id | term | estimate | std_error | statistic | p_value | conf_low | conf_high |
@@ -840,7 +840,7 @@ OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
 *B2. The slope of plausibility on the sharer's perceived belief in disputed claims, by information type.*  
 *Exploratory, not pre-registered.*
 
-Slope of Chosen as more plausible on `conspiracy_raw`: -0.005 (SE 0.014, p = 0.717, N = 11884). Significant at alpha = 0.05: no.
+Slope of Chosen as more plausible on `conspiracy_raw`: -0.005 (SE 0.014, p = 0.717, N = 11,884 rows from 1,498 respondents). Significant at alpha = 0.05: no.
 
 Post hoc. The overall slope of plausibility on the sharer's perceived belief in disputed claims was −0.5 points (SE 1.4, p = 0.72), not distinguishable from zero.
 
@@ -848,7 +848,7 @@ Post hoc. The overall slope of plausibility on the sharer's perceived belief in 
 
 ```
 plausibility ~ treat + trust_raw + close_num + origin_num + C(sharer_ideology) + knowledge_raw
-OLS | cluster-robust SEs on resp_id | N = 11884 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,884 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | analysis_id | term | estimate | std_error | statistic | p_value | conf_low | conf_high |
@@ -946,7 +946,7 @@ OLS | cluster-robust SEs on resp_id | N = 3822 | two-sided test, alpha = 0.05
 *B4. Sharer origin (continental US vs. elsewhere) and sharing, by survey language and by the respondent's nativity.*  
 *Exploratory, not pre-registered.*
 
-Slope of Chosen to share on `origin_num`: 0.002 (SE 0.008, p = 0.785, N = 11882). Significant at alpha = 0.05: no.
+Slope of Chosen to share on `origin_num`: 0.002 (SE 0.008, p = 0.785, N = 11,882 rows from 1,498 respondents). Significant at alpha = 0.05: no.
 
 Post hoc. The sharer-origin slope on sharing was 0.2 points (SE 0.8, p = 0.78), not distinguishable from zero.
 
@@ -954,7 +954,7 @@ Post hoc. The sharer-origin slope on sharing was 0.2 points (SE 0.8, p = 0.78), 
 
 ```
 share ~ treat + trust_raw + close_num + C(sharer_ideology) + knowledge_raw + conspiracy_raw
-OLS | cluster-robust SEs on resp_id | N = 11882 | two-sided test, alpha = 0.05
+OLS | cluster-robust SEs on resp_id | N = 11,882 rows from 1,498 respondents | two-sided test, alpha = 0.05
 ```
 
 | analysis_id | term | estimate | std_error | statistic | p_value | conf_low | conf_high |
