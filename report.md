@@ -1310,10 +1310,9 @@ Re-check of the corrected text: All previous claims are now properly worded; no 
 
 #### Other review options
 
-- **Advanced Pass**: methodology and statistics referees whose analytical issues get agent-run robustness checks. `--review light,advanced`
-- **Coarse**: the open-source coarse-ink reviewer, run locally (about $1-2). `--review light,coarse`
+- **Coarse**: the open-source coarse-ink reviewer, run on your machine (about $1-2), then imported. `uvx coarse-ink review report.md, then filedrawer review-import . coarse FILE`
 - **Refine**: upload the report to refine.ink, then import its review. `filedrawer review-import . refine FILE`
-- **OpenReview**: import any referee report, e.g. one posted on an OpenReview submission. `filedrawer review-import . openreview FILE`
+- **OpenReview or any referee report**: import a review posted on OpenReview, or any other referee report. `filedrawer review-import . openreview FILE`
 
 
 <!-- fd:section id=potential -->
