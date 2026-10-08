@@ -883,60 +883,6 @@
    "label": "Generalizability",
    "text": "extensions/generalizability_conditional.txt",
    "svg": "extensions/generalizability_conditional.svg"
-  },
-  {
-   "qsf": null,
-   "qsf_errors": [],
-   "media": [],
-   "id": "theoretical_debate",
-   "kind": "observational",
-   "title": "No debate visible in the retrieved works",
-   "brief_id": "theoretical_debate",
-   "mode": "data_collection",
-   "debate": null,
-   "why": "The retrieved literature (COVID, AI, media education) does not bear directly on sharing from ties, so I decline to invent a debate. Instead this brief tests the measurement cause: whether sharing and plausibility are distinct.",
-   "power_target": null,
-   "rationale": "The source study found that plausibility ratings tracked sharing closely (both showed the same misinformation penalty), but it measured them in the same conjoint task with no manipulation that could dissociate them. This follow-up tests whether sharing and plausibility are separable constructs by introducing an accuracy-salience prompt that should reduce sharing of misinformation without changing perceived plausibility, and by measuring the two outcomes in counterbalanced blocks to rule out order confounds.",
-   "contribution": "Establishes whether the sharing–plausibility correlation observed in the source conjoint reflects a single underlying judgment or two separable processes, with direct implications for how to model and intervene on misinformation sharing.",
-   "addresses": [],
-   "validated_by": "autoexperiment",
-   "status": "proposed",
-   "built_at": null,
-   "survey_id": null,
-   "survey_url": null,
-   "hypothesis": "The accuracy-salience prompt will narrow the misinformation sharing gap (false vs true/neutral) by at least 0.031 standard units relative to the control arm, while leaving the plausibility gap unchanged, demonstrating that sharing and plausibility are separable processes.",
-   "primary_outcome": "Primary outcome: sharing intention, measured as a binary share/don't-share choice for each headline profile (same as source study). Secondary outcome: plausibility, measured on a 0–100 slider ('How plausible is this claim?') for the same profiles. The key estimand is the interaction between accuracy prompt and information type (false vs true/neutral) on sharing, tested against the null that the prompt does not differentially reduce sharing of false headlines. A secondary estimand is the same interaction on plausibility, expected to be null if the constructs are separable.",
-   "comparison": "Accuracy-salience prompt (binary, between-respondent randomization): in the prompt arm, before each sharing decision the respondent sees the instruction 'Before you decide, consider whether this claim is accurate.' In the control arm, no such instruction appears. The prompt is the manipulated variable; its variation comes from random assignment at the respondent level. Within each arm, the order in which plausibility and sharing blocks appear is counterbalanced (plausibility-first vs sharing-first, randomized per respondent) to separate the two outcome measures from order effects.",
-   "conditions": [],
-   "unresolved": [
-    "Demand characteristics: respondents who notice the accuracy prompt may share less across all content, not just misinformation, confounding the interaction. Mitigated by including true/neutral and fact-check headlines as within-respondent controls.",
-    "Construct drift: the prompt may shift the meaning of 'plausible' (e.g., respondents start equating plausibility with accuracy), producing a spurious null on plausibility. Mitigated by a post-hoc probe asking respondents to define 'plausible' in their own words (qualitative, not in primary analysis).",
-    "Order effects: if plausibility is rated first, it may anchor the sharing decision (or vice versa). Mitigated by the counterbalanced block design and a pre-specified equivalence test on the order × information-type interaction.",
-    "Panel fatigue and attrition: a within-subject design with multiple profiles per respondent may produce fatigue, inflating noise. Mitigated by capping the number of profiles per respondent and monitoring completion rates.",
-    "The prompt may be too weak to move sharing at all, producing a null that is uninformative about separability. Mitigated by the power calculation targeting a 0.031 effect and by a pre-specified dose-response check (if available, a two-level prompt: mild vs strong accuracy reminder)."
-   ],
-   "plan": {
-    "data_sources": [
-     "YouGov US panel (same platform as source study): provides the respondent sample, demographic and attitudinal covariates, and the delivery infrastructure for the online experiment.",
-     "Source-study headline pool (12 headlines: 4 true/neutral, 4 false, 4 fact-check, as used in the registered conjoint): provides the stimulus set, ensuring comparability of the misinformation penalty estimate with the source study's −18.2-point finding.",
-     "Pre-registered analysis code and stimulus materials from the source study's OSF repository: provides the exact headline texts, fact-check texts, and conjoint profile structure for replication of the stimulus set."
-    ],
-    "units": "Individual US adult panel respondents (N ≈ 3,200 total; ~1,600 per accuracy-salience arm). Each respondent completes the full within-subject design, so the unit of analysis for the primary contrast is the respondent, with headline-level observations nested within respondents.",
-    "exposure": "Accuracy-salience prompt (binary, between-respondent randomization): in the prompt arm, before each sharing decision the respondent sees the instruction 'Before you decide, consider whether this claim is accurate.' In the control arm, no such instruction appears. The prompt is the manipulated variable; its variation comes from random assignment at the respondent level. Within each arm, the order in which plausibility and sharing blocks appear is counterbalanced (plausibility-first vs sharing-first, randomized per respondent) to separate the two outcome measures from order effects.",
-    "outcome": "Primary outcome: sharing intention, measured as a binary share/don't-share choice for each headline profile (same as source study). Secondary outcome: plausibility, measured on a 0–100 slider ('How plausible is this claim?') for the same profiles. The key estimand is the interaction between accuracy prompt and information type (false vs true/neutral) on sharing, tested against the null that the prompt does not differentially reduce sharing of false headlines. A secondary estimand is the same interaction on plausibility, expected to be null if the constructs are separable.",
-    "identification": "Two comparisons do the work. First, within the prompt arm, compare the sharing gap (false minus true/neutral) to the sharing gap in the control arm: if the prompt selectively narrows the misinformation gap on sharing while leaving the plausibility gap unchanged, sharing and plausibility are separable. Second, the counterbalanced block order (plausibility-first vs sharing-first) is used to verify that the sharing–plausibility correlation is not an artifact of measuring one immediately after the other. What must hold: the prompt must not change perceived plausibility (verified by the null interaction on plausibility), and the two block orders must produce equivalent estimates (verified by a pre-specified equivalence test).",
-    "threats": [
-     "Demand characteristics: respondents who notice the accuracy prompt may share less across all content, not just misinformation, confounding the interaction. Mitigated by including true/neutral and fact-check headlines as within-respondent controls.",
-     "Construct drift: the prompt may shift the meaning of 'plausible' (e.g., respondents start equating plausibility with accuracy), producing a spurious null on plausibility. Mitigated by a post-hoc probe asking respondents to define 'plausible' in their own words (qualitative, not in primary analysis).",
-     "Order effects: if plausibility is rated first, it may anchor the sharing decision (or vice versa). Mitigated by the counterbalanced block design and a pre-specified equivalence test on the order × information-type interaction.",
-     "Panel fatigue and attrition: a within-subject design with multiple profiles per respondent may produce fatigue, inflating noise. Mitigated by capping the number of profiles per respondent and monitoring completion rates.",
-     "The prompt may be too weak to move sharing at all, producing a null that is uninformative about separability. Mitigated by the power calculation targeting a 0.031 effect and by a pre-specified dose-response check (if available, a two-level prompt: mild vs strong accuracy reminder)."
-    ],
-    "analysis_plan": "Estimator: linear mixed model with random intercepts for respondents and random slopes for information type, fitted separately for sharing (binary, logit link) and plausibility (continuous, identity link). Adjustment set: respondent age, sex, education, political ideology (same covariates as source study), block order (plausibility-first vs sharing-first), and wave (if multi-wave). Standard errors: cluster-robust at the respondent level (accounting for within-respondent correlation across profiles). Pre-specified tests: (1) Interaction of accuracy prompt × information type (false vs true/neutral) on sharing — primary test, two-sided α = 0.05, with a pre-registered equivalence margin of ±0.015 to distinguish 'no effect' from 'underpowered null.' (2) Same interaction on plausibility — secondary test, same α and equivalence margin. (3) Equivalence test on block order × information type interaction (TOST, equivalence margin ±0.01) to confirm order does not confound the sharing–plausibility relationship. Power: with ~1,600 respondents per arm and ~12 profiles per respondent, the design is powered to detect a 0.031 difference in the misinformation sharing gap between prompt and control arms at 80% power, α = 0.05, assuming a within-respondent correlation of 0.30 across profiles (conservative relative to the source study's observed ICC)."
-   },
-   "label": "Theoretical debate",
-   "text": "extensions/theoretical_debate.txt",
-   "svg": "extensions/theoretical_debate.svg"
   }
  ],
  "sections_draft": {
@@ -1058,24 +1004,6 @@
     "needs_qsf": true
    },
    {
-    "id": "theoretical_debate",
-    "kind_legacy": "alternative",
-    "mode": "data_collection",
-    "title": "No debate visible in the retrieved works",
-    "question": "Not applicable: the retrieved works do not frame a live disagreement that this design can discriminate.",
-    "why_this_fixes_the_failure": "The retrieved literature (COVID, AI, media education) does not bear directly on sharing from ties, so I decline to invent a debate. Instead this brief tests the measurement cause: whether sharing and plausibility are distinct.",
-    "debate": null,
-    "addresses": [],
-    "design_sketch": "Within-respondent design that measures plausibility, then sharing, in separate counterbalanced blocks, and adds a manipulation of accuracy salience (accuracy prompt vs none). If the misinformation sharing gap closes under the prompt while plausibility stays fixed, the two are separable. Use the same headline pool and a US panel.",
-    "moderator_or_condition": null,
-    "power_target": {
-     "n_per_arm": 1600,
-     "mde": 0.031,
-     "basis": "H1 MDE 0.031; observed misinformation effect −0.182 leaves ample margin for detecting a partial reduction"
-    },
-    "needs_qsf": false
-   },
-   {
     "id": "generalizability_conditional",
     "kind_legacy": "boundary",
     "mode": "survey_experiment",
@@ -1094,7 +1022,7 @@
     "needs_qsf": true
    }
   ],
-  "verdict": "A follow-up is worth running, but the headline-type effect is already settled and adds nothing new. The retrieved literature shows no genuine debate this study bears on, so the debate brief is replaced by a measurement test. Run the advance_design brief first: randomizing tie and trust with a behavioural share is the only way to turn the study's most interesting claims (close ties and high trust) into causal estimates. The moderator brief should follow, sized to the 0.056 subgroup gap.",
+  "verdict": "A follow-up is worth running, but the headline-type effect is already settled and adds nothing new. The retrieved literature shows no genuine debate this study bears on. Run the advance_design brief first: randomizing tie and trust with a behavioural share is the only way to turn the study's most interesting claims (close ties and high trust) into causal estimates. The moderator brief should follow, sized to the 0.056 subgroup gap.",
   "model": "anthropic/claude-sonnet-5.5"
  }
 }

@@ -53,24 +53,6 @@
    "needs_qsf": true
   },
   {
-   "id": "theoretical_debate",
-   "kind_legacy": "alternative",
-   "mode": "data_collection",
-   "title": "No debate visible in the retrieved works",
-   "question": "Not applicable: the retrieved works do not frame a live disagreement that this design can discriminate.",
-   "why_this_fixes_the_failure": "The retrieved literature (COVID, AI, media education) does not bear directly on sharing from ties, so I decline to invent a debate. Instead this brief tests the measurement cause: whether sharing and plausibility are distinct.",
-   "debate": null,
-   "addresses": [],
-   "design_sketch": "Within-respondent design that measures plausibility, then sharing, in separate counterbalanced blocks, and adds a manipulation of accuracy salience (accuracy prompt vs none). If the misinformation sharing gap closes under the prompt while plausibility stays fixed, the two are separable. Use the same headline pool and a US panel.",
-   "moderator_or_condition": null,
-   "power_target": {
-    "n_per_arm": 1600,
-    "mde": 0.031,
-    "basis": "H1 MDE 0.031; observed misinformation effect −0.182 leaves ample margin for detecting a partial reduction"
-   },
-   "needs_qsf": false
-  },
-  {
    "id": "generalizability_conditional",
    "kind_legacy": "boundary",
    "mode": "survey_experiment",
@@ -89,6 +71,6 @@
    "needs_qsf": true
   }
  ],
- "verdict": "A follow-up is worth running, but the headline-type effect is already settled and adds nothing new. The retrieved literature shows no genuine debate this study bears on, so the debate brief is replaced by a measurement test. Run the advance_design brief first: randomizing tie and trust with a behavioural share is the only way to turn the study's most interesting claims (close ties and high trust) into causal estimates. The moderator brief should follow, sized to the 0.056 subgroup gap.",
+ "verdict": "A follow-up is worth running, but the headline-type effect is already settled and adds nothing new. The retrieved literature shows no genuine debate this study bears on. Run the advance_design brief first: randomizing tie and trust with a behavioural share is the only way to turn the study's most interesting claims (close ties and high trust) into causal estimates. The moderator brief should follow, sized to the 0.056 subgroup gap.",
  "model": "anthropic/claude-sonnet-5.5"
 }

@@ -1149,29 +1149,10 @@
    "svg": "extensions/generalizability_conditional.svg",
    "text": "extensions/generalizability_conditional.txt",
    "addresses": []
-  },
-  {
-   "id": "theoretical_debate",
-   "kind": "observational",
-   "label": "Theoretical debate",
-   "brief_id": "theoretical_debate",
-   "mode": "data_collection",
-   "debate": null,
-   "why": "The retrieved literature (COVID, AI, media education) does not bear directly on sharing from ties, so I decline to invent a debate. Instead this brief tests the measurement cause: whether sharing and plausibility are distinct.",
-   "title": "No debate visible in the retrieved works",
-   "hypothesis": "The accuracy-salience prompt will narrow the misinformation sharing gap (false vs true/neutral) by at least 0.031 standard units relative to the control arm, while leaving the plausibility gap unchanged, demonstrating that sharing and plausibility are separable processes.",
-   "primary_outcome": "Primary outcome: sharing intention, measured as a binary share/don't-share choice for each headline profile (same as source study). Secondary outcome: plausibility, measured on a 0–100 slider ('How plausible is this claim?') for the same profiles. The key estimand is the interaction between accuracy prompt and information type (false vs true/neutral) on sharing, tested against the null that the prompt does not differentially reduce sharing of false headlines. A secondary estimand is the same interaction on plausibility, expected to be null if the constructs are separable.",
-   "conditions": [],
-   "status": "proposed",
-   "built_at": null,
-   "qsf": null,
-   "svg": "extensions/theoretical_debate.svg",
-   "text": "extensions/theoretical_debate.txt",
-   "addresses": []
   }
  ],
  "potential": {
-  "verdict": "A follow-up is worth running, but the headline-type effect is already settled and adds nothing new. The retrieved literature shows no genuine debate this study bears on, so the debate brief is replaced by a measurement test. Run the advance_design brief first: randomizing tie and trust with a behavioural share is the only way to turn the study's most interesting claims (close ties and high trust) into causal estimates. The moderator brief should follow, sized to the 0.056 subgroup gap.",
+  "verdict": "A follow-up is worth running, but the headline-type effect is already settled and adds nothing new. The retrieved literature shows no genuine debate this study bears on. Run the advance_design brief first: randomizing tie and trust with a behavioural share is the only way to turn the study's most interesting claims (close ties and high trust) into causal estimates. The moderator brief should follow, sized to the 0.056 subgroup gap.",
   "causes": [
    "design",
    "power",
@@ -1186,12 +1167,6 @@
     "mode": "survey_experiment",
     "title": "Randomize the sharer's attributes, with a behavioural share",
     "needs_qsf": true
-   },
-   {
-    "id": "theoretical_debate",
-    "mode": "data_collection",
-    "title": "No debate visible in the retrieved works",
-    "needs_qsf": false
    },
    {
     "id": "generalizability_conditional",
