@@ -1,0 +1,1276 @@
+{
+ "SurveyEntry": {
+  "SurveyID": "SV_filedrawer00000",
+  "SurveyName": "Source ideology, accuracy judgements and sharing intent (extension of: Who Shares What From Whom: An",
+  "SurveyDescription": null,
+  "SurveyOwnerID": "UR_filedrawer00000",
+  "SurveyBrandID": "",
+  "DivisionID": null,
+  "SurveyLanguage": "EN",
+  "SurveyActiveResponseSet": "RS_filedrawer00000",
+  "SurveyStatus": "Inactive",
+  "SurveyStartDate": "0000-00-00 00:00:00",
+  "SurveyExpirationDate": "0000-00-00 00:00:00",
+  "SurveyCreationDate": "2026-10-08 16:05:48",
+  "CreatorID": "UR_filedrawer00000",
+  "LastModified": "2026-10-08 16:05:48",
+  "LastAccessed": "0000-00-00 00:00:00",
+  "LastActivated": "0000-00-00 00:00:00",
+  "Deleted": null
+ },
+ "SurveyElements": [
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "BL",
+   "PrimaryAttribute": "Survey Blocks",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": [
+    {
+     "Type": "Default",
+     "Description": "Consent",
+     "ID": "BL_b_consent",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID1"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Pre-treatment measures",
+     "ID": "BL_b_pre",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID2"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID3"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Co-ideological headlines",
+     "ID": "BL_b_co",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID4"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID5"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID6"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Opposed headlines",
+     "ID": "BL_b_opp",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID7"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID8"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID9"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Neutral headlines",
+     "ID": "BL_b_neu",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID10"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID11"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID12"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Debrief",
+     "ID": "BL_b_debrief",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID13"
+      }
+     ]
+    },
+    {
+     "Type": "Trash",
+     "Description": "Trash / Unused Questions",
+     "ID": "BL_trash"
+    }
+   ]
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "FL",
+   "PrimaryAttribute": "Survey Flow",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "Type": "Root",
+    "FlowID": "FL_1",
+    "Flow": [
+     {
+      "Type": "Block",
+      "ID": "BL_b_consent",
+      "FlowID": "FL_2",
+      "Autofill": []
+     },
+     {
+      "Type": "Branch",
+      "FlowID": "FL_3",
+      "Description": "No consent",
+      "BranchLogic": {
+       "0": {
+        "0": {
+         "LogicType": "Question",
+         "QuestionID": "QID1",
+         "QuestionIsInLoop": "no",
+         "ChoiceLocator": "q://QID1/SelectableChoice/2",
+         "Operator": "Selected",
+         "QuestionIDFromLocator": "QID1",
+         "LeftOperand": "q://QID1/SelectableChoice/2",
+         "Type": "Expression",
+         "Description": "If QID1 choice 2 is selected"
+        },
+        "Type": "If"
+       },
+       "Type": "BooleanExpression"
+      },
+      "Flow": [
+       {
+        "Type": "EndSurvey",
+        "FlowID": "FL_4"
+       }
+      ]
+     },
+     {
+      "Type": "Standard",
+      "ID": "BL_b_pre",
+      "FlowID": "FL_5",
+      "Autofill": []
+     },
+     {
+      "Type": "BlockRandomizer",
+      "FlowID": "FL_6",
+      "SubSet": 1,
+      "EvenPresentation": true,
+      "Flow": [
+       {
+        "Type": "Group",
+        "FlowID": "FL_7",
+        "Description": "Co",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_8",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "co"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_co",
+          "FlowID": "FL_9",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_10",
+        "Description": "Opp",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_11",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "opp"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_opp",
+          "FlowID": "FL_12",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_13",
+        "Description": "Neu",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_14",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "neu"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_neu",
+          "FlowID": "FL_15",
+          "Autofill": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "Type": "Standard",
+      "ID": "BL_b_debrief",
+      "FlowID": "FL_16",
+      "Autofill": []
+     }
+    ],
+    "Properties": {
+     "Count": 16,
+     "RemovedFieldsets": []
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "PL",
+   "PrimaryAttribute": "Preview Link",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "PreviewType": "Brand",
+    "PreviewID": "ff135cd7-834a-487f-8d1e-351bfcd4ff8b"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "PROJ",
+   "PrimaryAttribute": "CORE",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": "1.1.0",
+   "Payload": {
+    "ProjectCategory": "CORE",
+    "SchemaVersion": "1.1.0"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "QC",
+   "PrimaryAttribute": "Survey Question Count",
+   "SecondaryAttribute": "13",
+   "TertiaryAttribute": null,
+   "Payload": null
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "RS",
+   "PrimaryAttribute": "RS_filedrawer00000",
+   "SecondaryAttribute": "Default Response Set",
+   "TertiaryAttribute": null,
+   "Payload": null
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SCO",
+   "PrimaryAttribute": "Scoring",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "ScoringCategories": [],
+    "ScoringCategoryGroups": [],
+    "ScoringSummaryCategory": null,
+    "ScoringSummaryAfterQuestions": 0,
+    "ScoringSummaryAfterSurvey": 0,
+    "DefaultScoringCategory": null,
+    "AutoScoringCategory": null
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SO",
+   "PrimaryAttribute": "Survey Options",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "BackButton": "false",
+    "SaveAndContinue": "true",
+    "SurveyProtection": "PublicSurvey",
+    "BallotBoxStuffingPrevention": "false",
+    "NoIndex": "Yes",
+    "SecureResponseFiles": "true",
+    "SurveyExpiration": "None",
+    "SurveyTermination": "DefaultMessage",
+    "Header": "",
+    "Footer": "",
+    "ProgressBarDisplay": "None",
+    "PartialData": "+1 week",
+    "ValidationMessage": null,
+    "PreviousButton": "",
+    "NextButton": "",
+    "SurveyTitle": "Source ideology, accuracy judgements and sharing intent (extension of: Who Shares What From Whom: An",
+    "SkinLibrary": "Qualtrics",
+    "SkinType": "templated",
+    "Skin": {
+     "brandingId": null,
+     "templateId": "*base",
+     "overrides": null
+    },
+    "NewScoring": 1,
+    "SurveyMetaDescription": "Respondents first report belief in disputed claims and their own ideology. Each is then randomly..."
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "STAT",
+   "PrimaryAttribute": "Survey Statistics",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "MobileCompatible": true,
+    "ID": "Survey Statistics"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID1",
+   "SecondaryAttribute": "You are invited to a short survey about how people judge and share news headline",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "You are invited to a short survey about how people judge and share news headlines. Participation is voluntary and anonymous, and you may stop at any time. Do you agree to take part?",
+    "DataExportTag": "consent",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "You are invited to a short survey about how people judge and share news headlines. Participation...",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID1",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "I agree"
+     },
+     "2": {
+      "Display": "I do not agree"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID2",
+   "SecondaryAttribute": "Which best describes your political views?",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Which best describes your political views?",
+    "DataExportTag": "own_ideology",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Which best describes your political views?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID2",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Liberal"
+     },
+     "2": {
+      "Display": "Moderate"
+     },
+     "3": {
+      "Display": "Conservative"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3"
+    ],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "2",
+     "3": "3"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID3",
+   "SecondaryAttribute": "How much do you believe each of the following claims?",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "How much do you believe each of the following claims?",
+    "DataExportTag": "disputed_belief",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "TextPosition": "inline",
+     "ChoiceColumnWidth": 25,
+     "RepeatHeaders": "none",
+     "WhiteSpace": "OFF",
+     "MobileFirst": true
+    },
+    "QuestionDescription": "How much do you believe each of the following claims?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID3",
+    "QuestionType": "Matrix",
+    "Selector": "Likert",
+    "SubSelector": "SingleAnswer",
+    "DefaultChoices": false,
+    "GradingData": [],
+    "ChoiceDataExportTags": false,
+    "Choices": {
+     "1": {
+      "Display": "Powerful groups secretly control major world events."
+     },
+     "2": {
+      "Display": "Official accounts of important events are often cover-ups."
+     },
+     "3": {
+      "Display": "Health authorities hide information about harmful treatments."
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3"
+    ],
+    "Answers": {
+     "1": {
+      "Display": "Not at all"
+     },
+     "2": {
+      "Display": "Somewhat"
+     },
+     "3": {
+      "Display": "Moderately"
+     },
+     "4": {
+      "Display": "Completely"
+     }
+    },
+    "AnswerOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "NextChoiceId": 4,
+    "NextAnswerId": 5
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID4",
+   "SecondaryAttribute": "Please read these four headlines, each reported by an outlet that shares your po",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Please read these four headlines, each reported by an outlet that shares your political leaning.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Please read these four headlines, each reported by an outlet that shares your political leaning.",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID4",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "d_co"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID5",
+   "SecondaryAttribute": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+    "DataExportTag": "accuracy_co",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "TextPosition": "inline",
+     "ChoiceColumnWidth": 25,
+     "RepeatHeaders": "none",
+     "WhiteSpace": "OFF",
+     "MobileFirst": true
+    },
+    "QuestionDescription": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID5",
+    "QuestionType": "Matrix",
+    "Selector": "Likert",
+    "SubSelector": "SingleAnswer",
+    "DefaultChoices": false,
+    "GradingData": [],
+    "ChoiceDataExportTags": false,
+    "Choices": {
+     "1": {
+      "Display": "False headline 1"
+     },
+     "2": {
+      "Display": "False headline 2"
+     },
+     "3": {
+      "Display": "True headline 1"
+     },
+     "4": {
+      "Display": "True headline 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "Answers": {
+     "1": {
+      "Display": "1"
+     },
+     "2": {
+      "Display": "2"
+     },
+     "3": {
+      "Display": "3"
+     },
+     "4": {
+      "Display": "4"
+     },
+     "5": {
+      "Display": "5"
+     },
+     "6": {
+      "Display": "6"
+     },
+     "7": {
+      "Display": "7"
+     }
+    },
+    "AnswerOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "NextChoiceId": 5,
+    "NextAnswerId": 8
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID6",
+   "SecondaryAttribute": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = ",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+    "DataExportTag": "share_co",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "TextPosition": "inline",
+     "ChoiceColumnWidth": 25,
+     "RepeatHeaders": "none",
+     "WhiteSpace": "OFF",
+     "MobileFirst": true
+    },
+    "QuestionDescription": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID6",
+    "QuestionType": "Matrix",
+    "Selector": "Likert",
+    "SubSelector": "SingleAnswer",
+    "DefaultChoices": false,
+    "GradingData": [],
+    "ChoiceDataExportTags": false,
+    "Choices": {
+     "1": {
+      "Display": "False headline 1"
+     },
+     "2": {
+      "Display": "False headline 2"
+     },
+     "3": {
+      "Display": "True headline 1"
+     },
+     "4": {
+      "Display": "True headline 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "Answers": {
+     "1": {
+      "Display": "1"
+     },
+     "2": {
+      "Display": "2"
+     },
+     "3": {
+      "Display": "3"
+     },
+     "4": {
+      "Display": "4"
+     },
+     "5": {
+      "Display": "5"
+     },
+     "6": {
+      "Display": "6"
+     },
+     "7": {
+      "Display": "7"
+     }
+    },
+    "AnswerOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "NextChoiceId": 5,
+    "NextAnswerId": 8
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID7",
+   "SecondaryAttribute": "Please read these four headlines, each reported by an outlet that leans politica",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Please read these four headlines, each reported by an outlet that leans politically opposite to you.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Please read these four headlines, each reported by an outlet that leans politically opposite to you.",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID7",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "d_opp"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID8",
+   "SecondaryAttribute": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+    "DataExportTag": "accuracy_opp",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "TextPosition": "inline",
+     "ChoiceColumnWidth": 25,
+     "RepeatHeaders": "none",
+     "WhiteSpace": "OFF",
+     "MobileFirst": true
+    },
+    "QuestionDescription": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID8",
+    "QuestionType": "Matrix",
+    "Selector": "Likert",
+    "SubSelector": "SingleAnswer",
+    "DefaultChoices": false,
+    "GradingData": [],
+    "ChoiceDataExportTags": false,
+    "Choices": {
+     "1": {
+      "Display": "False headline 1"
+     },
+     "2": {
+      "Display": "False headline 2"
+     },
+     "3": {
+      "Display": "True headline 1"
+     },
+     "4": {
+      "Display": "True headline 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "Answers": {
+     "1": {
+      "Display": "1"
+     },
+     "2": {
+      "Display": "2"
+     },
+     "3": {
+      "Display": "3"
+     },
+     "4": {
+      "Display": "4"
+     },
+     "5": {
+      "Display": "5"
+     },
+     "6": {
+      "Display": "6"
+     },
+     "7": {
+      "Display": "7"
+     }
+    },
+    "AnswerOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "NextChoiceId": 5,
+    "NextAnswerId": 8
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID9",
+   "SecondaryAttribute": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = ",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+    "DataExportTag": "share_opp",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "TextPosition": "inline",
+     "ChoiceColumnWidth": 25,
+     "RepeatHeaders": "none",
+     "WhiteSpace": "OFF",
+     "MobileFirst": true
+    },
+    "QuestionDescription": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID9",
+    "QuestionType": "Matrix",
+    "Selector": "Likert",
+    "SubSelector": "SingleAnswer",
+    "DefaultChoices": false,
+    "GradingData": [],
+    "ChoiceDataExportTags": false,
+    "Choices": {
+     "1": {
+      "Display": "False headline 1"
+     },
+     "2": {
+      "Display": "False headline 2"
+     },
+     "3": {
+      "Display": "True headline 1"
+     },
+     "4": {
+      "Display": "True headline 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "Answers": {
+     "1": {
+      "Display": "1"
+     },
+     "2": {
+      "Display": "2"
+     },
+     "3": {
+      "Display": "3"
+     },
+     "4": {
+      "Display": "4"
+     },
+     "5": {
+      "Display": "5"
+     },
+     "6": {
+      "Display": "6"
+     },
+     "7": {
+      "Display": "7"
+     }
+    },
+    "AnswerOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "NextChoiceId": 5,
+    "NextAnswerId": 8
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID10",
+   "SecondaryAttribute": "Please read these four headlines, each reported by a non-partisan news outlet.",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Please read these four headlines, each reported by a non-partisan news outlet.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Please read these four headlines, each reported by a non-partisan news outlet.",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID10",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "d_neu"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID11",
+   "SecondaryAttribute": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+    "DataExportTag": "accuracy_neu",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "TextPosition": "inline",
+     "ChoiceColumnWidth": 25,
+     "RepeatHeaders": "none",
+     "WhiteSpace": "OFF",
+     "MobileFirst": true
+    },
+    "QuestionDescription": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID11",
+    "QuestionType": "Matrix",
+    "Selector": "Likert",
+    "SubSelector": "SingleAnswer",
+    "DefaultChoices": false,
+    "GradingData": [],
+    "ChoiceDataExportTags": false,
+    "Choices": {
+     "1": {
+      "Display": "False headline 1"
+     },
+     "2": {
+      "Display": "False headline 2"
+     },
+     "3": {
+      "Display": "True headline 1"
+     },
+     "4": {
+      "Display": "True headline 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "Answers": {
+     "1": {
+      "Display": "1"
+     },
+     "2": {
+      "Display": "2"
+     },
+     "3": {
+      "Display": "3"
+     },
+     "4": {
+      "Display": "4"
+     },
+     "5": {
+      "Display": "5"
+     },
+     "6": {
+      "Display": "6"
+     },
+     "7": {
+      "Display": "7"
+     }
+    },
+    "AnswerOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "NextChoiceId": 5,
+    "NextAnswerId": 8
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID12",
+   "SecondaryAttribute": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = ",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+    "DataExportTag": "share_neu",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "TextPosition": "inline",
+     "ChoiceColumnWidth": 25,
+     "RepeatHeaders": "none",
+     "WhiteSpace": "OFF",
+     "MobileFirst": true
+    },
+    "QuestionDescription": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID12",
+    "QuestionType": "Matrix",
+    "Selector": "Likert",
+    "SubSelector": "SingleAnswer",
+    "DefaultChoices": false,
+    "GradingData": [],
+    "ChoiceDataExportTags": false,
+    "Choices": {
+     "1": {
+      "Display": "False headline 1"
+     },
+     "2": {
+      "Display": "False headline 2"
+     },
+     "3": {
+      "Display": "True headline 1"
+     },
+     "4": {
+      "Display": "True headline 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "Answers": {
+     "1": {
+      "Display": "1"
+     },
+     "2": {
+      "Display": "2"
+     },
+     "3": {
+      "Display": "3"
+     },
+     "4": {
+      "Display": "4"
+     },
+     "5": {
+      "Display": "5"
+     },
+     "6": {
+      "Display": "6"
+     },
+     "7": {
+      "Display": "7"
+     }
+    },
+    "AnswerOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "NextChoiceId": 5,
+    "NextAnswerId": 8
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID13",
+   "SecondaryAttribute": "Thank you. Some headlines you saw were false, and the outlet labels were randoml",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Thank you. Some headlines you saw were false, and the outlet labels were randomly assigned for research purposes. Please verify news with reliable fact-checking sources before sharing.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Thank you. Some headlines you saw were false, and the outlet labels were randomly assigned for re...",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID13",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "d_debrief"
+   }
+  }
+ ]
+}

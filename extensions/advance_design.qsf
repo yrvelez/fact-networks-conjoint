@@ -1,7 +1,7 @@
 {
  "SurveyEntry": {
   "SurveyID": "SV_filedrawer00000",
-  "SurveyName": "Randomized sharer tie and trust in forwarded posts (extension of: Who Shares What From Whom: An Ego-",
+  "SurveyName": "Randomized source cues and separate sharing and belief measures (extension of: Who Shares What From ",
   "SurveyDescription": null,
   "SurveyOwnerID": "UR_filedrawer00000",
   "SurveyBrandID": "",
@@ -11,9 +11,9 @@
   "SurveyStatus": "Inactive",
   "SurveyStartDate": "0000-00-00 00:00:00",
   "SurveyExpirationDate": "0000-00-00 00:00:00",
-  "SurveyCreationDate": "2026-10-07 02:46:28",
+  "SurveyCreationDate": "2026-10-08 16:05:48",
   "CreatorID": "UR_filedrawer00000",
-  "LastModified": "2026-10-07 02:46:28",
+  "LastModified": "2026-10-08 16:05:48",
   "LastAccessed": "0000-00-00 00:00:00",
   "LastActivated": "0000-00-00 00:00:00",
   "Deleted": null
@@ -39,7 +39,7 @@
     },
     {
      "Type": "Standard",
-     "Description": "True",
+     "Description": "True headline",
      "ID": "BL_b_true",
      "BlockElements": [
       {
@@ -50,7 +50,7 @@
     },
     {
      "Type": "Standard",
-     "Description": "False",
+     "Description": "False headline",
      "ID": "BL_b_false",
      "BlockElements": [
       {
@@ -61,7 +61,7 @@
     },
     {
      "Type": "Standard",
-     "Description": "Fact-check",
+     "Description": "Fact-check headline",
      "ID": "BL_b_fc",
      "BlockElements": [
       {
@@ -85,24 +85,13 @@
       {
        "Type": "Question",
        "QuestionID": "QID6"
-      }
-     ]
-    },
-    {
-     "Type": "Standard",
-     "Description": "Real contact benchmark",
-     "ID": "BL_b_bench",
-     "BlockElements": [
-      {
-       "Type": "Question",
-       "QuestionID": "QID7"
       },
       {
        "Type": "Page Break"
       },
       {
        "Type": "Question",
-       "QuestionID": "QID8"
+       "QuestionID": "QID7"
       }
      ]
     },
@@ -113,7 +102,7 @@
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID9"
+       "QuestionID": "QID8"
       }
      ]
     },
@@ -199,9 +188,9 @@
           "FlowID": "FL_8",
           "EmbeddedData": [
            {
-            "Description": "tie1",
+            "Description": "tie",
             "Type": "Custom",
-            "Field": "tie1",
+            "Field": "tie",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
@@ -214,25 +203,34 @@
           "FlowID": "FL_9",
           "EmbeddedData": [
            {
-            "Description": "trust1",
+            "Description": "trust",
             "Type": "Custom",
-            "Field": "trust1",
+            "Field": "trust",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "trust a lot"
+            "Value": "trust a great deal"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_10",
+          "EmbeddedData": [
+           {
+            "Description": "headline_true",
+            "Type": "Custom",
+            "Field": "headline_true",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: A news post with a true headline about a public health agency announcing a routine vaccination schedule update]"
            }
           ]
          },
          {
           "Type": "Standard",
           "ID": "BL_b_true",
-          "FlowID": "FL_10",
-          "Autofill": []
-         },
-         {
-          "Type": "Standard",
-          "ID": "BL_b_out",
           "FlowID": "FL_11",
           "Autofill": []
          }
@@ -263,13 +261,13 @@
           "FlowID": "FL_14",
           "EmbeddedData": [
            {
-            "Description": "tie1",
+            "Description": "tie",
             "Type": "Custom",
-            "Field": "tie1",
+            "Field": "tie",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "an acquaintance you see occasionally"
+            "Value": "a close friend or family member"
            }
           ]
          },
@@ -278,25 +276,34 @@
           "FlowID": "FL_15",
           "EmbeddedData": [
            {
-            "Description": "trust1",
+            "Description": "trust",
             "Type": "Custom",
-            "Field": "trust1",
+            "Field": "trust",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "do not trust much"
+            "Value": "trust a great deal"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_16",
+          "EmbeddedData": [
+           {
+            "Description": "headline_false",
+            "Type": "Custom",
+            "Field": "headline_false",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: A news post with a false headline claiming a common fruit cures a serious disease]"
            }
           ]
          },
          {
           "Type": "Standard",
           "ID": "BL_b_false",
-          "FlowID": "FL_16",
-          "Autofill": []
-         },
-         {
-          "Type": "Standard",
-          "ID": "BL_b_out",
           "FlowID": "FL_17",
           "Autofill": []
          }
@@ -327,9 +334,9 @@
           "FlowID": "FL_20",
           "EmbeddedData": [
            {
-            "Description": "tie1",
+            "Description": "tie",
             "Type": "Custom",
-            "Field": "tie1",
+            "Field": "tie",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
@@ -342,25 +349,34 @@
           "FlowID": "FL_21",
           "EmbeddedData": [
            {
-            "Description": "trust1",
+            "Description": "trust",
             "Type": "Custom",
-            "Field": "trust1",
+            "Field": "trust",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "trust a lot"
+            "Value": "trust a great deal"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_22",
+          "EmbeddedData": [
+           {
+            "Description": "headline_fc",
+            "Type": "Custom",
+            "Field": "headline_fc",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: A fact-check post debunking the claim that a common fruit cures a serious disease]"
            }
           ]
          },
          {
           "Type": "Standard",
           "ID": "BL_b_fc",
-          "FlowID": "FL_22",
-          "Autofill": []
-         },
-         {
-          "Type": "Standard",
-          "ID": "BL_b_out",
           "FlowID": "FL_23",
           "Autofill": []
          }
@@ -370,7 +386,7 @@
      },
      {
       "Type": "Standard",
-      "ID": "BL_b_bench",
+      "ID": "BL_b_out",
       "FlowID": "FL_24",
       "Autofill": []
      },
@@ -395,7 +411,7 @@
    "TertiaryAttribute": null,
    "Payload": {
     "PreviewType": "Brand",
-    "PreviewID": "23ff56b6-9b59-4150-9b24-82a4164b716c"
+    "PreviewID": "7be8f6b6-1a71-4fc8-9a48-57132a7f7315"
    }
   },
   {
@@ -413,7 +429,7 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "QC",
    "PrimaryAttribute": "Survey Question Count",
-   "SecondaryAttribute": "9",
+   "SecondaryAttribute": "8",
    "TertiaryAttribute": null,
    "Payload": null
   },
@@ -463,7 +479,7 @@
     "ValidationMessage": null,
     "PreviousButton": "",
     "NextButton": "",
-    "SurveyTitle": "Randomized sharer tie and trust in forwarded posts (extension of: Who Shares What From Whom: An Ego-",
+    "SurveyTitle": "Randomized source cues and separate sharing and belief measures (extension of: Who Shares What From ",
     "SkinLibrary": "Qualtrics",
     "SkinType": "templated",
     "Skin": {
@@ -472,7 +488,7 @@
      "overrides": null
     },
     "NewScoring": 1,
-    "SurveyMetaDescription": "Respondents consent, then see forwarded posts. Headline type (true, false, fact-check) is randomi..."
+    "SurveyMetaDescription": "US Latino adults see one headline (true, false or fact-check) attributed to a fictional contact w..."
    }
   },
   {
@@ -490,10 +506,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID1",
-   "SecondaryAttribute": "You are invited to a research survey about how people share news online. It take",
+   "SecondaryAttribute": "This is a research survey about how people respond to news posts. It takes about",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "You are invited to a research survey about how people share news online. It takes about 10 minutes and is voluntary. Do you agree to take part?",
+    "QuestionText": "This is a research survey about how people respond to news posts. It takes about 8 minutes and is voluntary. Do you agree to take part?",
     "DataExportTag": "consent",
     "DataVisibility": {
      "Private": false,
@@ -502,7 +518,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "You are invited to a research survey about how people share news online. It takes about 10 minute...",
+    "QuestionDescription": "This is a research survey about how people respond to news posts. It takes about 8 minutes and is...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -517,10 +533,10 @@
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "Yes, I agree"
+      "Display": "I agree"
      },
      "2": {
-      "Display": "No"
+      "Display": "I do not agree"
      }
     },
     "ChoiceOrder": [
@@ -539,10 +555,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID2",
-   "SecondaryAttribute": "Imagine you receive a forwarded post in a messaging app. The sender is described",
+   "SecondaryAttribute": "Imagine {{ed:tie}} who you {{ed:trust}} shared this post: {{ed:headline_true}}",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/tie1} and as someone you ${e://Field/trust1}. The post reads: \"City council approves new budget for road repairs after public hearing.\"",
+    "QuestionText": "Imagine ${e://Field/tie} who you ${e://Field/trust} shared this post: ${e://Field/headline_true}",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -550,7 +566,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/t...",
+    "QuestionDescription": "Imagine ${e://Field/tie} who you ${e://Field/trust} shared this post: ${e://Field/headline_true}",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -565,17 +581,17 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_t_intro"
+    "DataExportTag": "q_dbt"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID3",
-   "SecondaryAttribute": "Imagine you receive a forwarded post in a messaging app. The sender is described",
+   "SecondaryAttribute": "Imagine {{ed:tie}} who you {{ed:trust}} shared this post: {{ed:headline_false}}",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/tie1} and as someone you ${e://Field/trust1}. The post reads: \"Doctors admit common vaccine contains hidden tracking chips.\"",
+    "QuestionText": "Imagine ${e://Field/tie} who you ${e://Field/trust} shared this post: ${e://Field/headline_false}",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -583,7 +599,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/t...",
+    "QuestionDescription": "Imagine ${e://Field/tie} who you ${e://Field/trust} shared this post: ${e://Field/headline_false}",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -598,17 +614,17 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_f_intro"
+    "DataExportTag": "q_dbf"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID4",
-   "SecondaryAttribute": "Imagine you receive a forwarded post in a messaging app. The sender is described",
+   "SecondaryAttribute": "Imagine {{ed:tie}} who you {{ed:trust}} shared this post: {{ed:headline_fc}}",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/tie1} and as someone you ${e://Field/trust1}. The post reads: \"Fact-check: claim that vaccines contain tracking chips is false.\"",
+    "QuestionText": "Imagine ${e://Field/tie} who you ${e://Field/trust} shared this post: ${e://Field/headline_fc}",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -616,7 +632,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Imagine you receive a forwarded post in a messaging app. The sender is described as ${e://Field/t...",
+    "QuestionDescription": "Imagine ${e://Field/tie} who you ${e://Field/trust} shared this post: ${e://Field/headline_fc}",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -631,18 +647,18 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_c_intro"
+    "DataExportTag": "q_dbc"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID5",
-   "SecondaryAttribute": "Would you share this post to your mock feed?",
+   "SecondaryAttribute": "How likely would you be to share this post? (1 = very unlikely, 7 = very likely)",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Would you share this post to your mock feed?",
-    "DataExportTag": "share_feed",
+    "QuestionText": "How likely would you be to share this post? (1 = very unlikely, 7 = very likely)",
+    "DataExportTag": "share_rating",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -650,7 +666,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Would you share this post to your mock feed?",
+    "QuestionDescription": "How likely would you be to share this post? (1 = very unlikely, 7 = very likely)",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -665,21 +681,46 @@
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "Share"
+      "Display": "1"
      },
      "2": {
-      "Display": "Do not share"
+      "Display": "2"
+     },
+     "3": {
+      "Display": "3"
+     },
+     "4": {
+      "Display": "4"
+     },
+     "5": {
+      "Display": "5"
+     },
+     "6": {
+      "Display": "6"
+     },
+     "7": {
+      "Display": "7"
      }
     },
     "ChoiceOrder": [
      "1",
-     "2"
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
     ],
-    "NextChoiceId": 3,
+    "NextChoiceId": 8,
     "NextAnswerId": 1,
     "RecodeValues": {
      "1": "1",
-     "2": "0"
+     "2": "2",
+     "3": "3",
+     "4": "4",
+     "5": "5",
+     "6": "6",
+     "7": "7"
     }
    }
   },
@@ -687,11 +728,11 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID6",
-   "SecondaryAttribute": "Based on the available information, do you think this post is more likely to be ",
+   "SecondaryAttribute": "Based on the available information, how likely is this post to be accurate? (1 =",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Based on the available information, do you think this post is more likely to be accurate or inaccurate?",
-    "DataExportTag": "plausibility",
+    "QuestionText": "Based on the available information, how likely is this post to be accurate? (1 = very unlikely, 7 = very likely)",
+    "DataExportTag": "accuracy_rating",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -699,7 +740,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Based on the available information, do you think this post is more likely to be accurate or inacc...",
+    "QuestionDescription": "Based on the available information, how likely is this post to be accurate? (1 = very unlikely, 7...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -714,21 +755,46 @@
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "Accurate"
+      "Display": "1"
      },
      "2": {
-      "Display": "Inaccurate"
+      "Display": "2"
+     },
+     "3": {
+      "Display": "3"
+     },
+     "4": {
+      "Display": "4"
+     },
+     "5": {
+      "Display": "5"
+     },
+     "6": {
+      "Display": "6"
+     },
+     "7": {
+      "Display": "7"
      }
     },
     "ChoiceOrder": [
      "1",
-     "2"
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
     ],
-    "NextChoiceId": 3,
+    "NextChoiceId": 8,
     "NextAnswerId": 1,
     "RecodeValues": {
      "1": "1",
-     "2": "0"
+     "2": "2",
+     "3": "3",
+     "4": "4",
+     "5": "5",
+     "6": "6",
+     "7": "7"
     }
    }
   },
@@ -736,11 +802,11 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID7",
-   "SecondaryAttribute": "Think of someone you discuss important matters with. Using initials only, enter ",
+   "SecondaryAttribute": "Would you like us to post this item to a public feed under the study's account, ",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Think of someone you discuss important matters with. Using initials only, enter who it is.",
-    "DataExportTag": "real_contact",
+    "QuestionText": "Would you like us to post this item to a public feed under the study's account, with a note that you chose to share it? You will receive a small bonus either way.",
+    "DataExportTag": "real_share",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -748,7 +814,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Think of someone you discuss important matters with. Using initials only, enter who it is.",
+    "QuestionDescription": "Would you like us to post this item to a public feed under the study's account, with a note that...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -758,50 +824,15 @@
     },
     "Language": [],
     "QuestionID": "QID7",
-    "QuestionType": "TE",
-    "Selector": "SL",
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID8",
-   "SecondaryAttribute": "If this person forwarded you the same post, would you share it to your mock feed",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "If this person forwarded you the same post, would you share it to your mock feed?",
-    "DataExportTag": "benchmark_share",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "If this person forwarded you the same post, would you share it to your mock feed?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID8",
     "QuestionType": "MC",
     "Selector": "SAVR",
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "Share"
+      "Display": "Yes, share it"
      },
      "2": {
-      "Display": "Do not share"
+      "Display": "No, do not share it"
      }
     },
     "ChoiceOrder": [
@@ -819,11 +850,11 @@
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID9",
-   "SecondaryAttribute": "Thank you. Some posts were false and the senders were fictional. No post was act",
+   "PrimaryAttribute": "QID8",
+   "SecondaryAttribute": "Thank you. The contact was fictional, and the false headline was false. The corr",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Thank you. Some posts were false and the senders were fictional. No post was actually shared. Please do not spread the false claims.",
+    "QuestionText": "Thank you. The contact was fictional, and the false headline was false. The correct information is that the claim is unsupported by evidence. Your responses are confidential.",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -831,14 +862,14 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Thank you. Some posts were false and the senders were fictional. No post was actually shared. Ple...",
+    "QuestionDescription": "Thank you. The contact was fictional, and the false headline was false. The correct information i...",
     "Validation": {
      "Settings": {
       "Type": "None"
      }
     },
     "Language": [],
-    "QuestionID": "QID9",
+    "QuestionID": "QID8",
     "QuestionType": "DB",
     "Selector": "TB",
     "DefaultChoices": false,

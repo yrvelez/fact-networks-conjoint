@@ -1,50 +1,46 @@
 import importlib.util, pathlib
-_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py')); reg = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(reg)
-import pandas as pd, numpy as np, matplotlib
+import pandas as pd
+import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py')); reg = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(reg)
 
-df = pd.read_csv('data/clean.csv')
-H = [h for h in reg.HYPOTHESES if (h.get('id') or h.get('analysis_id')) == 'H1'][0]
-est = H['estimator']; cov = H.get('covariates', [])
+d = pd.read_csv('data/clean.csv')
+pathlib.Path('results').mkdir(exist_ok=True); pathlib.Path('figures').mkdir(exist_ok=True)
 
-def amce(sub, arm='Misinformation'):
-    f, d2 = reg.build_formula('share', est, cov, sub)
-    r = reg.fit(d2, f, est)
-    k = [i for i in r.params.index if 'arm_code' in i and arm in i][0]
-    return float(r.params[k]), float(r.bse[k]), int(r.nobs)
+def fmt(r):
+    return "; ".join(f"{a} {e:.3f} (SE {s:.3f})" for a, e, s in zip(r.arm, r.estimate, r.std_error))
 
-orig = pd.read_csv('results/registered_summary.csv')
-orig = orig[orig.analysis_id == 'H1:Misinformation'].iloc[0]
+# E1 placebo-ish: effect on plausibility versus sharing (component outcome) -- plausibility outcome
+h1 = reg.HYPOTHESES[0]
+base = reg.reestimate(h1, d)
+hp = dict(h1, outcome="plausibility")
+pl = reg.reestimate(hp, d)
+t1 = pd.concat([base.assign(outcome="share"), pl.assign(outcome="plausibility")])
+t1.to_csv('results/E1_infotype_share_vs_plausibility.csv', index=False)
+print("E1 Information type on sharing vs plausibility: " + fmt(base) + " | plausibility: " + fmt(pl))
 
-# E1: drop respondents who picked the same screen position in all trials
-pos = df.assign(a=(df.profile == 'A').astype(float)).loc[df.chosen_share == 1]
-g = pos.groupby('resp_id')['a'].agg(['mean', 'count'])
-bad = g.index[(g['count'] >= 3) & (g['mean'].isin([0, 1]))]
-sub = df[~df.resp_id.isin(bad)]
-b, s, n = amce(sub)
-e1 = pd.DataFrame([{'sample': 'registered', 'estimate': orig.estimate, 'se': orig.std_error, 'n': orig.n},
-                   {'sample': 'drop position-straightliners', 'estimate': b, 'se': s, 'n': n}])
-e1.to_csv('results/E1_straightliners.csv', index=False)
-print(f'E1 misinfo AMCE {orig.estimate:.3f} -> {b:.3f} (se {orig.std_error:.3f}->{s:.3f}), dropped {len(bad)} resp')
-
-# E2: heterogeneity by age tertile
+# E2 robustness: drop respondents with age<25? use English-only and Spanish-only
 rows = []
-for t in ['Lowest', 'Middle', 'Highest']:
-    for arm in ['Misinformation', 'Fact-check']:
-        b, s, n = amce(df[df.age_t == t], arm)
-        rows.append({'age_tertile': t, 'arm': arm, 'estimate': b, 'se': s, 'n': n})
-e2 = pd.DataFrame(rows); e2.to_csv('results/E2_age_tertile.csv', index=False)
-fig, ax = plt.subplots(figsize=(5, 3.5), facecolor='white')
-for arm, c, off in [('Misinformation', '#c0392b', -0.05), ('Fact-check', '#333333', 0.05)]:
-    d = e2[e2.arm == arm]; x = np.arange(3) + off
-    ax.errorbar(x, d.estimate, yerr=1.96 * d.se, fmt='o', color=c, capsize=0)
-    ax.text(2.2, d.estimate.iloc[-1], arm, color=c, va='center')
-ax.axhline(0, color='#333333', lw=0.5)
-ax.set_xticks(range(3)); ax.set_xticklabels(['Youngest', 'Middle', 'Oldest'])
-ax.set_xlim(-0.4, 3.2); ax.set_ylabel('AMCE on sharing')
-for sp in ['top', 'right', 'left']: ax.spines[sp].set_visible(False)
-ax.grid(False)
-fig.tight_layout(); fig.savefig('figures/E2_age_tertile.png', dpi=200)
-m = e2[e2.arm == 'Misinformation'].estimate
-print(f'E2 misinfo AMCE by age tertile: {m.round(3).tolist()}')
+for lab, sub in [("All", d), ("English", d[d.survey_language == "English"]), ("Spanish", d[d.survey_language == "Spanish"])]:
+    r = reg.reestimate(h1, sub); r["subset"] = lab; rows.append(r)
+t2 = pd.concat(rows)
+t2.to_csv('results/E2_infotype_by_language.csv', index=False)
+print("E2 Information type effect on sharing by survey language: " + " | ".join(f"{l}: {fmt(g)}" for l, g in t2.groupby("subset", sort=False)))
+
+# E3 heterogeneity by age (older vs younger than median)
+d["older"] = (d.age > d.age.median()).astype(int)
+t3 = reg.reestimate(h1, d, moderator="older")
+t3.to_csv('results/E3_infotype_by_age.csv', index=False)
+print("E3 Information type effect on sharing by age group: " + "; ".join(f"{r.arm}/{r.get('level', r.get('term'))} {r.estimate:.3f} (SE {r.std_error:.3f})" for r in t3.itertuples()))
+
+fig, ax = plt.subplots(figsize=(5, 3))
+for i, (lab, g) in enumerate(t2.groupby("subset", sort=False)):
+    for j, r in enumerate(g.itertuples()):
+        ax.errorbar(r.estimate, j + i * 0.2, xerr=1.96 * r.std_error, fmt='o', color='#b22' if lab == "All" else '#222')
+        ax.text(r.estimate, j + i * 0.2 + 0.08, lab, fontsize=7, ha='center')
+ax.set_yticks(range(len(g))); ax.set_yticklabels(list(g.arm))
+ax.axvline(0, color='#222', lw=0.5)
+for s in ['top', 'right', 'left']: ax.spines[s].set_visible(False)
+ax.set_xlabel("Effect on sharing vs True/neutral")
+plt.tight_layout(); plt.savefig('figures/E2_language.png', dpi=200, facecolor='white')

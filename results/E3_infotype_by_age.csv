@@ -1,0 +1,3 @@
+term,arm,estimate,std_error,p_value,conf_low,conf_high,n
+"C(arm_code, Treatment(reference='True/neutral'))[T.Misinformation]:C(_mod)[T.1]",Misinformation x older=1,-0.07837373057321355,0.02244616396464711,0.0004800802887830106,-0.12236740353500267,-0.034380057611424424,11882
+"C(arm_code, Treatment(reference='True/neutral'))[T.Fact-check]:C(_mod)[T.1]",Fact-check x older=1,0.00605427786434312,0.022705988687717303,0.7897479472153539,-0.03844864219695668,0.05055719792564292,11882

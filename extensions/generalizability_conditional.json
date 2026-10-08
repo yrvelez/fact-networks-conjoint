@@ -1,34 +1,40 @@
 {
  "id": "generalizability_conditional",
  "kind": "boundary",
- "title": "Does the misinformation penalty hold across belief in disputed claims?",
- "rationale": "The source found misinformation shared 18.2 points less than true/neutral content (95% CI [-20.4,-16.0]), but respondents with higher belief in disputed claims shared misinformation 5.6 points more (p<0.001), a tertile contrast that was underpowered and US-English only. This design pre-selects belief in disputed claims as the moderator, stratifies on it and on survey language (English/Spanish), and tests one registered interaction.",
- "contribution": "Tests whether the misinformation sharing penalty shrinks among high-belief respondents and whether it generalizes to Spanish-language samples.",
+ "title": "Replication across populations and languages",
+ "rationale": "The source found a misinformation sharing penalty of −18.2 points and a fact-check penalty of −13.3 points, but only among US Latino adults. The penalty looked smaller among Spanish-language respondents (−14.4 vs −20.1), and that gap is confounded with sample. This design runs the same headline-type randomization in white, Black and Latino adults, with Latino adults split by survey language.",
+ "contribution": "Tests whether the information-type penalty and the trust gradient generalize across racial/ethnic groups and survey languages.",
  "limitations": [
-  "Interaction power is lower than main-effect power; language subgroup effects are exploratory.",
-  "Belief tertiles are measured, not randomized, so the moderator may bundle correlated traits.",
-  "Single-headline sharing intent differs from the source forced-choice pair design.",
-  "Translation may change headline plausibility."
+  "Forced-choice sharing is not real sharing behavior.",
+  "Survey language is self-selected by Latino respondents, so the language contrast is not causal.",
+  "Sharer attributes remain measured, not randomized, so the trust gradient is descriptive.",
+  "Headline wording may translate imperfectly into Spanish."
  ],
  "design": {
-  "title": "Headline type by belief in disputed claims and survey language",
-  "overview": "Respondents first complete a belief-in-disputed-claims scale. They are then randomized to see a true/neutral or a false headline, and report sharing intent and plausibility. Recruitment is stratified by belief tertile and by language (English or Spanish).",
-  "hypothesis": "The gap in sharing between misinformation and true/neutral headlines is smaller among respondents in the top tertile of belief in disputed claims than in the bottom tertile (a positive infotype-by-moderator interaction). The penalty is present in both languages.",
-  "primaryOutcome": "Share: chosen/likely to share the headline (infotype x belief tertile interaction).",
-  "comparison": "Misinformation vs true/neutral headline, interacted with belief tertile (top vs bottom), with respondent-clustered SEs; language is a secondary stratum.",
-  "population": "Adults in the US, recruited via online panel, in English and Spanish, with quotas by belief tertile.",
+  "title": "Headline type effects on sharing across population groups and languages",
+  "overview": "Adults from matched YouGov samples (white, Black, Latino-English, Latino-Spanish) rate a contact, then complete paired-headline trials with randomized headline type. Population group is a measured stratum, and headline type is randomized within it. The outcomes are the source study's.",
+  "hypothesis": "The misinformation sharing penalty is negative in all groups, and it is smaller among Spanish-language Latino respondents than among English-language Latino respondents. High sharer trust is associated with more sharing in all groups.",
+  "primaryOutcome": "Chosen to share (1 if the headline was chosen in 'Which post would you be more likely to share?')",
+  "comparison": "Misinformation vs true/neutral headline, with the information-type by group and by language interaction tested. The fact-check vs true/neutral contrast is secondary.",
+  "population": "US adults in YouGov samples: white, Black and Latino (English or Spanish survey language), matched on age, gender and education.",
   "conditions": [
    {
     "id": "c_true",
     "title": "True/neutral headline",
-    "description": "Respondent sees a true or neutral headline.",
+    "description": "A true or neutral headline appears in the pair.",
     "nodeId": "arm_true"
    },
    {
     "id": "c_misinfo",
     "title": "Misinformation headline",
-    "description": "Respondent sees a false headline.",
+    "description": "A false headline appears in the pair.",
     "nodeId": "arm_misinfo"
+   },
+   {
+    "id": "c_fact",
+    "title": "Fact-check headline",
+    "description": "A headline correcting a false claim appears in the pair.",
+    "nodeId": "arm_fact"
    }
   ],
   "blocks": [
@@ -39,7 +45,7 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "You are invited to a short research survey about how people react to news headlines. Participation is voluntary and you may stop at any time. Do you agree to participate?",
+      "text": "This is a research survey about how people share online information. It takes about 10 minutes, and participation is voluntary. Do you agree to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
@@ -61,164 +67,241 @@
     ]
    },
    {
-    "id": "b_mod",
-    "title": "Belief in disputed claims",
+    "id": "b_demo",
+    "title": "Group and contacts",
     "questions": [
      {
-      "id": "q_lang",
+      "id": "q_group",
       "type": "MC",
-      "text": "Survey language",
-      "tag": "survey_language",
+      "text": "Which best describes your race or ethnicity?",
+      "tag": "group",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "en",
-        "text": "English",
-        "recode": "0"
+        "id": "w",
+        "text": "White non-Hispanic",
+        "recode": "1"
        },
        {
-        "id": "es",
-        "text": "Español",
-        "recode": "1"
+        "id": "b",
+        "text": "Black non-Hispanic",
+        "recode": "2"
+       },
+       {
+        "id": "l",
+        "text": "Hispanic or Latino",
+        "recode": "3"
        }
       ],
       "rows": [],
       "sourceQuestionId": ""
      },
      {
-      "id": "q_belief",
-      "type": "Matrix",
-      "text": "How likely do you think each of the following claims is to be true?",
-      "tag": "belief_disputed",
+      "id": "q_contact",
+      "type": "MC",
+      "text": "Think of someone you discuss important matters with. How much do you trust this person for information?",
+      "tag": "contact_trust",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "s1",
-        "text": "Definitely false",
+        "id": "t1",
+        "text": "Low",
         "recode": "1"
        },
        {
-        "id": "s2",
-        "text": "Probably false",
+        "id": "t2",
+        "text": "Medium",
         "recode": "2"
        },
        {
-        "id": "s3",
-        "text": "Unsure",
+        "id": "t3",
+        "text": "High",
         "recode": "3"
-       },
-       {
-        "id": "s4",
-        "text": "Probably true",
-        "recode": "4"
-       },
-       {
-        "id": "s5",
-        "text": "Definitely true",
-        "recode": "5"
        }
       ],
-      "rows": [
-       {
-        "id": "r1",
-        "text": "Vaccines cause autism."
-       },
-       {
-        "id": "r2",
-        "text": "Climate change is a hoax."
-       },
-       {
-        "id": "r3",
-        "text": "The 2020 US presidential election was stolen."
-       },
-       {
-        "id": "r4",
-        "text": "A small group of people secretly controls world events."
-       }
-      ],
-      "sourceQuestionId": ""
+      "rows": [],
+      "sourceQuestionId": "QID10"
      }
     ]
    },
    {
     "id": "b_true",
-    "title": "True headline",
+    "title": "Trials true",
     "questions": [
      {
-      "id": "q_true_stim",
+      "id": "q_dbt",
       "type": "DB",
-      "text": "Here is a news post. {{ed:post_true}}",
+      "text": "This person shares a post with a true or neutral headline, shown alongside another post: {{ed:cond_note}}",
       "tag": "stim_true",
       "multiple": false,
       "required": false,
       "choices": [],
       "rows": [],
       "sourceQuestionId": ""
-     }
-    ]
-   },
-   {
-    "id": "b_misinfo",
-    "title": "False headline",
-    "questions": [
+     },
      {
-      "id": "q_mis_stim",
-      "type": "DB",
-      "text": "Here is a news post. {{ed:post_mis}}",
-      "tag": "stim_misinfo",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     }
-    ]
-   },
-   {
-    "id": "b_out",
-    "title": "Outcomes",
-    "questions": [
-     {
-      "id": "q_share",
+      "id": "q_st",
       "type": "MC",
-      "text": "Would you be more likely to share this post?",
-      "tag": "share",
+      "text": "Which post would you be more likely to share?",
+      "tag": "share_true",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "y",
-        "text": "Yes, I would share it",
+        "id": "m1",
+        "text": "Message 1",
         "recode": "1"
        },
        {
-        "id": "n",
-        "text": "No, I would not share it",
-        "recode": "0"
+        "id": "m2",
+        "text": "Message 2",
+        "recode": "2"
        }
       ],
       "rows": [],
       "sourceQuestionId": "QID5"
      },
      {
-      "id": "q_plaus",
+      "id": "q_pt",
       "type": "MC",
-      "text": "Based on the available information, do you think this post is likely to be accurate?",
-      "tag": "plausibility",
+      "text": "Based on the available information, which post do you think is more likely to be accurate?",
+      "tag": "belief_true",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "y",
-        "text": "Yes, likely accurate",
+        "id": "m1",
+        "text": "Message 1",
         "recode": "1"
        },
        {
-        "id": "n",
-        "text": "No, not likely accurate",
-        "recode": "0"
+        "id": "m2",
+        "text": "Message 2",
+        "recode": "2"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID6"
+     }
+    ]
+   },
+   {
+    "id": "b_mis",
+    "title": "Trials misinformation",
+    "questions": [
+     {
+      "id": "q_dbm",
+      "type": "DB",
+      "text": "This person shares a post with a false headline, shown alongside another post: {{ed:cond_note}}",
+      "tag": "stim_mis",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_sm",
+      "type": "MC",
+      "text": "Which post would you be more likely to share?",
+      "tag": "share_mis",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "m1",
+        "text": "Message 1",
+        "recode": "1"
+       },
+       {
+        "id": "m2",
+        "text": "Message 2",
+        "recode": "2"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID5"
+     },
+     {
+      "id": "q_pm",
+      "type": "MC",
+      "text": "Based on the available information, which post do you think is more likely to be accurate?",
+      "tag": "belief_mis",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "m1",
+        "text": "Message 1",
+        "recode": "1"
+       },
+       {
+        "id": "m2",
+        "text": "Message 2",
+        "recode": "2"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID6"
+     }
+    ]
+   },
+   {
+    "id": "b_fact",
+    "title": "Trials fact-check",
+    "questions": [
+     {
+      "id": "q_dbf",
+      "type": "DB",
+      "text": "This person shares a post with a fact-check headline, shown alongside another post: {{ed:cond_note}}",
+      "tag": "stim_fact",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_sf",
+      "type": "MC",
+      "text": "Which post would you be more likely to share?",
+      "tag": "share_fact",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "m1",
+        "text": "Message 1",
+        "recode": "1"
+       },
+       {
+        "id": "m2",
+        "text": "Message 2",
+        "recode": "2"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID5"
+     },
+     {
+      "id": "q_pf",
+      "type": "MC",
+      "text": "Based on the available information, which post do you think is more likely to be accurate?",
+      "tag": "belief_fact",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "m1",
+        "text": "Message 1",
+        "recode": "1"
+       },
+       {
+        "id": "m2",
+        "text": "Message 2",
+        "recode": "2"
        }
       ],
       "rows": [],
@@ -233,7 +316,7 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. Some headlines shown in this study were false and were created for research. Please do not share them. Accurate information on these topics is available from public health and fact-checking organizations.",
+      "text": "Thank you. Some headlines you saw were false or were fact-checks. They were used for research only. Please rely on trusted sources for accurate information.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
@@ -258,21 +341,9 @@
     "operator": "equals"
    },
    {
-    "id": "n_end",
-    "type": "end",
-    "label": "No consent",
-    "children": [],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_branch",
+    "id": "n_br",
     "type": "branch",
-    "label": "Non-consent exit",
+    "label": "No consent",
     "children": [
      "n_end"
     ],
@@ -284,11 +355,23 @@
     "operator": "selected"
    },
    {
-    "id": "n_mod",
-    "type": "block",
-    "label": "Moderator",
+    "id": "n_end",
+    "type": "end",
+    "label": "End",
     "children": [],
-    "blockId": "b_mod",
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_demo",
+    "type": "block",
+    "label": "Group",
+    "children": [],
+    "blockId": "b_demo",
     "field": "",
     "value": "",
     "questionId": "",
@@ -301,7 +384,8 @@
     "label": "Headline type",
     "children": [
      "arm_true",
-     "arm_misinfo"
+     "arm_misinfo",
+     "arm_fact"
     ],
     "blockId": "",
     "field": "",
@@ -313,11 +397,11 @@
    {
     "id": "arm_true",
     "type": "group",
-    "label": "True/neutral",
+    "label": "True",
     "children": [
-     "set_true",
-     "set_post_true",
-     "t_true"
+     "e_true",
+     "e_note_t",
+     "n_true"
     ],
     "blockId": "",
     "field": "",
@@ -327,33 +411,33 @@
     "operator": "equals"
    },
    {
-    "id": "set_true",
+    "id": "e_true",
     "type": "embedded",
-    "label": "condition true",
+    "label": "Set true",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "true",
+    "value": "true_neutral",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "set_post_true",
+    "id": "e_note_t",
     "type": "embedded",
-    "label": "true post",
+    "label": "Note true",
     "children": [],
     "blockId": "",
-    "field": "post_true",
-    "value": "[IMAGE: a social media post showing a true, neutral news headline on a topic such as a city budget update]",
+    "field": "cond_note",
+    "value": "[Headline pair: a true or neutral headline and a second headline]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "t_true",
+    "id": "n_true",
     "type": "block",
-    "label": "True stimulus",
+    "label": "True block",
     "children": [],
     "blockId": "b_true",
     "field": "",
@@ -365,11 +449,11 @@
    {
     "id": "arm_misinfo",
     "type": "group",
-    "label": "Misinformation",
+    "label": "Misinfo",
     "children": [
-     "set_mis",
-     "set_post_mis",
-     "t_mis"
+     "e_mis",
+     "e_note_m",
+     "n_mis"
     ],
     "blockId": "",
     "field": "",
@@ -379,35 +463,35 @@
     "operator": "equals"
    },
    {
-    "id": "set_mis",
+    "id": "e_mis",
     "type": "embedded",
-    "label": "condition misinfo",
+    "label": "Set mis",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "misinfo",
+    "value": "misinformation",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "set_post_mis",
+    "id": "e_note_m",
     "type": "embedded",
-    "label": "false post",
+    "label": "Note mis",
     "children": [],
     "blockId": "",
-    "field": "post_mis",
-    "value": "[IMAGE: a social media post showing a false news headline on a disputed topic]",
+    "field": "cond_note",
+    "value": "[Headline pair: a false headline and a second headline]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "t_mis",
+    "id": "n_mis",
     "type": "block",
-    "label": "False stimulus",
+    "label": "Mis block",
     "children": [],
-    "blockId": "b_misinfo",
+    "blockId": "b_mis",
     "field": "",
     "value": "",
     "questionId": "",
@@ -415,11 +499,51 @@
     "operator": "equals"
    },
    {
-    "id": "n_out",
-    "type": "block",
-    "label": "Outcomes",
+    "id": "arm_fact",
+    "type": "group",
+    "label": "Fact",
+    "children": [
+     "e_fact",
+     "e_note_f",
+     "n_fact"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_fact",
+    "type": "embedded",
+    "label": "Set fact",
     "children": [],
-    "blockId": "b_out",
+    "blockId": "",
+    "field": "condition",
+    "value": "fact_check",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_note_f",
+    "type": "embedded",
+    "label": "Note fact",
+    "children": [],
+    "blockId": "",
+    "field": "cond_note",
+    "value": "[Headline pair: a fact-check headline and a second headline]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_fact",
+    "type": "block",
+    "label": "Fact block",
+    "children": [],
+    "blockId": "b_fact",
     "field": "",
     "value": "",
     "questionId": "",
@@ -441,21 +565,21 @@
   ],
   "roots": [
    "n_consent",
-   "n_branch",
-   "n_mod",
+   "n_br",
+   "n_demo",
    "r1",
-   "n_out",
    "n_deb"
   ],
   "assumptions": [
-   "Power: about 1300 per arm to detect an interaction of 0.056 at 80% power (S3 misinformation difference 0.056, SE 0.017; interaction MDE exceeds the main-effect MDE of 0.031).",
-   "Belief tertiles are computed from the scale mean; quota targets use panel pre-screen data.",
-   "Spanish items are professionally translated and back-translated.",
-   "Single pre-registered primary test: infotype x top-vs-bottom tertile interaction on share."
+   "Power: about 1,500 respondents per group-by-arm cell gives an MDE near 0.04 at 80% power, given the language gap of 0.057 (−0.201 vs −0.144) with SEs near 0.014–0.020.",
+   "Four groups (white, Black, Latino-English, Latino-Spanish) times 3 arms is 12 cells, so about 18,000 respondents.",
+   "Platform is YouGov, with the survey offered in English and Spanish.",
+   "Group is a pre-treatment stratum, with randomization within strata and clustering at respondent level.",
+   "Outcomes and registered moderators are unchanged from the source study."
   ],
   "unresolved": [
-   "Actual headline images and Spanish translations must be supplied by the research team.",
-   "IRB number, compensation and panel vendor must be set by the research team."
+   "The actual headline pairs (17 topics) and their Spanish translations must be supplied by the research team to replace the cond_note text.",
+   "Compensation, IRB number and the panel quotas must be set by the research team."
   ],
   "evidence": [
    {

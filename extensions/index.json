@@ -2,37 +2,43 @@
  {
   "qsf": "extensions/advance_design.qsf",
   "qsf_errors": [],
-  "media": [],
+  "media": [
+   "headline_true: image stimulus to supply (A news post with a true headline about a public health agency announcing a routi)",
+   "headline_false: image stimulus to supply (A news post with a false headline claiming a common fruit cures a serious diseas)",
+   "headline_fc: image stimulus to supply (A fact-check post debunking the claim that a common fruit cures a serious diseas)"
+  ],
   "id": "advance_design",
   "kind": "mechanism",
-  "title": "Randomize the sharer's attributes, with a behavioural share",
+  "title": "Randomized source cues and separate sharing and belief measures",
   "brief_id": "advance_design",
   "mode": "survey_experiment",
-  "debate": null,
-  "why": "Fixes the design cause: randomizing attributes in vignettes turns the descriptive close-tie and high-trust contrasts into causal estimates and removes bundling with the real contact.",
+  "debate": "D1",
+  "why": "Fixes the design and measurement causes. Randomizing source cues turns the descriptive trust and tie contrasts into causal effects. Rating sharing and accuracy separately on 1–7 scales lets the two outcomes diverge.",
   "power_target": {
-   "n_per_arm": 2000,
-   "mde": 0.03,
-   "basis": "H2 close tie 0.030 vs MDE 0.0258; H5 high trust 0.057 vs MDE 0.051"
+   "n_per_arm": 1000,
+   "mde": 0.05,
+   "basis": "Observed trust effect of 0.057 (H5) and MDE of 0.051 for Trust: high vs Trust: low. About 1,000 per cell gives an MDE near 0.05 on a 0/1 outcome; closer to 1,300 per cell is needed for the tie effect of 0.03 under clustering."
   },
-  "rationale": "In the source study close ties (+3.0 points, CI [1.0, 5.0]) and high trust (+5.7 points, CI [2.3, 9.1]) were associated with more sharing, but these attributes were respondents' ratings of real contacts and so bundle correlated traits. Randomizing tie and trust in a forwarded-post vignette tests whether they cause sharing of false headlines (misinformation was shared 18.2 points less than true headlines).",
-  "contribution": "Turns descriptive tie-strength and trust contrasts into causal estimates, using a behavioural share outcome and a real-contact benchmark.",
+  "rationale": "The source study found misinformation lowered sharing by 18.2 points and plausibility by 18.6 points, so the two moved together. High trust (+5.7) and close tie (+3.0) were associated with more sharing, but sharer attributes were not randomized and both outcomes were forced choices. Randomizing source cues and rating sharing and accuracy separately lets the two outcomes diverge.",
+  "contribution": "Tests causally whether source trust and tie strength shift sharing intent more than perceived accuracy of a false headline.",
   "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "H1: a randomized close tie raises the probability of sharing by about 0.03. H2: randomized high trust raises it by about 0.05. Both effects hold for false headlines.",
-  "primary_outcome": "Share of the forwarded post to the mock feed (binary).",
-  "comparison": "Close vs distant tie and high vs low trust, within headline type. Standard errors are clustered by respondent. Headline type is a between-subject factor.",
+  "hypothesis": "Source trust and tie strength raise sharing intent more than perceived accuracy, especially for the false headline.",
+  "primary_outcome": "Sharing intent (1-7) minus perceived accuracy (1-7, standardized), and each rating separately.",
+  "comparison": "High vs low trust and close vs distant tie, on sharing versus accuracy, by headline type.",
   "conditions": [
    "True headline",
    "False headline",
-   "Fact-check"
+   "Fact-check headline"
   ],
   "unresolved": [
-   "The platform's randomization of tie and trust within each arm, the mock feed implementation, compensation and IRB number must be supplied by the research team."
+   "Actual image files for the three headlines",
+   "Compensation, bonus amount and IRB number",
+   "Final cell-level sample size and YouGov quotas"
   ],
   "label": "Design advance",
   "text": "extensions/advance_design.txt",
@@ -41,43 +47,81 @@
  {
   "qsf": "extensions/generalizability_conditional.qsf",
   "qsf_errors": [],
-  "media": [
-   "post_true: image stimulus to supply (a social media post showing a true, neutral news headline on a topic such as a c)",
-   "post_mis: image stimulus to supply (a social media post showing a false news headline on a disputed topic)"
-  ],
+  "media": [],
   "id": "generalizability_conditional",
   "kind": "boundary",
-  "title": "Does the misinformation penalty hold across belief in disputed claims?",
+  "title": "Replication across populations and languages",
   "brief_id": "generalizability_conditional",
   "mode": "survey_experiment",
   "debate": null,
-  "why": "Fixes the missing_moderator cause: it pre-selects the moderator from S3 and S8 and tests it with enough power instead of relying on a tertile contrast.",
+  "why": "Fixes the sample cause. The original shows a smaller penalty among Spanish-language respondents (−14.4 vs −20.1), but only within a Latino sample.",
   "power_target": {
-   "n_per_arm": 1300,
-   "mde": 0.056,
-   "basis": "S3 misinformation difference 0.056 (SE 0.017); interaction MDE is larger than main-effect MDE 0.031"
+   "n_per_arm": 1500,
+   "mde": 0.04,
+   "basis": "The language gap is 0.057 (−0.201 vs −0.144), with SEs near 0.014–0.020. About 1,500 per group-by-arm cell gives an MDE near 0.04."
   },
-  "rationale": "The source found misinformation shared 18.2 points less than true/neutral content (95% CI [-20.4,-16.0]), but respondents with higher belief in disputed claims shared misinformation 5.6 points more (p<0.001), a tertile contrast that was underpowered and US-English only. This design pre-selects belief in disputed claims as the moderator, stratifies on it and on survey language (English/Spanish), and tests one registered interaction.",
-  "contribution": "Tests whether the misinformation sharing penalty shrinks among high-belief respondents and whether it generalizes to Spanish-language samples.",
+  "rationale": "The source found a misinformation sharing penalty of −18.2 points and a fact-check penalty of −13.3 points, but only among US Latino adults. The penalty looked smaller among Spanish-language respondents (−14.4 vs −20.1), and that gap is confounded with sample. This design runs the same headline-type randomization in white, Black and Latino adults, with Latino adults split by survey language.",
+  "contribution": "Tests whether the information-type penalty and the trust gradient generalize across racial/ethnic groups and survey languages.",
   "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "The gap in sharing between misinformation and true/neutral headlines is smaller among respondents in the top tertile of belief in disputed claims than in the bottom tertile (a positive infotype-by-moderator interaction). The penalty is present in both languages.",
-  "primary_outcome": "Share: chosen/likely to share the headline (infotype x belief tertile interaction).",
-  "comparison": "Misinformation vs true/neutral headline, interacted with belief tertile (top vs bottom), with respondent-clustered SEs; language is a secondary stratum.",
+  "hypothesis": "The misinformation sharing penalty is negative in all groups, and it is smaller among Spanish-language Latino respondents than among English-language Latino respondents. High sharer trust is associated with more sharing in all groups.",
+  "primary_outcome": "Chosen to share (1 if the headline was chosen in 'Which post would you be more likely to share?')",
+  "comparison": "Misinformation vs true/neutral headline, with the information-type by group and by language interaction tested. The fact-check vs true/neutral contrast is secondary.",
   "conditions": [
    "True/neutral headline",
-   "Misinformation headline"
+   "Misinformation headline",
+   "Fact-check headline"
   ],
   "unresolved": [
-   "Actual headline images and Spanish translations must be supplied by the research team.",
-   "IRB number, compensation and panel vendor must be set by the research team."
+   "The actual headline pairs (17 topics) and their Spanish translations must be supplied by the research team to replace the cond_note text.",
+   "Compensation, IRB number and the panel quotas must be set by the research team."
   ],
   "label": "Generalizability",
   "text": "extensions/generalizability_conditional.txt",
   "svg": "extensions/generalizability_conditional.svg"
+ },
+ {
+  "qsf": "extensions/theoretical_debate.qsf",
+  "qsf_errors": [],
+  "media": [],
+  "id": "theoretical_debate",
+  "kind": "alternative",
+  "title": "Belief-driven versus identity-driven sharing of misinformation",
+  "brief_id": "theoretical_debate",
+  "mode": "survey_experiment",
+  "debate": "D1",
+  "why": "Fixes the missing_moderator and design causes. Randomizing source ideology and measuring both outcomes lets sharing diverge from belief when sources are co-partisan, which the original could not test.",
+  "power_target": {
+   "n_per_arm": 1500,
+   "mde": 0.04,
+   "basis": "Moderator contrasts of about 0.055 (S3) with SEs near 0.017; the sharer ideology effect of 0.019 (H4) is smaller, so a cell of 1,500 targets an interaction MDE near 0.04."
+  },
+  "rationale": "The source found misinformation lowered sharing by 18.2 points and plausibility by 18.6 points, so the two moved together. Sharer ideology was not randomized (moderate sharer −1.9 points, p=0.034), and both outcomes were forced choices, so the source could not test whether source ideology pulls sharing away from plausibility. This design randomizes source ideology and measures both outcomes on separate scales.",
+  "contribution": "Tests whether source ideology shifts sharing intent more than perceived accuracy, which separates belief-driven from identity-driven sharing.",
+  "addresses": [],
+  "validated_by": "autoexperiment",
+  "status": "proposed",
+  "built_at": null,
+  "survey_id": null,
+  "survey_url": null,
+  "hypothesis": "If sharing follows belief, the source effect on sharing equals its effect on accuracy. If identity drives sharing, the co-ideological source effect on sharing exceeds its effect on accuracy, especially for false headlines and among respondents in the top tertile of belief in disputed claims.",
+  "primary_outcome": "Difference between sharing intent and accuracy rating (both standardized), by source condition, headline veracity and belief tertile.",
+  "comparison": "Co-ideological versus opposed and neutral source; outcome (share vs accuracy) by source interaction, moderated by belief tertile and headline veracity.",
+  "conditions": [
+   "Co-ideological source",
+   "Opposed source",
+   "Neutral source"
+  ],
+  "unresolved": [
+   "The actual headline texts and outlet names must be supplied and pretested for veracity and topic salience.",
+   "IRB approval number and compensation must be supplied by the research team."
+  ],
+  "label": "Theoretical debate",
+  "text": "extensions/theoretical_debate.txt",
+  "svg": "extensions/theoretical_debate.svg"
  }
 ]

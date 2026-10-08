@@ -1,0 +1,5 @@
+term,arm,estimate,std_error,p_value,conf_low,conf_high,n,outcome
+"C(arm_code, Treatment(reference='True/neutral'))[T.Misinformation]",Misinformation,-0.18222749985440392,0.011281702293907469,1.0908166376382885e-58,-0.20433923003476548,-0.16011576967404237,11882,share
+"C(arm_code, Treatment(reference='True/neutral'))[T.Fact-check]",Fact-check,-0.1333912457365141,0.011394979837205567,1.1855303816281515e-31,-0.1557249958219971,-0.1110574956510311,11882,share
+"C(arm_code, Treatment(reference='True/neutral'))[T.Misinformation]",Misinformation,-0.18584238805752004,0.011234028494874605,1.8040987387838068e-61,-0.20786067930877097,-0.1638240968062691,11884,plausibility
+"C(arm_code, Treatment(reference='True/neutral'))[T.Fact-check]",Fact-check,-0.12437316156266356,0.011438371751024058,1.5446264764198814e-27,-0.14679195823645108,-0.10195436488887605,11884,plausibility

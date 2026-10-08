@@ -403,6 +403,60 @@ def amce_figures(summary):
         tufte(ax)
         fig.tight_layout(); fig.savefig(FIG / f"amce_{outcome}.png"); plt.close(fig)
 
+def reestimate(h, d, moderator=None):
+    """Re-fit one hypothesis's specification (its exclusions, treatment coding, covariates and centring, weights
+    and standard errors) on the data d, writing nothing. h is a hypothesis id or dict. Returns one row per
+    treatment effect (columns term, arm, estimate, std_error, p_value, conf_low, conf_high, n). With moderator
+    (a column of d), returns the treatment x moderator interactions instead: one centred slope per arm for a
+    numeric moderator with more than two values, one row per level otherwise (text or 0/1 columns; bin a numeric
+    moderator first to compare groups). Covariates other than the moderator then enter additively. Used by exploratory robustness and heterogeneity checks."""
+    if isinstance(h, str):
+        h = {x["id"]: x for x in HYPOTHESES}[h]
+    d = d.copy()
+    for expr in h.get("exclusions") or []:
+        try:
+            d = d.query(expr)
+        except Exception:
+            pass
+    est = h.get("estimator") or {}
+    y = h["outcome"]
+    covs = [c for c in (est.get("covariates") or []) if c != y]      # a covariate used as a placebo outcome leaves the model
+    d = prep_treatment(h, d)
+    extra = [c for c in (est.get("weights"), est.get("cluster")) if c] + (["post"] if est.get("kind") == "did" else [])
+    if h["id"] in MULTIARM:
+        spec = MULTIARM[h["id"]]
+        d["arm_code"] = d["arm_code"].map(arm_str)
+        d = d[d["arm_code"].isin(spec["arms"] + [spec["control"]])]
+        arm_term, tcol = f"C(arm_code, Treatment(reference={spec['control']!r}))", "arm_code"
+        keys = [(f"{arm_term}[T.{a}]", spec["labels"].get(a, a)) for a in spec["arms"]]
+    else:
+        arm_term, tcol = "treat", "treat"
+        keys = [("treat:post" if est.get("kind") == "did" and moderator is None else "treat", "treat")]
+    if moderator is None:
+        d = d.dropna(subset=[y, tcol] + covs + extra)
+        formula, d = build_formula(y, est, covs, d, arm_term)
+        match = lambda t, k: t == k
+    else:
+        covs = [c for c in covs if c != moderator]
+        d = d.dropna(subset=[y, tcol, moderator] + covs + extra)
+        m = pd.to_numeric(d[moderator], errors="coerce")
+        if m.notna().all() and m.nunique() > 2:
+            d["_mod"], mterm = m - m.mean(), "_mod"
+        else:
+            d["_mod"], mterm = d[moderator].map(arm_str), "C(_mod)"
+        formula = f"{y} ~ {arm_term} * {mterm}" + "".join(f" + {term(c, cat_set(est))}" for c in covs)
+        match = lambda t, k: t.startswith(k + ":" + mterm)
+    res = fit(d, formula, est)
+    ci = res.conf_int()
+    rows = []
+    hits = [(t, lab) for k, lab in keys for t in res.params.index if match(t, k)]    # arms in plan order
+    for t, lab in hits:
+        name = lab if moderator is None else f"{lab} x {moderator}" + (f"={t.rsplit('[T.', 1)[1].rstrip(']')}" if "[T." in t.split(":", 1)[-1] else "")
+        rows.append({"term": t, "arm": name, "estimate": float(res.params[t]), "std_error": float(res.bse[t]),
+                     "p_value": float(res.pvalues[t]), "conf_low": float(ci.loc[t, 0]), "conf_high": float(ci.loc[t, 1]),
+                     "n": int(res.nobs)})
+    return pd.DataFrame(rows, columns=["term", "arm", "estimate", "std_error", "p_value", "conf_low", "conf_high", "n"])
+
 def main():
     df = pd.read_csv(ROOT / "data" / "clean.csv")
     summary = []

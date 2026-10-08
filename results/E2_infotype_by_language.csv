@@ -1,0 +1,7 @@
+term,arm,estimate,std_error,p_value,conf_low,conf_high,n,subset
+"C(arm_code, Treatment(reference='True/neutral'))[T.Misinformation]",Misinformation,-0.18222749985440392,0.011281702293907469,1.0908166376382885e-58,-0.20433923003476548,-0.16011576967404237,11882,All
+"C(arm_code, Treatment(reference='True/neutral'))[T.Fact-check]",Fact-check,-0.1333912457365141,0.011394979837205567,1.1855303816281515e-31,-0.1557249958219971,-0.1110574956510311,11882,All
+"C(arm_code, Treatment(reference='True/neutral'))[T.Misinformation]",Misinformation,-0.20082999498004392,0.013623836332457678,3.511496047131427e-49,-0.22753222352292923,-0.1741277664371586,7975,English
+"C(arm_code, Treatment(reference='True/neutral'))[T.Fact-check]",Fact-check,-0.14054376632736965,0.01373110396370137,1.3758129304249873e-24,-0.1674562355641995,-0.11363129709053978,7975,English
+"C(arm_code, Treatment(reference='True/neutral'))[T.Misinformation]",Misinformation,-0.14441511579391322,0.020029257007030753,5.586633685872633e-13,-0.18367173816479002,-0.10515849342303643,3907,Spanish
+"C(arm_code, Treatment(reference='True/neutral'))[T.Fact-check]",Fact-check,-0.11897385133715038,0.02039251835063509,5.405210782107635e-09,-0.1589424528584673,-0.07900524981583346,3907,Spanish

@@ -1,0 +1,43 @@
+import importlib.util, pathlib
+import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py')); reg = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(reg)
+
+d = pd.read_csv('data/clean.csv')
+pathlib.Path('results').mkdir(exist_ok=True); pathlib.Path('figures').mkdir(exist_ok=True)
+
+def fmt(r):
+    return "; ".join(f"{a} {e:.3f} (SE {s:.3f})" for a, e, s in zip(r.arm, r.estimate, r.std_error))
+
+h1 = reg.HYPOTHESES[0]
+base = reg.reestimate(h1, d)
+hp = dict(h1, outcome="plausibility")
+pl = reg.reestimate(hp, d)
+t1 = pd.concat([base.assign(outcome="share"), pl.assign(outcome="plausibility")])
+t1.to_csv('results/E1_infotype_share_vs_plausibility.csv', index=False)
+print("E1 Information type on sharing vs plausibility: " + fmt(base) + " | plausibility: " + fmt(pl))
+
+rows = []
+for lab, sub in [("All", d), ("English", d[d.survey_language == "English"]), ("Spanish", d[d.survey_language == "Spanish"])]:
+    r = reg.reestimate(h1, sub); r["subset"] = lab; rows.append(r)
+t2 = pd.concat(rows)
+t2.to_csv('results/E2_infotype_by_language.csv', index=False)
+print("E2 Information type effect on sharing by survey language: " + " | ".join(f"{l}: {fmt(g)}" for l, g in t2.groupby("subset", sort=False)))
+
+d["older"] = (d.age > d.age.median()).astype(int)
+t3 = reg.reestimate(h1, d, moderator="older")
+t3.to_csv('results/E3_infotype_by_age.csv', index=False)
+print("E3 Information type effect on sharing by age group: " + "; ".join(f"{row['arm']}/{row['level'] if 'level' in t3.columns else row['term']} {row['estimate']:.3f} (SE {row['std_error']:.3f})" for _, row in t3.iterrows()))
+
+fig, ax = plt.subplots(figsize=(5, 3))
+for i, (lab, g) in enumerate(t2.groupby("subset", sort=False)):
+    for j, r in enumerate(g.itertuples()):
+        ax.errorbar(r.estimate, j + i * 0.2, xerr=1.96 * r.std_error, fmt='o', color='#b22' if lab == "All" else '#222')
+        ax.text(r.estimate, j + i * 0.2 + 0.08, lab, fontsize=7, ha='center')
+ax.set_yticks(range(len(g))); ax.set_yticklabels(list(g.arm))
+ax.axvline(0, color='#222', lw=0.5)
+for s in ['top', 'right', 'left']: ax.spines[s].set_visible(False)
+ax.set_xlabel("Effect on sharing vs True/neutral")
+plt.tight_layout(); plt.savefig('figures/E2_language.png', dpi=200, facecolor='white')

@@ -1,0 +1,833 @@
+{
+ "id": "theoretical_debate",
+ "kind": "alternative",
+ "title": "Belief-driven versus identity-driven sharing of misinformation",
+ "rationale": "The source found misinformation lowered sharing by 18.2 points and plausibility by 18.6 points, so the two moved together. Sharer ideology was not randomized (moderate sharer −1.9 points, p=0.034), and both outcomes were forced choices, so the source could not test whether source ideology pulls sharing away from plausibility. This design randomizes source ideology and measures both outcomes on separate scales.",
+ "contribution": "Tests whether source ideology shifts sharing intent more than perceived accuracy, which separates belief-driven from identity-driven sharing.",
+ "limitations": [
+  "Stated sharing intent is not real sharing behavior.",
+  "Headline topics may differ in partisan salience, so topic is randomized and controlled.",
+  "Source ideology is signaled by a named outlet and may not match real contacts.",
+  "Tertiles of belief in disputed claims are measured, not randomized."
+ ],
+ "design": {
+  "title": "Source ideology, accuracy judgements and sharing intent",
+  "overview": "Respondents first report belief in disputed claims and their own ideology. Each is then randomly assigned to one source type (co-ideological, opposed, or neutral) and sees four headlines (two false, two true) from that source. For each headline they rate accuracy and sharing intent on separate 1-7 scales, giving a within-subject comparison of the two outcomes.",
+  "hypothesis": "If sharing follows belief, the source effect on sharing equals its effect on accuracy. If identity drives sharing, the co-ideological source effect on sharing exceeds its effect on accuracy, especially for false headlines and among respondents in the top tertile of belief in disputed claims.",
+  "primaryOutcome": "Difference between sharing intent and accuracy rating (both standardized), by source condition, headline veracity and belief tertile.",
+  "comparison": "Co-ideological versus opposed and neutral source; outcome (share vs accuracy) by source interaction, moderated by belief tertile and headline veracity.",
+  "population": "US adults, quota-sampled to include conservatives, moderates and liberals, with Latino adults oversampled. About 1,500 per arm.",
+  "conditions": [
+   {
+    "id": "co",
+    "title": "Co-ideological source",
+    "description": "Headlines attributed to an outlet matching the respondent's ideology.",
+    "nodeId": "arm_co"
+   },
+   {
+    "id": "opp",
+    "title": "Opposed source",
+    "description": "Headlines attributed to an outlet of the opposite ideology.",
+    "nodeId": "arm_opp"
+   },
+   {
+    "id": "neu",
+    "title": "Neutral source",
+    "description": "Headlines attributed to a non-ideological outlet.",
+    "nodeId": "arm_neu"
+   }
+  ],
+  "blocks": [
+   {
+    "id": "b_consent",
+    "title": "Consent",
+    "questions": [
+     {
+      "id": "q_consent",
+      "type": "MC",
+      "text": "You are invited to a short survey about how people judge and share news headlines. Participation is voluntary and anonymous, and you may stop at any time. Do you agree to take part?",
+      "tag": "consent",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "c_yes",
+        "text": "I agree",
+        "recode": "1"
+       },
+       {
+        "id": "c_no",
+        "text": "I do not agree",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_pre",
+    "title": "Pre-treatment measures",
+    "questions": [
+     {
+      "id": "q_ideo",
+      "type": "MC",
+      "text": "Which best describes your political views?",
+      "tag": "own_ideology",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "i1",
+        "text": "Liberal",
+        "recode": "1"
+       },
+       {
+        "id": "i2",
+        "text": "Moderate",
+        "recode": "2"
+       },
+       {
+        "id": "i3",
+        "text": "Conservative",
+        "recode": "3"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_belief",
+      "type": "Matrix",
+      "text": "How much do you believe each of the following claims?",
+      "tag": "disputed_belief",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "s1",
+        "text": "Not at all",
+        "recode": "1"
+       },
+       {
+        "id": "s2",
+        "text": "Somewhat",
+        "recode": "2"
+       },
+       {
+        "id": "s3",
+        "text": "Moderately",
+        "recode": "3"
+       },
+       {
+        "id": "s4",
+        "text": "Completely",
+        "recode": "4"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "Powerful groups secretly control major world events."
+       },
+       {
+        "id": "r2",
+        "text": "Official accounts of important events are often cover-ups."
+       },
+       {
+        "id": "r3",
+        "text": "Health authorities hide information about harmful treatments."
+       }
+      ],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_co",
+    "title": "Co-ideological headlines",
+    "questions": [
+     {
+      "id": "d_co",
+      "type": "DB",
+      "text": "Please read these four headlines, each reported by an outlet that shares your political leaning.",
+      "tag": "intro_co",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_acc_co",
+      "type": "Matrix",
+      "text": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+      "tag": "accuracy_co",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "a1",
+        "text": "1",
+        "recode": "1"
+       },
+       {
+        "id": "a2",
+        "text": "2",
+        "recode": "2"
+       },
+       {
+        "id": "a3",
+        "text": "3",
+        "recode": "3"
+       },
+       {
+        "id": "a4",
+        "text": "4",
+        "recode": "4"
+       },
+       {
+        "id": "a5",
+        "text": "5",
+        "recode": "5"
+       },
+       {
+        "id": "a6",
+        "text": "6",
+        "recode": "6"
+       },
+       {
+        "id": "a7",
+        "text": "7",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "False headline 1"
+       },
+       {
+        "id": "r2",
+        "text": "False headline 2"
+       },
+       {
+        "id": "r3",
+        "text": "True headline 1"
+       },
+       {
+        "id": "r4",
+        "text": "True headline 2"
+       }
+      ],
+      "sourceQuestionId": "QID6"
+     },
+     {
+      "id": "q_sh_co",
+      "type": "Matrix",
+      "text": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+      "tag": "share_co",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "h1",
+        "text": "1",
+        "recode": "1"
+       },
+       {
+        "id": "h2",
+        "text": "2",
+        "recode": "2"
+       },
+       {
+        "id": "h3",
+        "text": "3",
+        "recode": "3"
+       },
+       {
+        "id": "h4",
+        "text": "4",
+        "recode": "4"
+       },
+       {
+        "id": "h5",
+        "text": "5",
+        "recode": "5"
+       },
+       {
+        "id": "h6",
+        "text": "6",
+        "recode": "6"
+       },
+       {
+        "id": "h7",
+        "text": "7",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "False headline 1"
+       },
+       {
+        "id": "r2",
+        "text": "False headline 2"
+       },
+       {
+        "id": "r3",
+        "text": "True headline 1"
+       },
+       {
+        "id": "r4",
+        "text": "True headline 2"
+       }
+      ],
+      "sourceQuestionId": "QID5"
+     }
+    ]
+   },
+   {
+    "id": "b_opp",
+    "title": "Opposed headlines",
+    "questions": [
+     {
+      "id": "d_opp",
+      "type": "DB",
+      "text": "Please read these four headlines, each reported by an outlet that leans politically opposite to you.",
+      "tag": "intro_opp",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_acc_opp",
+      "type": "Matrix",
+      "text": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+      "tag": "accuracy_opp",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "a1",
+        "text": "1",
+        "recode": "1"
+       },
+       {
+        "id": "a2",
+        "text": "2",
+        "recode": "2"
+       },
+       {
+        "id": "a3",
+        "text": "3",
+        "recode": "3"
+       },
+       {
+        "id": "a4",
+        "text": "4",
+        "recode": "4"
+       },
+       {
+        "id": "a5",
+        "text": "5",
+        "recode": "5"
+       },
+       {
+        "id": "a6",
+        "text": "6",
+        "recode": "6"
+       },
+       {
+        "id": "a7",
+        "text": "7",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "False headline 1"
+       },
+       {
+        "id": "r2",
+        "text": "False headline 2"
+       },
+       {
+        "id": "r3",
+        "text": "True headline 1"
+       },
+       {
+        "id": "r4",
+        "text": "True headline 2"
+       }
+      ],
+      "sourceQuestionId": "QID6"
+     },
+     {
+      "id": "q_sh_opp",
+      "type": "Matrix",
+      "text": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+      "tag": "share_opp",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "h1",
+        "text": "1",
+        "recode": "1"
+       },
+       {
+        "id": "h2",
+        "text": "2",
+        "recode": "2"
+       },
+       {
+        "id": "h3",
+        "text": "3",
+        "recode": "3"
+       },
+       {
+        "id": "h4",
+        "text": "4",
+        "recode": "4"
+       },
+       {
+        "id": "h5",
+        "text": "5",
+        "recode": "5"
+       },
+       {
+        "id": "h6",
+        "text": "6",
+        "recode": "6"
+       },
+       {
+        "id": "h7",
+        "text": "7",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "False headline 1"
+       },
+       {
+        "id": "r2",
+        "text": "False headline 2"
+       },
+       {
+        "id": "r3",
+        "text": "True headline 1"
+       },
+       {
+        "id": "r4",
+        "text": "True headline 2"
+       }
+      ],
+      "sourceQuestionId": "QID5"
+     }
+    ]
+   },
+   {
+    "id": "b_neu",
+    "title": "Neutral headlines",
+    "questions": [
+     {
+      "id": "d_neu",
+      "type": "DB",
+      "text": "Please read these four headlines, each reported by a non-partisan news outlet.",
+      "tag": "intro_neu",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_acc_neu",
+      "type": "Matrix",
+      "text": "For each headline, how likely is it to be accurate? (1 = very unlikely, 7 = very likely)",
+      "tag": "accuracy_neu",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "a1",
+        "text": "1",
+        "recode": "1"
+       },
+       {
+        "id": "a2",
+        "text": "2",
+        "recode": "2"
+       },
+       {
+        "id": "a3",
+        "text": "3",
+        "recode": "3"
+       },
+       {
+        "id": "a4",
+        "text": "4",
+        "recode": "4"
+       },
+       {
+        "id": "a5",
+        "text": "5",
+        "recode": "5"
+       },
+       {
+        "id": "a6",
+        "text": "6",
+        "recode": "6"
+       },
+       {
+        "id": "a7",
+        "text": "7",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "False headline 1"
+       },
+       {
+        "id": "r2",
+        "text": "False headline 2"
+       },
+       {
+        "id": "r3",
+        "text": "True headline 1"
+       },
+       {
+        "id": "r4",
+        "text": "True headline 2"
+       }
+      ],
+      "sourceQuestionId": "QID6"
+     },
+     {
+      "id": "q_sh_neu",
+      "type": "Matrix",
+      "text": "For each headline, how likely would you be to share it? (1 = very unlikely, 7 = very likely)",
+      "tag": "share_neu",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "h1",
+        "text": "1",
+        "recode": "1"
+       },
+       {
+        "id": "h2",
+        "text": "2",
+        "recode": "2"
+       },
+       {
+        "id": "h3",
+        "text": "3",
+        "recode": "3"
+       },
+       {
+        "id": "h4",
+        "text": "4",
+        "recode": "4"
+       },
+       {
+        "id": "h5",
+        "text": "5",
+        "recode": "5"
+       },
+       {
+        "id": "h6",
+        "text": "6",
+        "recode": "6"
+       },
+       {
+        "id": "h7",
+        "text": "7",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "False headline 1"
+       },
+       {
+        "id": "r2",
+        "text": "False headline 2"
+       },
+       {
+        "id": "r3",
+        "text": "True headline 1"
+       },
+       {
+        "id": "r4",
+        "text": "True headline 2"
+       }
+      ],
+      "sourceQuestionId": "QID5"
+     }
+    ]
+   },
+   {
+    "id": "b_debrief",
+    "title": "Debrief",
+    "questions": [
+     {
+      "id": "d_debrief",
+      "type": "DB",
+      "text": "Thank you. Some headlines you saw were false, and the outlet labels were randomly assigned for research purposes. Please verify news with reliable fact-checking sources before sharing.",
+      "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   }
+  ],
+  "flow": [
+   {
+    "id": "n_consent",
+    "type": "block",
+    "label": "Consent",
+    "children": [],
+    "blockId": "b_consent",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_br",
+    "type": "branch",
+    "label": "No consent",
+    "children": [
+     "n_end"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "q_consent",
+    "choiceId": "c_no",
+    "operator": "selected"
+   },
+   {
+    "id": "n_end",
+    "type": "end",
+    "label": "End",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_pre",
+    "type": "block",
+    "label": "Pre",
+    "children": [],
+    "blockId": "b_pre",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "r1",
+    "type": "randomizer",
+    "label": "Source",
+    "children": [
+     "arm_co",
+     "arm_opp",
+     "arm_neu"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_co",
+    "type": "group",
+    "label": "Co",
+    "children": [
+     "e_co",
+     "n_co"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_co",
+    "type": "embedded",
+    "label": "set co",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "co",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_co",
+    "type": "block",
+    "label": "Co block",
+    "children": [],
+    "blockId": "b_co",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_opp",
+    "type": "group",
+    "label": "Opp",
+    "children": [
+     "e_opp",
+     "n_opp"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_opp",
+    "type": "embedded",
+    "label": "set opp",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "opp",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_opp",
+    "type": "block",
+    "label": "Opp block",
+    "children": [],
+    "blockId": "b_opp",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_neu",
+    "type": "group",
+    "label": "Neu",
+    "children": [
+     "e_neu",
+     "n_neu"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_neu",
+    "type": "embedded",
+    "label": "set neu",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "neu",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_neu",
+    "type": "block",
+    "label": "Neu block",
+    "children": [],
+    "blockId": "b_neu",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_deb",
+    "type": "block",
+    "label": "Debrief",
+    "children": [],
+    "blockId": "b_debrief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   }
+  ],
+  "roots": [
+   "n_consent",
+   "n_br",
+   "n_pre",
+   "r1",
+   "n_deb"
+  ],
+  "assumptions": [
+   "About 1,500 respondents per arm (4,500 total) gives 80% power for an interaction of about 0.04, since source-level moderator contrasts in the source study were about 0.055 with SEs near 0.017 and the sharer ideology effect was 0.019.",
+   "Online panel, about 8 minutes; compensation per panel standard.",
+   "Respondents are tertiled on belief in disputed claims; headline order is randomized.",
+   "Accuracy and sharing scales are standardized within respondent before computing the difference."
+  ],
+  "unresolved": [
+   "The actual headline texts and outlet names must be supplied and pretested for veracity and topic salience.",
+   "IRB approval number and compensation must be supplied by the research team."
+  ],
+  "evidence": [
+   {
+    "id": "e1",
+    "title": "Source study package",
+    "url": "https://github.com/yrvelez/fact-networks-conjoint",
+    "claim": "the source study this extension builds on",
+    "excerpt": "",
+    "origin": "supplied"
+   },
+   {
+    "id": "e2",
+    "title": "Understanding Conspiracy Theories",
+    "url": "https://doi.org/10.1111/pops.12568",
+    "claim": "Conspiracy belief relates to identity and group motives",
+    "excerpt": "",
+    "origin": "supplied"
+   }
+  ]
+ }
+}

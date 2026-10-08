@@ -1,39 +1,39 @@
 {
  "id": "advance_design",
  "kind": "mechanism",
- "title": "Randomize the sharer's attributes, with a behavioural share",
- "rationale": "In the source study close ties (+3.0 points, CI [1.0, 5.0]) and high trust (+5.7 points, CI [2.3, 9.1]) were associated with more sharing, but these attributes were respondents' ratings of real contacts and so bundle correlated traits. Randomizing tie and trust in a forwarded-post vignette tests whether they cause sharing of false headlines (misinformation was shared 18.2 points less than true headlines).",
- "contribution": "Turns descriptive tie-strength and trust contrasts into causal estimates, using a behavioural share outcome and a real-contact benchmark.",
+ "title": "Randomized source cues and separate sharing and belief measures",
+ "rationale": "The source study found misinformation lowered sharing by 18.2 points and plausibility by 18.6 points, so the two moved together. High trust (+5.7) and close tie (+3.0) were associated with more sharing, but sharer attributes were not randomized and both outcomes were forced choices. Randomizing source cues and rating sharing and accuracy separately lets the two outcomes diverge.",
+ "contribution": "Tests causally whether source trust and tie strength shift sharing intent more than perceived accuracy of a false headline.",
  "limitations": [
-  "Vignette sharers are fictional, so the effects may differ from those for real contacts.",
-  "The mock-feed share is a behavioural proxy and not a real platform share.",
-  "The 2000 per arm target is for a 0.03 effect, so smaller interaction effects will be underpowered.",
-  "Multiple tests need correction."
+  "Fictional contact lacks real relationship history",
+  "Incentivized share is a subsample with a small stake",
+  "Single headline per respondent limits topic generalization",
+  "Stated trust and tie are vignette cues, not real relationships"
  ],
  "design": {
-  "title": "Randomized sharer tie and trust in forwarded posts",
-  "overview": "Respondents consent, then see forwarded posts. Headline type (true, false, fact-check) is randomized between respondents. Within each respondent, tie strength (close or distant) and trust (high or low) are randomized across two forwarded-post vignettes. Respondents choose whether to share each post to a mock feed and rate its plausibility. A final block shows a post attributed to the respondent's own real contact as a benchmark.",
-  "hypothesis": "H1: a randomized close tie raises the probability of sharing by about 0.03. H2: randomized high trust raises it by about 0.05. Both effects hold for false headlines.",
-  "primaryOutcome": "Share of the forwarded post to the mock feed (binary).",
-  "comparison": "Close vs distant tie and high vs low trust, within headline type. Standard errors are clustered by respondent. Headline type is a between-subject factor.",
-  "population": "US adults from a YouGov-type online panel.",
+  "title": "Randomized source cues and separate sharing and belief measures",
+  "overview": "US Latino adults see one headline (true, false or fact-check) attributed to a fictional contact whose tie (close or distant) and trust (high or low) are randomized, giving a 3x2x2 factorial. They rate sharing intent and perceived accuracy on separate 1-7 scales, then make a real share-or-not choice.",
+  "hypothesis": "Source trust and tie strength raise sharing intent more than perceived accuracy, especially for the false headline.",
+  "primaryOutcome": "Sharing intent (1-7) minus perceived accuracy (1-7, standardized), and each rating separately.",
+  "comparison": "High vs low trust and close vs distant tie, on sharing versus accuracy, by headline type.",
+  "population": "US Latino adults from YouGov, stratified by survey language (English or Spanish).",
   "conditions": [
    {
     "id": "c_true",
     "title": "True headline",
-    "description": "True or neutral headline forwarded by a randomized sharer.",
+    "description": "A true headline attributed to the contact, with tie and trust randomized within the arm.",
     "nodeId": "arm_true"
    },
    {
     "id": "c_false",
     "title": "False headline",
-    "description": "False headline forwarded by a randomized sharer.",
+    "description": "A false headline attributed to the contact, with tie and trust randomized within the arm.",
     "nodeId": "arm_false"
    },
    {
     "id": "c_fc",
-    "title": "Fact-check",
-    "description": "Fact-check headline forwarded by a randomized sharer.",
+    "title": "Fact-check headline",
+    "description": "A fact-check headline attributed to the contact, with tie and trust randomized within the arm.",
     "nodeId": "arm_fc"
    }
   ],
@@ -45,19 +45,19 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "You are invited to a research survey about how people share news online. It takes about 10 minutes and is voluntary. Do you agree to take part?",
+      "text": "This is a research survey about how people respond to news posts. It takes about 8 minutes and is voluntary. Do you agree to take part?",
       "tag": "consent",
       "multiple": false,
       "required": true,
       "choices": [
        {
         "id": "yes",
-        "text": "Yes, I agree",
+        "text": "I agree",
         "recode": "1"
        },
        {
         "id": "no",
-        "text": "No",
+        "text": "I do not agree",
         "recode": "0"
        }
       ],
@@ -68,13 +68,13 @@
    },
    {
     "id": "b_true",
-    "title": "True",
+    "title": "True headline",
     "questions": [
      {
-      "id": "q_t_intro",
+      "id": "q_dbt",
       "type": "DB",
-      "text": "Imagine you receive a forwarded post in a messaging app. The sender is described as {{ed:tie1}} and as someone you {{ed:trust1}}. The post reads: \"City council approves new budget for road repairs after public hearing.\"",
-      "tag": "true_intro",
+      "text": "Imagine {{ed:tie}} who you {{ed:trust}} shared this post: {{ed:headline_true}}",
+      "tag": "stim_true",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -85,13 +85,13 @@
    },
    {
     "id": "b_false",
-    "title": "False",
+    "title": "False headline",
     "questions": [
      {
-      "id": "q_f_intro",
+      "id": "q_dbf",
       "type": "DB",
-      "text": "Imagine you receive a forwarded post in a messaging app. The sender is described as {{ed:tie1}} and as someone you {{ed:trust1}}. The post reads: \"Doctors admit common vaccine contains hidden tracking chips.\"",
-      "tag": "false_intro",
+      "text": "Imagine {{ed:tie}} who you {{ed:trust}} shared this post: {{ed:headline_false}}",
+      "tag": "stim_false",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -102,13 +102,13 @@
    },
    {
     "id": "b_fc",
-    "title": "Fact-check",
+    "title": "Fact-check headline",
     "questions": [
      {
-      "id": "q_c_intro",
+      "id": "q_dbc",
       "type": "DB",
-      "text": "Imagine you receive a forwarded post in a messaging app. The sender is described as {{ed:tie1}} and as someone you {{ed:trust1}}. The post reads: \"Fact-check: claim that vaccines contain tracking chips is false.\"",
-      "tag": "fc_intro",
+      "text": "Imagine {{ed:tie}} who you {{ed:trust}} shared this post: {{ed:headline_fc}}",
+      "tag": "stim_fc",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -124,85 +124,118 @@
      {
       "id": "q_share",
       "type": "MC",
-      "text": "Would you share this post to your mock feed?",
-      "tag": "share_feed",
+      "text": "How likely would you be to share this post? (1 = very unlikely, 7 = very likely)",
+      "tag": "share_rating",
       "multiple": false,
       "required": true,
       "choices": [
        {
         "id": "s1",
-        "text": "Share",
+        "text": "1",
         "recode": "1"
        },
        {
-        "id": "s0",
-        "text": "Do not share",
-        "recode": "0"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_plaus",
-      "type": "MC",
-      "text": "Based on the available information, do you think this post is more likely to be accurate or inaccurate?",
-      "tag": "plausibility",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "p1",
-        "text": "Accurate",
-        "recode": "1"
+        "id": "s2",
+        "text": "2",
+        "recode": "2"
        },
        {
-        "id": "p0",
-        "text": "Inaccurate",
-        "recode": "0"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": "QID6"
-     }
-    ]
-   },
-   {
-    "id": "b_bench",
-    "title": "Real contact benchmark",
-    "questions": [
-     {
-      "id": "q_name",
-      "type": "TE",
-      "text": "Think of someone you discuss important matters with. Using initials only, enter who it is.",
-      "tag": "real_contact",
-      "multiple": false,
-      "required": true,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_bshare",
-      "type": "MC",
-      "text": "If this person forwarded you the same post, would you share it to your mock feed?",
-      "tag": "benchmark_share",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "b1",
-        "text": "Share",
-        "recode": "1"
+        "id": "s3",
+        "text": "3",
+        "recode": "3"
        },
        {
-        "id": "b0",
-        "text": "Do not share",
-        "recode": "0"
+        "id": "s4",
+        "text": "4",
+        "recode": "4"
+       },
+       {
+        "id": "s5",
+        "text": "5",
+        "recode": "5"
+       },
+       {
+        "id": "s6",
+        "text": "6",
+        "recode": "6"
+       },
+       {
+        "id": "s7",
+        "text": "7",
+        "recode": "7"
        }
       ],
       "rows": [],
       "sourceQuestionId": "QID5"
+     },
+     {
+      "id": "q_acc",
+      "type": "MC",
+      "text": "Based on the available information, how likely is this post to be accurate? (1 = very unlikely, 7 = very likely)",
+      "tag": "accuracy_rating",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "a1",
+        "text": "1",
+        "recode": "1"
+       },
+       {
+        "id": "a2",
+        "text": "2",
+        "recode": "2"
+       },
+       {
+        "id": "a3",
+        "text": "3",
+        "recode": "3"
+       },
+       {
+        "id": "a4",
+        "text": "4",
+        "recode": "4"
+       },
+       {
+        "id": "a5",
+        "text": "5",
+        "recode": "5"
+       },
+       {
+        "id": "a6",
+        "text": "6",
+        "recode": "6"
+       },
+       {
+        "id": "a7",
+        "text": "7",
+        "recode": "7"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID6"
+     },
+     {
+      "id": "q_real",
+      "type": "MC",
+      "text": "Would you like us to post this item to a public feed under the study's account, with a note that you chose to share it? You will receive a small bonus either way.",
+      "tag": "real_share",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "r1",
+        "text": "Yes, share it",
+        "recode": "1"
+       },
+       {
+        "id": "r0",
+        "text": "No, do not share it",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
      }
     ]
    },
@@ -213,7 +246,7 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. Some posts were false and the senders were fictional. No post was actually shared. Please do not spread the false claims.",
+      "text": "Thank you. The contact was fictional, and the false headline was false. The correct information is that the claim is unsupported by evidence. Your responses are confidential.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
@@ -284,11 +317,11 @@
     "type": "group",
     "label": "True",
     "children": [
-     "e_t",
-     "e_tie_t",
-     "e_tr_t",
-     "n_true",
-     "n_out_t"
+     "e_ct",
+     "e_tie1",
+     "e_trust1",
+     "e_ht",
+     "b_true_n"
     ],
     "blockId": "",
     "field": "",
@@ -298,9 +331,9 @@
     "operator": "equals"
    },
    {
-    "id": "e_t",
+    "id": "e_ct",
     "type": "embedded",
-    "label": "cond",
+    "label": "cond true",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -310,47 +343,47 @@
     "operator": "equals"
    },
    {
-    "id": "e_tie_t",
+    "id": "e_tie1",
     "type": "embedded",
     "label": "tie",
     "children": [],
     "blockId": "",
-    "field": "tie1",
+    "field": "tie",
     "value": "a close friend or family member",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_tr_t",
+    "id": "e_trust1",
     "type": "embedded",
     "label": "trust",
     "children": [],
     "blockId": "",
-    "field": "trust1",
-    "value": "trust a lot",
+    "field": "trust",
+    "value": "trust a great deal",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "n_true",
+    "id": "e_ht",
+    "type": "embedded",
+    "label": "headline true",
+    "children": [],
+    "blockId": "",
+    "field": "headline_true",
+    "value": "[IMAGE: A news post with a true headline about a public health agency announcing a routine vaccination schedule update]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "b_true_n",
     "type": "block",
-    "label": "True post",
+    "label": "True stimulus",
     "children": [],
     "blockId": "b_true",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_out_t",
-    "type": "block",
-    "label": "Outcomes",
-    "children": [],
-    "blockId": "b_out",
     "field": "",
     "value": "",
     "questionId": "",
@@ -362,11 +395,11 @@
     "type": "group",
     "label": "False",
     "children": [
-     "e_f",
-     "e_tie_f",
-     "e_tr_f",
-     "n_false",
-     "n_out_f"
+     "e_cf",
+     "e_tie2",
+     "e_trust2",
+     "e_hf",
+     "b_false_n"
     ],
     "blockId": "",
     "field": "",
@@ -376,9 +409,9 @@
     "operator": "equals"
    },
    {
-    "id": "e_f",
+    "id": "e_cf",
     "type": "embedded",
-    "label": "cond",
+    "label": "cond false",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -388,47 +421,47 @@
     "operator": "equals"
    },
    {
-    "id": "e_tie_f",
+    "id": "e_tie2",
     "type": "embedded",
     "label": "tie",
     "children": [],
     "blockId": "",
-    "field": "tie1",
-    "value": "an acquaintance you see occasionally",
+    "field": "tie",
+    "value": "a close friend or family member",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_tr_f",
+    "id": "e_trust2",
     "type": "embedded",
     "label": "trust",
     "children": [],
     "blockId": "",
-    "field": "trust1",
-    "value": "do not trust much",
+    "field": "trust",
+    "value": "trust a great deal",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "n_false",
+    "id": "e_hf",
+    "type": "embedded",
+    "label": "headline false",
+    "children": [],
+    "blockId": "",
+    "field": "headline_false",
+    "value": "[IMAGE: A news post with a false headline claiming a common fruit cures a serious disease]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "b_false_n",
     "type": "block",
-    "label": "False post",
+    "label": "False stimulus",
     "children": [],
     "blockId": "b_false",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_out_f",
-    "type": "block",
-    "label": "Outcomes",
-    "children": [],
-    "blockId": "b_out",
     "field": "",
     "value": "",
     "questionId": "",
@@ -440,11 +473,11 @@
     "type": "group",
     "label": "Fact-check",
     "children": [
-     "e_c",
-     "e_tie_c",
-     "e_tr_c",
-     "n_fc",
-     "n_out_c"
+     "e_cc",
+     "e_tie3",
+     "e_trust3",
+     "e_hc",
+     "b_fc_n"
     ],
     "blockId": "",
     "field": "",
@@ -454,9 +487,9 @@
     "operator": "equals"
    },
    {
-    "id": "e_c",
+    "id": "e_cc",
     "type": "embedded",
-    "label": "cond",
+    "label": "cond fc",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -466,33 +499,45 @@
     "operator": "equals"
    },
    {
-    "id": "e_tie_c",
+    "id": "e_tie3",
     "type": "embedded",
     "label": "tie",
     "children": [],
     "blockId": "",
-    "field": "tie1",
+    "field": "tie",
     "value": "a close friend or family member",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_tr_c",
+    "id": "e_trust3",
     "type": "embedded",
     "label": "trust",
     "children": [],
     "blockId": "",
-    "field": "trust1",
-    "value": "trust a lot",
+    "field": "trust",
+    "value": "trust a great deal",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "n_fc",
+    "id": "e_hc",
+    "type": "embedded",
+    "label": "headline fc",
+    "children": [],
+    "blockId": "",
+    "field": "headline_fc",
+    "value": "[IMAGE: A fact-check post debunking the claim that a common fruit cures a serious disease]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "b_fc_n",
     "type": "block",
-    "label": "Fact-check post",
+    "label": "FC stimulus",
     "children": [],
     "blockId": "b_fc",
     "field": "",
@@ -502,23 +547,11 @@
     "operator": "equals"
    },
    {
-    "id": "n_out_c",
+    "id": "n_out",
     "type": "block",
     "label": "Outcomes",
     "children": [],
     "blockId": "b_out",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_bench",
-    "type": "block",
-    "label": "Benchmark",
-    "children": [],
-    "blockId": "b_bench",
     "field": "",
     "value": "",
     "questionId": "",
@@ -542,26 +575,36 @@
    "n_consent",
    "n_br",
    "r1",
-   "n_bench",
+   "n_out",
    "n_deb"
   ],
   "assumptions": [
-   "Power target: about 2000 per arm to detect 0.03 at 80% power (source H2 close tie 0.030 vs MDE 0.0258; H5 high trust 0.057 vs MDE 0.051).",
-   "Tie and trust levels are crossed and randomized by the survey platform in each vignette; the flow shows one fixed example per arm.",
-   "Platform is a YouGov-type US panel, with standard errors clustered by respondent.",
-   "Each respondent sees two vignettes, so the analysis clusters on respondent."
+   "Power target: about 1000 per arm to detect 0.05 at 80% power (observed trust effect 0.057, MDE 0.051); about 1,300 per cell is needed for the tie effect of 0.03 under clustering.",
+   "Tie and trust (close/distant, high/low) are randomized within each headline arm via the survey platform; the flow shows one default setting per arm, and the full 3x2x2 crossing is implemented in the platform.",
+   "The real-share choice is asked of a random subsample.",
+   "Stratify by survey language (English or Spanish)."
   ],
   "unresolved": [
-   "The platform's randomization of tie and trust within each arm, the mock feed implementation, compensation and IRB number must be supplied by the research team."
+   "Actual image files for the three headlines",
+   "Compensation, bonus amount and IRB number",
+   "Final cell-level sample size and YouGov quotas"
   ],
   "evidence": [
    {
     "id": "ev1",
-    "title": "Source study",
+    "title": "Source study package",
     "url": "https://github.com/yrvelez/fact-networks-conjoint",
-    "claim": "Close ties (+3.0) and high trust (+5.7) were associated with more sharing but were not randomized.",
+    "claim": "the source study this extension builds on",
     "excerpt": "",
-    "origin": "web"
+    "origin": "supplied"
+   },
+   {
+    "id": "ev2",
+    "title": "Pre-registration of the source study",
+    "url": "https://aspredicted.org/8njc-mpqw.pdf",
+    "claim": "the registered design and outcomes",
+    "excerpt": "",
+    "origin": "supplied"
    }
   ]
  }

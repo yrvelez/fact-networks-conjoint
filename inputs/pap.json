@@ -112,7 +112,8 @@
   "measured_note": "the respondent's own ratings of the real contact each headline was attributed to; only the headline and its assignment to a contact are randomized",
   "population": {
    "country": "US",
-   "sample": "yougov"
+   "sample": "yougov",
+   "description": "US Latino (Hispanic) adults, YouGov sample, surveyed in English or Spanish"
   }
  },
  "registered": {

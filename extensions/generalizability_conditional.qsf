@@ -1,7 +1,7 @@
 {
  "SurveyEntry": {
   "SurveyID": "SV_filedrawer00000",
-  "SurveyName": "Headline type by belief in disputed claims and survey language (extension of: Who Shares What From W",
+  "SurveyName": "Headline type effects on sharing across population groups and languages (extension of: Who Shares Wh",
   "SurveyDescription": null,
   "SurveyOwnerID": "UR_filedrawer00000",
   "SurveyBrandID": "",
@@ -11,9 +11,9 @@
   "SurveyStatus": "Inactive",
   "SurveyStartDate": "0000-00-00 00:00:00",
   "SurveyExpirationDate": "0000-00-00 00:00:00",
-  "SurveyCreationDate": "2026-10-07 02:46:28",
+  "SurveyCreationDate": "2026-10-08 16:05:48",
   "CreatorID": "UR_filedrawer00000",
-  "LastModified": "2026-10-07 02:46:28",
+  "LastModified": "2026-10-08 16:05:48",
   "LastAccessed": "0000-00-00 00:00:00",
   "LastActivated": "0000-00-00 00:00:00",
   "Deleted": null
@@ -39,8 +39,8 @@
     },
     {
      "Type": "Standard",
-     "Description": "Belief in disputed claims",
-     "ID": "BL_b_mod",
+     "Description": "Group and contacts",
+     "ID": "BL_b_demo",
      "BlockElements": [
       {
        "Type": "Question",
@@ -57,41 +57,76 @@
     },
     {
      "Type": "Standard",
-     "Description": "True headline",
+     "Description": "Trials true",
      "ID": "BL_b_true",
      "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID4"
-      }
-     ]
-    },
-    {
-     "Type": "Standard",
-     "Description": "False headline",
-     "ID": "BL_b_misinfo",
-     "BlockElements": [
-      {
-       "Type": "Question",
-       "QuestionID": "QID5"
-      }
-     ]
-    },
-    {
-     "Type": "Standard",
-     "Description": "Outcomes",
-     "ID": "BL_b_out",
-     "BlockElements": [
-      {
-       "Type": "Question",
-       "QuestionID": "QID6"
       },
       {
        "Type": "Page Break"
       },
       {
        "Type": "Question",
+       "QuestionID": "QID5"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID6"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Trials misinformation",
+     "ID": "BL_b_mis",
+     "BlockElements": [
+      {
+       "Type": "Question",
        "QuestionID": "QID7"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID8"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID9"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Trials fact-check",
+     "ID": "BL_b_fact",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID10"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID11"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID12"
       }
      ]
     },
@@ -102,7 +137,7 @@
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID8"
+       "QuestionID": "QID13"
       }
      ]
     },
@@ -132,7 +167,7 @@
      {
       "Type": "Branch",
       "FlowID": "FL_3",
-      "Description": "Non-consent exit",
+      "Description": "No consent",
       "BranchLogic": {
        "0": {
         "0": {
@@ -159,7 +194,7 @@
      },
      {
       "Type": "Standard",
-      "ID": "BL_b_mod",
+      "ID": "BL_b_demo",
       "FlowID": "FL_5",
       "Autofill": []
      },
@@ -172,7 +207,7 @@
        {
         "Type": "Group",
         "FlowID": "FL_7",
-        "Description": "True/neutral",
+        "Description": "True",
         "Flow": [
          {
           "Type": "EmbeddedData",
@@ -185,7 +220,7 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "true"
+            "Value": "true_neutral"
            }
           ]
          },
@@ -194,13 +229,13 @@
           "FlowID": "FL_9",
           "EmbeddedData": [
            {
-            "Description": "post_true",
+            "Description": "cond_note",
             "Type": "Custom",
-            "Field": "post_true",
+            "Field": "cond_note",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "[IMAGE TO SUPPLY: a social media post showing a true, neutral news headline on a topic such as a city budget update]"
+            "Value": "[Headline pair: a true or neutral headline and a second headline]"
            }
           ]
          },
@@ -215,7 +250,7 @@
        {
         "Type": "Group",
         "FlowID": "FL_11",
-        "Description": "Misinformation",
+        "Description": "Misinfo",
         "Flow": [
          {
           "Type": "EmbeddedData",
@@ -228,7 +263,7 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "misinfo"
+            "Value": "misinformation"
            }
           ]
          },
@@ -237,20 +272,63 @@
           "FlowID": "FL_13",
           "EmbeddedData": [
            {
-            "Description": "post_mis",
+            "Description": "cond_note",
             "Type": "Custom",
-            "Field": "post_mis",
+            "Field": "cond_note",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "[IMAGE TO SUPPLY: a social media post showing a false news headline on a disputed topic]"
+            "Value": "[Headline pair: a false headline and a second headline]"
            }
           ]
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_misinfo",
+          "ID": "BL_b_mis",
           "FlowID": "FL_14",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_15",
+        "Description": "Fact",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_16",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "fact_check"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_17",
+          "EmbeddedData": [
+           {
+            "Description": "cond_note",
+            "Type": "Custom",
+            "Field": "cond_note",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[Headline pair: a fact-check headline and a second headline]"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_fact",
+          "FlowID": "FL_18",
           "Autofill": []
          }
         ]
@@ -259,19 +337,13 @@
      },
      {
       "Type": "Standard",
-      "ID": "BL_b_out",
-      "FlowID": "FL_15",
-      "Autofill": []
-     },
-     {
-      "Type": "Standard",
       "ID": "BL_b_debrief",
-      "FlowID": "FL_16",
+      "FlowID": "FL_19",
       "Autofill": []
      }
     ],
     "Properties": {
-     "Count": 16,
+     "Count": 19,
      "RemovedFieldsets": []
     }
    }
@@ -284,7 +356,7 @@
    "TertiaryAttribute": null,
    "Payload": {
     "PreviewType": "Brand",
-    "PreviewID": "1bac373f-bd87-4b78-9f3a-acfd06bd9d20"
+    "PreviewID": "f3978993-dbe3-41d5-a699-cd47f9a5d0be"
    }
   },
   {
@@ -302,7 +374,7 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "QC",
    "PrimaryAttribute": "Survey Question Count",
-   "SecondaryAttribute": "8",
+   "SecondaryAttribute": "13",
    "TertiaryAttribute": null,
    "Payload": null
   },
@@ -352,7 +424,7 @@
     "ValidationMessage": null,
     "PreviousButton": "",
     "NextButton": "",
-    "SurveyTitle": "Headline type by belief in disputed claims and survey language (extension of: Who Shares What From W",
+    "SurveyTitle": "Headline type effects on sharing across population groups and languages (extension of: Who Shares Wh",
     "SkinLibrary": "Qualtrics",
     "SkinType": "templated",
     "Skin": {
@@ -361,7 +433,7 @@
      "overrides": null
     },
     "NewScoring": 1,
-    "SurveyMetaDescription": "Respondents first complete a belief-in-disputed-claims scale. They are then randomized to see a t..."
+    "SurveyMetaDescription": "Adults from matched YouGov samples (white, Black, Latino-English, Latino-Spanish) rate a contact,..."
    }
   },
   {
@@ -379,10 +451,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID1",
-   "SecondaryAttribute": "You are invited to a short research survey about how people react to news headli",
+   "SecondaryAttribute": "This is a research survey about how people share online information. It takes ab",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "You are invited to a short research survey about how people react to news headlines. Participation is voluntary and you may stop at any time. Do you agree to participate?",
+    "QuestionText": "This is a research survey about how people share online information. It takes about 10 minutes, and participation is voluntary. Do you agree to participate?",
     "DataExportTag": "consent",
     "DataVisibility": {
      "Private": false,
@@ -391,7 +463,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "You are invited to a short research survey about how people react to news headlines. Participatio...",
+    "QuestionDescription": "This is a research survey about how people share online information. It takes about 10 minutes, a...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -428,11 +500,11 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID2",
-   "SecondaryAttribute": "Survey language",
+   "SecondaryAttribute": "Which best describes your race or ethnicity?",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Survey language",
-    "DataExportTag": "survey_language",
+    "QuestionText": "Which best describes your race or ethnicity?",
+    "DataExportTag": "group",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -440,7 +512,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Survey language",
+    "QuestionDescription": "Which best describes your race or ethnicity?",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -455,21 +527,26 @@
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "English"
+      "Display": "White non-Hispanic"
      },
      "2": {
-      "Display": "Español"
+      "Display": "Black non-Hispanic"
+     },
+     "3": {
+      "Display": "Hispanic or Latino"
      }
     },
     "ChoiceOrder": [
      "1",
-     "2"
+     "2",
+     "3"
     ],
-    "NextChoiceId": 3,
+    "NextChoiceId": 4,
     "NextAnswerId": 1,
     "RecodeValues": {
-     "1": "0",
-     "2": "1"
+     "1": "1",
+     "2": "2",
+     "3": "3"
     }
    }
   },
@@ -477,24 +554,19 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID3",
-   "SecondaryAttribute": "How likely do you think each of the following claims is to be true?",
+   "SecondaryAttribute": "Think of someone you discuss important matters with. How much do you trust this ",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "How likely do you think each of the following claims is to be true?",
-    "DataExportTag": "belief_disputed",
+    "QuestionText": "Think of someone you discuss important matters with. How much do you trust this person for information?",
+    "DataExportTag": "contact_trust",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
     },
     "Configuration": {
-     "QuestionDescriptionOption": "UseText",
-     "TextPosition": "inline",
-     "ChoiceColumnWidth": 25,
-     "RepeatHeaders": "none",
-     "WhiteSpace": "OFF",
-     "MobileFirst": true
+     "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "How likely do you think each of the following claims is to be true?",
+    "QuestionDescription": "Think of someone you discuss important matters with. How much do you trust this person for inform...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -504,68 +576,42 @@
     },
     "Language": [],
     "QuestionID": "QID3",
-    "QuestionType": "Matrix",
-    "Selector": "Likert",
-    "SubSelector": "SingleAnswer",
-    "DefaultChoices": false,
-    "GradingData": [],
-    "ChoiceDataExportTags": false,
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "Vaccines cause autism."
+      "Display": "Low"
      },
      "2": {
-      "Display": "Climate change is a hoax."
+      "Display": "Medium"
      },
      "3": {
-      "Display": "The 2020 US presidential election was stolen."
-     },
-     "4": {
-      "Display": "A small group of people secretly controls world events."
+      "Display": "High"
      }
     },
     "ChoiceOrder": [
      "1",
      "2",
-     "3",
-     "4"
+     "3"
     ],
-    "Answers": {
-     "1": {
-      "Display": "Definitely false"
-     },
-     "2": {
-      "Display": "Probably false"
-     },
-     "3": {
-      "Display": "Unsure"
-     },
-     "4": {
-      "Display": "Probably true"
-     },
-     "5": {
-      "Display": "Definitely true"
-     }
-    },
-    "AnswerOrder": [
-     "1",
-     "2",
-     "3",
-     "4",
-     "5"
-    ],
-    "NextChoiceId": 5,
-    "NextAnswerId": 6
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "2",
+     "3": "3"
+    }
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID4",
-   "SecondaryAttribute": "Here is a news post. {{ed:post_true}}",
+   "SecondaryAttribute": "This person shares a post with a true or neutral headline, shown alongside anoth",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Here is a news post. ${e://Field/post_true}",
+    "QuestionText": "This person shares a post with a true or neutral headline, shown alongside another post: ${e://Field/cond_note}",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -573,7 +619,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Here is a news post. ${e://Field/post_true}",
+    "QuestionDescription": "This person shares a post with a true or neutral headline, shown alongside another post: ${e://Fi...",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -588,17 +634,18 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_true_stim"
+    "DataExportTag": "q_dbt"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID5",
-   "SecondaryAttribute": "Here is a news post. {{ed:post_mis}}",
+   "SecondaryAttribute": "Which post would you be more likely to share?",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Here is a news post. ${e://Field/post_mis}",
+    "QuestionText": "Which post would you be more likely to share?",
+    "DataExportTag": "share_true",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -606,33 +653,48 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Here is a news post. ${e://Field/post_mis}",
+    "QuestionDescription": "Which post would you be more likely to share?",
     "Validation": {
      "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
       "Type": "None"
      }
     },
     "Language": [],
     "QuestionID": "QID5",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Message 1"
+     },
+     "2": {
+      "Display": "Message 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
     "NextAnswerId": 1,
-    "DataExportTag": "q_mis_stim"
+    "RecodeValues": {
+     "1": "1",
+     "2": "2"
+    }
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID6",
-   "SecondaryAttribute": "Would you be more likely to share this post?",
+   "SecondaryAttribute": "Based on the available information, which post do you think is more likely to be",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Would you be more likely to share this post?",
-    "DataExportTag": "share",
+    "QuestionText": "Based on the available information, which post do you think is more likely to be accurate?",
+    "DataExportTag": "belief_true",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -640,7 +702,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Would you be more likely to share this post?",
+    "QuestionDescription": "Based on the available information, which post do you think is more likely to be accurate?",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -655,10 +717,10 @@
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "Yes, I would share it"
+      "Display": "Message 1"
      },
      "2": {
-      "Display": "No, I would not share it"
+      "Display": "Message 2"
      }
     },
     "ChoiceOrder": [
@@ -669,7 +731,7 @@
     "NextAnswerId": 1,
     "RecodeValues": {
      "1": "1",
-     "2": "0"
+     "2": "2"
     }
    }
   },
@@ -677,11 +739,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID7",
-   "SecondaryAttribute": "Based on the available information, do you think this post is likely to be accur",
+   "SecondaryAttribute": "This person shares a post with a false headline, shown alongside another post: {",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Based on the available information, do you think this post is likely to be accurate?",
-    "DataExportTag": "plausibility",
+    "QuestionText": "This person shares a post with a false headline, shown alongside another post: ${e://Field/cond_note}",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -689,7 +750,41 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Based on the available information, do you think this post is likely to be accurate?",
+    "QuestionDescription": "This person shares a post with a false headline, shown alongside another post: ${e://Field/cond_n...",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID7",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_dbm"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID8",
+   "SecondaryAttribute": "Which post would you be more likely to share?",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Which post would you be more likely to share?",
+    "DataExportTag": "share_mis",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Which post would you be more likely to share?",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -698,16 +793,16 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID7",
+    "QuestionID": "QID8",
     "QuestionType": "MC",
     "Selector": "SAVR",
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "Yes, likely accurate"
+      "Display": "Message 1"
      },
      "2": {
-      "Display": "No, not likely accurate"
+      "Display": "Message 2"
      }
     },
     "ChoiceOrder": [
@@ -718,18 +813,19 @@
     "NextAnswerId": 1,
     "RecodeValues": {
      "1": "1",
-     "2": "0"
+     "2": "2"
     }
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID8",
-   "SecondaryAttribute": "Thank you. Some headlines shown in this study were false and were created for re",
+   "PrimaryAttribute": "QID9",
+   "SecondaryAttribute": "Based on the available information, which post do you think is more likely to be",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Thank you. Some headlines shown in this study were false and were created for research. Please do not share them. Accurate information on these topics is available from public health and fact-checking organizations.",
+    "QuestionText": "Based on the available information, which post do you think is more likely to be accurate?",
+    "DataExportTag": "belief_mis",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -737,14 +833,193 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Thank you. Some headlines shown in this study were false and were created for research. Please do...",
+    "QuestionDescription": "Based on the available information, which post do you think is more likely to be accurate?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID9",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Message 1"
+     },
+     "2": {
+      "Display": "Message 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "2"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID10",
+   "SecondaryAttribute": "This person shares a post with a fact-check headline, shown alongside another po",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "This person shares a post with a fact-check headline, shown alongside another post: ${e://Field/cond_note}",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "This person shares a post with a fact-check headline, shown alongside another post: ${e://Field/c...",
     "Validation": {
      "Settings": {
       "Type": "None"
      }
     },
     "Language": [],
-    "QuestionID": "QID8",
+    "QuestionID": "QID10",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_dbf"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID11",
+   "SecondaryAttribute": "Which post would you be more likely to share?",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Which post would you be more likely to share?",
+    "DataExportTag": "share_fact",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Which post would you be more likely to share?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID11",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Message 1"
+     },
+     "2": {
+      "Display": "Message 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "2"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID12",
+   "SecondaryAttribute": "Based on the available information, which post do you think is more likely to be",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Based on the available information, which post do you think is more likely to be accurate?",
+    "DataExportTag": "belief_fact",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Based on the available information, which post do you think is more likely to be accurate?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID12",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Message 1"
+     },
+     "2": {
+      "Display": "Message 2"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "2"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID13",
+   "SecondaryAttribute": "Thank you. Some headlines you saw were false or were fact-checks. They were used",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Thank you. Some headlines you saw were false or were fact-checks. They were used for research only. Please rely on trusted sources for accurate information.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Thank you. Some headlines you saw were false or were fact-checks. They were used for research onl...",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID13",
     "QuestionType": "DB",
     "Selector": "TB",
     "DefaultChoices": false,
