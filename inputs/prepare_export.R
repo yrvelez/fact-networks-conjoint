@@ -22,7 +22,7 @@ suppressMessages({library(dplyr); library(haven); library(stringr)})
 
 args <- commandArgs(trailingOnly = TRUE)
 repo <- if (length(args)) args[1] else
-  "/Users/yamil/Library/CloudStorage/Dropbox/Current Projects/fact_networks"
+  stop("give the path to the fact_networks analysis repository (see Usage above)")
 long  <- readRDS(file.path(repo, "data", "long.rds"))
 raw   <- read_sav(file.path(repo, "data", "yougov_analysis.sav"))
 slant <- read.csv(file.path(repo, "headline_slant.csv"), stringsAsFactors = FALSE)
