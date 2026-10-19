@@ -3,7 +3,7 @@
 *Yamil R. Velez · 2026-10-08 · N = 1,500 respondents analysed of 1,500 collected (12,000 rows) · conjoint experiment*
 
 <!-- fd:badges -->
-![provenance: fully agentic](figures/badges/provenance.svg) ![review: light pass · 12/12 claims supported](figures/badges/review.svg) [![plan: pre-registered #132,508](figures/badges/registration.svg)](https://aspredicted.org/8njc-mpqw.pdf) ![status: draft](figures/badges/release.svg) ![design: conjoint](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $1.41](figures/badges/cost.svg)
+![provenance: fully agentic](figures/badges/provenance.svg) ![review: light pass · 3 corrected · 12/12 claims supported](figures/badges/review.svg) [![plan: pre-registered #132,508](figures/badges/registration.svg)](https://aspredicted.org/8njc-mpqw.pdf) ![status: draft](figures/badges/release.svg) ![design: conjoint](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $1.41](figures/badges/cost.svg)
 
 > **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-08; orchestrator `anthropic/claude-sonnet-5.5`, standard `anthropic/claude-haiku-5.5`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 0. Release status: draft. Model calls: $1.41, 502k tokens in and 42k out. Cite as: Velez, Y. R. (2026). Who Shares What From Whom: An Ego-Network Conjoint of Misinformation Sharing [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/fact-networks-conjoint
 
@@ -1233,7 +1233,7 @@ Only headline type was randomized, so effects of tie strength, trust, ideology, 
 
 *Light Pass review: referee `anthropic/claude-sonnet-5.5`, checking agent `anthropic/claude-sonnet-5.5`. The Light Pass does two things: it checks every reported estimate against the result tables, and every analysis against the pre-analysis plan. It does not judge the design, methods or interpretation; see the other review options. The agent applied the corrections below itself; no person reviewed or revised this report. Registered analyses are never changed.*
 
-**Outcome.** 12 of 12 checked claims supported after the agent's corrections; 26 of 26 registered analyses run as planned; 3 reworded; 3 text fixes; 1 correction pass.
+**Outcome.** 12 of 12 checked claims supported after the agent's corrections (3 flagged claims corrected); 26 of 26 registered analyses run as planned; 3 reworded; 3 text fixes; 1 correction pass.
 
 #### Corrections
 
@@ -1310,9 +1310,11 @@ Re-check of the corrected text: All previous claims are now properly worded; no 
 
 #### Other review options
 
-- **Coarse**: the open-source coarse-ink reviewer, run on your machine (about $1-2), then imported. `uvx coarse-ink review report.md, then filedrawer review-import . coarse FILE`
-- **Refine**: upload the report to refine.ink, then import its review. `filedrawer review-import . refine FILE`
-- **OpenReview or any referee report**: import a review posted on OpenReview, or any other referee report. `filedrawer review-import . openreview FILE`
+- **Coarse**: run the open-source reviewer on your machine (about $1-2, your OpenRouter key): uvx --python 3.12 coarse-ink review report.md, which writes report_review.md. `filedrawer review-import . coarse FILE`
+- **Refine**: upload report.md (or a PDF of it) at refine.ink, wait for the review, and save it (PDF, Markdown or text). `filedrawer review-import . refine FILE`
+- **OpenAIReview**: run ChicagoHAI's open-source reviewer on your machine with your own model key (OpenRouter, OpenAI, Anthropic or Gemini; the cost depends on the model you pick): uvx openaireview review report.md, which writes its comments to review_results/. `filedrawer review-import . openaireview FILE`
+- **Edyth**: open the report in Edyth (the Check with Edyth button on the study's filedrawer.org page): with the code FILEDRAWER the reference check and reading suggestions are free, and an optional deep review is paid from your own Edyth balance; save the Markdown letter it returns. `filedrawer review-import . edyth FILE`
+- **Any other referee report**: save any referee report, from a person or a model (PDF, Markdown or text). `filedrawer review-import . other FILE`
 
 
 <!-- fd:section id=potential -->
